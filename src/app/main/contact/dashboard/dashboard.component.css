@@ -1,0 +1,30 @@
+.nav-tabs.leads {
+    border: none;
+}
+
+.nav-tabs.leads .nav-link {
+    padding: 0;
+    margin-right: 20px;
+    border: none;
+    font-family: Segoe UI;
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(43, 44, 45, 0.5);
+}
+
+.nav-tabs.leads .nav-link.active {
+    font-weight: bold;
+    color: #26727E;
+}
+.topcontact{
+    border-radius: 7px;
+    background: url('../../../../assets/images/contact.png');
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.topcontact .inner{
+    background: linear-gradient(104.03deg, #263F6D 0.92%, #263F6D 50.34%, rgba(38, 63, 109, 0.907464) 56.98%, rgba(38, 63, 109, 0.8) 63.76%, rgba(38, 63, 109, 0.1) 99%);
+    min-height: 200px;
+    border-radius: 7px;
+}

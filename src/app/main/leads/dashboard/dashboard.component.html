@@ -1,0 +1,164 @@
+<div class="row">
+    <div class="col-lg-8 pt-5">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <div class="toplead p-4">
+                    <p class="fs-32 text-white ff-p">Leads</p>
+                    <p class="fs-16 text-white ff-p mb-4    ">Monitor and convert your leads.</p>
+                    <button class="btn btn-clear"><img src="assets/images/cloud_download.svg" alt="" class="mr-2"><span
+                            class="text-white">Import</span></button>
+                    <button class="btn btn-out-white"><img src="assets/images/add.svg" alt="" class="mr-2">Add New
+                        Lead</button>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <ul class="nav nav-tabs leads align-items-center" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#all" role="tab"
+                            aria-controls="home" aria-selected="true">All Leads</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#my" role="tab"
+                            aria-controls="profile" aria-selected="false">My Leads</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#junk" role="tab"
+                            aria-controls="contact" aria-selected="false">Junk Leads</a>
+                    </li>
+                    <li class="ml-auto">
+                        <a href="" class="nav-link">
+                            <img src="assets/images/date filter.svg" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12">
+                <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns"
+                    [isPaginated]="" (actionOne)="actionOne($event)"
+                   ></app-table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="sidediv">
+            <div class="p-3">
+                <div class="d-flex mb-2">
+                    <div class="mr-2">
+                        <img src="assets/images/info.svg" alt="">
+                    </div>
+                    <div>
+                        <p class="m-0 fs-16 fc-green ff-p">Info</p>
+                    </div>
+                </div>
+                <div class="orangeline"></div>
+                <div class="littleorange"></div>
+                <!-- emptystate  -->
+                <div class="emptystate d-none">
+                    <img src="assets/images/emptylead.svg" alt="">
+                </div>
+                <!-- emptystate  -->
+
+                <!-- properties -->
+                <div class="props pt-2">
+                    <div class="top-prop p-2">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <div class="prop-initials">
+                                    A
+                                </div>
+                            </div>
+                            <div>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">Adebayo Adeyemi </p>
+                            </div>
+                            <div>
+                                <a>
+                                    <img src="assets/images/bcall.svg" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a>
+                                    <img src="assets/images/bmessage.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Position:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">Team Lead, Software Integrations</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>+2348152653762</a></p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>aadebayo@ubagroup.com</a></p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">28 Jun 20    11:10 am</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="top-prop b-5 p-2">
+                            <p class="m-0 fw-4 ff-s fc-black fs-15">Company Info</p>
+                        </div>
+                        <div class="row pl-2">
+                            <div class="col-12 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="py-2">
+                                        <img src="assets/images/uba.svg" alt="">
+                                    </div>
+                                    <div class="p-2">
+                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5 mb-3">
+                                <p class="m-0 fc-lightblack fs-14 ff-s">Institution Type:</p>
+                            </div>
+                            <div class="col-7 mb-3">
+                                <p class="m-0 fc-black fw-6 fs-14 ff-s">Commercial Bank</p>
+                            </div>
+                            <div class="col-5 mb-3">
+                                <p class="m-0 fc-lightblack fs-14 ff-s">Trxn Vol.</p>
+                            </div>
+                            <div class="col-7 mb-3">
+                                <p class="m-0 fc-black fw-6 fs-14 ff-s">>1.2 Billion</p>
+                            </div>
+                            <div class="col-5 mb-3">
+                                <p class="m-0 fc-lightblack fs-14 ff-s">Est. Annual Income:</p>
+                            </div>
+                            <div class="col-7 mb-3">
+                                <p class="m-0 fc-black fw-6 fs-14 ff-s">130 Million</p>
+                            </div>
+                            <div class="col-5 mb-3">
+                                <p class="m-0 fc-lightblack fs-14 ff-s">Address:</p>
+                            </div>
+                            <div class="col-7 mb-3">
+                                <p class="m-0 fc-black fw-6 fs-14 ff-s">57 Marina, Lagos Island, Lagos, Nigeria</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a>View Complete Infomation</a></p>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-green mr-3">Convert to Deal</button>
+                        <button class="btn btn-more"><img src="assets/images/more-green.svg" alt=""></button>
+                    </div>
+                </div>
+                <!-- properties -->
+            </div>
+        </div>
+    </div>
+</div>

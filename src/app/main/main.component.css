@@ -1,0 +1,36 @@
+.green-nav .nav-link {
+    font-family: Palatino Linotype;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FDFFFC;
+}
+
+.green-nav .nav-link.active {
+    color: #FFB329;
+    background: #123B20;
+}
+
+.input-group {
+    border: none;
+    background: none;
+    min-width: 200px;
+}
+
+.input-group input.form-control {
+    border: none;
+    background: none;
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 24px;
+    color: #22333B;
+}
+.input-group input.form-control:focus{
+    border: none;
+    box-shadow: none;
+}
+.input-group input.form-control::placeholder{
+    color: #979797;
+}
+#content{
+    margin-top: +110px;
+}

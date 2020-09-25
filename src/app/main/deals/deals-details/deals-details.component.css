@@ -1,0 +1,71 @@
+
+.btngroup {
+    background: rgba(26, 58, 84, 0.75);
+    border-radius: 50px;
+    min-height: 42px;
+}
+
+.initials {
+    background: #FDEFE8;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Palatino Linotype;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 22px;
+    line-height: 30px;
+    color: #C24504;
+}
+
+.product {
+    background: #E2E2E2;
+    border-radius: 2px;
+    height: 23px;
+    padding: 2px 4px;
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 19px;
+    color: #0A1128;
+}
+
+.nav-tabs.mail {
+    border: none;
+}
+
+.nav-tabs.mail a.nav-link {
+    font-family: Segoe UI;
+    background: none;
+    border: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(43, 44, 45, 0.5);
+}
+.nav-tabs.mail a.nav-link.active{
+    color: #2B2C2D;
+    font-weight: 600;
+}
+.nav-tabs.mail a.nav-link.active{
+    /* border-bottom: 1px solid #2B2C2D; */
+}
+.badge-secondary{
+    background: #DAE1E7;
+}
+
+.dealdetails{
+    border-radius: 7px;
+    background: url('../../../../assets/images/dealdetail.png');
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.dealdetails .inner{
+    background: linear-gradient(104.03deg, #263F6D 0.92%, #263F6D 50.34%, rgba(38, 63, 109, 0.907464) 56.98%, rgba(38, 63, 109, 0.8) 63.76%, rgba(38, 63, 109, 0.1) 99%);
+    min-height: 200px;
+    border-radius: 7px;
+}

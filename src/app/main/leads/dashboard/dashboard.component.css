@@ -1,0 +1,18 @@
+.nav-tabs.leads {
+    border: none;
+}
+
+.nav-tabs.leads .nav-link {
+    padding: 0;
+    margin-right: 20px;
+    border: none;
+    font-family: Segoe UI;
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(43, 44, 45, 0.5);
+}
+
+.nav-tabs.leads .nav-link.active {
+    font-weight: bold;
+    color: #26727E;
+}

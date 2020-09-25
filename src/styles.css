@@ -1,1 +1,404 @@
-/* You can add global styles to this file, and also import other style files */
+/* fonts */
+.fs-32 {
+    font-size: 32px;
+    line-height: 43px;
+}
+
+.fs-16 {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.fs-15 {
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.fs-14 {
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.fs-13 {
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.fs-12 {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.fs-11 {
+    font-size: 11px;
+    line-height: 15px;
+}
+
+.fc-lightgrey {
+    color: #B8B8B8;
+}
+
+.fc-lightwhite {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.fc-black {
+    color: #2B2C2D;
+}
+
+.fc-lightblack {
+    color: rgba(43, 44, 45, 0.7);
+}
+
+.fc-blue {
+    color: #215063;
+}
+
+.fc-darkblue {
+    color: #005377;
+}
+
+.fc-dblue {
+    color: #19304D;
+}
+
+.fc-6blue {
+    color: rgba(25, 48, 77, 0.6);
+}
+
+.fc-green {
+    color: #236B76;
+}
+
+.ff-s {
+    font-family: Segoe UI;
+}
+
+.ff-p {
+    font-family: Palatino Linotype;
+}
+
+.tx-u {
+    text-decoration: underline;
+}
+
+.fw-7 {
+    font-weight: 700;
+}
+
+.fw-6 {
+    font-weight: 600;
+}
+
+.fw-5 {
+    font-weight: 500;
+}
+
+.fw-4 {
+    font-weight: 400;
+}
+
+.fw-3 {
+    font-weight: 300;
+}
+
+.fw-2 {
+    font-weight: 200;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+/* end of fonts */
+
+.green-nav {
+    background: #165A3E;
+}
+
+.sidediv {
+    background: #F7FDFB;
+    height: calc(100vh - 110px);
+    position: fixed;
+    width: 100%;
+    max-width: 350px;
+}
+
+.toplead {
+    border-radius: 7px;
+    background: url('assets/images/leads.png');
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.emptystate {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #C6C6C5;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.orangeline {
+    border: 1px solid rgba(255, 159, 28, 0.3);
+}
+
+.littleorange {
+    width: 100px;
+    margin-top: -2px;
+    border: 1px solid #D18700;
+}
+
+.top-prop {
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.top-prop.b-5 {
+    border-radius: 5px;
+}
+
+.info {
+    background: #EFFBF7;
+    border-radius: 10px;
+}
+
+.prop-initials {
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 31px;
+    color: #007B8C;
+    background: #F7FDFB;
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav.icons-nav {
+    height: 100vh;
+}
+
+.nav.icons-nav a.nav-link {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 0;
+    height: 65px;
+    transition: .3s ease-in-out;
+}
+
+.nav.icons-nav a.nav-link svg #Vector {
+    fill: #C6C6C5;
+}
+
+.nav.icons-nav a.nav-link svg #Vector1 {
+    stroke: #C6C6C5;
+}
+
+.nav.icons-nav a.nav-link:hover {
+    background: #F7FDFB;
+}
+
+.nav.icons-nav a.nav-link.active {
+    background: #F7FDFB;
+    border-right: 5px solid #165A3E;
+}
+
+.nav.icons-nav a.nav-link:hover svg #Vector {
+    fill: rgba(0, 0, 0, .54);
+}
+
+.nav.icons-nav a.nav-link.active svg #Vector {
+    fill: rgba(0, 0, 0, .54);
+}
+
+.nav.icons-nav a.nav-link:hover svg #Vector1 {
+    stroke: rgba(0, 0, 0, .54);
+}
+
+.nav.icons-nav a.nav-link.active svg #Vector1 {
+    stroke: rgba(0, 0, 0, .54);
+}
+
+.messages {
+    height: 75vh;
+    overflow: auto;
+}
+
+.message:hover {
+    background: #EFFBF7;
+}
+
+.nav-tabs.mail {
+    border: none;
+}
+
+.nav-tabs.mail a.nav-link {
+    font-family: Segoe UI;
+    background: none;
+    border: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(43, 44, 45, 0.5);
+}
+
+.nav-tabs.mail a.nav-link.active {
+    color: #2B2C2D;
+    font-weight: 600;
+}
+
+.nav-tabs.mail a.nav-link.active {
+    /* border-bottom: 1px solid #2B2C2D; */
+}
+
+.badge-secondary {
+    background: #DAE1E7;
+}
+
+.breadcrumb {
+    background: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.breadcrumb-item {
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+
+    color: #000000;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #000000;
+    content: url('../src/assets/images/arrow-right.svg');
+}
+
+/* end of buttons  */
+.btn-clear {
+    border: none;
+    height: 36px;
+    background: none;
+    border-radius: 4px;
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.btn-out-green {
+    border: 1px solid #035935;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background: none;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #035935 !important;
+}
+
+.btn-clear:hover,
+.btn-out-white:hover,
+.btn-out-green:hover {
+    box-shadow: 0px 10px 20px rgba(16, 103, 116, 0.15);
+    transition: .3s ease-in-out;
+}
+
+.btn-out-white {
+    border: 1px solid #FFFFFF;
+    height: 36px;
+    background: none;
+    border-radius: 4px;
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 24px;
+    color: white !important;
+}
+
+.btn-more {
+    background: #FBFCFE;
+    border-radius: 6px;
+    height: 44px;
+}
+
+.btn-green {
+    background: #26727E;
+    border-radius: 6px;
+    height: 44px;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #FFFFFF !important;
+}
+
+.btn-green:hover {
+    color: #FFFFFF;
+}
+
+.btn-blue {
+    height: 44px;
+    background: #005578;
+    border-radius: 6px;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #fff;
+    transition: .3s ease-in-out;
+}
+
+.btn-blue:hover {
+    color: #fff;
+    box-shadow: 0px 10px 20px rgba(16, 103, 116, 0.15);
+}
+
+.btn-out-blue {
+    height: 44px;
+    border: 1px solid #00384F;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background: none;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #00384F;
+    transition: .3s ease-in-out;
+}
+.btn-out-blue:hover{
+    color: #00384F;
+    box-shadow: 0px 10px 20px rgba(16, 103, 116, 0.15);
+}
+
+/* buttons  */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}

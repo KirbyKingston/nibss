@@ -1,0 +1,16 @@
+.topcontact{
+    border-radius: 7px;
+    background: url('../../../../assets/images/account.png');
+    min-height: 200px;
+    background-repeat: no-repeat;
+    
+    background-size: contain;
+}
+.topcontact .inner{
+    background: linear-gradient(104.03deg, #263F6D 0.92%, #263F6D 50.34%, rgba(38, 63, 109, 0.907464) 56.98%, rgba(38, 63, 109, 0.8) 63.76%, rgba(38, 63, 109, 0.1) 99%);
+    min-height: 200px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    border-radius: 7px;
+}

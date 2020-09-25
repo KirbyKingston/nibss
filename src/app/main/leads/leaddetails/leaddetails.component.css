@@ -1,0 +1,86 @@
+.nav-tabs.deets a.nav-link {
+    font-family: Segoe UI;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #2B2C2D;
+    background: #F6FBFA;
+    height: 52px;
+}
+
+.nav-tabs.deets a.nav-link.active {
+    background: #DB7C00;
+    color: #F6FBFA;
+}
+
+.nav-tabs.deets {
+    background: #F6FBFA;
+    border-radius: 2px;
+    border: none;
+}
+
+.nav-tabs.deets li:nth-child(1) {
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+
+.nav-tabs.deets li:nth-child(2) {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, -10% 100%);
+}
+
+.btngroup {
+    background: rgba(26, 58, 84, 0.75);
+    border-radius: 50px;
+    min-height: 42px;
+}
+
+.initials {
+    background: #FDEFE8;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Palatino Linotype;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 22px;
+    line-height: 30px;
+    color: #C24504;
+}
+
+.product {
+    background: #E2E2E2;
+    border-radius: 2px;
+    height: 23px;
+    padding: 2px 4px;
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 19px;
+    color: #0A1128;
+}
+
+.nav-tabs.mail {
+    border: none;
+}
+
+.nav-tabs.mail a.nav-link {
+    font-family: Segoe UI;
+    background: none;
+    border: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(43, 44, 45, 0.5);
+}
+.nav-tabs.mail a.nav-link.active{
+    color: #2B2C2D;
+    font-weight: 600;
+}
+.nav-tabs.mail a.nav-link.active{
+    /* border-bottom: 1px solid #2B2C2D; */
+}
+.badge-secondary{
+    background: #DAE1E7;
+}

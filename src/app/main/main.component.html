@@ -1,1 +1,85 @@
-<p>main works!</p>
+<div class="fixed-top">
+    <div class="pt-2 pb-1 bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <img src="assets/images/nibss.svg" alt="">
+                    </div>
+                    <div class="ml-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <img src="assets/images/search-line.svg" alt="">
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search in leads, emails, calls... ">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="px-2">
+                        <img src="assets/images/Vector.svg" alt="">
+                    </div>
+                    <div class="px-2">
+                        <img src="assets/images/bell.svg" alt="">
+                    </div>
+                    <div class="px-2">
+                        <p class="m-0 fs-14 fc-black ff-s">Adewale Salami</p>
+                        <p class="m-0 fs-14 fc-lightgrey ff-s">NIBSS</p>
+                    </div>
+                    <div class="px-2">
+                        <img src="assets/images/arrow-down.svg" alt="">
+                    </div>
+                    <div class="px-2">
+                        <img src="assets/images/logout.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="green-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3">Dashboard</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/leads']" [routerLinkActive]="['active']">Leads</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/contacts']" [routerLinkActive]="['active']">Contacts</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/accounts']" [routerLinkActive]="['active']">Accounts</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/deals']" [routerLinkActive]="['active']">Deals</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/activities']" [routerLinkActive]="['active']">Activities</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/reports']" [routerLinkActive]="['active']">Reports</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/analytics']" [routerLinkActive]="['active']">Analytics</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/products']" [routerLinkActive]="['active']">Products</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/incidents']" [routerLinkActive]="['active']">Incidents</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link py-3">More 
+                        <img src="assets/images/more icon.svg" alt=""> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

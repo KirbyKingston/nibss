@@ -60,14 +60,16 @@
 }
 .overviewtop{
     clip-path: polygon(0 0, 100% 1%, 84% 100%, 0% 100%);
+    /* clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%); */
     background: #DB7C00;
     color: #F6FBFA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: Segoe UI;
     font-weight: 600;
     font-size: 15px;
     line-height: 20px;
-    color: #2B2C2D;
-    background: #F6FBFA;
     height: 52px;
-    min-width: 200px;
+    min-width: 130px;
 }

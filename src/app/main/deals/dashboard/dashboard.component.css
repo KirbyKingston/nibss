@@ -1,4 +1,5 @@
-.nav-tabs.leads {
+.nav-tabs.leads,
+.nav-tabs.deall {
     border: none;
 }
 
@@ -12,18 +13,54 @@
     color: rgba(43, 44, 45, 0.5);
 }
 
+.nav-tabs.leads .nav-link::after {
+    content: '';
+    border-bottom: 2px solid #fff;
+    width: 52px;
+    display: block;
+}
+
 .nav-tabs.leads .nav-link.active {
     font-weight: bold;
     color: #26727E;
 }
-.topcontact{
+
+.nav-tabs.leads .nav-link.active::after {
+    border-bottom: 2px solid #26727E;
+}
+
+.nav-tabs.deall {
+    border-radius: 2px;
+}
+
+.nav-tabs.deall .nav-link {
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    border: none;
+    font-size: 14px;
+    line-height: 19px;
+    color: #333333;
+    background: #F4F4F4;
+    border-radius: 2px;
+}
+
+.nav-tabs.deall .nav-link.active {
+    background: #FFFFFF;
+    box-shadow: 0px 10px 10px rgba(136, 147, 165, 0.07);
+    border-radius: 2px;
+    color: #006877;
+}
+
+.topcontact {
     border-radius: 7px;
     background: url('../../../../assets/images/deals.png');
     min-height: 200px;
     background-repeat: no-repeat;
     background-size: contain;
 }
-.topcontact .inner{
+
+.topcontact .inner {
     background: linear-gradient(104.03deg, #263F6D 0.92%, #263F6D 50.34%, rgba(38, 63, 109, 0.907464) 56.98%, rgba(38, 63, 109, 0.8) 63.76%, rgba(38, 63, 109, 0.1) 99%);
     min-height: 200px;
     border-radius: 7px;

@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-lg-8 pt-2">
         <div class="row">
-            
+
             <div class="col-12 mb-3">
                 <div class="d-flex align-items-center">
                     <div class="mr-2">
-                        <a><img src="assets/images/goback.svg" alt=""></a>  
+                        <a (click)="backClicked()"><img src="assets/images/goback.svg" alt=""></a>
                     </div>
                     <div>
                         <nav aria-label="breadcrumb">
@@ -21,12 +21,12 @@
             <div class="col-12 mb-3">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <div class="overview">
+                        <div class="overviewtop">
                             OVERVIEW
                         </div>
                     </div>
                     <div>
-
+                        <button class="btn btn-out-blue tx-u">Junk Lead</button>
                     </div>
                 </div>
             </div>
@@ -141,11 +141,14 @@
                 </div>
             </div>
             <div class="col-12 mb-3">
-                <button class="btn btn-clear fc-black px-0">
-                    Hide Information
-                </button>
+                <a class="hideinfo fc-black px-0">
+                    Hide Information <span class="ml-2"><img src="assets/images/arrow-up.svg" alt=""></span>
+                </a>
+                <a class="showinfo fc-black px-0">
+                    Show Information <span class="ml-2"><img src="assets/images/arrow-down2.svg" alt=""></span>
+                </a>
             </div>
-            <div class="col-12 mb-3">
+            <div class="col-12 mb-3" id="information">
                 <div class="details pb-4">
                     <div class="px-4 py-3">
                         <div class="row">
@@ -153,7 +156,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <div class="fc-green ff-p fs-18 fw-6">
-                                            Lead Details
+                                            Contact Information
                                         </div>
                                     </div>
                                     <div>
@@ -164,7 +167,7 @@
                                 </div>
 
                                 <div class="orangeline"></div>
-
+                                <div class="deeporange"></div>
                             </div>
                             <div class="col-lg-6">
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Title</p>
@@ -212,7 +215,7 @@
                                         </div>
                                         <div class="orangeline"></div>
                                         <div class="littleorange"></div>
-                                        <div class="py-2">
+                                        <div class="py-4">
                                             <p class="text-center m-0">
                                                 <button class="btn btn-out-green">
                                                     <img src="assets/images/message-green.svg" class="mr-2" alt="">

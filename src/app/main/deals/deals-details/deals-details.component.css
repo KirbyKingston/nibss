@@ -69,3 +69,13 @@
     min-height: 200px;
     border-radius: 7px;
 }
+
+.account {
+    background: #B36500;
+    border-radius: 5px;
+}
+
+.deals {
+    background: #06AD68;
+    border-radius: 5px;
+}

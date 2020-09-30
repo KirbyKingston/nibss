@@ -4,7 +4,7 @@
             <div class="col-12 mb-3">
                 <div class="d-flex align-items-center">
                     <div class="mr-2">
-                        <a><img src="assets/images/goback.svg" alt=""></a>  
+                        <a (click)="backClicked()"><img src="assets/images/goback.svg" alt=""></a>
                     </div>
                     <div>
                         <nav aria-label="breadcrumb">
@@ -17,6 +17,12 @@
                 </div>
 
             </div>
+            <!-- <div class="col-12 my-5">
+                <div class="blocks">
+                    <div class="block block--left"></div>
+                    <div class="block block--right"></div>
+                </div>
+            </div> -->
             <div class="col-12 mb-3">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -91,128 +97,137 @@
                 </div>
             </div>
             <div class="col-12 mb-3">
-                <button class="btn btn-clear fc-black px-0">
-                    Hide Information
-                </button>
+                <a class="hideinfo fc-black px-0">
+                    Hide Information <span class="ml-2"><img src="assets/images/arrow-up.svg" alt=""></span>
+                </a>
+                <a class="showinfo fc-black px-0">
+                    Show Information <span class="ml-2"><img src="assets/images/arrow-down2.svg" alt=""></span>
+                </a>
             </div>
-            <div class="col-12 mb-3">
-                <div class="details pb-4">
-                    <div class="px-4 py-3">
-                        <div class="row">
-                            <div class="col-12 mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="fc-green ff-p fs-18 fw-6">
-                                            Lead Details
+            <div id="information" class="col-12">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="details pb-4">
+                            <div class="px-4 py-3">
+                                <div class="row">
+                                    <div class="col-12 mb-4">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="fc-green ff-p fs-18 fw-6">
+                                                    Lead Details
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <a>
+                                                    <img src="assets/images/Edit.svg" alt="">
+                                                </a>
+                                            </div>
                                         </div>
+
+                                        <div class="orangeline"></div>
+                                        <div class="deeporange"></div>
                                     </div>
-                                    <div>
-                                        <a>
-                                            <img src="assets/images/Edit.svg" alt="">
-                                        </a>
+                                    <div class="col-lg-6">
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Title</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            Mr
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Position</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            Team Lead Software Integrations
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Email Address</p>
+                                        <p class="fs-16 fc-blue ff-s tx-u">
+                                            aadebayo@ubagroup.com
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            Adebayo Adeyemi O.
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            +2347011863095 <span><img src="assets/images/skype.svg" alt=""></span>
+                                        </p>
                                     </div>
                                 </div>
-
-                                <div class="orangeline"></div>
-
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Title</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Mr
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Position</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Team Lead Software Integrations
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Email Address</p>
-                                <p class="fs-16 fc-blue ff-s tx-u">
-                                    aadebayo@ubagroup.com
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Adebayo Adeyemi O.
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    +2347011863095 <span><img src="assets/images/skype.svg" alt=""></span>
-                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 mb-5">
-                <div class="details pb-4">
-                    <div class="px-4 py-3">
-                        <div class="row">
-                            <div class="col-12 mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="fc-green ff-p fs-18 fw-6">
-                                            Institution Details
+                    <div class="col-12 mb-5">
+                        <div class="details pb-4">
+                            <div class="px-4 py-3">
+                                <div class="row">
+                                    <div class="col-12 mb-4">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="fc-green ff-p fs-18 fw-6">
+                                                    Institution Details
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <a>
+                                                    <img src="assets/images/Edit.svg" alt="">
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <a>
-                                            <img src="assets/images/Edit.svg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
 
-                                <div class="orangeline"></div>
+                                        <div class="orangeline"></div>
+                                        <div class="deeporange"></div>
 
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    UBA
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
-                                <div class="d-flex mb-4">
-                                    <div class="product mr-2">mCash</div>
-                                    <div class="product mr-2">NIP</div>
-                                </div>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Est. Transaction Value</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    130 Million
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Postal Code</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    101223
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Institution Type</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Commercial Bank
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Transaction Volume</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    >1 Billion
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Address </p>
-                                <p class="fs-16 fc-black ff-s">
-                                    57 Marina, Lagos Island, Lagos, Nigeria
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
-                                <div class="d-flex">
-                                    <div class="mr-3">
-                                        <a href="">
-                                            <img src="assets/images/facebook.svg" alt="">
-                                        </a>
+
                                     </div>
-                                    <div class="mr-3">
-                                        <a href="">
-                                            <img src="assets/images/twitter.svg" alt="">
-                                        </a>
+                                    <div class="col-lg-6">
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            UBA
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
+                                        <div class="d-flex mb-4">
+                                            <div class="product mr-2">mCash</div>
+                                            <div class="product mr-2">NIP</div>
+                                        </div>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Est. Transaction Value</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            130 Million
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Postal Code</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            101223
+                                        </p>
                                     </div>
-                                    <div class="mr-3">
-                                        <a href="">
-                                            <img src="assets/images/instagram.svg" alt="">
-                                        </a>
+                                    <div class="col-lg-6">
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Institution Type</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            Commercial Bank
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Transaction Volume</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            >1 Billion
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Address </p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            57 Marina, Lagos Island, Lagos, Nigeria
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
+                                        <div class="d-flex">
+                                            <div class="mr-3">
+                                                <a href="">
+                                                    <img src="assets/images/facebook.svg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="mr-3">
+                                                <a href="">
+                                                    <img src="assets/images/twitter.svg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="mr-3">
+                                                <a href="">
+                                                    <img src="assets/images/instagram.svg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +244,7 @@
                     <div class="py-3">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="mail" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="mail" >
+                                <div class="mail">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
                                             <div>
@@ -238,7 +253,7 @@
                                         </div>
                                         <div class="orangeline"></div>
                                         <div class="littleorange"></div>
-                                        <div class="py-2">
+                                        <div class="py-4">
                                             <p class="text-center m-0">
                                                 <button class="btn btn-out-green">
                                                     <img src="assets/images/message-green.svg" class="mr-2" alt="">
@@ -274,11 +289,14 @@
                                                         <div>
                                                             <p class="fs-13 fw-4 fc-lightblack">
                                                                 Try sending an outgoing email - click on the reply arrow
-                                                                and use an Email Template. <span class="fw-7 fc-green"><a>Read More</a></span>
+                                                                and use an Email Template. <span
+                                                                    class="fw-7 fc-green"><a>Read More</a></span>
                                                             </p>
-                                                            <div class="d-flex justify-content-between align-items-center">
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-center">
                                                                 <div>
-                                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun Wey</p>
+                                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun
+                                                                        Wey</p>
                                                                 </div>
                                                                 <div>
                                                                     <a><img src="assets/images/reply.svg" alt=""></a>

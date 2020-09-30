@@ -6,8 +6,10 @@
                     <div class="inner p-4">
                         <p class="fs-32 text-white ff-p">Contact</p>
                         <p class="fs-16 text-white ff-p mb-4">Manage your contacts</p>
-                        <button class="btn btn-clear"><img src="assets/images/cloud_download.svg" alt="" class="mr-2"><span class="text-white">Import</span></button>
-                        <button class="btn btn-out-white"><img src="assets/images/add.svg" alt="" class="mr-2">Add New Contact</button>
+                        <button class="btn btn-clear"><img src="assets/images/cloud_download.svg" alt=""
+                                class="mr-2"><span class="text-white">Import</span></button>
+                        <button class="btn btn-out-white"><img src="assets/images/add.svg" alt="" class="mr-2">Add New
+                            Contact</button>
                     </div>
                 </div>
             </div>
@@ -33,9 +35,163 @@
                 </ul>
             </div>
             <div class="col-12">
-                <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns"
-                    [isPaginated]="" (actionOne)="actionOne($event)"
-                   ></app-table>
+                <!-- <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" [isPaginated]=""
+                    (actionOne)="actionOne($event)"></app-table> -->
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="all" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table dashboard">
+                                        <thead>
+                                            <th>
+                                                <input type="checkbox">
+                                            </th>
+                                            <th>CONTACT PERSON</th>
+                                            <th>EMAIL/PHONE</th>
+                                            <th>INSTITUTION</th>
+                                            <th>DESIGNATION</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="pt-2"><input type="checkbox"></div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="mr-2">
+                                                            <img src="assets/images/uba.svg" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
+                                                        aadebayo@ubagroup.com</p>
+                                                </td>
+                                                <td>
+                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
+                                                </td>
+                                                <td>
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
+                                                        Team Lead, Software Integrations
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="my" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table dashboard">
+                                        <thead>
+                                            <th>
+                                                <input type="checkbox">
+                                            </th>
+                                            <th>CONTACT PERSON</th>
+                                            <th>EMAIL/PHONE</th>
+                                            <th>INSTITUTION</th>
+                                            <th>DESIGNATION</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="pt-2"><input type="checkbox"></div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="mr-2">
+                                                            <img src="assets/images/uba.svg" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
+                                                        aadebayo@ubagroup.com</p>
+                                                </td>
+                                                <td>
+                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
+                                                </td>
+                                                <td>
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
+                                                        Team Lead, Software Integrations
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="junk" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table dashboard">
+                                        <thead>
+                                            <th>
+                                                <input type="checkbox">
+                                            </th>
+                                            <th>CONTACT PERSON</th>
+                                            <th>EMAIL/PHONE</th>
+                                            <th>INSTITUTION</th>
+                                            <th>DESIGNATION</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="pt-2"><input type="checkbox"></div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="mr-2">
+                                                            <img src="assets/images/uba.svg" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
+                                                        aadebayo@ubagroup.com</p>
+                                                </td>
+                                                <td>
+                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
+                                                </td>
+                                                <td>
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
+                                                        Team Lead, Software Integrations
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -51,9 +207,115 @@
                     </div>
                 </div>
                 <div class="orangeline"></div>
-                <div class="emptystate">
+                <div class="littleorange"></div>
+                <div class="emptystate d-none">
                     <img src="assets/images/emptylead.svg" alt="">
+                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                        Select a contact to display contact
+                        information
+                    </p>
                 </div>
+
+                <!-- properties -->
+                <div class="props pt-2">
+                    <div class="top-prop p-2">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <div class="prop-initials">
+                                    A
+                                </div>
+                            </div>
+                            <div>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">Adebayo Adeyemi </p>
+                            </div>
+                            <div>
+                                <a>
+                                    <img src="assets/images/bcall.svg" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a>
+                                    <img src="assets/images/bmessage.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Designation:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">Team Lead, Software Integrations</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>+2348152653762</a></p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>aadebayo@ubagroup.com</a></p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">28 Jun 20 11:10 am</p>
+                        </div>
+                    </div>
+                    <div class="info mb-3">
+                        <div class="top-prop b-5 p-2">
+                            <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
+                                        src="assets/images/contactcoins.svg" alt=""></span>Account</p>
+                        </div>
+                        <div class="row pl-2">
+                            <div class="col-12 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="py-2">
+                                        <img src="assets/images/uba.svg" alt="">
+                                    </div>
+                                    <div class="p-2">
+                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="top-prop b-5 p-2">
+                            <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
+                                        src="assets/images/contactdeals.svg" alt=""></span>Deals</p>
+                        </div>
+                        <div class="d-flex">
+                            <div class="p-2">
+                                <div class="deal">
+                                    N
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-0 ff-s fw-6 fs-14 fc-dblue">Negotiation/Review</p>
+                                <p class="m-0 ff-s fs-12 fc-6blue w-100">
+                                    <span>NGN1,200,000,000</span>
+                                </p>
+
+                            </div>
+                            <div class="p-2 ml-auto">
+                                <p></p>
+                                <p class="m-0 ff-s fs-12 fc-6blue">
+                                    25-May-20
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2 mt-4"><a>View Complete Infomation</a></p>
+
+                </div>
+                <!-- properties -->
             </div>
         </div>
     </div>

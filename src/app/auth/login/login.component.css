@@ -1,0 +1,44 @@
+#login{
+    padding-top: 10vh;
+}
+.white-back {
+    min-height: 80vh;
+    background: #fff;
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.login-form {
+    border: 1px solid #C4D0D3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 46px;
+    transition: .3s ease-in-out;
+}
+.form-control.login-form:focus{
+    border: none;
+    box-shadow: none;
+    border: 1px solid #00B19A;
+}
+
+.login-btn {
+    background: #00B19A;
+    height: 48px;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #fff;
+}
+.login-btn:hover{
+    cursor: pointer;
+}
+.login-btn .yellow{
+    height: 48px;
+    width: 48px;
+    background: #E5C61B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

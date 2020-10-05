@@ -2,7 +2,8 @@
     padding-top: 7vh;
     height: 100vh;
     background: url('../../../assets/images/login-back.png');
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .white-back {
     min-height: 70vh;

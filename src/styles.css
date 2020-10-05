@@ -44,6 +44,10 @@
     line-height: 15px;
 }
 
+.fc-rlblue {
+    color: #447BFF;
+}
+
 .fc-lightgrey {
     color: #B8B8B8;
 }
@@ -216,6 +220,11 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.props {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .nav.icons-nav {
@@ -532,10 +541,29 @@ table.table.accounttab tbody tr td {
     transition: .3s ease-in-out;
 }
 
-.form-control.botform:focus {
+.form-control.botform:focus,
+.form-control.detail-form:focus {
     border: none;
     border: 1px solid #00B19A;
     box-shadow: none;
+}
+
+textarea.form-control.detail-form {
+    height: 105px;
+}
+
+.form-control.detail-form {
+    border: 1px solid #C4D0D3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 46px;
+    background: none;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    color: #1C274D;
 }
 
 .uploadfile {
@@ -548,6 +576,12 @@ table.table.accounttab tbody tr td {
     justify-content: center;
     align-items: center;
     flex-flow: column;
+}
+
+.uploadfolder {
+    border: 1px dashed #00806F;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 /* buttons  */

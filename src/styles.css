@@ -67,6 +67,9 @@
 .fc-blue {
     color: #215063;
 }
+.fc-red {
+    color: rgba(174, 0, 0, 0.7);
+}
 
 .fc-darkblue {
     color: #005377;

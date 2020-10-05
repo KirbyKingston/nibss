@@ -1,3 +1,128 @@
+.nav-tabs.deets a.nav-link {
+    font-family: Segoe UI;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #2B2C2D;
+    background: #F6FBFA;
+    border-radius: 0;
+    border: none;
+    height: 52px;
+}
+
+.nav-tabs.deets a.nav-link.active {
+    background: #DB7C00;
+    color: #F6FBFA;
+}
+
+.nav-tabs.deets {
+    border: none;
+}
+
+.nav-tabs.deets li {
+    width: 45%;
+    width: calc(45% + 1rem);
+    border-radius: 0;
+}
+
+.nav-tabs.deets li:nth-child(1) {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 1rem) 100%, 0% 100%);
+}
+
+.nav-tabs.deets li:nth-child(2) {
+    margin-left: -1rem;
+    clip-path: polygon(1rem 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.btngroup {
+    background: rgba(26, 58, 84, 0.75);
+    border-radius: 50px;
+    min-height: 42px;
+}
+
+.initials {
+    background: #FDEFE8;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Palatino Linotype;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 22px;
+    line-height: 30px;
+    color: #C24504;
+}
+
+.product {
+    background: #E2E2E2;
+    border-radius: 2px;
+    height: 23px;
+    padding: 2px 4px;
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 19px;
+    color: #0A1128;
+}
+
+.nav-tabs.mail {
+    border: none;
+}
+
+.nav-tabs.mail a.nav-link {
+    font-family: Segoe UI;
+    background: none;
+    border: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(43, 44, 45, 0.5);
+}
+
+.nav-tabs.mail a.nav-link.active {
+    color: #2B2C2D;
+    font-weight: 600;
+}
+
+.nav-tabs.mail a.nav-link.active {
+    /* border-bottom: 1px solid #2B2C2D; */
+}
+
+.badge-secondary {
+    background: #DAE1E7;
+}
+
+.showinfo {
+    display: none;
+}
+
+
+
+.blocks {
+    display: flex;
+}
+
+.block {
+    background-color: #D25A1E;
+    min-height: 100px;
+    width: 12%;
+    width: calc(12% + 2rem);
+}
+
+.block--left {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 2.1rem) 100%, 0% 100%);
+}
+
+.block--right {
+    margin-left: -2rem;
+    clip-path: polygon(2.1rem 0, 100% 0, 100% 100%, 0% 100%);
+}
 .topcontact{
     border-radius: 7px;
     background: url('../../../../assets/images/account.png');

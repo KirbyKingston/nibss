@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  files: any;
   constructor() { }
 
   ngOnInit() {
   }
 
+  uploadFile(e: FileList) {
+    this.files = e;
+    console.log(this.files)
+    const size = e[0].size
+    if (size >= 505000000) {
+      // this.notification.publishMessages('Please upload limit is 5mb', 'warning', 0)
+      return false;
+    }
+    // this.bulkUpload();
+  }
 }

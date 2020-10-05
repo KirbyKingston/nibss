@@ -39,7 +39,7 @@
 
                     </div>
                     <div>
-                        <button class="btn btn-blue mr-2">
+                        <button class="btn btn-blue mr-2" data-toggle="modal" data-target=".convert-modal">
                             Convert to Deal
                         </button>
                         <button class="btn btn-out-blue tx-u">Junk Lead</button>
@@ -464,6 +464,76 @@
                     </nav>
                 </div>
                 <!-- sidetab -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg convert-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Convert Lead
+                                </p>
+                                <p class="fs-16 ff-s fc-lightblack">Input Deal Information</p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+                  
+                   
+                    <div class="col-12 mt-4 mb-3">
+                        <p class="fc-green ff-p fs-18 fw-6 m-0">
+                            Deal Information
+                        </p>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Name</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Stage</label>
+                        <select class="form-control botform">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Value (NGN)</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Estimated Close Date</label>
+                        <input type="date" class="form-control botform">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <p class="text-right ">
+                            <button class="btn btn-blue px-3">Convert</button>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

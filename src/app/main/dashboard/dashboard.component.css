@@ -1,0 +1,64 @@
+.customise {
+    height: 38px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #215063;
+    background: #FFFFFF;
+    border: 1px solid #F6F9FE;
+    box-sizing: border-box;
+    border-radius: 4px;
+    transition: .3s ease-in-out;
+}
+
+.customise .orange {
+    height: 38px;
+    width: 38px;
+    display: flex;
+    border-radius: 4px 0 0 4px;
+    align-items: center;
+    justify-content: center;
+    background: #F39009;
+}
+
+.customise:hover {
+    box-shadow: 0px 5px 20px #EDF0F5;
+}
+
+.green-top {
+    background: #F2F8F4;
+}
+
+.white-form {
+    background: #FFFFFF;
+    border: 1px solid #F6F9FE;
+    box-sizing: border-box;
+    box-shadow: 0px 20px 40px #EDF0F5;
+    border-radius: 4px;
+    font-family: Palatino Linotype;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    color: #253858;
+}
+
+.form-control.white-form:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.dash-box {
+    box-shadow: 0px 20px 40px #EDF0F5;
+    border-radius: 10px;
+}
+
+.dash-box.greenn {
+    background: #51A8B1;
+}
+.whitebox{
+    box-shadow: 0px 20px 40px #EDF0F5;
+    background: #FFFFFF;
+}

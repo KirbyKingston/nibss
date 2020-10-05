@@ -6,9 +6,11 @@
                     <div class="inner p-4">
                         <p class="fs-32 text-white ff-p">Deals</p>
                         <p class="fs-16 text-white ff-p mb-4">Manage and update your deals easily.</p>
-                        <button class="btn btn-clear"><img src="assets/images/cloud_download.svg" alt=""
-                                class="mr-2"><span class="text-white">Import</span></button>
-                        <button class="btn btn-out-white"><img src="assets/images/add.svg" alt="" class="mr-2">Add New
+                        <button class="btn btn-clear" data-toggle="modal" data-target=".import-modal"><img
+                                src="assets/images/cloud_download.svg" alt="" class="mr-2"><span
+                                class="text-white">Import</span></button>
+                        <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
+                                src="assets/images/add.svg" alt="" class="mr-2">Add New
                             Deal</button>
                     </div>
                 </div>
@@ -353,4 +355,147 @@
             <!-- properties -->
         </div>
     </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg new-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Add New Deal
+                                </p>
+                                <p class="fs-16 ff-s fc-lightblack">Input Deal Information</p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <label class="fs-16 ff-p fc-black">Select Account</label>
+                        <select class="form-control topform">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <label class="fs-16 ff-p fc-black">Deal Owner</label>
+                        <select class="form-control topform">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <label class="fs-16 ff-p fc-black">Contact Person</label>
+                        <select class="form-control topform">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-12 mt-4 mb-3">
+                        <p class="fc-green ff-p fs-18 fw-6 m-0">
+                            Deal Information
+                        </p>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Name</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Stage</label>
+                        <select class="form-control botform">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Value (NGN)</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Estimated Close Date</label>
+                        <input type="date" class="form-control botform">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <p class="text-right ">
+                            <button class="btn btn-blue px-3">Create</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg import-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Import New Deals
+                                </p>
+                                <p class="fs-16 ff-s fc-lightblack">Upload Deal Information</p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <p class="m-0 fw-4 fs-15 ff-s">Upload Files </p>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="uploadfile" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+                            <img src="assets/images/cloud_download_black.svg" alt="">
+                            <p class="text-center fs-13 ff-s fw-4 mt-4">Drop files to upload or click</p>
+                            <p class="py-5 text-center">
+                                <button class="btn btn-blue px-3" (click)="fileInput.click()">Upload Files</button>
+                            </p>
+                            <p class="text-center fs-14 ff-s fc-lightblack">
+                                You can import up to 5000 records through an
+                                .xls or .xlsx file. To import more
+                                than 5000 records at a time, use a .csv file.</p>
+                            <input hidden type="file" multiple #fileInput (change)="uploadFile($event.target.files)">
+
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-right fw-6 ff-s fs-13 fc-green"><span class="mr-2"><img
+                                    src="assets/images/save.svg" alt=""></span>Download sample file</p>
+                    </div>
+                    <div class="col-12 mt-5 pt-5">
+                        <p class="text-right">
+                            <button class="btn btn-blue px-3">Import</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

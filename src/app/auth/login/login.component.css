@@ -1,8 +1,11 @@
 #login{
-    padding-top: 10vh;
+    padding-top: 7vh;
+    height: 100vh;
+    background: url('../../../assets/images/login-back.png');
+    background-size: contain;
 }
 .white-back {
-    min-height: 80vh;
+    min-height: 70vh;
     background: #fff;
     width: 70vw;
     margin: 0 auto;

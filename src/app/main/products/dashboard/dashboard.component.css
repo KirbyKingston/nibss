@@ -38,3 +38,16 @@
     min-height: 200px;
     border-radius: 7px;
 }
+
+.number{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #C4C4C4;
+    height: 39px;
+    width: 39px;
+    font-family: Segoe UI;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}

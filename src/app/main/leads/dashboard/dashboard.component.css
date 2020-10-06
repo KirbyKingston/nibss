@@ -27,3 +27,43 @@
 .nav-tabs.leads .nav-link.active::after {
     border-bottom: 2px solid #26727E;
 }
+
+
+
+.number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #C4C4C4;
+    height: 39px;
+    width: 39px;
+    font-family: Segoe UI;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 100%;
+}
+
+.nav-tabs.prod {
+    border: none;
+}
+
+.nav-tabs.prod .nav-link {
+    padding-left: 0;
+    border: none;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(16, 16, 16, 0.7);
+}
+
+.nav-tabs.prod .nav-link.active {
+    color: #000000;
+}
+
+.nav-tabs.prod .nav-link.active .number {
+
+    background: #D18700;
+}

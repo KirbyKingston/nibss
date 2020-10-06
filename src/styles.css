@@ -14,6 +14,11 @@
     line-height: 35px;
 }
 
+.fs-18 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
 .fs-16 {
     font-size: 16px;
     line-height: 24px;
@@ -67,6 +72,7 @@
 .fc-blue {
     color: #215063;
 }
+
 .fc-red {
     color: rgba(174, 0, 0, 0.7);
 }
@@ -351,6 +357,21 @@ a:hover {
     color: #0A1128;
 }
 
+.dropdown-menu.filter-drop {
+    width: 350px;
+    background: #FFFFFF;
+    border: 1px solid rgba(99, 114, 130, 0.16);
+    box-sizing: border-box;
+    box-shadow: 0px 20px 40px rgba(196, 192, 192, 0.16);
+    border-radius: 4px;
+    padding: 0;
+}
+
+.dropdown-menu.filter-drop .top {
+    background: #F9F9F9;
+    border-radius: 3px 3px 0px 0px;
+}
+
 /* table  */
 table.table.dashboard {
     border-collapse: separate;
@@ -532,6 +553,39 @@ table.table.accounttab tbody tr td {
     box-shadow: none;
 }
 
+.input-group.leadform {
+    border: 1px solid #c6c6c5;
+    border-radius: 4px;
+    height: 40px;
+    padding: 0;
+}
+
+
+.input-group.leadform input.form-control {
+    border: none;
+    font-weight: 400;
+    font-family: Segoe UI;
+    font-size: 15px;
+    height: 38px;
+    line-height: 20px;
+}
+
+.input-group.leadform select.form-control {
+    font-family: Palatino Linotype;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14.004px;
+    line-height: 19px;
+    color: #424242;
+    height: 40px;
+    background: #C4C4C4;
+}
+
+.input-group.leadform input.form-control:focus,
+.input-group.leadform select.form-control:focus {
+    border: none;
+    box-shadow: none;
+}
 
 .botform {
     border: 1px solid #c6c6c5;

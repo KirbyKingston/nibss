@@ -401,11 +401,11 @@
 
             <div class="modal-body px-lg-5 px-3 py-4">
                 <div class="row">
-                    <div class="col-12 mb-5">
+                    <div class="col-12 mb-3">
                         <div class="d-flex justify-content-between">
                             <div>
                                 <p class="fc-green ff-p fs-25 fw-6 m-0">
-                                    Import New Contacts
+                                    Import Contacts
                                 </p>
                                 <p class="fs-16 ff-s fc-lightblack">Upload Contact Information</p>
                             </div>
@@ -415,9 +415,6 @@
                         </div>
                         <div class="orangeline"></div>
                         <div class="deeporange"></div>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <p class="m-0 fw-4 fs-15 ff-s">Upload Files </p>
                     </div>
                     <div class="col-12 mb-3">
                         <div class="uploadfile" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
@@ -434,10 +431,31 @@
 
                         </div>
                     </div>
-                    <!-- <div class="col-12">
+                    <div class="col-12">
                         <p class="text-right fw-6 ff-s fs-13 fc-green"><span class="mr-2"><img
                                     src="assets/images/save.svg" alt=""></span>Download sample file</p>
-                    </div> -->
+                    </div>
+                    <div class="col-12">
+                        <p class="m-o fs-14 ff-s fc-black">What do you want to do with the records in this file?</p>
+                    </div>
+                    <div class="col-lg-5 mb-3">
+                        <select name="" id="" class="form-control botform">
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <p class="m-o fs-14 ff-s fc-black">Assign initial follow up tasks</p>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <select name="" id="" class="form-control botform">
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <p class="m-o fs-13 ff-s fc-red">**Existing Contacts are identified by using name and Account</p>
+                    </div>
                     <div class="col-12 mt-5 pt-5">
                         <p class="text-right">
                             <button class="btn btn-blue px-3">Import</button>

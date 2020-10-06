@@ -5,6 +5,7 @@ import { LeadsRoutingModule } from './leads-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LeaddetailsComponent } from './leaddetails/leaddetails.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     LeadsRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class LeadsModule { }

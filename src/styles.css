@@ -392,6 +392,11 @@ a:hover {
     border-radius: 3px 3px 0px 0px;
 }
 
+.dashbox {
+    background: #FFFFFF;
+    box-shadow: 0px 20px 40px #EDF0F5;
+}
+
 /* table  */
 table.table.dashboard {
     border-collapse: separate;
@@ -409,7 +414,6 @@ table.table.dashboard thead th {
     font-weight: normal;
     font-size: 15px;
     line-height: 20px;
-    text-transform: uppercase;
     color: #767F87;
 }
 

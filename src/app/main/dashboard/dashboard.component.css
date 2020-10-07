@@ -58,7 +58,15 @@
 .dash-box.greenn {
     background: #51A8B1;
 }
-.whitebox{
+
+.whitebox {
     box-shadow: 0px 20px 40px #EDF0F5;
     background: #FFFFFF;
+}
+
+.average {
+    background: rgba(115, 179, 236, 0.05);
+    border: 1px solid rgba(11, 54, 93, 0.05);
+    border-left: 2px solid #73B3EC;
+    box-sizing: border-box;
 }

@@ -24,10 +24,79 @@
             <div>
                 <p class="m-0 fs-16 ff-p fc-lightblack">Access real-time reports on your activities below.</p>
             </div>
-            <div>
-                <div class="customise d-flex">
+            <div class="dropdown">
+                <a class="customise d-flex" id="filter">
                     <div class="orange"><img src="assets/images/tool-white.png" alt=""></div>
                     <div class="px-2 pt-2">Customize dashboard</div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right filter-drop">
+                    <div class="top px-3 py-3">
+                        <div class="d-flex align-items-center">
+                            <div class="mr-3">
+                                <img src="assets/images/tool.svg" alt="">
+                            </div>
+                            <div>
+                                <p class="m-0 fw-7 fs-18 ff-p fc-blue">Customize your Dashboard</p>
+                                <p class="m-0 fs-12 ff-s fc-black">Choose your preferred analytics to show</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3">
+                        <p class="mb-3 fs-14 ff-s fw-6 fc-blue">ANALYTICS</p>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck1">Product Overview</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck2">Velocity; Average Transition
+                                Time</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck3">Sales Activity </label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck4">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck4">Sales Pipeline </label>
+                        </div>
+
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck5">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck5">Costumer Engagement &
+                                Activity feed</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck6">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck6">Overall Leads Conversion
+                                Ratio</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck7">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck7">Leads to Opportunity
+                                Ratio</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck8">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck8">Forecast by Month</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck9">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck9">Leads to Won</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck10">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck10">Conversion Rate per
+                                Relationship Manager</label>
+                        </div>
+                        <div class="form-group form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck11">
+                            <label class="form-check-label ff-s fs-14" for="exampleCheck11">Opportunity to Win
+                                Ratio</label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -52,7 +121,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12">
+            <div class="col-lg-3 col-sm-6 col-12 mb-3">
                 <div class="dash-box greenn p-3">
                     <div class="d-flex justify-content-between">
                         <div class="pt-3">
@@ -72,7 +141,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12">
+            <div class="col-lg-3 col-sm-6 col-12 mb-3">
                 <div class="dash-box p-3">
                     <div class="d-flex justify-content-between">
                         <div class="pt-3">
@@ -92,7 +161,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12">
+            <div class="col-lg-3 col-sm-6 col-12 mb-3">
                 <div class="dash-box p-3">
                     <div class="d-flex justify-content-between">
                         <div class="pt-3">
@@ -112,7 +181,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12">
+            <div class="col-lg-3 col-sm-6 col-12 mb-3">
                 <div class="dash-box p-3">
                     <div class="d-flex justify-content-between">
                         <div class="pt-3">
@@ -128,6 +197,87 @@
                         <div class="pt-3">
                             <p class="m-0 fs-14 fc-dblue ff-p"><span class="mr-2"><img src="assets/images/down-red.svg"
                                         alt=""></span>-2.2%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 mb-3"></div>
+            <div class="col-lg-5 mb-3">
+                <div class="dashbox">
+                    <div class="p-3">
+                        <p class="fc-green ff-p fs-18 fw-6 m-0">
+                            Velocity
+                        </p>
+                        <p class="mb-2 fw-4 fs-12 ff-p fc-6blue">Average Transition Time</p>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                        <div class="mb-3"></div>
+                        <div class="average p-2 mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="m-0 fs-14 ff-p fc-lightblack">Contact engagement to CAI</p>
+                                </div>
+                                <div>
+                                    <p class="fs-15 ff-p fw-7 m-0"><img src="assets/images/time.svg" class="mr-2"
+                                            alt=""> 9 Days</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="average p-2 mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="m-0 fs-14 ff-p fc-lightblack">CAI to Certification</p>
+                                </div>
+                                <div>
+                                    <p class="fs-15 ff-p fw-7 m-0"><img src="assets/images/time.svg" class="mr-2"
+                                            alt=""> 9 Days</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="average p-2 mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="m-0 fs-14 ff-p fc-lightblack">Certification to TSS</p>
+                                </div>
+                                <div>
+                                    <p class="fs-15 ff-p fw-7 m-0"><img src="assets/images/time.svg" class="mr-2"
+                                            alt=""> 9 Days</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="average p-2 mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="m-0 fs-14 ff-p fc-lightblack">TSS to CCI</p>
+                                </div>
+                                <div>
+                                    <p class="fs-15 ff-p fw-7 m-0"><img src="assets/images/time.svg" class="mr-2"
+                                            alt=""> 9 Days</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="average p-2 mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="m-0 fs-14 ff-p fc-lightblack">CCI to Functional Testing</p>
+                                </div>
+                                <div>
+                                    <p class="fs-15 ff-p fw-7 m-0"><img src="assets/images/time.svg" class="mr-2"
+                                            alt=""> 9 Days</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="average p-2 mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="m-0 fs-14 ff-p fc-lightblack">Functional Testing to CGL</p>
+                                </div>
+                                <div>
+                                    <p class="fs-15 ff-p fw-7 m-0"><img src="assets/images/time.svg" class="mr-2"
+                                            alt=""> 9 Days</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,8 +307,67 @@
             <div class="col-lg-7"></div>
             <div class="col-lg-5">
                 <div class="whitebox">
-                    
+
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7 mb-3">
+        <div class="dashbox">
+            <div class="p-3">
+                <p class="fc-green ff-p fs-18 fw-6 m-0">
+                    Top 10 Customers
+                </p>
+                <p class="mb-2 fw-4 fs-12 ff-p fc-6blue">See expected top performing customers</p>
+                <div class="orangeline"></div>
+                <div class="deeporange"></div>
+            </div>
+            <div class="table-responsive">
+                <table class="table accounttab">
+                    <thead>
+                        <th>CUSTOMER</th>
+                        <th>TRANSACTION VOLUME</th>
+                        <th>TRANSACTION VALUE</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex">
+                                    <div class="mr-2">
+                                        <img src="assets/images/uba.svg" alt="">
+                                    </div>
+                                    <div>
+                                        <p class="mb-1 ff-s fs-14 fw-6 fc-blue">Guaranty Trust Bank
+                                        </p>
+                                        <p class="ff-s fs-12 fw-6 fc-lightblack m-0">RC: 1155682199</p>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="m-0 fw-4 ff-s fs-15 fc-lightblack pt-2">75,324,119</p>
+                            </td>
+                            <td>
+                                <p class="m-0 fw-4 ff-s fs-15 fc-lightblack pt-2">₦195,057,902,569.09</p>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 mb-3">
+        <div class="dashbox">
+            <div class="p-3">
+                <p class="fc-green ff-p fs-18 fw-6 m-0">
+                    Activity Feed
+                </p>
+                <p class="mb-2 fw-4 fs-12 ff-p fc-6blue">Social tracking for customers</p>
+                <div class="orangeline"></div>
+                <div class="deeporange"></div>
+
             </div>
         </div>
     </div>
@@ -185,8 +394,61 @@
             <div class="col-lg-7"></div>
             <div class="col-lg-5">
                 <div class="whitebox">
-                    
+
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5 mb-3">
+        <div class="dashbox">
+            <div class="p-3">
+                <p class="fc-green ff-p fs-18 fw-6 m-0">
+                    Income Streams by Product
+                </p>
+                <p class="mb-2 fw-4 fs-12 ff-p fc-6blue">See which customer and product contributes the most to your business</p>
+                <div class="orangeline"></div>
+                <div class="deeporange"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7 mb-3">
+        <div class="dashbox">
+            <div class="p-3">
+                <p class="fc-green ff-p fs-18 fw-6 m-0">
+                    Sales Activities by Representatives
+                </p>
+                <p class="mb-2 fw-4 fs-12 ff-p fc-6blue">Gain insights into what the team is doing.</p>
+                <div class="orangeline"></div>
+                <div class="deeporange"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7 mb-3">
+        <div class="dashbox">
+            <div class="p-3">
+                <p class="fc-green ff-p fs-18 fw-6 m-0">
+                    Sales Forecast 
+                </p>
+                <p class="mb-2 fw-4 fs-12 ff-p fc-6blue">See expected deals to close</p>
+                <div class="orangeline"></div>
+                <div class="deeporange"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 mb-3">
+        <div class="dashbox">
+            <div class="p-3">
+                <p class="fc-green ff-p fs-18 fw-6 m-0">
+                    Sales Pipeline
+                </p>
+                <p class="mb-2 fw-4 fs-12 ff-p fc-6blue">See level of businesses in your pipeline.</p>
+                <div class="orangeline"></div>
+                <div class="deeporange"></div>
+
             </div>
         </div>
     </div>

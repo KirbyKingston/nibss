@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
       res => { 
 
         console.log('asdfss', res);
-        // this.router.navigate(['/app'])
+        localStorage.setItem('access_token', res['token'])
+
+        this.router.navigate(['/app'])
 
       },
       err => {

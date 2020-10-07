@@ -10,8 +10,12 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $('#filter, #overlay').on('click', function () {
-      $('.dropdown-menu, #overlay').toggleClass('show')
+    $('#filter, #overlay').on('click', function(){
+      $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
+    })
+
+    $('#more, #overlay').on('click', function(){
+      $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
   }
 

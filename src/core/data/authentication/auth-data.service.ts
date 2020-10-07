@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -7,20 +7,16 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthDataService {
   baseUrl: string = environment.baseApi;
-  
+
   constructor(private http: HttpClient) { }
 
 
   login(username: string, password: string) {
-    let httpOpt = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    };
-    const body = new FormData();
-    body.append("grant_type", "password");
-    body.append("username", username);
-    body.append("password", password);
-    return this.http.post(this.baseUrl + 'Authentication/Token', body)
+
+    const body = new HttpParams()
+      .set("grant_type", "password")
+      .set("username", username)
+      .set("password", password)
+    return this.http.post(this.baseUrl + 'Authentication/Token', body, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
   }
 }

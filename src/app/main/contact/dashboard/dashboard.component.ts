@@ -33,9 +33,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource([...this.ELEMENT_DATA]);
-
     $('#filter, #overlay').on('click', function(){
-      $('.dropdown-menu, #overlay').toggleClass('show')
+      $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
+    })
+
+    $('#more, #overlay').on('click', function(){
+      $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
   }
 

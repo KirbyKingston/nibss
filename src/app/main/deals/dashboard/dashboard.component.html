@@ -6,7 +6,7 @@
                     <div class="inner p-4">
                         <p class="fs-32 text-white ff-p">Deals</p>
                         <p class="fs-16 text-white ff-p mb-4">Manage and update your deals easily.</p>
-                        <button class="btn btn-clear" data-toggle="modal" data-target=".import-modal"><img
+                        <button class="btn btn-clear import mr-2" data-toggle="modal" data-target=".import-modal"><img
                                 src="assets/images/cloud_download.svg" alt="" class="mr-2"><span
                                 class="text-white">Import</span></button>
                         <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
@@ -30,9 +30,75 @@
                             aria-controls="contact" aria-selected="false">Junk Deals</a>
                     </li>
                     <li class="ml-auto">
-                        <a href="" class="nav-link">
-                            <img src="assets/images/date filter.svg" alt="">
-                        </a>
+                        <div class="dropdown">
+                            <a class="filter text-right" id="filter">
+                                <img src="assets/images/date filter.svg" alt="">
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right filter-drop">
+                                <div class="top px-3 py-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <img src="assets/images/filter.svg" alt="">
+                                        </div>
+                                        <div>
+                                            <p class="m-0 fw-7 fs-18 ff-p fc-green">Filter your Leads</p>
+                                            <p class="m-0 fs-12 ff-s fc-black">Choose your preferred metrics to display
+                                                leads</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3">
+                                    <p class="mb-3 fs-14 ff-s fw-6 fc-blue">ANALYTICS</p>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck1">Name</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck2">Phone Number</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck3">Email</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck4">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck4">Institution Type</label>
+                                    </div>
+                                    
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck5">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck5">Last Activity Time</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck6">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck6">Est. Annual Income</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck7">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck7">Email Status</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck8">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck8">Lead Source</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck9">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck9">Lead Status</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck10">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck10">Lead Owner</label>
+                                    </div>
+                                    <div class="form-group form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck11">
+                                        <label class="form-check-label ff-s fs-14" for="exampleCheck11">Date Created</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

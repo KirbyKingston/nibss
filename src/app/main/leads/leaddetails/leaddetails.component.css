@@ -123,3 +123,14 @@
     margin-left: -2rem;
     clip-path: polygon(2.1rem 0, 100% 0, 100% 100%, 0% 100%);
 }
+
+.add-btn {
+    background: #FCF5E8;
+    border-radius: 5px;
+    font-family: Segoe UI;
+    font-size: 15px;
+    line-height: 24px;
+    color: #8F3700;
+}.add-btn:hover{
+    color: #8F3700;
+}

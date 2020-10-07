@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery'
 import { MatTableDataSource } from '@angular/material';
 
 export interface PeriodicElement {
@@ -32,6 +33,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource([...this.ELEMENT_DATA]);
+
+    $('#filter, #overlay').on('click', function(){
+      $('.dropdown-menu, #overlay').toggleClass('show')
+    })
   }
 
 

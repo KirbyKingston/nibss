@@ -443,7 +443,9 @@ table.table.accounttab tbody tr td {
     font-size: 14px;
     line-height: 24px;
 }
-
+.btn-clear.import:hover{
+    background: #243C67;
+}
 .btn-out-green {
     border: 1px solid #035935;
     box-sizing: border-box;

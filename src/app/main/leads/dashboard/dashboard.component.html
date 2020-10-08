@@ -188,36 +188,42 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr routerLink="/app/leads/lead">
+                                            <tr *ngFor="let lead of allLeads" (click)="getLead(lead.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="lead.imageString"> 
+                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl" alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="lead.imageString == null">
+                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
                                                             </p>
-                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">UBA</p>
+                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">{{lead.companyName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.phoneNumber}}</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         aadebayo@ubagroup.com</p>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">29 Jul 2017
+                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
                                                     <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img
-                                                                src="assets/images/warm.svg" alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Hot'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/hot.svg" alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Cold'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/cold.svg" alt=""></span>Cold</p>
+                                                    <p *ngIf="lead.status == 'Warm'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/warm.svg" alt=""></span>Warm</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -235,13 +241,68 @@
                                             <th>
                                                 <input type="checkbox">
                                             </th>
-                                            <th>name</th>
-                                            <th>contact</th>
-                                            <th>date created</th>
-                                            <th>lead status</th>
+                                            <th>NAME</th>
+                                            <th>CONTACT</th>
+                                            <th>DATE CREATED</th>
+                                            <th>
+                                                LEAD STATUS
+                                                <a class="more float-right" id="more">
+                                                    <img src="assets/images/more-table.svg" alt="">
+                                                </a>
+
+
+                                                <div class="dropdown-menu dropdown-menu-right more-drop">
+                                                    <div class="top px-4 py-3">
+                                                        <p class="m-0 fw-7 fs-14 ff-p fc-green">MORE FIELDS</p>
+                                                        <p class="m-0 fs-10 ff-s fc-black">You can only select 3 fields
+                                                        </p>
+                                                    </div>
+                                                    <div class="px-4 py-3">
+                                                        
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck6">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck6">Est. Annual Income</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck7">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck7">Email Status</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck8">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck8">Lead Source</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck9">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck9">Lead Status</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck10">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck10">Lead Owner</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck11">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck11">Date Created</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </th>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor="let lead of myLeads" (click)="getLead(lead.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
@@ -251,26 +312,27 @@
                                                             <img src="assets/images/uba.svg" alt="">
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
                                                             </p>
-                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">UBA</p>
+                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">{{lead.companyName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.phoneNumber}}</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         aadebayo@ubagroup.com</p>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">29 Jul 2017
+                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
                                                     <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img
-                                                                src="assets/images/warm.svg" alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Hot'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/hot.svg" alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Cold'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/cold.svg" alt=""></span>Cold</p>
+                                                    <p *ngIf="lead.status == 'Warm'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/warm.svg" alt=""></span>Warm</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -288,13 +350,68 @@
                                             <th>
                                                 <input type="checkbox">
                                             </th>
-                                            <th>name</th>
-                                            <th>contact</th>
-                                            <th>date created</th>
-                                            <th>lead status</th>
+                                            <th>NAME</th>
+                                            <th>CONTACT</th>
+                                            <th>DATE CREATED</th>
+                                            <th>
+                                                LEAD STATUS
+                                                <a class="more float-right" id="more">
+                                                    <img src="assets/images/more-table.svg" alt="">
+                                                </a>
+
+
+                                                <div class="dropdown-menu dropdown-menu-right more-drop">
+                                                    <div class="top px-4 py-3">
+                                                        <p class="m-0 fw-7 fs-14 ff-p fc-green">MORE FIELDS</p>
+                                                        <p class="m-0 fs-10 ff-s fc-black">You can only select 3 fields
+                                                        </p>
+                                                    </div>
+                                                    <div class="px-4 py-3">
+                                                        
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck6">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck6">Est. Annual Income</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck7">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck7">Email Status</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck8">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck8">Lead Source</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck9">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck9">Lead Status</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck10">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck10">Lead Owner</label>
+                                                        </div>
+                                                        <div class="form-group form-check mb-3">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck11">
+                                                            <label class="form-check-label ff-s fs-14"
+                                                                for="exampleCheck11">Date Created</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </th>
                                         </thead>
                                         <tbody>
-                                            <tr routerLink="/app/leads/lead">
+                                            <tr *ngFor="let lead of junkLeads" (click)="getLead(lead.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
@@ -304,26 +421,27 @@
                                                             <img src="assets/images/uba.svg" alt="">
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
                                                             </p>
-                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">UBA</p>
+                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">{{lead.companyName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.phoneNumber}}</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         aadebayo@ubagroup.com</p>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">29 Jul 2017
+                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
                                                     <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img
-                                                                src="assets/images/warm.svg" alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Hot'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/hot.svg" alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Cold'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/cold.svg" alt=""></span>Cold</p>
+                                                    <p *ngIf="lead.status == 'Warm'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/warm.svg" alt=""></span>Warm</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -350,25 +468,25 @@
                 <div class="orangeline"></div>
                 <div class="littleorange"></div>
                 <!-- emptystate  -->
-                <div class="emptystate d-none">
+                <div class="emptystate" *ngIf="!isSelected">
                     <img src="assets/images/emptylead.svg" alt="">
                 </div>
                 <!-- emptystate  -->
 
                 <!-- properties -->
-                <div class="props pt-2">
+                <div class="props pt-2" *ngIf="isSelected">
                     <div class="top-prop p-2">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <div class="prop-initials">
-                                    A
+                                    {{theLead?.ownerName.substring(0,1)}}
                                 </div>
                             </div>
                             <div>
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">Adebayo Adeyemi </p>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theLead?.ownerName}}</p>
                             </div>
                             <div>
-                                <a>
+                                <a href="tel:">
                                     <img src="assets/images/bcall.svg" alt="">
                                 </a>
                             </div>
@@ -391,7 +509,7 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>+2348152653762</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>{{theLead?.phoneNumber}}</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
@@ -414,10 +532,15 @@
                             <div class="col-12 mb-3">
                                 <div class="d-flex align-items-center">
                                     <div class="py-2">
-                                        <img src="assets/images/uba.svg" alt="">
+                                        <div class="image" *ngIf="theLead?.imageString">
+                                            <img [src]="'data:image/png;base64, ' + theLead?.imageString | trustedUrl" alt="">
+                                        </div>
+                                        <div class="image" *ngIf="theLead?.imageString == null">
+                                            <img src="assets/images/companyalt.svg" alt="">
+                                        </div>
                                     </div>
                                     <div class="p-2">
-                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
+                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">{{theLead?.companyName}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -425,13 +548,13 @@
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Institution Type:</p>
                             </div>
                             <div class="col-7 mb-3">
-                                <p class="m-0 fc-black fw-6 fs-14 ff-s">Commercial Bank</p>
+                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.institutionType}}</p>
                             </div>
                             <div class="col-5 mb-3">
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Trxn Vol.</p>
                             </div>
                             <div class="col-7 mb-3">
-                                <p class="m-0 fc-black fw-6 fs-14 ff-s">>1.2 Billion</p>
+                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.transactionVolume}}</p>
                             </div>
                             <div class="col-5 mb-3">
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Est. Annual Income:</p>

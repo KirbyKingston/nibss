@@ -365,6 +365,11 @@ a:hover {
     background: #EDF2F9;
     color: #243C67;
 }
+.image img{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+}
 .dropdown-menu.filter-drop {
     width: 350px;
     background: #FFFFFF;

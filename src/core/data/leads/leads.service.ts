@@ -11,7 +11,18 @@ export class LeadsService {
   constructor(private http:HttpClient) { }
 
   getAllLeads(){
-    return this.http.get(this.baseUrl + 'Leads/GetAllLeads')
+    return this.http.get(this.baseUrl + 'Leads/GetAllLeads', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  getMyLeads(){
+    return this.http.get(this.baseUrl + 'Leads/GetMyLeads', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+  getJunkedLeads(){
+    return this.http.get(this.baseUrl + 'Leads/GetJunkedLeads', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  getLeadById(id){
+    return this.http.get(this.baseUrl + 'Leads/GetLead/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
   ConvertLeadToDeal(lead: string){

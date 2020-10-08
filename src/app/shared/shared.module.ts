@@ -27,7 +27,7 @@ import {
     MatCheckboxModule
   ],
   exports: [
-    TableComponent, HumanizePipe
+    TableComponent, HumanizePipe, TrustedUrlPipe
   ]
 })
 export class SharedModule { }

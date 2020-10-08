@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
@@ -8,11 +9,18 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class MainComponent implements OnInit {
   userDetails: any;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     const helper = new JwtHelperService();
     this.userDetails = helper.decodeToken(localStorage.getItem('access_token'))
+
+    // console.log(this.userDetails)
+  }
+
+  logOut(){
+    window.localStorage.clear();
+    this.router.navigate(['/']);
   }
 
 }

@@ -361,7 +361,10 @@ a:hover {
     line-height: 19px;
     color: #0A1128;
 }
-
+.product.t{
+    background: #EDF2F9;
+    color: #243C67;
+}
 .dropdown-menu.filter-drop {
     width: 350px;
     background: #FFFFFF;

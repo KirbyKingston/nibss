@@ -30,7 +30,9 @@
                         <img src="assets/images/arrow-down.svg" alt="">
                     </div>
                     <div class="px-2">
-                        <img src="assets/images/logout.svg" alt="">
+                        <a (click)="logOut()">
+                            <img src="assets/images/logout.svg" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -39,8 +41,8 @@
     <div class="green-nav">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <div class="nav-item" [routerLink]="['/app/dashboard']" [routerLinkActive]="['active']">
-                    <a href="#" class="nav-link py-3">Dashboard</a>
+                <div class="nav-item" >
+                    <a href="#" class="nav-link py-3" [routerLink]="['/app/dashboard']" [routerLinkActive]="['active']">Dashboard</a>
                 </div>
                 <div class="nav-item">
                     <a href="#" class="nav-link py-3" [routerLink]="['/app/leads']" [routerLinkActive]="['active']">Leads</a>

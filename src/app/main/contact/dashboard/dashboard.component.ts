@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery'
 import { MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
+import { ContactService } from 'src/core/data/contact/contact.service';
 
 export interface PeriodicElement {
   Amount: string;
@@ -29,9 +31,19 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['Amount', 'TXDate', 'ValueDate', 'Reference', 'TXType', 'Balance', 'Remarks'];
 
   dataSource: MatTableDataSource<any>;
-  constructor() { }
+
+
+  allCons:any;
+  myCons:any;
+  junkCons:any;
+  theCons:any;
+  isSelected:boolean = false;
+  constructor(private router:Router, private contactService:ContactService) { }
 
   ngOnInit() {
+    this.getAllContacts()
+    this.getJunkContacts()
+    this.getMyContacts()
     this.dataSource = new MatTableDataSource([...this.ELEMENT_DATA]);
     $('#filter, #overlay').on('click', function(){
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
@@ -42,5 +54,58 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+
+  getAllContacts(){
+    this.contactService.getAllContact().subscribe(
+      res => {
+        console.log(res)
+        this.allCons = res['payload']
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  getMyContacts(){
+    this.contactService.getMyContact().subscribe(
+      res => {
+        this.myCons = res['payload']
+        console.log(res)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  getJunkContacts(){
+    this.contactService.getJunkedContact().subscribe(
+      res => {
+        this.junkCons = res['payload']
+        console.log(res)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  getContactById(id){
+    this.isSelected = true;
+    this.contactService.getContactById(id).subscribe(
+      res => {
+        this.theCons = res['payload']
+        console.log(res)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  openContact(id){
+    this.router.navigate(['/app/contacts/contact/' + id])
+  }
 
 }

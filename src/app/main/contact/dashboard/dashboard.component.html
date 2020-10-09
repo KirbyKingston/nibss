@@ -13,7 +13,7 @@
                                 src="assets/images/add.svg" alt="" class="mr-2">Add New
                             Contact</button>
                     </div>
-                </div>
+                </div> 
             </div>
             <div class="col-12 mb-3">
                 <ul class="nav nav-tabs leads align-items-center" id="myTab" role="tablist">
@@ -170,33 +170,36 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr routerLink="/app/contacts/contact">
+                                            <tr *ngFor="let contact of allCons" (click)="getContactById(contact.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="contact.imageString"> 
+                                                                <img [src]="'data:image/png;base64, ' + contact.imageString | trustedUrl" alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="contact.imageString == null">
+                                                                <img src="assets/images/contact-avatar.png" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
-                                                            </p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{contact.firstName}} {{contact.lastName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
-                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        aadebayo@ubagroup.com</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{contact.phoneNumber}}</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">{{contact.email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
                                                 </td>
                                                 <td>
                                                     <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        Team Lead, Software Integrations
+                                                        {{contact.designation}}
                                                     </p>
                                                 </td>
                                             </tr>
@@ -221,33 +224,36 @@
                                             <th>DESIGNATION</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor="let contact of myCons" (click)="getContactById(contact.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="contact.imageString"> 
+                                                                <img [src]="'data:image/png;base64, ' + contact.imageString | trustedUrl" alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="contact.imageString == null">
+                                                                <img src="assets/images/contact-avatar.png" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
-                                                            </p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{contact.firstName}} {{contact.lastName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
-                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        aadebayo@ubagroup.com</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{contact.phoneNumber}}</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">{{contact.email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
                                                 </td>
                                                 <td>
                                                     <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        Team Lead, Software Integrations
+                                                        {{contact.designation}}
                                                     </p>
                                                 </td>
                                             </tr>
@@ -272,33 +278,36 @@
                                             <th>DESIGNATION</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor="let contact of junkCons" (click)="getContactById(contact.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="contact.imageString"> 
+                                                                <img [src]="'data:image/png;base64, ' + contact.imageString | trustedUrl" alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="contact.imageString == null">
+                                                                <img src="assets/images/contact-avatar.png" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">Adebayo Adeyemi O.
-                                                            </p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{contact.firstName}} {{contact.lastName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">+2348152653762</p>
-                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        aadebayo@ubagroup.com</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{contact.phoneNumber}}</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">{{contact.email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
                                                 </td>
                                                 <td>
                                                     <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        Team Lead, Software Integrations
+                                                        {{contact.designation}}
                                                     </p>
                                                 </td>
                                             </tr>
@@ -325,7 +334,7 @@
                 </div>
                 <div class="orangeline"></div>
                 <div class="littleorange"></div>
-                <div class="emptystate d-none">
+                <div class="emptystate" *ngIf="!isSelected">
                     <img src="assets/images/emptylead.svg" alt="">
                     <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
                         Select a contact to display contact
@@ -334,19 +343,19 @@
                 </div>
 
                 <!-- properties -->
-                <div class="props pt-2">
+                <div class="props pt-2" *ngIf="isSelected">
                     <div class="top-prop p-2">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <div class="prop-initials">
-                                    A
+                                    {{theCons?.firstName.substring(0,1)}}
                                 </div>
                             </div>
                             <div>
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">Adebayo Adeyemi </p>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theCons?.firstName}} {{theCons?.lastName}}</p>
                             </div>
                             <div>
-                                <a>
+                                <a href="tel:{{theCons?.phoneNumber}}">
                                     <img src="assets/images/bcall.svg" alt="">
                                 </a>
                             </div>
@@ -363,25 +372,25 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Designation:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">Team Lead, Software Integrations</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theCons?.designation}}</p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>+2348152653762</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>{{theCons?.phoneNumber}}</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>aadebayo@ubagroup.com</a></p>
+                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>{{theCons?.email}}</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">28 Jun 20 11:10 am</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theCons?.dateCreated | date:'medium'}}</p>
                         </div>
                     </div>
                     <div class="info mb-3">
@@ -393,7 +402,12 @@
                             <div class="col-12 mb-3">
                                 <div class="d-flex align-items-center">
                                     <div class="py-2">
-                                        <img src="assets/images/uba.svg" alt="">
+                                        <div class="image" *ngIf="theCons?.imageString"> 
+                                            <img [src]="'data:image/png;base64, ' + theCons?.imageString | trustedUrl" alt="">
+                                        </div>
+                                        <div class="image" *ngIf="theCons?.imageString == null">
+                                            <img src="assets/images/contact-avatar.png" alt="">
+                                        </div>
                                     </div>
                                     <div class="p-2">
                                         <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
@@ -431,7 +445,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2 mt-4"><a>View Complete Infomation</a></p>
+                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2 mt-4"><a (click)="openContact(theCons.id)">View Complete Infomation</a></p>
 
                 </div>
                 <!-- properties -->

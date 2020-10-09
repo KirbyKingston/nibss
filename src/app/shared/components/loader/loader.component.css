@@ -1,0 +1,44 @@
+.overlay {
+    z-index: +100000;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.inner {
+    height: 100%;
+    margin: 0 auto;
+    position: fixed;
+    top: calc(50% - 134px);
+    left: calc(50% - 134px);
+}
+
+
+.stage {
+    display: flex;
+    height: 330px;
+    width: 100%;
+}
+.box {
+    align-self: flex-end;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    margin: 0 auto 0 auto;
+    transform-origin: bottom;
+}
+.box img{
+    height: 200px;
+}
+.bounce-1 {
+    animation-name: bounce-1;
+    animation-timing-function: linear;
+}
+
+@keyframes bounce-1 {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-50px); }
+    100% { transform: translateY(0); }
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as $ from 'jquery'
 import { LeadsService } from 'src/core/data/leads/leads.service';
 @Component({
@@ -11,8 +12,9 @@ export class DashboardComponent implements OnInit {
   myLeads: any;
   junkLeads: any;
   theLead: any;
+  cLeads: Array<{}> = [];
   isSelected:boolean = false;
-  constructor(private leadService:LeadsService) { }
+  constructor(private leadService:LeadsService, private router:Router) { }
 
   ngOnInit() {
     this.getAllLeads();
@@ -76,5 +78,13 @@ export class DashboardComponent implements OnInit {
         console.log(err)
       }
     )
+  }
+
+  convertLead(){
+  
+  }
+
+  openLead(id){
+    this.router.navigate(['/app/leads/lead/' + id])
   }
 }

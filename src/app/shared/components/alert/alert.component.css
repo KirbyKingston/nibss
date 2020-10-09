@@ -1,0 +1,6 @@
+.notification{
+    position: fixed; 
+    left: 40vw;
+    /* top: 12vh;  */
+    z-index: 4444;
+}

@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery'
+import { LeadsService } from 'src/core/data/leads/leads.service';
 @Component({
   selector: 'app-leaddetails',
   templateUrl: './leaddetails.component.html',
@@ -9,10 +10,11 @@ import * as $ from 'jquery'
 })
 export class LeaddetailsComponent implements OnInit {
   id: any;
-  constructor(private location: Location, private route: ActivatedRoute) { }
+  leadDetails: any;
+  constructor(private location: Location, private route: ActivatedRoute, private leadService: LeadsService) { }
   ngOnInit() {
     this.getId();
-
+    this.getLead();
     $('.showinfo').click(function () {
       $('#information').show(300);
       $('.showinfo').hide(0);
@@ -35,5 +37,18 @@ export class LeaddetailsComponent implements OnInit {
         this.id = res['id']
       })
   }
+
+  getLead() {
+    this.leadService.getLeadById(this.id).subscribe(
+      res => {
+        console.log(res)
+        this.leadDetails = res['payload']
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
 
 }

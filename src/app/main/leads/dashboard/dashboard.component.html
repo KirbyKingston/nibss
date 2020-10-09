@@ -486,7 +486,7 @@
                                 <p class="m-0 fs-15 ff-s fc-black fw-6">{{theLead?.ownerName}}</p>
                             </div>
                             <div>
-                                <a href="tel:">
+                                <a href="tel:{{theLead?.phoneNumber}}">
                                     <img src="assets/images/bcall.svg" alt="">
                                 </a>
                             </div>
@@ -521,7 +521,7 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">28 Jun 20 11:10 am</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.dateCreated | date:'medium'}}</p>
                         </div>
                     </div>
                     <div class="info">
@@ -560,7 +560,8 @@
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Est. Annual Income:</p>
                             </div>
                             <div class="col-7 mb-3">
-                                <p class="m-0 fc-black fw-6 fs-14 ff-s">130 Million</p>
+                                <p *ngIf="theLead?.estimatedTransactionValue" class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.estimatedTransactionValue}}</p>
+                                <p *ngIf="theLead?.estimatedTransactionValue == null" class="m-0 fc-black fw-6 fs-14 ff-s">0</p>
                             </div>
                             <div class="col-5 mb-3">
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Address:</p>
@@ -571,7 +572,7 @@
                         </div>
                     </div>
 
-                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a>View Complete Infomation</a></p>
+                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a (click)="openLead(theLead.id)">View Complete Infomation</a></p>
                     <div class="d-flex justify-content-end">
                         <button class="btn btn-green mr-3">Convert to Deal</button>
                         <button class="btn btn-more"><img src="assets/images/more-green.svg" alt=""></button>

@@ -25,18 +25,25 @@ export class LeadsService {
     return this.http.get(this.baseUrl + 'Leads/GetLead/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  ConvertLeadToDeal(lead: string){
+  ConvertLeadToDeal(lead){
     var body = {"leads": lead}
     return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  createLead(description, response, status, subject, type){
+  createLead(companyName, image,estTransVal,facebook,instagram, institutionType, ownerId,  phone, source, stage, status, transVol){
     const body = new FormData()
-    body.append("activities[0][description]", description)
-    body.append("activities[0][response]", response)
-    body.append("activities[0][status]", status)
-    body.append("activities[0][subject]", subject)
-    body.append("activities[0][type]", type)
+    body.append("CompanyName", companyName)
+    body.append("DisplayImage", image)
+    body.append("EstimatedTransactionValue", estTransVal)
+    body.append("Facebook", facebook)
+    body.append("Instagram", instagram)
+    body.append("InstitutionType", institutionType)
+    body.append("OwnerId", ownerId)
+    body.append("PhoneNumber", phone)
+    body.append("Source", source)
+    body.append("Stage", stage)
+    body.append("Status", status)
+    body.append("TransactionVolume", transVol)
     return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 }

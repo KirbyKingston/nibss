@@ -4,14 +4,13 @@
             <div class="col-12 mb-3">
                 <div class="d-flex align-items-center">
                     <div class="mr-2">
-                        <a><img src="assets/images/goback.svg" alt=""></a>
+                        <a><img src="assets/images/goback.svg" (click)="backClicked()" alt=""></a>
                     </div>
                     <div>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a>Contacts</a></li>
-                                <li class="breadcrumb-item"><a>Adebayo Adeyemi</a></li>
-                                <li class="breadcrumb-item">Deals</li>
+                                <li class="breadcrumb-item"><a>Accounts</a></li>
+                                <li class="breadcrumb-item"><a>{{accountDetails?.accountName}}</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -21,16 +20,9 @@
             <div class="col-12 mb-3">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <ul class="nav nav-tabs deets align-items-center" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#over" role="tab"
-                                    aria-controls="home" aria-selected="true">OVERVIEW</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#time" role="tab" aria-controls="profile"
-                                    aria-selected="false">TIMELINE</a>
-                            </li>
-                        </ul>
+                        <div class="overviewtop">
+                            OVERVIEW
+                        </div>
                     </div>
                     <div>
 
@@ -38,48 +30,57 @@
                 </div>
             </div>
             <div class="col-12 mb-3">
-                <div class="toplead p-4">
-                    <div class="row">
-                        <div class="col-lg-7 offset-lg-5 mb-3">
-                            <div class="btngroup d-flex justify-content-center align-items-center">
-                                <div class="mr-2">
-                                    <a class="text-white fs-14 ff-s fw-4">
-                                        <img src="assets/images/warm.svg" class="mr-1" alt=""> Warm
-                                    </a>
-                                </div>
-                                <div class="mr-2">
-                                    <a class="text-white fs-14 ff-s fw-4">
-                                        <img src="assets/images/sendsms.svg" class="mr-1" alt=""> Send SMS
-                                    </a>
-                                </div>
-                                <div class="mr-2">
-                                    <a class="text-white fs-14 ff-s fw-4">
-                                        <img src="assets/images/email.svg" class="mr-1" alt=""> Email
-                                    </a>
-                                </div>
-                                <div class="mr-2">
-                                    <a class="text-white fs-14 ff-s fw-4">
-                                        <img src="assets/images/call.svg" class="mr-1" alt=""> Call
-                                    </a>
+                <div class="topcontact">
+                    <div class="inner p-4">
+                        <div class="row">
+                            <div class="col-lg-6 offset-lg-6 mb-3">
+                                <div class="btngroup d-flex justify-content-center align-items-center">
+
+                                    <div class="mr-2">
+                                        <a class="text-white fs-14 ff-s fw-4">
+                                            <img src="assets/images/web.svg" class="mr-1" alt=""> Visit Website
+                                        </a>
+                                    </div>
+                                    <div class="mr-2">
+                                        <a class="text-white fs-14 ff-s fw-4">
+                                            <img src="assets/images/email.svg" class="mr-1" alt=""> Email
+                                        </a>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="d-flex row">
-                                <div class="mr-3">
-                                    <div class="initials">J</div>
-                                </div>
-                                <div class="mr-lg-5">
-                                    <p class="fs-15 text-white ff-s fw-6 m-0">Adebayo Adeyemi O.</p>
-                                    <p class="fc-lightwhite fs-15 ff-s">UBA</p>
-                                    <p class="m-0 ff-s fs-12 fc-lightwhite">Position</p>
-                                    <p class="fs-15 text-white ff-s fw-6 m-0">Team Lead Software Integrations</p>
-                                </div>
-                                <div class="mr-3">
-                                    <p class="m-0 ff-s fs-12 fc-lightwhite">Phone</p>
-                                    <p class="fs-15 text-white ff-s fw-6">+2348152653762</p>
-                                    <p class="m-0 ff-s fs-12 fc-lightwhite">Email</p>
-                                    <p class="fs-15 text-white ff-s fw-6">aadebayo@ubagroup.com</p>
+                            <div class="col-lg-12">
+                                <div class="d-flex row">
+                                    <div class="mr-3">
+                                        <div class="image2" *ngIf="accountDetails?.imageString">
+                                            <img [src]="'data:image/png;base64, ' + accountDetails?.imageString | trustedUrl"
+                                                alt="">
+                                        </div>
+                                        <div class="image2" *ngIf="accountDetails?.imageString == null">
+                                            <img src="assets/images/companyalt.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="mr-lg-5">
+                                        <p class="fs-15 text-white ff-s">{{accountDetails?.accountName}}</p>
+                                        <p class="fs-15 text-white ff-s fw-6 m-0">Adebayo Adeyemi O.</p>
+                                        <p class="fc-lightwhite fs-15 ff-s">Team Lead Software Integrations</p>
+                                        <p class="m-0 ff-s fs-12 fc-lightwhite">Est. Transaction Value</p>
+                                        <p class="fs-15 text-white ff-s fw-6 m-0"
+                                            *ngIf="accountDetails?.estimatedTransactionValue">
+                                            {{accountDetails?.estimatedTransactionValue}}</p>
+                                        <p class="fs-15 text-white ff-s fw-6 m-0"
+                                            *ngIf="accountDetails?.estimatedTransactionValue == null">null</p>
+                                    </div>
+                                    <div class="mr-3">
+                                        <br>
+                                        <p class="m-0 ff-s fs-12 fc-lightwhite">Website</p>
+                                        <p class="fs-15 text-white ff-s fw-6">
+                                            <a *ngIf="accountDetails?.website">{{accountDetails?.website}}</a>
+                                            <a *ngIf="accountDetails?.website == null">--</a>
+                                        </p>
+                                        <p class="m-0 ff-s fs-12 fc-lightwhite">Transaction Volume</p>
+                                        <p class="fs-15 text-white ff-s fw-6">{{accountDetails?.transactionVolume}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -87,129 +88,163 @@
 
                 </div>
             </div>
-            <div class="col-12 mb-3">
-                <button class="btn btn-clear fc-black px-0">
-                    Hide Information
-                </button>
-            </div>
-            <div class="col-12 mb-3">
-                <div class="details pb-4">
-                    <div class="px-4 py-3">
-                        <div class="row">
-                            <div class="col-12 mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="fc-green ff-p fs-18 fw-6">
-                                            Lead Details
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <a>
-                                            <img src="assets/images/Edit.svg" alt="">
-                                        </a>
-                                    </div>
+            <div class="col-lg-6 mb-3">
+                <div class="details">
+                    <div class="py-3 px-lg-3 px-3">
+                        <div class="account pb-1 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="px-2">
+                                    <img src="assets/images/contactw.svg" alt="">
                                 </div>
+                                <div class="px-2">
+                                    <p class="m-0 ff-s text-white fs-15">Contacts</p>
+                                </div>
+                            </div>
 
-                                <div class="orangeline"></div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between"
+                            *ngFor="let contact of accountDetails?.contacts">
+                            <div>
+                                <div class="prop-initials">
+                                    {{contact?.firstName.substring(0,1)}}
+                                </div>
+                            </div>
+                            <div>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{contact?.firstName}} {{contact?.lastName}}</p>
+                            </div>
+                            <div>
+                                <a href="tel:{{contact?.phoneNumber}}">
+                                    <img src="assets/images/bcall.svg" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a>
+                                    <img src="assets/images/bmessage.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-3">
+                <div class="details">
+                    <div class="pt-3 px-lg-3 px-3">
+                        <div class="deals pb-1 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="px-2">
+                                    <img src="assets/images/handshake.svg" alt="">
+                                </div>
+                                <div class="px-2">
+                                    <p class="m-0 ff-s text-white fs-15">Deals</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="d-flex">
+                            <div class="p-2">
+                                <div class="deal">
+                                    N
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-0 ff-s fw-6 fs-14 fc-dblue">Negotiation/Review</p>
+                                <p class="m-0 ff-s fs-12 fc-6blue w-100">
+                                    <span>NGN1,200,000,000</span>
+                                </p>
 
                             </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Title</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Mr
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Position</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Team Lead Software Integrations
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Email Address</p>
-                                <p class="fs-16 fc-blue ff-s tx-u">
-                                    aadebayo@ubagroup.com
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Adebayo Adeyemi O.
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    +2347011863095 <span><img src="assets/images/skype.svg" alt=""></span>
+                            <div class="p-2 ml-auto">
+                                <p></p>
+                                <p class="m-0 ff-s fs-12 fc-6blue">
+                                    25-May-20
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 mb-5">
-                <div class="details pb-4">
-                    <div class="px-4 py-3">
-                        <div class="row">
-                            <div class="col-12 mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="fc-green ff-p fs-18 fw-6">
-                                            Institution Details
+            <div class="col-12 mb-3">
+                <a class="hideinfo fc-black px-0">
+                    Hide Information <span class="ml-2"><img src="assets/images/arrow-up.svg" alt=""></span>
+                </a>
+                <a class="showinfo fc-black px-0">
+                    Show Information <span class="ml-2"><img src="assets/images/arrow-down2.svg" alt=""></span>
+                </a>
+            </div>
+            <div id="information" class="col-12">
+                <div class="row">
+
+                    <div class="col-12 mb-5">
+                        <div class="details pb-4">
+                            <div class="px-4 py-3">
+                                <div class="row">
+                                    <div class="col-12 mb-4">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="fc-green ff-p fs-18 fw-6">
+                                                    Account Details
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <a>
+                                                    <img src="assets/images/Edit.svg" alt="">
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <a>
-                                            <img src="assets/images/Edit.svg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
 
-                                <div class="orangeline"></div>
+                                        <div class="orangeline"></div>
 
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    UBA
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
-                                <div class="d-flex mb-4">
-                                    <div class="product mr-2">mCash</div>
-                                    <div class="product mr-2">NIP</div>
-                                </div>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Est. Transaction Value</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    130 Million
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Postal Code</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    101223
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Institution Type</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    Commercial Bank
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Transaction Volume</p>
-                                <p class="fs-16 fc-black ff-s">
-                                    >1 Billion
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Address </p>
-                                <p class="fs-16 fc-black ff-s">
-                                    57 Marina, Lagos Island, Lagos, Nigeria
-                                </p>
-                                <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
-                                <div class="d-flex">
-                                    <div class="mr-3">
-                                        <a href="">
-                                            <img src="assets/images/facebook.svg" alt="">
-                                        </a>
                                     </div>
-                                    <div class="mr-3">
-                                        <a href="">
-                                            <img src="assets/images/twitter.svg" alt="">
-                                        </a>
+                                    <div class="col-lg-6">
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            {{accountDetails?.transactionVolume}}
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
+                                        <div class="d-flex mb-4">
+                                            <div class="product mr-2">mCash</div>
+                                            <div class="product mr-2">NIP</div>
+                                        </div>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Est. Transaction Value</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            {{accountDetails?.transactionVolume}}
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Postal Code</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            101223
+                                        </p>
                                     </div>
-                                    <div class="mr-3">
-                                        <a href="">
-                                            <img src="assets/images/instagram.svg" alt="">
-                                        </a>
+                                    <div class="col-lg-6">
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Institution Type</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            {{accountDetails?.transactionVolume}}
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Transaction Volume</p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            {{accountDetails?.transactionVolume}}
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Address </p>
+                                        <p class="fs-16 fc-black ff-s">
+                                            57 Marina, Lagos Island, Lagos, Nigeria
+                                        </p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
+                                        <div class="d-flex">
+                                            <div class="mr-3">
+                                                <a href="{{accountDetails?.facebook}}">
+                                                    <img src="assets/images/facebook.svg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="mr-3">
+                                                <a href="{{accountDetails?.twitter}}">
+                                                    <img src="assets/images/twitter.svg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="mr-3">
+                                                <a href="{{accountDetails?.instagram}}">
+                                                    <img src="assets/images/instagram.svg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -405,7 +440,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade" id="product" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -452,7 +487,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade" id="calendar" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -497,7 +532,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade" id="attachments" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -556,7 +591,69 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+                            <div class="tab-pane fade" id="note" role="tabpanel">
+                                <div class="mail">
+                                    <div class="px-3">
+                                        <div class="d-flex mb-2">
+                                            <div>
+                                                <p class="m-0 fs-16 fc-green ff-p">Notes</p>
+                                            </div>
+                                        </div>
+                                        <div class="orangeline"></div>
+                                        <div class="littleorange"></div>
+                                        <div class="row pt-3">
+                                            <div class="col-12 mb-3">
+                                                <p class="m-0 fs-16 fw-6 ff-s">Create Note</p>
+                                            </div>
+                                            <div class="col-12 mb-3">
+
+                                                <textarea name="" id="" cols="30" rows="10"
+                                                    class="form-control detail-form"></textarea>
+                                            </div>
+
+
+                                            <div class="col-12 mt-2">
+                                                <p class="text-right">
+                                                    <button class="btn btn-blue">Create</button>
+                                                </p>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="m-0 fs-16 gc-green fw-6">Note Log</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="message p-3" *ngFor="let note of accountDetails?.notes">
+                                            <div class="d-flex">
+                                                <div class="mr-2">
+                                                    <img src="assets/images/msg.svg" alt="">
+                                                </div>
+                                                <div>
+                                                    <p class="fs-13 fw-4 fc-lightblack">
+                                                        {{note?.message}}. <span class="fw-7 fc-green"><a>Read
+                                                                More</a></span>
+                                                    </p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun
+                                                                Wey</p>
+                                                        </div>
+                                                        <div>
+                                                            <a><img src="assets/images/reply.svg" alt=""></a>
+                                                        </div>
+                                                    </div>
+                                                    <p class="fc-lightblack ff-s fs-11 fw-3">
+                                                        <span class="mr-3"><i>{{note?.creationTime | date}}</i></span>
+                                                        <span>
+                                                            <i>{{note?.creationTime | date:'shortTime'}}</i>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -572,7 +669,7 @@
                                     d="M20 2.55837C20 1.46064 19.1 0.5625 18 0.5625H2C0.9 0.5625 0 1.46064 0 2.55837V14.5336C0 15.6313 0.9 16.5294 2 16.5294H18C19.1 16.5294 20 15.6313 20 14.5336V2.55837ZM18 2.55837L10 7.53805L2 2.55837H18ZM10 9.5439L2 4.55423V14.5336H18V4.55423L10 9.5439Z" />
                             </svg>
                         </a>
-                        <a class="nav-link" data-toggle="tab" href="#" role="tab">
+                        <a class="nav-link" data-toggle="tab" href="#note" role="tab">
                             <svg width="18" height="19" viewBox="0 0 18 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g id="notes 1" clip-path="url(#clip0)">

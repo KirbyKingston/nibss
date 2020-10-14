@@ -481,7 +481,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body px-lg-5 px-3 py-4">
-                <div class="row">
+                <form class="row" #newDealForm="ngForm" (submit)="createDeal(newDealForm)" ngNativeValidate>
                     <div class="col-12 mb-3">
                         <div class="d-flex justify-content-between">
                             <div>
@@ -499,20 +499,22 @@
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Select Account</label>
-                        <select class="form-control topform">
-                            <option value=""></option>
+                        <select class="form-control topform" ngModel name="account">
+                            <option value="{{account.id}}" *ngFor="let account of accounts">{{account.accountName}}
+                            </option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Deal Owner</label>
-                        <select class="form-control topform">
-                            <option value=""></option>
+                        <select class="form-control topform" ngModel name="owner">
+                            <option value="{{account.id}}" *ngFor="let account of users">{{account.fullName}}</option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Contact Person</label>
-                        <select class="form-control topform">
-                            <option value=""></option>
+                        <select class="form-control topform" ngModel name="contact">
+                            <option value="{{account.id}}" *ngFor="let account of contacts">{{account.firstName}}
+                                {{account.lastName}}</option>
                         </select>
                     </div>
                     <div class="col-12 mt-4 mb-3">
@@ -522,40 +524,57 @@
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Deal Name</label>
-                        <input type="text" class="form-control botform">
+                        <input type="text" class="form-control botform" ngModel name="name">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
-                        <input type="text" class="form-control botform">
+                        <ng-multiselect-dropdown [placeholder]="' '" [data]="dropdownList" name="products" [(ngModel)]="products"
+                            [settings]="dropdownSettings">
+                        </ng-multiselect-dropdown>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Stage</label>
-                        <select class="form-control botform">
-                            <option value=""></option>
+                        <select class="form-control botform" ngModel name="stage">
+                            <option value="0">Negotiation</option>
+                            <option value="1">Proposal</option>
+                            <option value="2">Identification</option>
+                            <option value="3">Value Proposition</option>
+                            <option value="4">Needs Analysis</option>
+                            <option value="5">Qualification</option>
+                            <option value="6">Won</option>
+                            <option value="7">Lost</option>
+                            <option value="8">Lost to Competition</option>
                         </select>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Deal Value (NGN)</label>
-                        <input type="text" class="form-control botform">
+                        <input type="text" class="form-control botform" ngModel name="dealValue">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
-                        <input type="text" class="form-control botform">
+                        <input type="text" class="form-control botform" ngModel name="estIncome">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>
-                        <input type="text" class="form-control botform">
+                        <input type="text" class="form-control botform" ngModel name="probability">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Status</label>
+                        <select class="form-control botform" ngModel name="status">
+                            <option value="0">Active</option>
+                            <option value="1">Inactive</option>
+                        </select>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Estimated Close Date</label>
-                        <input type="date" class="form-control botform">
+                        <input type="date" class="form-control botform" ngModel name="closeDate">
                     </div>
                     <div class="col-12 mt-3">
                         <p class="text-right ">
-                            <button class="btn btn-blue px-3">Create</button>
+                            <button class="btn btn-blue px-3" type="submit">Create</button>
                         </p>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

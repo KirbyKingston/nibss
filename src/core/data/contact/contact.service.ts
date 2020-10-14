@@ -23,7 +23,7 @@ export class ContactService {
   getContactById(id) {
     return this.http.get(this.baseUrl + 'Contacts/GetAccountContact/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
-
+ 
   deleteContact(id) {
     return this.http.get(this.baseUrl + 'Contacts/DeleteContact/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }

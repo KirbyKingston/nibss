@@ -370,6 +370,12 @@ a:hover {
     width: 40px;
     border-radius: 100%;
 }
+
+.image2 img{
+    height: 54px;
+    width: 54px;
+    border-radius: 100%;
+}
 .dropdown-menu.filter-drop {
     width: 350px;
     background: #FFFFFF;

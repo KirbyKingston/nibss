@@ -6,9 +6,9 @@
                     <div class="inner p-4">
                         <p class="fs-32 text-white ff-p">Incident</p>
                         <p class="fs-16 text-white ff-p mb-4">Manage and update Incident cases directly.</p>
-                        <button class="btn btn-clear import mr-2" data-toggle="modal" data-target=".import-modal"><img
+                        <!-- <button class="btn btn-clear import mr-2" data-toggle="modal" data-target=".import-modal"><img
                                 src="assets/images/cloud_download.svg" alt="" class="mr-2"><span
-                                class="text-white">Import</span></button>
+                                class="text-white">Import</span></button> -->
                         <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
                                 src="assets/images/add.svg" alt="" class="mr-2">Add New Incident</button>
                     </div>
@@ -113,8 +113,8 @@
                                         <input type="checkbox">
                                     </th>
                                     <th>ACCOUNT</th>
-                                    <th>STAGE</th>
-                                    <th>PRODUCTS</th>
+                                    <th>PRODUCT</th>
+                                    <th>TYPE/STATUS</th>
                                     <th>DATE CREATED
                                         <a class="more text-right float-right" id="more">
                                             <img src="assets/images/more-table.svg" alt="">
@@ -177,32 +177,40 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr routerLink="/app/incidents/incident">
+                                    <tr *ngFor="let thrincident of incidents" (click)="getIncident(thrincident.id)">
                                         <td>
                                             <div class="pt-2"><input type="checkbox"></div>
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="mr-2">
-                                                    <img src="assets/images/uba.svg" alt="">
+                                                    <div class="image" *ngIf="thrincident.imageString">
+                                                        <img [src]="'data:image/png;base64, ' + thrincident.imageString | trustedUrl" alt="">
+                                                    </div>
+                                                    <div class="image" *ngIf="thrincident.imageString == null">
+                                                        <img src="assets/images/companyalt.svg" alt="">
+                                                    </div>
                                                 </div>
                                                 <div>
-                                                    <p class="m-0 ff-s fs-15 fw-6 fc-black">UBA</p>
+                                                    <p class="m-0 ff-s fs-15 fw-6 fc-black">{{thrincident.accountName.substring(0, 10)}}</p>
 
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">EbillsPay</p>
+                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">{{thrincident.productName.substring(0, 10)}}</p>
                                         </td>
                                         <td>
-                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">Resolved</p>
+                                            <p class="ff-s fs-15 fw-4 fw-6 fc-black m-0 mb-1">
+                                                {{thrincident.caseType}}
+                                            </p>
+                                            <p class="ff-s fs-15 fc-lightblack m-0">{{thrincident.status}}</p>
                                         </td>
                                         <td>
                                             <p class="ff-s fs-15 fw-4 fw-6 fc-darkblue m-0 mb-1">
-                                                HelpDesk
+                                                {{thrincident?.reporter.firstName}} {{thrincident?.reporter.lastName}}
                                             </p>
-                                            <p class="ff-s fs-15 fc-black m-0">03 Aug 2020</p>
+                                            <p class="ff-s fs-15 fc-black m-0">{{thrincident.dateCreated | date: 'mediumDate'}}</p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -211,7 +219,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
     <div class="col-lg-4">
         <div class="sidediv">
@@ -225,9 +233,97 @@
                     </div>
                 </div>
                 <div class="orangeline"></div>
-                <div class="emptystate">
+                <div class="emptystate" *ngIf="!isSelected">
                     <img src="assets/images/emptylead.svg" alt="">
                 </div>
+
+                <!-- properties -->
+                <div class="props pt-2" *ngIf="isSelected">
+                    <div class="top-prop px-2 py-1">
+                        <div class="d-flex align-items-center">
+                            <div class="py-2">
+                                <div class="image" *ngIf="incident?.imageString">
+                                    <img [src]="'data:image/png;base64, ' + incident?.imageString | trustedUrl" alt="">
+                                </div>
+                                <div class="image" *ngIf="incident?.imageString == null">
+                                    <img src="assets/images/companyalt.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-0 ff-s fw-6 fs-15 fc-black">{{incident?.accountName}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Product:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{incident?.productName}}</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Status:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{incident?.status}}</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Source:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{incident?.source}}</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{incident?.dateCreated | date: 'medium'}}</p>
+                        </div>
+                    </div>
+                    <div class="info mb-3">
+                        <div class="top-prop b-5 p-2">
+                            <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
+                                        src="assets/images/incident.svg" alt=""></span>Incident Description</p>
+                        </div>
+                        <div class="row pl-2">
+                            <div class="col-12 mb-3" >
+                                <p class="m-0 fs-13 ff-s fc-lightblack fw-4">{{incident?.description}}</p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <p class="mb-1 fs-12 ff-s fw-6 fc-lightgrey">Reported by:</p>
+                                <div class="d-flex align-items-center justify-content-between p-2">
+                                    <div>
+                                        <div class="prop-initials">
+                                            {{incident?.reporter.firstName.substring(0,1)}}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="m-0 fs-15 ff-s fc-black fw-6">{{incident?.reporter.firstName}} {{incident?.reporter.lastName}}</p>
+                                    </div>
+                                    <div>
+                                        <a href="tel:{{incident?.reporter.phoneNumber}}">
+                                            <img src="assets/images/bcall.svg" alt="">
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a>
+                                            <img src="assets/images/bmessage.svg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-center mt-4">
+                        <button class="btn btn-green mr-3" (click)="openIncident(incident.id)">View Complete Info</button>
+                        <button class="btn btn-more"><img src="assets/images/more-green.svg" alt=""></button>
+                    </div>
+                </div>
+                <!-- properties -->
             </div>
         </div>
     </div>
@@ -283,72 +379,98 @@
                     </div>
 
                     <div class="col-12">
-                        <div class="tab-content" id="myTabContent">
+                        <form class="tab-content" id="myTabContent" #newIncidentForm="ngForm" (submit)="createIncident(newIncidentForm)" ngNativeValidate>
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
                                     <div class="col-lg-6 mb-3">
                                         <label class="fs-16 ff-p fc-black">Product Name</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control botform" ngModel name="name">
+                                            <option *ngFor="let product of products" value="{{product.id}}" >{{product.productName}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label class="fs-16 ff-p fc-black">Case Owner</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control botform" ngModel name="owner">
+                                            <option *ngFor="let user of users" value="{{user.id}}">{{user.fullName}}</option>
                                         </select>
                                     </div>
 
 
 
-                                    <div class="col-lg-4 mb-3">
+                                    <div class="col-lg-6 mb-3">
                                         <label class="fs-16 ff-p fc-black">Account</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control botform" ngModel name="account">
+                                            <option *ngFor="let user of accounts" value="{{user.id}}">{{user.accountName}}</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-4 mb-3">
-                                        <label class="fs-16 ff-p fc-black">Deal</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-4 mb-3">
-                                        <label class="fs-16 ff-p fc-black">Related to (Contact)</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                    <div class="col-lg-6 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Reported By</label>
+                                        <select class="form-control botform" ngModel name="contact">
+                                            <option *ngFor="let user of contacts" value="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Case Type</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control botform" ngModel name="caseType">
+                                            <option value="0">Others</option>
+                                            <option value="1">Problem</option>
+                                            <option value="2">Question</option>
+                                            <option value="3">Feature Request</option>
+                                            <option value="4">Information Request</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Status</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control botform" ngModel name="status">
+                                            <option value="0">New</option>
+                                            <option value="1">Open</option>
+                                            <option value="2">Pending</option>
+                                            <option value="3">Resolved</option>
+                                            <option value="4">Closed</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Source</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control botform" ngModel name="source">
+                                            <option value="Call">Call</option>
+                                            <option value="Email">Email</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Support Phase</label>
+                                        <select class="form-control botform" ngModel name="phase">
+                                            <option value="Contact Centre">Contact Centre</option>
+                                            <option value="Operations">Operations</option>
+                                            <option value="Technology Operations">Technology Operations</option>
+                                            <option value="Development/Designs">Development/Designs</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Priority</label>
+                                        <select class="form-control botform" ngModel name="priority">
+                                            <option value="0">Lowest</option>
+                                            <option value="1">Low</option>
+                                            <option value="2">Normal</option>
+                                            <option value="3">High</option>
+                                            <option value="4">Highest</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Case Description</label>
-                                        <input type="text" class="form-control botform">
+                                        <label for="" class="fs-16 fc-black ff-p">Case Title</label>
+                                        <input type="text" class="form-control botform" ngModel name="title">
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Date Closed</label>
+                                        <input type="date" class="form-control botform" ngModel name="closed">
                                     </div>
                                     <div class="col-lg-12 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Case Title</label>
+                                        <label for="" class="fs-16 fc-black ff-p">Case Description</label>
                                         <textarea name="" id="" cols="30" rows="10"
-                                            class="form-control botform"></textarea>
+                                            class="form-control botform" ngModel name="description"></textarea>
                                     </div>
                                     <div class="col-12 mt-3">
                                         <p class="text-right ">
-                                            <button class="btn btn-blue px-3">Create</button>
+                                            <a class="btn btn-blue px-3">Next</a>
                                         </p>
                                     </div>
                                 </div>
@@ -379,12 +501,12 @@
                                     </div>
                                     <div class="col-12 mt-5 pt-5">
                                         <p class="text-right">
-                                            <button class="btn btn-blue px-3">Import</button>
+                                            <button class="btn btn-blue px-3" type="submit">Save</button>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                 </div>

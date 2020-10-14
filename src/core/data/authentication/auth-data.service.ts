@@ -20,5 +20,8 @@ export class AuthDataService {
     return this.http.post(this.baseUrl + 'Authentication/Token', body, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
   }
 
+  getUsers(){
+    return this.http.get(this.baseUrl + 'Users/SearchUsers?pageIndex=1&pageSize=30&filters[0].FilterColumn=AccountName&filters[0].Keyword=user&filters[0].Operation=1', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
   
 }

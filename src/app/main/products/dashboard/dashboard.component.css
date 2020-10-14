@@ -79,3 +79,19 @@
 
     background: #D18700;
 }
+
+.productname {
+    background: #DEE9F2;
+    border-radius: 20px;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 31px;
+    color: #00529B;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

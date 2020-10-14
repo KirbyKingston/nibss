@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { LoaderInterceptor } from 'src/core/interceptors/loader-interceptor';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoaderInterceptor } from 'src/core/interceptors/loader-interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [
     {

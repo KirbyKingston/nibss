@@ -1,6 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery'
+import { DealsService } from 'src/core/data/deals/deals.service';
 
 @Component({
   selector: 'app-deals-details',
@@ -8,10 +10,13 @@ import * as $ from 'jquery'
   styleUrls: ['./deals-details.component.css']
 })
 export class DealsDetailsComponent implements OnInit {
-
-  constructor(private location:Location) { }
+  id: any;
+  dealDetails: any;
+  constructor(private location: Location, private route: ActivatedRoute, private dealService: DealsService) { }
 
   ngOnInit() {
+    this.getId()
+    this.getDeal()
     $('.showinfo').click(function () {
       $('#information').show(300);
       $('.showinfo').hide(0);
@@ -26,6 +31,23 @@ export class DealsDetailsComponent implements OnInit {
 
   backClicked() {
     this.location.back();
+  }
+
+  getId() {
+    this.route.params.subscribe(
+      res => {
+        this.id = res['id']
+      })
+  }
+
+  getDeal() {
+    this.dealService.getDealById(this.id).subscribe(
+      res => {
+        this.dealDetails = res['payload']
+      },
+      err => {
+      }
+    )
   }
 
 }

@@ -6,7 +6,7 @@ import { IncidentDetailComponent } from './incident-detail/incident-detail.compo
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
-  {path: 'incident', component: IncidentDetailComponent}
+  {path: 'incident/:id', component: IncidentDetailComponent}
 ];
 
 @NgModule({

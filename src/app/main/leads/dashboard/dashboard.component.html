@@ -144,7 +144,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="px-4 py-3">
-                                                        
+
                                                         <div class="form-group form-check mb-3">
                                                             <input type="checkbox" class="form-check-input"
                                                                 id="exampleCheck6">
@@ -188,15 +188,17 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let lead of allLeads" (click)="getLead(lead.id)">
+                                            <tr *ngFor="let lead of allLeads; let i = index" (click)="getLead(lead.id)">
                                                 <td>
-                                                    <div class="pt-2"><input type="checkbox"></div>
+                                                    <div class="pt-2"><input type="checkbox" [(ngModel)]="lead.checked"
+                                                            (change)="changeSelection()"></div>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="lead.imageString"> 
-                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl" alt="">
+                                                            <div class="image" *ngIf="lead.imageString">
+                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl"
+                                                                    alt="">
                                                             </div>
                                                             <div class="image" *ngIf="lead.imageString == null">
                                                                 <img src="assets/images/companyalt.svg" alt="">
@@ -205,7 +207,8 @@
                                                         <div>
                                                             <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
                                                             </p>
-                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">{{lead.companyName}}</p>
+                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
+                                                                {{lead.companyName}}</p>
 
                                                         </div>
                                                     </div>
@@ -216,14 +219,24 @@
                                                         aadebayo@ubagroup.com</p>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.dateCreated | date:'mediumDate'}}
+                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">
+                                                        {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
                                                     <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
                                                 </td>
                                                 <td>
-                                                    <p *ngIf="lead.status == 'Hot'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/hot.svg" alt=""></span>Hot</p>
-                                                    <p *ngIf="lead.status == 'Cold'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/cold.svg" alt=""></span>Cold</p>
-                                                    <p *ngIf="lead.status == 'Warm'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/warm.svg" alt=""></span>Warm</p>
+                                                    <p *ngIf="lead.status == 'Hot'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/hot.svg"
+                                                                alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Cold'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/cold.svg"
+                                                                alt=""></span>Cold</p>
+                                                    <p *ngIf="lead.status == 'Warm'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/warm.svg"
+                                                                alt=""></span>Warm</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -258,7 +271,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="px-4 py-3">
-                                                        
+
                                                         <div class="form-group form-check mb-3">
                                                             <input type="checkbox" class="form-check-input"
                                                                 id="exampleCheck6">
@@ -314,7 +327,8 @@
                                                         <div>
                                                             <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
                                                             </p>
-                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">{{lead.companyName}}</p>
+                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
+                                                                {{lead.companyName}}</p>
 
                                                         </div>
                                                     </div>
@@ -325,14 +339,24 @@
                                                         aadebayo@ubagroup.com</p>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.dateCreated | date:'mediumDate'}}
+                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">
+                                                        {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
                                                     <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
                                                 </td>
                                                 <td>
-                                                    <p *ngIf="lead.status == 'Hot'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/hot.svg" alt=""></span>Hot</p>
-                                                    <p *ngIf="lead.status == 'Cold'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/cold.svg" alt=""></span>Cold</p>
-                                                    <p *ngIf="lead.status == 'Warm'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/warm.svg" alt=""></span>Warm</p>
+                                                    <p *ngIf="lead.status == 'Hot'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/hot.svg"
+                                                                alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Cold'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/cold.svg"
+                                                                alt=""></span>Cold</p>
+                                                    <p *ngIf="lead.status == 'Warm'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/warm.svg"
+                                                                alt=""></span>Warm</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -367,7 +391,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="px-4 py-3">
-                                                        
+
                                                         <div class="form-group form-check mb-3">
                                                             <input type="checkbox" class="form-check-input"
                                                                 id="exampleCheck6">
@@ -423,7 +447,8 @@
                                                         <div>
                                                             <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
                                                             </p>
-                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">{{lead.companyName}}</p>
+                                                            <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
+                                                                {{lead.companyName}}</p>
 
                                                         </div>
                                                     </div>
@@ -434,14 +459,24 @@
                                                         aadebayo@ubagroup.com</p>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.dateCreated | date:'mediumDate'}}
+                                                    <p class="mb-1 ff-s fs-15 fw-6 fc-black">
+                                                        {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
                                                     <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
                                                 </td>
                                                 <td>
-                                                    <p *ngIf="lead.status == 'Hot'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/hot.svg" alt=""></span>Hot</p>
-                                                    <p *ngIf="lead.status == 'Cold'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/cold.svg" alt=""></span>Cold</p>
-                                                    <p *ngIf="lead.status == 'Warm'" class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span class="mr-2"><img src="assets/images/warm.svg" alt=""></span>Warm</p>
+                                                    <p *ngIf="lead.status == 'Hot'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/hot.svg"
+                                                                alt=""></span>Hot</p>
+                                                    <p *ngIf="lead.status == 'Cold'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/cold.svg"
+                                                                alt=""></span>Cold</p>
+                                                    <p *ngIf="lead.status == 'Warm'"
+                                                        class="fs-15 fc-black fw-6 ff-s pt-2 m-0"><span
+                                                            class="mr-2"><img src="assets/images/warm.svg"
+                                                                alt=""></span>Warm</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -533,7 +568,8 @@
                                 <div class="d-flex align-items-center">
                                     <div class="py-2">
                                         <div class="image" *ngIf="theLead?.imageString">
-                                            <img [src]="'data:image/png;base64, ' + theLead?.imageString | trustedUrl" alt="">
+                                            <img [src]="'data:image/png;base64, ' + theLead?.imageString | trustedUrl"
+                                                alt="">
                                         </div>
                                         <div class="image" *ngIf="theLead?.imageString == null">
                                             <img src="assets/images/companyalt.svg" alt="">
@@ -560,8 +596,10 @@
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Est. Annual Income:</p>
                             </div>
                             <div class="col-7 mb-3">
-                                <p *ngIf="theLead?.estimatedTransactionValue" class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.estimatedTransactionValue}}</p>
-                                <p *ngIf="theLead?.estimatedTransactionValue == null" class="m-0 fc-black fw-6 fs-14 ff-s">0</p>
+                                <p *ngIf="theLead?.estimatedTransactionValue" class="m-0 fc-black fw-6 fs-14 ff-s">
+                                    {{theLead?.estimatedTransactionValue}}</p>
+                                <p *ngIf="theLead?.estimatedTransactionValue == null"
+                                    class="m-0 fc-black fw-6 fs-14 ff-s">0</p>
                             </div>
                             <div class="col-5 mb-3">
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Address:</p>
@@ -572,7 +610,8 @@
                         </div>
                     </div>
 
-                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a (click)="openLead(theLead.id)">View Complete Infomation</a></p>
+                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a (click)="openLead(theLead.id)">View
+                            Complete Infomation</a></p>
                     <div class="d-flex justify-content-end">
                         <button class="btn btn-green mr-3">Convert to Deal</button>
                         <button class="btn btn-more"><img src="assets/images/more-green.svg" alt=""></button>
@@ -653,18 +692,22 @@
 
                                     </div>
                                     <div class="col-lg-4 mb-3">
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control topform" [(ngModel)]="owner">
+                                            <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control topform" [(ngModel)]="status">
+                                            <option value="">Lead Status</option>
+                                            <option value="0">Cold</option>
+                                            <option value="1">Warm</option>
+                                            <option value="2">Hot</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                        <select class="form-control topform" [(ngModel)]="source">
+                                            <option value="">Lead Source</option>
+                                            <option value="Campaign">Campaign</option>
                                         </select>
                                     </div>
 
@@ -672,26 +715,28 @@
                                         <label for="" class="fs-16 fc-black ff-p">Name</label>
                                         <div class="input-group leadform">
                                             <div class="input-group-prepend">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Miss</option>
-                                                    <option value="">Mrs</option>
-                                                    <option value="">Mr</option>
+                                                <select [(ngModel)]="title" class="form-control">
+                                                    <option value="Miss">Miss</option>
+                                                    <option value="Mrs">Mrs</option>
+                                                    <option value="Mr">Mr</option>
                                                 </select>
                                             </div>
-                                            <input type="text" class="form-control">
-                                        </div> 
+                                            <input type="text" placeholder="First Name" class="form-control" [(ngModel)]="firstName">
+                                            <input type="text" placeholder="Last Name" class="form-control" [(ngModel)]="lastName">
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Designation</label>
-                                        <input type="text" class="form-control botform">
+                                        <input type="text" class="form-control botform" [(ngModel)]="designation">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Department/Unit</label>
-                                        <input type="text" class="form-control botform">
+                                        <label for="" class="fs-16 fc-black ff-p">Display Image</label>
+                                        <input type="file" class="form-control botform"
+                                        (change)="handleUpload($event.target.files)" required [(ngModel)]="disImage">
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Email Address</label>
-                                        <input type="text" class="form-control botform">
+                                        <input type="text" class="form-control botform" [(ngModel)]="email">
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Phone Number</label>
@@ -703,7 +748,7 @@
                                                     <option value="">+234</option>
                                                 </select>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <input [(ngModel)]="phoneNumber" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -722,7 +767,7 @@
                                     </div>
                                     <div class="col-12 mt-3">
                                         <p class="text-right ">
-                                            <button class="btn btn-blue px-3">Create</button>
+                                            <button class="btn btn-blue px-3">Next</button>
                                         </p>
                                     </div>
                                 </div>
@@ -734,30 +779,39 @@
 
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <input type="text" class="form-control botform">
+                                        <input type="text" [(ngModel)]="company" class="form-control botform">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <select name="" id="" class="form-control botform">
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                            <option value=""></option>
+                                        <select [(ngModel)]="insType" class="form-control botform">
+                                            <option>Institution Type</option>
+                                            <option value="2">Commercial Bank</option>
+                                            <option value="3">Merchant Bank</option>
+                                            <option value="1">Microfinance Bank</option>
+                                            <option value="4">Mortgage Bank</option>
+                                            <option value="5">Mobile Money Operator</option>
+                                            <option value="6">Finance House</option>
+                                            <option value="7">Stockbroker</option>
+                                            <option value="8">Payment Service Solution Provider</option>
+                                            <option value="9">Pension Fund Administrator</option>
+                                            <option value="10">Pension Fund Custodian</option>
+                                            <option value="11">Development Finance Institutions</option>
+                                            <option value="0">Others</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
-                                        <select name="" id="" class="form-control botform">
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                        </select>
+                                        <ng-multiselect-dropdown [placeholder]="' '" [data]="dropdownList"
+                                            [(ngModel)]="products" [settings]="dropdownSettings">
+                                        </ng-multiselect-dropdown>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Transaction Volume</label>
-                                        <select name="" id="" class="form-control botform">
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                            <option value=""></option>
-                                        </select>
+                                        <input [(ngModel)]="transVol" type="text" class="form-control botform">
+                                        
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Year Established</label>
+                                        <input type="date" [(ngModel)]="yearEst" class="form-control botform">
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Est. Transaction Value</label>
@@ -769,33 +823,39 @@
                                                     <option value="">NGN</option>
                                                 </select>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" type="text" maxlength="10" minlength="10"
+                                                [(ngModel)]="EstTransVal" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6"></div>
+                                    <div class="col-lg-12 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Note</label>
+                                        <input type="text" [(ngModel)]="message" class="form-control botform">
+                                    </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Branch Address</label>
-                                        <input type="text" class="form-control botform">
+                                        <input type="text" class="form-control botform" [(ngModel)]="address">
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">City</label>
-                                        <input type="text" class="form-control botform">
+                                        <input type="text" class="form-control botform" [(ngModel)]="city">
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Country</label>
-                                        <select class="form-control botform">
-                                            <option value=""></option>
+                                        <select class="form-control botform" [(ngModel)]="country">
+                                            <option value="Nigeria">Nigeria</option>
+                                            <option value="Ghana">Ghana</option>
+                                            <option value="Niger">Niger</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Zip / Postal Code (Optional)</label>
-                                        <input type="text" class="form-control botform">
+                                        <input type="text" class="form-control botform" [(ngModel)]="postalCode">
                                     </div>
 
 
                                     <div class="col-12 mt-5 pt-5">
                                         <p class="text-right">
-                                            <button class="btn btn-blue px-3">Import</button>
+                                            <button class="btn btn-blue px-3">Next</button>
                                         </p>
                                     </div>
                                 </div>
@@ -803,24 +863,33 @@
                             <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row">
                                     <div class="col-12 mb-3">
+                                        <label for="" class="fs-16 ff-s fw-4 fc-black"><img src="assets/images/webd.svg"
+                                                alt=""> Website</label>
+                                        <input type="text" placeholder="paste url here" [(ngModel)]="website"
+                                            class="form-control botform">
+                                    </div>
+                                    <div class="col-12 mb-3">
                                         <label for="" class="fs-16 ff-s fw-4 fc-black"><img
                                                 src="assets/images/facebook.svg" alt=""> Facebook</label>
-                                        <input type="text" placeholder="paste url here" class="form-control botform">
+                                        <input type="text" placeholder="paste url here" [(ngModel)]="facebook"
+                                            class="form-control botform">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="" class="fs-16 ff-s fw-4 fc-black"><img
                                                 src="assets/images/twitter.svg" alt=""> Twitter</label>
-                                        <input type="text" placeholder="paste url here" class="form-control botform">
+                                        <input type="text" placeholder="paste url here" [(ngModel)]="twitter"
+                                            class="form-control botform">
                                     </div>
                                     <div class="col-12 mb-5">
                                         <label for="" class="fs-16 ff-s fw-4 fc-black"><img
                                                 src="assets/images/instagram.svg" alt=""> Instagram</label>
-                                        <input type="text" placeholder="paste url here" class="form-control botform">
+                                        <input type="text" placeholder="paste url here" [(ngModel)]="instagram"
+                                            class="form-control botform">
                                     </div>
 
                                     <div class="col-12 mt-5 pt-5">
                                         <p class="text-right">
-                                            <button class="btn btn-blue px-3">Create</button>
+                                            <button class="btn btn-blue px-3" (click)="createLead()">Create</button>
                                         </p>
                                     </div>
                                 </div>

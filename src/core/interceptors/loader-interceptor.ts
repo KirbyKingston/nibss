@@ -52,8 +52,8 @@ export class LoaderInterceptor implements HttpInterceptor {
           switch (error.status) {
             case 503: {
               this.errorMessage = 'An Internal Error Occured. Our Engineers Have Been Contacted';
-              if (error.error['message']) {
-                this.notification.publishMessages(error.error['message'], 'danger', 1)
+              if (error.error['errorDescription']) {
+                this.notification.publishMessages(error.error['errorDescription'], 'danger', 1)
               } else {
                 this.notification.publishMessages(this.errorMessage, 'danger', 1)
               }
@@ -61,8 +61,8 @@ export class LoaderInterceptor implements HttpInterceptor {
             }
             case 500: {
               this.errorMessage = 'An Internal Error Occured. Our Engineers Have Been Contacted';
-              if (error.error['message']) {
-                this.notification.publishMessages(error.error['message'], 'danger', 1)
+              if (error.error['errorDescription']) {
+                this.notification.publishMessages(error.error['errorDescription'], 'danger', 1)
               } else {
                 this.notification.publishMessages(this.errorMessage, 'danger', 1)
               }
@@ -71,8 +71,8 @@ export class LoaderInterceptor implements HttpInterceptor {
             case 400: {
               this.errorMessage = 'An Error Occured While Processing Your Request. Please Try Again';
 
-              if (error.error['message']) {
-                this.notification.publishMessages(error.error['message'], 'danger', 1)
+              if (error.error['errorDescription']) {
+                this.notification.publishMessages(error.error['errorDescription'], 'danger', 1)
               } else {
                 this.notification.publishMessages(this.errorMessage, 'danger', 1)
               }
@@ -81,8 +81,8 @@ export class LoaderInterceptor implements HttpInterceptor {
             }
             case 404: {
               this.errorMessage = 'An Error Occured While Processing Your Request. Please Try Again';
-              if (error.error['message']) {
-                this.notification.publishMessages(error.error['message'], 'danger', 1)
+              if (error.error['errorDescription']) {
+                this.notification.publishMessages(error.error['errorDescription'], 'danger', 1)
               } else {
                 this.notification.publishMessages(this.errorMessage, 'danger', 1)
               }
@@ -90,8 +90,8 @@ export class LoaderInterceptor implements HttpInterceptor {
             }
             case 405: {
               this.errorMessage = 'An Error Occured While Processing Your Request. Please Try Again';
-              if (error.error['message']) {
-                this.notification.publishMessages(error.error['message'], 'danger', 1)
+              if (error.error['errorDescription']) {
+                this.notification.publishMessages(error.error['errorDescription'], 'danger', 1)
               } else {
                 this.notification.publishMessages(this.errorMessage, 'danger', 1)
               }
@@ -99,8 +99,8 @@ export class LoaderInterceptor implements HttpInterceptor {
             }
             case 422: {
               this.errorMessage = 'An Error Occured While Processing Your Request. Please Try Again';
-              if (error.error['message']) {
-                this.notification.publishMessages(error.error['message'], 'danger', 1)
+              if (error.error['errorDescription']) {
+                this.notification.publishMessages(error.error['errorDescription'], 'danger', 1)
               } else {
                 this.notification.publishMessages(this.errorMessage, 'danger', 1)
               }

@@ -178,32 +178,36 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr routerLink="/app/products/product">
+                                    <tr *ngFor="let product of allProduct" (click)="getProduct(product.id)">
                                         <td>
                                             <div class="pt-2"><input type="checkbox"></div>
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="mr-2">
-                                                    <img src="assets/images/uba.svg" alt="">
+                                                    <div class="productname">
+                                                        {{product.productName.substring(0,1)}}
+                                                    </div>
                                                 </div>
                                                 <div>
-                                                    <p class="m-0 ff-s fs-15 fw-6 fc-black">UBA</p>
+                                                    <p class="m-0 ff-s fs-15 fw-6 fc-black">{{product.productName}}</p>
 
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <p class="ff-s fs-15 fw-4 fw-6 fc-darkblue m-0 mb-1">
-                                                Oluwaseun Wey
+                                                {{product.managerName}}
                                             </p>
-                                            <p class="ff-s fs-15 fc-black m-0">03 Aug 2020</p>
+                                            <p class="ff-s fs-15 fc-black m-0">
+                                                {{product.dateCreated | date:'mediumDate'}}</p>
                                         </td>
                                         <td>
-                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">Payment</p>
+                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">{{product.category}}</p>
                                         </td>
                                         <td>
-                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">245</p>
+                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">{{product.activeDealsCount}}
+                                            </p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -226,9 +230,96 @@
                     </div>
                 </div>
                 <div class="orangeline"></div>
-                <div class="emptystate">
+                <div class="littleorange"></div>
+                <div class="emptystate" *ngIf="!isSelected">
                     <img src="assets/images/emptylead.svg" alt="">
+                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                        Select a product to display catalogue overview
+                    </p>
                 </div>
+
+
+                <!-- properties -->
+                <div class="props pt-2" *ngIf="isSelected">
+                    <div class="top-prop px-2 py-1">
+                        <div class="d-flex align-items-center">
+                            <div class="py-2">
+                                <div class="productname">
+                                    {{theProduct?.productName.substring(0,1)}}
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-0 ff-s fw-6 fs-15 fc-black">{{theProduct?.productName}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Category:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theProduct?.category}}</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Deals:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theProduct?.activeDealsCount}}</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Manager:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theProduct?.managerName}}</p>
+                        </div>
+                        <div class="col-5 mb-3">
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
+                        </div>
+                        <div class="col-7 mb-3">
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theProduct?.dateCreated | date: 'medium'}}</p>
+                        </div>
+                    </div>
+                    <div class="info mb-3">
+                        <div class="top-prop b-5 p-2">
+                            <p class="m-0 fw-4 ff-s fc-black fs-15">Product Description</p>
+                        </div>
+                        <div class="pl-2">
+                            <p class="m-0 fs-15 ff-s fc-black fw-6">{{theProduct?.description}}</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="top-prop b-5 p-2">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-2"><img src="assets/images/document.svg" alt=""></div>
+                                <div>
+                                    <p class="m-0 fw-4 ff-s fc-black fs-15">Available Documents</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="p-2">
+                                <img src="assets/images/pdf.svg" alt="">
+                            </div>
+                            <div class="p-2">
+                                <p class="mb-1 ff-s fw-6 fs-14 fc-dblue">Product Overview.pdf</p>
+                                <small class="fc-lightgrey ff-s fs-12 fw-4">25-May-20 12:45pm</small>
+
+                            </div>
+                            <div class="p-2 ml-auto">
+                                <a class="pr-2"><img src="assets/images/eye.svg" alt=""></a>
+                                <a><img src="assets/images/send.svg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        <button class="btn btn-green mr-3" (click)="openProduct(theProduct.id)">View Complete
+                            Info</button>
+                    </div>
+                </div>
+                <!-- properties -->
             </div>
         </div>
     </div>
@@ -284,65 +375,70 @@
                     </div>
 
                     <div class="col-12">
-                        <div class="tab-content" id="myTabContent">
+                        <form class="tab-content" id="myTabContent" #newProductFrorm="ngForm" (submit)="createProduct(newProductFrorm)" ngNativeValidate>
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
-                                    <div class="col-lg-4 mb-3">
-                                        <label class="fs-16 ff-p fc-black">Select Account</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                    <div class="col-lg-5 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Product Manager</label>
+                                        <select class="form-control topform" ngModel name="manager">
+                                            <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-4 mb-3">
-                                        <label class="fs-16 ff-p fc-black">Deal Owner</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
+                                    <div class="col-lg-6 mb-3 offset-1">
+                                        <label class="fs-16 ff-p fc-black">Product Logo</label>
+                                        <input type="file" class="form-control topform"
+                                        (change)="handleUpload($event.target.files)" required ngModel name="productLogo">
+                                    </div>
+                                    
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Product Name</label>
+                                        <input type="text" class="form-control botform" ngModel name="name">
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Product Tag</label>
+                                        <input type="text" class="form-control botform" ngModel name="tag">
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Onboarding duration (Days)</label>
+                                        <input type="text" class="form-control botform" ngModel name="duration">
+                                    </div>
+                                    
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Category</label>
+                                        <select class="form-control botform" ngModel name="category">
+                                            <option value="0">Others</option>
+                                            <option value="1">Payment</option>
+                                            <option value="2">Collections</option>
+                                            <option value="3">Data and Portal</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-4 mb-3">
-                                        <label class="fs-16 ff-p fc-black">Contact Person</label>
-                                        <select class="form-control topform">
-                                            <option value=""></option>
-                                        </select>
+
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Fee</label>
+                                        <div class="input-group leadform">
+                                            <div class="input-group-prepend">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">NGN</option>
+                                                    <option value="">NGN</option>
+                                                    <option value="">NGN</option>
+                                                </select>
+                                            </div>
+                                            <input type="text" type="text" maxlength="10" minlength="10" ngModel name="fee"
+                                              class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Tax Rate</label>
+                                        <input type="text" class="form-control botform" ngModel name="tax">
                                     </div>
                                     <div class="col-12 mt-4 mb-3">
-                                        <p class="fc-green ff-p fs-18 fw-6 m-0">
-                                            Deal Information
-                                        </p>
+                                        <label for="" class="fs-16 fc-black ff-p">Product Description</label>
+                                        <textarea name="" id="" cols="30" rows="10" class="form-control detail-form" ngModel name="description"></textarea>
                                     </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Deal Name</label>
-                                        <input type="text" class="form-control botform">
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
-                                        <input type="text" class="form-control botform">
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Stage</label>
-                                        <select class="form-control botform">
-                                            <option value=""></option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Deal Value (NGN)</label>
-                                        <input type="text" class="form-control botform">
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
-                                        <input type="text" class="form-control botform">
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>
-                                        <input type="text" class="form-control botform">
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Estimated Close Date</label>
-                                        <input type="date" class="form-control botform">
-                                    </div>
+                                    
                                     <div class="col-12 mt-3">
                                         <p class="text-right ">
-                                            <button class="btn btn-blue px-3">Create</button>
+                                            <a class="btn btn-blue px-3">Next</a>
                                         </p>
                                     </div>
                                 </div>
@@ -373,12 +469,12 @@
                                     </div>
                                     <div class="col-12 mt-5 pt-5">
                                         <p class="text-right">
-                                            <button class="btn btn-blue px-3">Import</button>
+                                            <button class="btn btn-blue px-3" type="submit">Save</button>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                 </div>

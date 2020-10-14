@@ -6,31 +6,31 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LeadsService {
-  baseUrl:string = environment.baseApi;
+  baseUrl: string = environment.baseApi;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllLeads(){
+  getAllLeads() {
     return this.http.get(this.baseUrl + 'Leads/GetAllLeads', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  getMyLeads(){
+  getMyLeads() {
     return this.http.get(this.baseUrl + 'Leads/GetMyLeads', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
-  getJunkedLeads(){
+  getJunkedLeads() {
     return this.http.get(this.baseUrl + 'Leads/GetJunkedLeads', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  getLeadById(id){
+  getLeadById(id) {
     return this.http.get(this.baseUrl + 'Leads/GetLead/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  ConvertLeadToDeal(lead){
-    var body = {"leads": lead}
+  ConvertLeadToDeal(lead) {
+    var body = { "leads": lead }
     return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  createLead(companyName, image,estTransVal,facebook,instagram, institutionType, ownerId,  phone, source, stage, status, transVol){
+  createLead(companyName, image, estTransVal, facebook, instagram, institutionType, ownerId, source, status, transVol, twitter, website, yearsEstablished, city, country, street, postalCode, email, firstName, lastName, designation, title, phone, message, products) {
     const body = new FormData()
     body.append("CompanyName", companyName)
     body.append("DisplayImage", image)
@@ -39,11 +39,27 @@ export class LeadsService {
     body.append("Instagram", instagram)
     body.append("InstitutionType", institutionType)
     body.append("OwnerId", ownerId)
-    body.append("PhoneNumber", phone)
+    // body.append("PhoneNumber", phone)
     body.append("Source", source)
-    body.append("Stage", stage)
+    // body.append("Stage", stage)
     body.append("Status", status)
     body.append("TransactionVolume", transVol)
-    return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    body.append("Twitter", twitter)
+    body.append("Website", website)
+    body.append("YearEstablished", yearsEstablished)
+    // body.append("Activities", activities)
+    body.append("addresses[0].city", city)
+    body.append("addresses[0].country", country)
+    body.append("addresses[0].street", street)
+    body.append("addresses[0].zipOrPostalCode", postalCode)
+    body.append("contacts[0].email", email)
+    body.append("contacts[0].firstName", firstName)
+    body.append("contacts[0].lastName", lastName)
+    body.append("contacts[0].designation", designation)
+    body.append("contacts[0].title", title)
+    body.append("contacts[0].phoneNumber", phone)
+    body.append("notes[0].message", message)
+    body.append("ProductIds", products)
+    return this.http.post(this.baseUrl + 'Leads/CreateLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 }

@@ -9,9 +9,9 @@
                         <button class="btn btn-clear import mr-2" data-toggle="modal" data-target=".import-modal"><img
                                 src="assets/images/cloud_download.svg" alt="" class="mr-2"><span
                                 class="text-white">Import</span></button>
-                        <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
+                        <!-- <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
                                 src="assets/images/add.svg" alt="" class="mr-2">Add New
-                            Contact</button>
+                            Contact</button> -->
                     </div>
                 </div> 
             </div>
@@ -478,7 +478,7 @@
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Select Account</label>
                         <select class="form-control topform">
-                            <option value=""></option>
+                            <option value="{{acc.id}}" *ngFor="let acc of accounts">{{acc.accountName}}</option>
                         </select>
                     </div>
 

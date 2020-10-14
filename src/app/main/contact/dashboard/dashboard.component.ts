@@ -3,6 +3,7 @@ import * as $ from 'jquery'
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { ContactService } from 'src/core/data/contact/contact.service';
+import { AccountService } from 'src/core/data/account/account.service';
 
 export interface PeriodicElement {
   Amount: string;
@@ -37,13 +38,15 @@ export class DashboardComponent implements OnInit {
   myCons:any;
   junkCons:any;
   theCons:any;
+  accounts: any;
   isSelected:boolean = false;
-  constructor(private router:Router, private contactService:ContactService) { }
+  constructor(private router:Router, private contactService:ContactService, private accountService:AccountService) { }
 
   ngOnInit() {
     this.getAllContacts()
     this.getJunkContacts()
     this.getMyContacts()
+    this.getAccounts();
     this.dataSource = new MatTableDataSource([...this.ELEMENT_DATA]);
     $('#filter, #overlay').on('click', function(){
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
@@ -54,6 +57,16 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getAccounts(){
+    this.accountService.getAllAcc().subscribe(
+      res => {
+        this.accounts = res['payload']
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
 
   getAllContacts(){
     this.contactService.getAllContact().subscribe(
@@ -76,7 +89,7 @@ export class DashboardComponent implements OnInit {
       err => {
         console.log(err)
       }
-    )
+    ) 
   }
 
   getJunkContacts(){

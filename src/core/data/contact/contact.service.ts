@@ -28,22 +28,21 @@ export class ContactService {
     return this.http.get(this.baseUrl + 'Contacts/DeleteContact/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  ConvertContactToJunk(acc) {
-    var body = { "acc": acc }
-    return this.http.post(this.baseUrl + 'Contacts/JunkAccountContacts', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  ConvertContactToJunk(contact) {
+    
+    return this.http.post(this.baseUrl + 'Contacts/JunkAccountContacts', contact, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
   addContactToAcc(id) {
     return this.http.post(this.baseUrl + 'Contacts/AddContactToAccount/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  reactivateContact(acc) {
-    var body = { "acc": acc }
-    return this.http.post(this.baseUrl + 'Contacts/ReactivateJunkedAccountContacts', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  reactivateContact(contact) {
+    return this.http.post(this.baseUrl + 'Contacts/ReactivateJunkedAccountContacts', contact, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
   importContact(option, doc) {
     const body = new FormData()
-    body.append("Option", option)
+    body.append("Option", option) 
     body.append("Document", doc)
    
     return this.http.post(this.baseUrl + 'Contacts/ImportAccountContactsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })

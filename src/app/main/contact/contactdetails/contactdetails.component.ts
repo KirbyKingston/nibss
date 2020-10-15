@@ -11,6 +11,8 @@ import { ContactService } from 'src/core/data/contact/contact.service';
 export class ContactdetailsComponent implements OnInit {
   id: any;
   contact: any;
+  jsuccess: boolean = false;
+  jContacts: Array<{}> = [];
   constructor(private location: Location, private route: ActivatedRoute, private contactService: ContactService) { }
 
   ngOnInit() {
@@ -51,8 +53,17 @@ export class ContactdetailsComponent implements OnInit {
     )
   }
 
-  convertToJunk(){
-    console.log('hello')
+  junkContact() {
+    this.id = parseInt(this.id)
+    this.jContacts.push(this.id)
+    this.contactService.ConvertContactToJunk(this.jContacts).subscribe(
+      res => {
+        this.jsuccess = true
+      }
+    )
   }
 
+  closejSuccess() {
+    this.jsuccess = false
+  }
 }

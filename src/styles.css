@@ -177,6 +177,14 @@ a:hover {
     align-items: center;
 }
 
+.emptystate2 {
+    height: 40vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .details {
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid #C6C6C5;
@@ -361,21 +369,24 @@ a:hover {
     line-height: 19px;
     color: #0A1128;
 }
-.product.t{
+
+.product.t {
     background: #EDF2F9;
     color: #243C67;
 }
-.image img{
+
+.image img {
     height: 40px;
     width: 40px;
     border-radius: 100%;
 }
 
-.image2 img{
+.image2 img {
     height: 54px;
     width: 54px;
     border-radius: 100%;
 }
+
 .dropdown-menu.filter-drop {
     width: 350px;
     background: #FFFFFF;
@@ -409,6 +420,28 @@ a:hover {
 .dashbox {
     background: #FFFFFF;
     box-shadow: 0px 20px 40px #EDF0F5;
+}
+
+.success-div {
+    background: rgba(0, 0, 0, .54);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-div .whitediv {
+    width: 40vw;
+    /* margin: 0 auto; */
+    min-height: 300px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 20px rgba(33, 80, 99, 0.15);
+    border-radius: 10px;
 }
 
 /* table  */
@@ -523,6 +556,22 @@ table.table.accounttab tbody tr td {
     height: 44px;
 }
 
+.btn-lightgreen {
+    background: #EFF9FB;
+    border-radius: 6px;
+    height: 44px;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #1E5D66 !important;
+}
+
+.btn-lightgreen:hover {
+    color: #1E5D66;
+}
+
 .btn-green {
     background: #26727E;
     border-radius: 6px;
@@ -601,8 +650,12 @@ table.table.accounttab tbody tr td {
     height: 40px;
     padding: 0;
 }
-
-
+.input-group.leadform.big{
+    height: 50px;
+}
+.input-group.leadform.big input.form-control{
+    height: 48px;
+}
 .input-group.leadform input.form-control {
     border: none;
     font-weight: 400;
@@ -611,7 +664,10 @@ table.table.accounttab tbody tr td {
     height: 38px;
     line-height: 20px;
 }
+.input-group.leadform.big select.form-control{
+    height: 50px;
 
+}
 .input-group.leadform select.form-control {
     font-family: Palatino Linotype;
     font-style: normal;

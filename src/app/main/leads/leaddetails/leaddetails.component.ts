@@ -11,6 +11,10 @@ import { LeadsService } from 'src/core/data/leads/leads.service';
 export class LeaddetailsComponent implements OnInit {
   id: any;
   leadDetails: any;
+  cLeads: Array<{}> = [];
+  jLeads: Array<{}> = [];
+  csuccess:boolean = false;
+  jsuccess:boolean = false;
   constructor(private location: Location, private route: ActivatedRoute, private leadService: LeadsService) { }
   ngOnInit() {
     this.getId();
@@ -41,14 +45,38 @@ export class LeaddetailsComponent implements OnInit {
   getLead() {
     this.leadService.getLeadById(this.id).subscribe(
       res => {
-        console.log(res)
         this.leadDetails = res['payload']
       },
       err => {
-        console.log(err)
       }
     )
   }
 
+  convertToDeal() {
+    this.id = parseInt(this.id);
+    this.cLeads.push(this.id) 
+    this.leadService.ConvertLeadToDeal(this.cLeads).subscribe(
+      res => {
+        this.csuccess = true;
+      }
+    )
+  }
 
+  junkLead() {
+    this.id = parseInt(this.id);
+    this.jLeads.push(this.id) 
+    this.leadService.junkLead(this.jLeads).subscribe(
+      res => {
+        this.jsuccess = true;
+      }
+    )
+  }
+
+  closecSuccess(){
+    this.csuccess = false
+  }
+
+  closejSuccess(){
+    this.jsuccess = false
+  }
 }

@@ -13,7 +13,7 @@ export interface PeriodicElement {
   TXType: string;
   Balance: string;
   Remarks: string;
- }
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -34,13 +34,15 @@ export class DashboardComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
 
-  allCons:any;
-  myCons:any;
-  junkCons:any;
-  theCons:any;
+  allCons: any;
+  myCons: any;
+  junkCons: any;
+  theCons: any;
   accounts: any;
-  isSelected:boolean = false;
-  constructor(private router:Router, private contactService:ContactService, private accountService:AccountService) { }
+  isSelected: boolean = false;
+  jsuccess: boolean = false;
+  jContacts: Array<{}> = [];
+  constructor(private router: Router, private contactService: ContactService, private accountService: AccountService) { }
 
   ngOnInit() {
     this.getAllContacts()
@@ -48,16 +50,16 @@ export class DashboardComponent implements OnInit {
     this.getMyContacts()
     this.getAccounts();
     this.dataSource = new MatTableDataSource([...this.ELEMENT_DATA]);
-    $('#filter, #overlay').on('click', function(){
+    $('#filter, #overlay').on('click', function () {
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
     })
 
-    $('#more, #overlay').on('click', function(){
+    $('#more, #overlay').on('click', function () {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
   }
 
-  getAccounts(){
+  getAccounts() {
     this.accountService.getAllAcc().subscribe(
       res => {
         this.accounts = res['payload']
@@ -68,7 +70,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getAllContacts(){
+  getAllContacts() {
     this.contactService.getAllContact().subscribe(
       res => {
         console.log(res)
@@ -80,7 +82,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getMyContacts(){
+  getMyContacts() {
     this.contactService.getMyContact().subscribe(
       res => {
         this.myCons = res['payload']
@@ -89,10 +91,10 @@ export class DashboardComponent implements OnInit {
       err => {
         console.log(err)
       }
-    ) 
+    )
   }
 
-  getJunkContacts(){
+  getJunkContacts() {
     this.contactService.getJunkedContact().subscribe(
       res => {
         this.junkCons = res['payload']
@@ -104,7 +106,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getContactById(id){
+  getContactById(id) {
     this.isSelected = true;
     this.contactService.getContactById(id).subscribe(
       res => {
@@ -117,8 +119,21 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  openContact(id){
+  openContact(id) {
     this.router.navigate(['/app/contacts/contact/' + id])
+  }
+
+  junkContact(id) {
+    this.jContacts.push(id)
+    this.contactService.ConvertContactToJunk(this.jContacts).subscribe(
+      res => {
+        this.jsuccess = true
+      }
+    )
+  }
+
+  closejSuccess() {
+    this.jsuccess = false
   }
 
 }

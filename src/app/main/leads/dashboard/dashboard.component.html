@@ -121,7 +121,7 @@
                             <div class="col-12">
 
 
-                                <div class="table-responsive">
+                                <div class="table-responsive" *ngIf="allLeads.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <th>
@@ -242,13 +242,19 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="emptystate2" *ngIf="allLeads.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no leads in this category
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="my" role="tabpanel">
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive" *ngIf="myLeads.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <th>
@@ -362,13 +368,19 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="emptystate2" *ngIf="myLeads.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no leads in this category
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="junk" role="tabpanel">
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive" *ngIf="junkLeads.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <th>
@@ -482,6 +494,12 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="emptystate2" *ngIf="junkLeads.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no leads in this category
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -505,6 +523,10 @@
                 <!-- emptystate  -->
                 <div class="emptystate" *ngIf="!isSelected">
                     <img src="assets/images/emptylead.svg" alt="">
+                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                        Select a lead to display account
+                        information
+                    </p>
                 </div>
                 <!-- emptystate  -->
 
@@ -613,7 +635,7 @@
                     <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a (click)="openLead(theLead.id)">View
                             Complete Infomation</a></p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-green mr-3">Convert to Deal</button>
+                        <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)">Convert to Deal</button>
                         <button class="btn btn-more"><img src="assets/images/more-green.svg" alt=""></button>
                     </div>
                 </div>
@@ -648,8 +670,7 @@
                     <div class="col-12 mb-3">
                         <ul class="nav nav-tabs prod justify-content-between" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-controls="home" aria-selected="true">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab">
                                     <div class="d-flex align-items-center">
                                         <div class="number mr-2">1</div>
                                         <div>
@@ -659,8 +680,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                    aria-controls="profile" aria-selected="false">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab">
                                     <div class="d-flex align-items-center">
                                         <div class="number mr-2">2</div>
                                         <div>
@@ -670,8 +690,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#social" role="tab"
-                                    aria-controls="profile" aria-selected="false">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#social" role="tab">
                                     <div class="d-flex align-items-center">
                                         <div class="number mr-2">3</div>
                                         <div>
@@ -693,7 +712,8 @@
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <select class="form-control topform" [(ngModel)]="owner">
-                                            <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}</option>
+                                            <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
@@ -712,6 +732,29 @@
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
+                                        <select [(ngModel)]="stage"  class="form-control topform">
+                                            <option>Lead Stage</option>
+                                            <option value="0">Open</option>
+                                            <option value="1">Attempting Contact</option>
+                                            <option value="2">Converted</option>
+                                            <option value="3">Disqualified</option>
+                                            <option value="4">Not Engaged</option>
+                                            <option value="5">Converted with no Opportunity</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="input-group leadform big">
+                                            <div class="input-group-prepend">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">+234</option>
+                                                    <option value="">+234</option>
+                                                    <option value="">+234</option>
+                                                </select>
+                                            </div>
+                                            <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Name</label>
                                         <div class="input-group leadform">
                                             <div class="input-group-prepend">
@@ -721,8 +764,10 @@
                                                     <option value="Mr">Mr</option>
                                                 </select>
                                             </div>
-                                            <input type="text" placeholder="First Name" class="form-control" [(ngModel)]="firstName">
-                                            <input type="text" placeholder="Last Name" class="form-control" [(ngModel)]="lastName">
+                                            <input type="text" placeholder="First Name" class="form-control"
+                                                [(ngModel)]="firstName">
+                                            <input type="text" placeholder="Last Name" class="form-control"
+                                                [(ngModel)]="lastName">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -732,7 +777,8 @@
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Display Image</label>
                                         <input type="file" class="form-control botform"
-                                        (change)="handleUpload($event.target.files)" required [(ngModel)]="disImage">
+                                            (change)="handleUpload($event.target.files)" required
+                                            [(ngModel)]="disImage">
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Email Address</label>
@@ -751,23 +797,14 @@
                                             <input [(ngModel)]="phoneNumber" type="text" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Skype ID <span
-                                                class="fc-lightgrey">(Optional)</span></label>
-                                        <input type="text" class="form-control botform">
-                                    </div>
-                                    <div class="col-lg-6 mb-3">
-                                        <label for="" class="fs-16 fc-black ff-p">Teams ID <span
-                                                class="fc-lightgrey">(Optional)</span></label>
-                                        <input type="text" class="form-control botform">
-                                    </div>
-                                    <div class="col-12 mb-3">
+
+                                    <!-- <div class="col-12 mb-3">
                                         <p class="m-0 fc-red ff-s fs-13">**Calls can only be made from CRMHUB to
                                             Microsoft Teams and Skype</p>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 mt-3">
                                         <p class="text-right ">
-                                            <button class="btn btn-blue px-3">Next</button>
+                                            <button class="btn btn-green px-3 btnNext">Next</button>
                                         </p>
                                     </div>
                                 </div>
@@ -807,7 +844,7 @@
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Transaction Volume</label>
                                         <input [(ngModel)]="transVol" type="text" class="form-control botform">
-                                        
+
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Year Established</label>
@@ -854,9 +891,10 @@
 
 
                                     <div class="col-12 mt-5 pt-5">
-                                        <p class="text-right">
-                                            <button class="btn btn-blue px-3">Next</button>
-                                        </p>
+                                        <div class="d-flex justify-content-between">
+                                            <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
+                                            <div><button class="btn btn-green px-3 btnNext">Next</button></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -888,9 +926,11 @@
                                     </div>
 
                                     <div class="col-12 mt-5 pt-5">
-                                        <p class="text-right">
-                                            <button class="btn btn-blue px-3" (click)="createLead()">Create</button>
-                                        </p>
+                                        <div class="d-flex justify-content-between">
+                                            <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
+                                            <div><button class="btn btn-green px-3"
+                                                    (click)="createLead()">Create</button></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -978,4 +1018,113 @@
         </div>
     </div>
 
+</div>
+
+<div class="modal fade success-modal" id="success-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="row py-5">
+                <div class="col-lg-12 mb-4 ">
+                    <div class="d-flex align-items-center">
+                        <div class="pl-5">
+                            <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                            <p class="fc-black fs-16 ff-s fw-4">
+                                New lead has been added
+                            </p>
+                        </div>
+                        <div class="ml-auto">
+                            <img src="assets/images/success.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="pl-5">
+                        <button class="btn btn-clear mr-3">Add New Lead</button> <button class="btn btn-blue"
+                            (click)="closeModals()">See All Leads</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="csuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your lead has been
+                            converted
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-clear mr-3" (click)="closecSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="success-div" *ngIf="jsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your lead has been
+                            Junked
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-junk.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-clear mr-3" (click)="closejSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="nsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            New lead has been added
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-clear mr-3">Add New Lead</button> <button class="btn btn-blue"
+                        (click)="closenSuccess()">See All Leads</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

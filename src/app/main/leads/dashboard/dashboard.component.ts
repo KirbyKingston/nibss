@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  selectedProducts: Array<{}> = []
   products: any = '';
   owner: any = '';
   source: any = '';
@@ -46,12 +47,16 @@ export class DashboardComponent implements OnInit {
   country: any = '';
   postalCode: any = '';
   firstName: any = '';
+  ownerphoneNumber: any = '';
   lastName: any = '';
   designation: any = '';
   email: any = '';
   disImage: any;
   yearEst: any = '';
   message: any = '';
+  csuccess: boolean = false;
+  jsuccess: boolean = false;
+  nsuccess: boolean = false;
   constructor(private leadService: LeadsService, private router: Router, private notification: NotificationService, private authService: AuthDataService, private productService: ProductsService) { }
 
   ngOnInit() {
@@ -62,6 +67,14 @@ export class DashboardComponent implements OnInit {
     this.getUsers();
     this.fetchSelectedItems()
     this.fetchCheckedIDs()
+
+    $('.btnNext').click(function () {
+      $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    });
+
+    $('.btnPrevious').click(function () {
+      $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    });
 
     $('#filter, #overlay').on('click', function () {
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
@@ -175,8 +188,17 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  convertLead() {
-
+  convertToDeal(id) {
+    this.cLeads.push(id)
+    this.leadService.ConvertLeadToDeal(this.cLeads).subscribe(
+      res => {
+        this.csuccess = true;
+        this.getAllLeads()
+        this.getMyLeads()
+        this.getJunkLeads()
+      }
+    )
+    // $('#success-modal').modal('show')
   }
 
   openLead(id) {
@@ -208,10 +230,11 @@ export class DashboardComponent implements OnInit {
   createLead() {
     let arr = []
     arr = this.products.map(element => element.id)
-  
-    this.leadService.createLead(this.company, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.source, this.status, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.phoneNumber, this.message, arr).subscribe(
+    this.selectedProducts.push(arr)
+    this.leadService.createLead(this.company, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.ownerphoneNumber, this.source, this.stage, this.status, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.phoneNumber, this.message, this.selectedProducts).subscribe(
       res => {
         this.notification.publishMessages('You have successfully created a new lead', 'info', 0)
+        this.nsuccess = true;
         this.getAllLeads();
       },
       err => {
@@ -219,5 +242,17 @@ export class DashboardComponent implements OnInit {
       }
     )
 
+  }
+
+  closecSuccess() {
+    this.csuccess = false
+  }
+
+  closejSuccess() {
+    this.jsuccess = false
+  }
+
+  closenSuccess() {
+    this.nsuccess = false
   }
 }

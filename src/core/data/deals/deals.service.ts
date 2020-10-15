@@ -78,7 +78,7 @@ export class DealsService {
     body.append("Id", id)
     body.append("Instagram", instagram)
     body.append("InstitutionType", institutionType)
-    body.append("OwnerId", ownerId)
+    body.append("OwnerId", ownerId) 
     body.append("PhoneNumber", phone)
     body.append("TransactionVolume", transVol)
     body.append("Twitter", twitter)
@@ -87,8 +87,8 @@ export class DealsService {
     body.append("Addresses", addresses)
     body.append("Contacts", cons)
     body.append("Notes", notes)
-    body.append("Documents", docs)
-    body.append("DocumentTypes", docTypes)
+    // body.append("Documents", docs)
+    // body.append("DocumentTypes", docTypes)
     return this.http.put(this.baseUrl + 'Accounts​/UpdateAccount', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 }

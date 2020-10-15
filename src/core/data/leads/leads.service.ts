@@ -26,11 +26,16 @@ export class LeadsService {
   }
 
   ConvertLeadToDeal(lead) {
-    var body = { "leads": lead }
-    return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  createLead(companyName, image, estTransVal, facebook, instagram, institutionType, ownerId, source, status, transVol, twitter, website, yearsEstablished, city, country, street, postalCode, email, firstName, lastName, designation, title, phone, message, products) {
+  junkLead(lead) {
+    return this.http.post(this.baseUrl + 'Leads/JunkLeads', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+  reactivateJunkedLead(lead) {
+    return this.http.post(this.baseUrl + 'Leads/ReactivateJunkedLeads', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+  createLead(companyName, image, estTransVal, facebook, instagram, institutionType, ownerId, oPhone, source, stage, status, transVol, twitter, website, yearsEstablished, city, country, street, postalCode, email, firstName, lastName, designation, title, phone, message, products) {
     const body = new FormData()
     body.append("CompanyName", companyName)
     body.append("DisplayImage", image)
@@ -39,9 +44,9 @@ export class LeadsService {
     body.append("Instagram", instagram)
     body.append("InstitutionType", institutionType)
     body.append("OwnerId", ownerId)
-    // body.append("PhoneNumber", phone)
+    body.append("PhoneNumber", oPhone)
     body.append("Source", source)
-    // body.append("Stage", stage)
+    body.append("Stage", stage)
     body.append("Status", status)
     body.append("TransactionVolume", transVol)
     body.append("Twitter", twitter)

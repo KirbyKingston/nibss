@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-out-blue tx-u" (click)="convertToJunk()">Junk Contact</button>
+                        <button class="btn btn-out-blue tx-u" (click)="junkContact()">Junk Contact</button>
                     </div>
                 </div>
             </div>
@@ -679,6 +679,32 @@
                     </nav>
                 </div>
                 <!-- sidetab -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="jsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your contact has been
+                            Junked
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-junk.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closejSuccess()">Done</button>
+                </div>
             </div>
         </div>
     </div>

@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
 
+    $("#success-modal").modal('show');
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -137,5 +138,6 @@ export class DashboardComponent implements OnInit {
   createDeal() {
     let arr = []
     arr = this.products.map(element => element.id)
+    // this.dealService.createDeal()
   }
 }

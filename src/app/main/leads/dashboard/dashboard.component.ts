@@ -58,6 +58,8 @@ export class DashboardComponent implements OnInit {
   jsuccess: boolean = false;
   isuccess:boolean = false;
   nsuccess: boolean = false;
+  rsuccess: boolean = false;
+  dsuccess: boolean = false;
   files:any;
   constructor(private leadService: LeadsService, private router: Router, private notification: NotificationService, private authService: AuthDataService, private productService: ProductsService) { }
 
@@ -217,7 +219,38 @@ export class DashboardComponent implements OnInit {
         this.getJunkLeads()
       }
     )
-    // $('#success-modal').modal('show')
+  }
+  junkLead(id) {
+    this.cLeads.push(id)
+    this.leadService.junkLead(this.cLeads).subscribe(
+      res => {
+        this.jsuccess = true;
+        this.getAllLeads()
+        this.getMyLeads()
+        this.getJunkLeads()
+      }
+    )
+  }
+  reactivateLead(id) {
+    this.cLeads.push(id)
+    this.leadService.reactivateJunkedLead(this.cLeads).subscribe(
+      res => {
+        this.rsuccess = true;
+        this.getAllLeads()
+        this.getMyLeads()
+        this.getJunkLeads()
+      }
+    )
+  }
+  deleteLead(id) {
+    this.leadService.deleteLead(id).subscribe(
+      res => {
+        this.dsuccess = true;
+        this.getAllLeads()
+        this.getMyLeads()
+        this.getJunkLeads()
+      }
+    )
   }
 
   openLead(id) {
@@ -276,5 +309,11 @@ export class DashboardComponent implements OnInit {
   }
   closeiSuccess() {
     this.isuccess = false
+  }
+  closerSuccess() {
+    this.rsuccess = false
+  }
+  closedSuccess() {
+    this.dsuccess = false
   }
 }

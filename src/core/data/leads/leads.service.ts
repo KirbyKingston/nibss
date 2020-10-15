@@ -29,12 +29,15 @@ export class LeadsService {
     return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  importLeads(doc){
+  importLeads(doc){ 
     const body = new FormData();
     // body.append("Option", option)
     body.append("Document", doc) 
     return this.http.post(this.baseUrl + 'Leads/ImportLeadsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   
+  }
+  deleteLead(id) {
+    return this.http.get(this.baseUrl + 'Leads/DeleteLead/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
   junkLead(lead) {
     return this.http.post(this.baseUrl + 'Leads/JunkLeads', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
@@ -42,6 +45,7 @@ export class LeadsService {
   reactivateJunkedLead(lead) {
     return this.http.post(this.baseUrl + 'Leads/ReactivateJunkedLeads', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
+
   createLead(companyName, image, estTransVal, facebook, instagram, institutionType, ownerId, oPhone, source, stage, status, transVol, twitter, website, yearsEstablished, city, country, street, postalCode, email, firstName, lastName, designation, title, phone, message, products) {
     const body = new FormData()
     body.append("CompanyName", companyName)

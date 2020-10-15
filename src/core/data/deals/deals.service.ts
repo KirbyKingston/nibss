@@ -29,8 +29,7 @@ export class DealsService {
   }
 
   ConvertDealToJunk(deal) { 
-    var body = { "deal": deal }
-    return this.http.post(this.baseUrl + 'Deals/JunkDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.post(this.baseUrl + 'Deals/JunkDeals', deal, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
   addDealToAcc(id) {
@@ -38,8 +37,7 @@ export class DealsService {
   }
 
   reactivateDeal(deal) {
-    var body = { "deal": deal }
-    return this.http.post(this.baseUrl + 'Deals/ReactivateJunkedDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.post(this.baseUrl + 'Deals/ReactivateJunkedDeals', deal, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
   importDeal(doc) {
     const body = new FormData()

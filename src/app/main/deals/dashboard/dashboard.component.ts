@@ -21,30 +21,34 @@ export class DashboardComponent implements OnInit {
   products: any;
   accounts: any;
   contacts: any;
-  users:any;
+  users: any;
   dropdownList = [];
   selectedItems: Array<{}> = [];
   dropdownSettings = {};
-  isSelected:boolean = false;
-  nsuccess:boolean = false;
-  isuccess:boolean = false;
-  account:any = '';
-  contact:any = '';
-  name:any = '';
-  dealValue:any = '';
-  closeDate:any = '';
-  estIncome:any = '';
-  owner:any = '';
-  probability:any = '';
-  stage:any = '';
-  status:any = '';
-  note:any = '';
+  isSelected: boolean = false;
+  account: any = '';
+  contact: any = '';
+  name: any = '';
+  dealValue: any = '';
+  closeDate: any = '';
+  estIncome: any = '';
+  owner: any = '';
+  probability: any = '';
+  stage: any = '';
+  status: any = '';
+  note: any = '';
 
-  option:any = '';
-  newLead1:boolean = true;
-  newLead2:boolean = false;
-  newLead3:boolean = false;
-  constructor(private router:Router, private authService:AuthDataService, private dealService: DealsService, private productService: ProductsService, private accountService: AccountService, private contactService: ContactService) { }
+  cDeals: Array<{}> = [];
+  option: any = '';
+  newLead1: boolean = true;
+  newLead2: boolean = false;
+  newLead3: boolean = false;
+  jsuccess: boolean = false;
+  isuccess: boolean = false;
+  nsuccess: boolean = false;
+  rsuccess: boolean = false;
+  dsuccess: boolean = false;
+  constructor(private router: Router, private authService: AuthDataService, private dealService: DealsService, private productService: ProductsService, private accountService: AccountService, private contactService: ContactService) { }
 
   ngOnInit() {
     this.getAllDeals()
@@ -71,7 +75,7 @@ export class DashboardComponent implements OnInit {
       itemsShowLimit: 2,
       allowSearchFilter: true
     };
-  } 
+  }
 
   checked(event) {
     if (event === true) {
@@ -90,7 +94,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  importDeals(){
+  importDeals() {
     this.dealService.importDeal(this.files).subscribe(
       res => {
         this.isuccess = true;
@@ -143,7 +147,7 @@ export class DashboardComponent implements OnInit {
         this.dropdownList = arr;
       }
     )
-  } 
+  }
   getAccounts() {
     this.accountService.getAllAcc().subscribe(
       res => {
@@ -167,22 +171,56 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  junkDeal(id) {
+    this.cDeals.push(id)
+    this.dealService.ConvertDealToJunk(this.cDeals).subscribe(
+      res => {
+        this.jsuccess = true;
+        this.getAllDeals()
+        this.getMyDeals()
+        this.getJunkedDeals()
+      }
+    )
+  }
+  reactivateDeal(id) {
+    this.cDeals.push(id)
+    this.dealService.reactivateDeal(this.cDeals).subscribe(
+      res => {
+        this.rsuccess = true;
+        this.getAllDeals()
+        this.getMyDeals()
+        this.getJunkedDeals()
+      }
+    )
+  }
+  deleteDeal(id) {
+    this.dealService.deleteDeal(id).subscribe(
+      res => {
+        this.dsuccess = true;
+        this.getAllDeals()
+        this.getMyDeals()
+        this.getJunkedDeals()
+      }
+    )
+  }
+
+
   openDeal(id) {
     this.router.navigate(['/app/deals/deal/' + id])
   }
-  openContact(id){
+  openContact(id) {
     this.router.navigate(['/app/contacts/contact/' + id])
   }
-  openProduct(id){
+  openProduct(id) {
     this.router.navigate(['/app/products/product/' + id])
   }
-  openAccount(id){
+  openAccount(id) {
     this.router.navigate(['/app/accounts/account/' + id])
   }
   createDeal() {
     let arr = []
     this.products.forEach(element => {
-      arr.push( element.id)
+      arr.push(element.id)
     })
     this.selectedItems = arr
     console.log(arr)
@@ -200,5 +238,16 @@ export class DashboardComponent implements OnInit {
   }
   closeiSuccess() {
     this.isuccess = false
+  }
+  closejSuccess() {
+    this.jsuccess = false
+  }
+
+
+  closerSuccess() {
+    this.rsuccess = false
+  }
+  closedSuccess() {
+    this.dsuccess = false
   }
 }

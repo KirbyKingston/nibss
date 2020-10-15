@@ -394,7 +394,7 @@
             </div>
 
             <!-- properties -->
-            <div class="p-3" *ngIf="isSelected">
+            <div class="px-3" *ngIf="isSelected">
                 <div class="row">
                     <div class="col-12">
                         <ul class="nav nav-tabs deall align-items-center" id="myTab" role="tablist">
@@ -426,7 +426,7 @@
                                         </div>
 
                                         <div class="row py-2">
-                                            <div class="col-5 mb-3">
+                                            <div class="col-5 mb-1">
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Stage:</p>
                                             </div>
                                             <div class="col-7 mb-3">
@@ -456,11 +456,11 @@
                                                 <p class="m-0 fc-black fw-6 fs-14 ff-s"
                                                     *ngIf="aDeal?.probability == null">-</p>
                                             </div>
-                                            <div class="col-2 mb-3">
+                                            <div class="col-2 mb-1">
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
                                             </div>
-                                            <div class="col-10 mb-3">
-                                                <div class="d-flex mb-4">
+                                            <div class="col-10 mb-1">
+                                                <div class="d-flex">
                                                     <div class="product mr-2" (click)="openProduct(product.id)"
                                                         *ngFor="let product of aDeal.products.slice(0,2)">
                                                         {{product?.productName}} <span
@@ -471,14 +471,14 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <div class="info mb-3">
+                                        <div class="info mb-1">
                                             <div class="top-prop b-5 p-2">
                                                 <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
                                                             src="assets/images/contactcoins.svg" alt=""></span>Account
                                                 </p>
                                             </div>
                                             <div class="row pl-2">
-                                                <div class="col-12 mb-3">
+                                                <div class="col-12 mb-1">
                                                     <div class="d-flex align-items-center">
                                                         <div class="py-2">
                                                             <div class="image" *ngIf="aDeal?.imageString">
@@ -501,7 +501,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <div class="info mb-3">
+                                        <div class="info mb-1">
                                             <div class="top-prop b-5 p-2">
                                                 <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
                                                             src="assets/images/accountcontact.svg" alt=""></span>Contact
@@ -541,8 +541,22 @@
                                         <div class="d-flex justify-content-center mt-4">
                                             <button class="btn btn-green mr-3" (click)="openDeal(aDeal.id)">View
                                                 Complete Info</button>
-                                            <button class="btn btn-more"><img src="assets/images/more-green.svg"
-                                                    alt=""></button>
+                                            <div class="dropdown">
+                                                <button class="btn btn-more dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <img src="assets/images/more-green.svg" alt="">
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                        (click)="junkDeal(aDeal.id)">Junk
+                                                        Deal</a>
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                        (click)="reactivateDeal(aDeal.id)">Reactivate Deal</a>
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                        (click)="deleteDeal(aDeal.id)">Delete Deal</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -747,7 +761,8 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-clear mr-3" (click)="closenSuccess()" data-toggle="modal" data-target=".new-modal">Add New Deal</button> <button class="btn btn-blue"
+                    <button class="btn btn-clear mr-3" (click)="closenSuccess()" data-toggle="modal"
+                        data-target=".new-modal">Add New Deal</button> <button class="btn btn-blue"
                         (click)="closenSuccess()">See All Deals</button>
 
                 </div>
@@ -777,6 +792,83 @@
                 <div class="pl-5">
                     <button class="btn btn-blue" (click)="closeiSuccess()">See All Deals</button>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="rsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your deal has been
+                            Reactivated
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closerSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="jsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your deal has been
+                            Junked
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-junk.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closejSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="success-div" *ngIf="dsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your deal has been
+                            Deleted
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-junk.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closedSuccess()">Done</button>
                 </div>
             </div>
         </div>

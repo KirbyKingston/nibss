@@ -44,11 +44,9 @@ export class ContactdetailsComponent implements OnInit {
   getContact() {
     this.contactService.getContactById(this.id).subscribe(
       res => {
-        console.log(res)
         this.contact = res['payload']
       },
       err => {
-        console.log(err)
       }
     )
   }

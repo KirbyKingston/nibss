@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
       textField: 'product',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
+      itemsShowLimit: 2,
       allowSearchFilter: true
     };
   }

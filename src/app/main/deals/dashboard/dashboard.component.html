@@ -178,7 +178,13 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="deal.imageString">
+                                                                <img [src]="'data:image/png;base64, ' + deal.imageString | trustedUrl"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="deal.imageString == null">
+                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
                                                             <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
@@ -189,19 +195,23 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex mb-4 pt-2">
-                                                        <div class="product mr-2">mCash</div>
-                                                        <div class="product mr-2">NIP</div>
+                                                        <div class="product mr-2"
+                                                            *ngFor="let product of deal.products.slice(0,2)">
+                                                            {{product?.productName}} <span
+                                                                *ngIf="deal?.products.length > 2">+
+                                                                {{deal?.products.length - 2}}</span></div>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        03 Aug 2020
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0"
+                                                        *ngIf="deal.lastActivityDate">
+                                                        {{deal.lastActivityDate | date: 'medium'}}
                                                     </p>
                                                     <p class="fs-15 fc-lightblack ff-s m-0">
-                                                        Oluwaseun Wey
+                                                        -
                                                     </p>
                                                 </td>
                                             </tr>
@@ -238,29 +248,39 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-2">
-                                                        <img src="assets/images/uba.svg" alt="">
+                                                        <div class="image" *ngIf="deal.imageString">
+                                                            <img [src]="'data:image/png;base64, ' + deal.imageString | trustedUrl"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="image" *ngIf="deal.imageString == null">
+                                                            <img src="assets/images/companyalt.svg" alt="">
+                                                        </div>
                                                     </div>
                                                     <div>
-                                                        <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}</p>
+                                                        <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
+                                                        </p>
 
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex mb-4 pt-2">
-                                                    <div class="product mr-2">mCash</div>
-                                                    <div class="product mr-2">NIP</div>
+                                                    <div class="product mr-2"
+                                                        *ngFor="let product of deal.products.slice(0,2)">
+                                                        {{product?.productName}} <span
+                                                            *ngIf="deal?.products.length > 2">+
+                                                            {{deal?.products.length - 2}}</span></div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
                                             </td>
                                             <td>
-                                                <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                    03 Aug 2020
+                                                <p class="fs-15 fc-black fw-6 ff-s m-0" *ngIf="deal.lastActivityDate">
+                                                    {{deal.lastActivityDate | date: 'medium'}}
                                                 </p>
                                                 <p class="fs-15 fc-lightblack ff-s m-0">
-                                                    Oluwaseun Wey
+                                                    -
                                                 </p>
                                             </td>
                                         </tr>
@@ -297,7 +317,13 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="deal.imageString">
+                                                                <img [src]="'data:image/png;base64, ' + deal.imageString | trustedUrl"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="deal.imageString == null">
+                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
                                                             <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
@@ -308,19 +334,23 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex mb-4 pt-2">
-                                                        <div class="product mr-2">mCash</div>
-                                                        <div class="product mr-2">NIP</div>
+                                                        <div class="product mr-2"
+                                                            *ngFor="let product of deal.products.slice(0,2)">
+                                                            {{product?.productName}} <span
+                                                                *ngIf="deal?.products.length > 2">+
+                                                                {{deal?.products.length - 2}}</span></div>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        03 Aug 2020
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0"
+                                                        *ngIf="deal.lastActivityDate">
+                                                        {{deal.lastActivityDate | date: 'medium'}}
                                                     </p>
                                                     <p class="fs-15 fc-lightblack ff-s m-0">
-                                                        Oluwaseun Wey
+                                                        -
                                                     </p>
                                                 </td>
                                             </tr>
@@ -406,7 +436,10 @@
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Deal Value:</p>
                                             </div>
                                             <div class="col-7 mb-3">
-                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.dealValue}}</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.dealValue">
+                                                    {{aDeal?.dealValue}}</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s"
+                                                    *ngIf="aDeal?.dealValue == null">-</p>
                                             </div>
                                             <div class="col-5 mb-3">
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Est Income:</p>
@@ -418,15 +451,21 @@
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Probability (%):</p>
                                             </div>
                                             <div class="col-7 mb-3">
-                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.probability}}</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.probability">
+                                                    {{aDeal?.probability}}</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s"
+                                                    *ngIf="aDeal?.probability == null">-</p>
                                             </div>
-                                            <div class="col-5 mb-3">
+                                            <div class="col-2 mb-3">
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
                                             </div>
-                                            <div class="col-7 mb-3">
-                                                <div class="d-flex mb-4 pt-2">
-                                                    <div class="product mr-2">mCash</div>
-                                                    <div class="product mr-2">NIP</div>
+                                            <div class="col-10 mb-3">
+                                                <div class="d-flex mb-4">
+                                                    <div class="product mr-2" (click)="openProduct(product.id)"
+                                                        *ngFor="let product of aDeal.products.slice(0,2)">
+                                                        {{product?.productName}} <span
+                                                            *ngIf="aDeal?.products.length > 2">+
+                                                            {{aDeal?.products.length - 2}}</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -442,10 +481,17 @@
                                                 <div class="col-12 mb-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="py-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="aDeal?.imageString">
+                                                                <img [src]="'data:image/png;base64, ' + aDeal?.imageString | trustedUrl"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="aDeal?.imageString == null">
+                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            </div>
                                                         </div>
                                                         <div class="p-2">
-                                                            <p class="m-0 ff-s fw-6 fs-15 fc-black">
+                                                            <p class="m-0 ff-s fw-6 fs-15 fc-black"
+                                                                (click)="openAccount(aDeal.account.id)">
                                                                 {{aDeal?.account.accountName}}</p>
                                                         </div>
                                                     </div>
@@ -462,15 +508,18 @@
                                                 </p>
                                             </div>
                                             <div class="row pl-2">
-                                                <div class="col-12 mb-3">
+                                                <div class="col-12 mb-3"
+                                                    (click)="openContact(aDeal.account.contacts[0].id)">
                                                     <div class="d-flex align-items-center justify-content-between p-2">
                                                         <div>
                                                             <div class="prop-initials">
-                                                                A
+                                                                {{aDeal?.account.contacts[0].firstName.substring(0,1)}}
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 fs-15 ff-s fc-black fw-6">Adebayo Adeyemi </p>
+                                                            <p class="m-0 fs-15 ff-s fc-black fw-6">
+                                                                {{aDeal?.account.contacts[0].firstName}}
+                                                                {{aDeal?.account.contacts[0].lastName}} </p>
                                                         </div>
                                                         <div>
                                                             <a>
@@ -609,7 +658,8 @@
                     </div>
                     <div class="col-12 mt-3">
                         <p class="text-right ">
-                            <button class="btn btn-blue px-3" (click)="createDeal()" data-dismiss="modal">Create</button>
+                            <button class="btn btn-blue px-3" (click)="createDeal()"
+                                data-dismiss="modal">Create</button>
                         </p>
                     </div>
                 </div>
@@ -667,7 +717,8 @@
                     </div>
                     <div class="col-12 mt-5 pt-5">
                         <p class="text-right">
-                            <button class="btn btn-blue px-3" (click)="importDeals()" data-dismiss="modal">Import</button>
+                            <button class="btn btn-blue px-3" (click)="importDeals()"
+                                data-dismiss="modal">Import</button>
                         </p>
                     </div>
                 </div>
@@ -696,7 +747,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-clear mr-3">Add New Deal</button> <button class="btn btn-blue"
+                    <button class="btn btn-clear mr-3" (click)="closenSuccess()" data-toggle="modal" data-target=".new-modal">Add New Deal</button> <button class="btn btn-blue"
                         (click)="closenSuccess()">See All Deals</button>
 
                 </div>
@@ -724,8 +775,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-blue"
-                        (click)="closeiSuccess()">See All Deals</button>
+                    <button class="btn btn-blue" (click)="closeiSuccess()">See All Deals</button>
 
                 </div>
             </div>

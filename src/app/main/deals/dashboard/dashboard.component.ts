@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
       textField: 'product',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
+      itemsShowLimit: 2,
       allowSearchFilter: true
     };
   } 
@@ -170,7 +170,15 @@ export class DashboardComponent implements OnInit {
   openDeal(id) {
     this.router.navigate(['/app/deals/deal/' + id])
   }
-
+  openContact(id){
+    this.router.navigate(['/app/contacts/contact/' + id])
+  }
+  openProduct(id){
+    this.router.navigate(['/app/products/product/' + id])
+  }
+  openAccount(id){
+    this.router.navigate(['/app/accounts/account/' + id])
+  }
   createDeal() {
     let arr = []
     this.products.forEach(element => {

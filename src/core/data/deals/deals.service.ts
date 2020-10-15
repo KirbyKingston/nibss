@@ -25,7 +25,7 @@ export class DealsService {
   }
 
   deleteDeal(id) {
-    return this.http.get(this.baseUrl + 'Deals/DeleteDeal/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.delete(this.baseUrl + 'Deals/DeleteDeal/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
   ConvertDealToJunk(deal) { 

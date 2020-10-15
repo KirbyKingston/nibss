@@ -40,9 +40,9 @@ export class ContactService {
   reactivateContact(contact) {
     return this.http.post(this.baseUrl + 'Contacts/ReactivateJunkedAccountContacts', contact, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
-  importContact(option, doc) {
+  importContact(doc) {
     const body = new FormData()
-    body.append("Option", option) 
+    // body.append("Option", option) 
     body.append("Document", doc)
    
     return this.http.post(this.baseUrl + 'Contacts/ImportAccountContactsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })

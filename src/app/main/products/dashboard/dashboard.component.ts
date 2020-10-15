@@ -21,6 +21,9 @@ export class DashboardComponent implements OnInit {
   users: any;
   productLogo: any;
   documents: any;
+  files:any;
+  isuccess:boolean = false;
+  nsuccess: boolean = false;
   constructor(private productService: ProductsService, private router: Router, private authService:AuthDataService, private notification: NotificationService) { }
 
   ngOnInit() {
@@ -62,16 +65,30 @@ export class DashboardComponent implements OnInit {
     console.log(this.documents)
     const size = e[0].size
     if (size >= 505000000) {
-      // this.notification.publishMessages('Please upload limit is 5mb', 'warning', 0)
       return false;
     }
-    // this.bulkUpload();
+  }
+  uploadProducts(e: FileList) {
+    this.files = e[0];
+    console.log(this.files)
+    const size = e[0].size
+    if (size >= 505000000) {
+      return false;
+    }
+  }
+  importProducts(){
+    this.productService.importProduct(this.files).subscribe(
+      res => {
+        this.isuccess = true;
+        this.getAllProducts()
+        this.getMyProduct()
+      }
+    )
   }
 
   getAllProducts() {
     this.productService.getAllProducts().subscribe(
       res => {
-        // console.log(res)
         this.allProduct = res['payload']
         this.allProduct.forEach(element => {
           element['checked'] = false;
@@ -89,7 +106,6 @@ export class DashboardComponent implements OnInit {
       res => {
         this.myProduct = res['payload']
 
-        // console.log(res)
       },
       err => {
         console.log(err)
@@ -101,7 +117,6 @@ export class DashboardComponent implements OnInit {
     this.productService.getJunkedProducts().subscribe(
       res => {
         this.junkProduct = res['payload']
-        // console.log(res)
       },
       err => {
         console.log(err)
@@ -115,7 +130,6 @@ export class DashboardComponent implements OnInit {
     this.productService.getProductById(id).subscribe(
       res => {
         this.theProduct = res['payload']
-        // console.log(res)
       },
       err => {
         console.log(err)
@@ -131,14 +145,19 @@ export class DashboardComponent implements OnInit {
     this.productService.createProduct(form.value.category, form.value.description, form.value.fee, this.productLogo, form.value.manager, form.value.name, form.value.duration, form.value.tag, form.value.tax).subscribe(
       res => {
         this.notification.publishMessages('You have successfully created a new product', 'info', 0)
-        console.log(res)
+        this.nsuccess = true;
         this.getAllProducts();
       },
       err => {
-        console.log(err)
-        this.notification.publishMessages('Please upload limit is 5mb', 'warning', 0)
       }
     )
+  }
+
+  closenSuccess() {
+    this.nsuccess = false
+  }
+  closeiSuccess() {
+    this.isuccess = false
   }
 
 }

@@ -29,6 +29,13 @@ export class LeadsService {
     return this.http.post(this.baseUrl + 'Leads/ConvertLeadsToDeals', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
+  importLeads(doc){
+    const body = new FormData();
+    // body.append("Option", option)
+    body.append("Document", doc) 
+    return this.http.post(this.baseUrl + 'Leads/ImportLeadsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  
+  }
   junkLead(lead) {
     return this.http.post(this.baseUrl + 'Leads/JunkLeads', lead, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
@@ -67,4 +74,4 @@ export class LeadsService {
     body.append("ProductIds", products)
     return this.http.post(this.baseUrl + 'Leads/CreateLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
-}
+} 

@@ -41,7 +41,9 @@ export class DashboardComponent implements OnInit {
   accounts: any;
   isSelected: boolean = false;
   jsuccess: boolean = false;
+  isuccess: boolean = false;
   jContacts: Array<{}> = [];
+  files:any;
   constructor(private router: Router, private contactService: ContactService, private accountService: AccountService) { }
 
   ngOnInit() {
@@ -58,7 +60,23 @@ export class DashboardComponent implements OnInit {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
   }
-
+  uploadFile(e: FileList) {
+    this.files = e[0];
+    console.log(this.files)
+    const size = e[0].size
+    if (size >= 505000000) {
+      return false;
+    }
+  }
+  importContacts(){
+    this.contactService.importContact(this.files).subscribe(
+      res => {
+        this.isuccess = true;
+        this.getAllContacts()
+        this.getMyContacts()
+      }
+    )
+  }
   getAccounts() {
     this.accountService.getAllAcc().subscribe(
       res => {
@@ -134,6 +152,9 @@ export class DashboardComponent implements OnInit {
 
   closejSuccess() {
     this.jsuccess = false
+  }
+  closeiSuccess() {
+    this.isuccess = false
   }
 
 }

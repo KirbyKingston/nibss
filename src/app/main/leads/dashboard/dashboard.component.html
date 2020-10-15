@@ -205,7 +205,7 @@
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.contacts[0].firstName}} {{lead.contacts[0].lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -214,15 +214,15 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        aadebayo@ubagroup.com</p>
+                                                        {{lead.contacts[0].email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
                                                         {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
-                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
+                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}} </p>
                                                 </td>
                                                 <td>
                                                     <p *ngIf="lead.status == 'Hot'"
@@ -328,10 +328,16 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="lead.imageString">
+                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="lead.imageString == null">
+                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.contacts[0].firstName}} {{lead.contacts[0].lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -340,15 +346,15 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        aadebayo@ubagroup.com</p>
+                                                        {{lead.contacts[0].email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
                                                         {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
-                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
+                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}} </p>
                                                 </td>
                                                 <td>
                                                     <p *ngIf="lead.status == 'Hot'"
@@ -454,10 +460,16 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
+                                                            <div class="image" *ngIf="lead.imageString">
+                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="lead.imageString == null">
+                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.ownerName}}
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.contacts[0].firstName}} {{lead.contacts[0].lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -466,15 +478,15 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        aadebayo@ubagroup.com</p>
+                                                        {{lead.contacts[0].email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
                                                         {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
-                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0">Oluwaseun Wey </p>
+                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}} </p>
                                                 </td>
                                                 <td>
                                                     <p *ngIf="lead.status == 'Hot'"
@@ -532,18 +544,18 @@
 
                 <!-- properties -->
                 <div class="props pt-2" *ngIf="isSelected">
-                    <div class="top-prop p-2">
+                    <div class="top-prop p-2" *ngIf="theLead?.ownerName">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
-                                <div class="prop-initials">
-                                    {{theLead?.ownerName.substring(0,1)}}
+                                <div class="prop-initials" *ngIf="theLead?.ownerName">
+                                    {{theLead?.contacts[0].firstName.substring(0,1)}}
                                 </div>
                             </div>
                             <div>
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theLead?.ownerName}}</p>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6" *ngIf="theLead?.ownerName">{{theLead?.contacts[0].firstName}} {{theLead?.contacts[0].lastName}}</p>
                             </div>
                             <div>
-                                <a href="tel:{{theLead?.phoneNumber}}">
+                                <a href="tel:{{theLead?.contacts[0].phoneNumber}}">
                                     <img src="assets/images/bcall.svg" alt="">
                                 </a>
                             </div>
@@ -560,19 +572,19 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Position:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">Team Lead, Software Integrations</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.contacts[0].designation}}</p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>{{theLead?.phoneNumber}}</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>{{theLead?.contacts[0].phoneNumber}}</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>aadebayo@ubagroup.com</a></p>
+                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>{{theLead?.contacts[0].email}}</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
@@ -627,7 +639,7 @@
                                 <p class="m-0 fc-lightblack fs-14 ff-s">Address:</p>
                             </div>
                             <div class="col-7 mb-3">
-                                <p class="m-0 fc-black fw-6 fs-14 ff-s">57 Marina, Lagos Island, Lagos, Nigeria</p>
+                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.addresses[0].street}}</p>
                             </div>
                         </div>
                     </div>
@@ -929,7 +941,7 @@
                                         <div class="d-flex justify-content-between">
                                             <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
                                             <div><button class="btn btn-green px-3"
-                                                    (click)="createLead()">Create</button></div>
+                                                    (click)="createLead()" data-dismiss="modal">Create</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -983,10 +995,10 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <p class="text-right fw-6 ff-s fs-13 fc-green"><span class="mr-2"><img
-                                    src="assets/images/save.svg" alt=""></span>Download sample file</p>
+                        <p class="text-right fw-6 ff-s fs-13 fc-green"><a class="fw-6 ff-s fs-13 fc-green" href="assets/images/Lead_Template.xlsx" download><span class="mr-2"><img
+                            src="assets/images/save.svg" alt=""></span>Download sample file</a></p>
                     </div>
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <p class="m-o fs-14 ff-s fc-black">What do you want to do with the records in this file?</p>
                     </div>
                     <div class="col-lg-5 mb-3">
@@ -1003,14 +1015,14 @@
                             <option value=""></option>
                             <option value=""></option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="col-12">
                         <p class="m-o fs-13 ff-s fc-red">**Existing Leads are identified by using name and company info
                             as the I.D reference.</p>
                     </div>
                     <div class="col-12 mt-5 pt-5">
                         <p class="text-right">
-                            <button class="btn btn-blue px-3">Import</button>
+                            <button class="btn btn-blue px-3" (click)="importLeads()" data-dismiss="modal">Import</button>
                         </p>
                     </div>
                 </div>
@@ -1020,34 +1032,7 @@
 
 </div>
 
-<div class="modal fade success-modal" id="success-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="row py-5">
-                <div class="col-lg-12 mb-4 ">
-                    <div class="d-flex align-items-center">
-                        <div class="pl-5">
-                            <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
-                            <p class="fc-black fs-16 ff-s fw-4">
-                                New lead has been added
-                            </p>
-                        </div>
-                        <div class="ml-auto">
-                            <img src="assets/images/success.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="pl-5">
-                        <button class="btn btn-clear mr-3">Add New Lead</button> <button class="btn btn-blue"
-                            (click)="closeModals()">See All Leads</button>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="success-div" *ngIf="csuccess">
     <div class="whitediv">
@@ -1120,8 +1105,37 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-clear mr-3">Add New Lead</button> <button class="btn btn-blue"
+                    <button class="btn btn-clear mr-3" (click)="closenSuccess()" data-toggle="modal" data-target=".new-modal">Add New Lead</button> <button class="btn btn-blue"
                         (click)="closenSuccess()">See All Leads</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="success-div" *ngIf="isuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            New Leads have been
+                            imported
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-blue"
+                        (click)="closeiSuccess()">See All Leads</button>
 
                 </div>
             </div>

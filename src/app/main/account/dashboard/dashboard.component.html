@@ -6,6 +6,9 @@
                     <div class="inner p-4">
                         <p class="fs-32 text-white ff-p">Accounts</p>
                         <p class="fs-16 text-white ff-p mb-4">Manage your Accounts easily</p>
+                        <!-- <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
+                            src="assets/images/add.svg" alt="" class="mr-2">Add New
+                        Account</button> -->
                     </div>
                 </div>
             </div>
@@ -96,7 +99,7 @@
                     <div class="tab-pane fade show active" id="all" role="tabpanel">
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive" *ngIf="allAccounts.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <th>
@@ -218,6 +221,12 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="emptystate2" *ngIf="allAccounts.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no accounts in this category
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,7 +234,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <table class="table dashboard">
+                                    <table class="table dashboard" *ngIf="myAccounts.length > 0">
                                         <thead>
                                             <th>
                                                 <input type="checkbox">
@@ -346,13 +355,19 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="emptystate2" *ngIf="myAccounts.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no accounts in this category
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="junk" role="tabpanel">
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive" *ngIf="junkAccounts.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <th>
@@ -473,6 +488,12 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="emptystate2" *ngIf="junkAccounts.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no accounts in this category
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -617,6 +638,126 @@
                     </div>
                 </div>
                 <!-- properties -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg new-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Add New Contact
+                                </p>
+                                <p class="fs-16 ff-s fc-lightblack">Input Contact Information</p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <label class="fs-16 ff-p fc-black">Select Account</label>
+                        <select class="form-control topform">
+                            <option value="{{acc.id}}" *ngFor="let acc of accounts">{{acc.accountName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 mt-4 mb-3">
+                        <p class="fc-green ff-p fs-18 fw-6 m-0">
+                            Contact Infomation
+                        </p>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Name</label>
+                        <div class="input-group leadform">
+                            <div class="input-group-prepend">
+                                <select name="" id="" class="form-control">
+                                    <option value="">Miss</option>
+                                    <option value="">Mrs</option>
+                                    <option value="">Mr</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Designation</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Email Address</label>
+                        <input type="text" class="form-control botform">
+
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Phone Number</label>
+                        <div class="input-group leadform">
+                            <div class="input-group-prepend">
+                                <select name="" id="" class="form-control">
+                                    <option value="">+234</option>
+                                    <option value="">+234</option>
+                                    <option value="">+234</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Skype ID</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Teams ID</label>
+                        <input type="text" class="form-control botform">
+                    </div>
+                    <div class="col-lg-12 py-3">
+                        <p class="m-0 fc-red fs-13 ff-s">**Calls can only be made from CRMHUB to Microsoft Teams and
+                            Skype</p>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <p class="text-right ">
+                            <button class="btn btn-blue px-3">Create</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="success-div" *ngIf="nsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            New Account has been
+                            added
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-blue"
+                        (click)="closenSuccess()">See All Contacts</button>
+
+                </div>
             </div>
         </div>
     </div>

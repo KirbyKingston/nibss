@@ -56,7 +56,9 @@ export class DashboardComponent implements OnInit {
   message: any = '';
   csuccess: boolean = false;
   jsuccess: boolean = false;
+  isuccess:boolean = false;
   nsuccess: boolean = false;
+  files:any;
   constructor(private leadService: LeadsService, private router: Router, private notification: NotificationService, private authService: AuthDataService, private productService: ProductsService) { }
 
   ngOnInit() {
@@ -102,6 +104,23 @@ export class DashboardComponent implements OnInit {
       return false;
     }
 
+  }
+  uploadFile(e: FileList) {
+    this.files = e[0];
+    console.log(this.files)
+    const size = e[0].size
+    if (size >= 505000000) {
+      return false; 
+    }
+  }
+  importLeads(){
+    this.leadService.importLeads(this.files).subscribe(
+      res => {
+        this.isuccess = true;
+        this.getAllLeads()
+        this.getMyLeads()
+      }
+    )
   }
   getUsers() {
     this.authService.getUsers().subscribe(
@@ -254,5 +273,8 @@ export class DashboardComponent implements OnInit {
 
   closenSuccess() {
     this.nsuccess = false
+  }
+  closeiSuccess() {
+    this.isuccess = false
   }
 }

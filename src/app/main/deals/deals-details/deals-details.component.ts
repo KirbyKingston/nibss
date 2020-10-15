@@ -20,7 +20,7 @@ export class DealsDetailsComponent implements OnInit {
     $('.showinfo').click(function () {
       $('#information').show(300);
       $('.showinfo').hide(0);
-      $('.hideinfo').show(0);
+      $('.hideinfo').show(0); 
     });
     $('.hideinfo').click(function () {
       $('#information').hide(300);

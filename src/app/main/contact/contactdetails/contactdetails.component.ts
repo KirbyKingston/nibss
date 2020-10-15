@@ -59,11 +59,13 @@ export class ContactdetailsComponent implements OnInit {
     this.contactService.ConvertContactToJunk(this.jContacts).subscribe(
       res => {
         this.jsuccess = true
+
       }
     )
   }
 
   closejSuccess() {
     this.jsuccess = false
+    this.location.back();
   }
 }

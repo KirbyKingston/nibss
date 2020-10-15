@@ -9,7 +9,7 @@
                         <button class="btn btn-clear import mr-2" data-toggle="modal" data-target=".import-modal"><img
                                 src="assets/images/cloud_download.svg" alt="" class="mr-2"><span
                                 class="text-white">Import</span></button>
-                        <button class="btn btn-out-white" data-toggle="modal" data-target=".success-modal"><img
+                        <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
                                 src="assets/images/add.svg" alt="" class="mr-2">Add New
                             Deal</button>
                     </div>
@@ -116,7 +116,7 @@
                     <div class="tab-pane fade show active" id="all" role="tabpanel">
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive" *ngIf="allDeals?.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <th>
@@ -171,7 +171,7 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr routerLink="/app/deals/deal">
+                                            <tr *ngFor="let deal of allDeals" (click)="getDealById(deal.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
@@ -181,7 +181,8 @@
                                                             <img src="assets/images/uba.svg" alt="">
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">UBA</p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
+                                                            </p>
 
                                                         </div>
                                                     </div>
@@ -193,7 +194,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">Needs Analysis</p>
+                                                    <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="fs-15 fc-black fw-6 ff-s m-0">
@@ -206,6 +207,12 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="emptystate2" *ngIf="allDeals?.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no deals in this category
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +220,65 @@
                     <div class="tab-pane fade" id="my" role="tabpanel">
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive" *ngIf="myDeals?.length > 0">
+                                    <table class="table dashboard">
+                                        <thead>
+                                            <th>
+                                                <input type="checkbox">
+                                            </th>
+                                            <th>Deal name</th>
+                                            <th>PRODUCTs</th>
+                                            <th>STAGE</th>
+                                            <th>LAST ACTIVITY</th>
+                                        </thead>
+                                        <tr *ngFor="let deal of myDeals" (click)="getDealById(deal.id)">
+                                            <td>
+                                                <div class="pt-2"><input type="checkbox"></div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="mr-2">
+                                                        <img src="assets/images/uba.svg" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}</p>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex mb-4 pt-2">
+                                                    <div class="product mr-2">mCash</div>
+                                                    <div class="product mr-2">NIP</div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="fs-15 fc-black fw-6 ff-s m-0">
+                                                    03 Aug 2020
+                                                </p>
+                                                <p class="fs-15 fc-lightblack ff-s m-0">
+                                                    Oluwaseun Wey
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="emptystate2" *ngIf="myDeals?.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no deals in this category
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="junk" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive" *ngIf="junkDeals?.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <th>
@@ -225,7 +290,7 @@
                                             <th>LAST ACTIVITY</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor="let deal of junkDeals" (click)="getDealById(deal.id)">
                                                 <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
                                                 </td>
@@ -235,7 +300,8 @@
                                                             <img src="assets/images/uba.svg" alt="">
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">UBA</p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
+                                                            </p>
 
                                                         </div>
                                                     </div>
@@ -247,7 +313,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">Needs Analysis</p>
+                                                    <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="fs-15 fc-black fw-6 ff-s m-0">
@@ -261,59 +327,11 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="junk" role="tabpanel">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="table-responsive">
-                                    <table class="table dashboard">
-                                        <thead>
-                                            <th>
-                                                <input type="checkbox">
-                                            </th>
-                                            <th>Deal name</th>
-                                            <th>PRODUCTs</th>
-                                            <th>STAGE</th>
-                                            <th>LAST ACTIVITY</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="mr-2">
-                                                            <img src="assets/images/uba.svg" alt="">
-                                                        </div>
-                                                        <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">UBA</p>
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex mb-4 pt-2">
-                                                        <div class="product mr-2">mCash</div>
-                                                        <div class="product mr-2">NIP</div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">Needs Analysis</p>
-                                                </td>
-                                                <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        03 Aug 2020
-                                                    </p>
-                                                    <p class="fs-15 fc-lightblack ff-s m-0">
-                                                        Oluwaseun Wey
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="emptystate2" *ngIf="junkDeals?.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no deals in this category
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -324,7 +342,7 @@
     </div>
     <div class="col-lg-4">
         <div class="sidediv">
-            <div class="p-3 d-none">
+            <div class="p-3">
                 <div class="d-flex mb-2">
                     <div class="mr-2">
                         <img src="assets/images/info.svg" alt="">
@@ -334,13 +352,19 @@
                     </div>
                 </div>
                 <div class="orangeline"></div>
-                <div class="emptystate">
-                    <img src="assets/images/emptylead.svg" alt="">
-                </div>
+                <div class="littleorange"></div>
+
+            </div>
+            <div class="emptystate" *ngIf="!isSelected">
+                <img src="assets/images/emptylead.svg" alt="">
+                <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                    Select a deal to display deal
+                    information
+                </p>
             </div>
 
             <!-- properties -->
-            <div class="p-3">
+            <div class="p-3" *ngIf="isSelected">
                 <div class="row">
                     <div class="col-12">
                         <ul class="nav nav-tabs deall align-items-center" id="myTab" role="tablist">
@@ -365,7 +389,7 @@
                                                     <img src="assets/images/uba.svg" alt="">
                                                 </div>
                                                 <div class="p-2">
-                                                    <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
+                                                    <p class="m-0 ff-s fw-6 fs-15 fc-black">{{aDeal?.dealName}}</p>
                                                 </div>
                                             </div>
 
@@ -373,29 +397,37 @@
 
                                         <div class="row py-2">
                                             <div class="col-5 mb-3">
-                                                <p class="m-0 fc-lightblack fs-14 ff-s">Institution Type:</p>
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Stage:</p>
                                             </div>
                                             <div class="col-7 mb-3">
-                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">Commercial Bank</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.stage}}</p>
                                             </div>
                                             <div class="col-5 mb-3">
-                                                <p class="m-0 fc-lightblack fs-14 ff-s">Trxn Vol.</p>
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Deal Value:</p>
                                             </div>
                                             <div class="col-7 mb-3">
-                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">>1.2 Billion</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.dealValue}}</p>
                                             </div>
                                             <div class="col-5 mb-3">
-                                                <p class="m-0 fc-lightblack fs-14 ff-s">Est. Transaction Valu:</p>
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Est Income:</p>
                                             </div>
                                             <div class="col-7 mb-3">
-                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">130 Million</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.estimatedRevenue}}</p>
                                             </div>
                                             <div class="col-5 mb-3">
-                                                <p class="m-0 fc-lightblack fs-14 ff-s">Address:</p>
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Probability (%):</p>
                                             </div>
                                             <div class="col-7 mb-3">
-                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">57 Marina, Lagos Island, Lagos,
-                                                    Nigeria</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.probability}}</p>
+                                            </div>
+                                            <div class="col-5 mb-3">
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
+                                            </div>
+                                            <div class="col-7 mb-3">
+                                                <div class="d-flex mb-4 pt-2">
+                                                    <div class="product mr-2">mCash</div>
+                                                    <div class="product mr-2">NIP</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -413,7 +445,8 @@
                                                             <img src="assets/images/uba.svg" alt="">
                                                         </div>
                                                         <div class="p-2">
-                                                            <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
+                                                            <p class="m-0 ff-s fw-6 fs-15 fc-black">
+                                                                {{aDeal?.account.accountName}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,7 +490,8 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="d-flex justify-content-center mt-4">
-                                            <button class="btn btn-green mr-3">View Complete Info</button>
+                                            <button class="btn btn-green mr-3" (click)="openDeal(aDeal.id)">View
+                                                Complete Info</button>
                                             <button class="btn btn-more"><img src="assets/images/more-green.svg"
                                                     alt=""></button>
                                         </div>
@@ -481,7 +515,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body px-lg-5 px-3 py-4">
-                <form class="row" #newDealForm="ngForm" (submit)="createDeal(newDealForm)" ngNativeValidate>
+                <div class="row">
                     <div class="col-12 mb-3">
                         <div class="d-flex justify-content-between">
                             <div>
@@ -499,20 +533,20 @@
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Select Account</label>
-                        <select class="form-control topform" ngModel name="account">
+                        <select class="form-control topform" [(ngModel)]="account">
                             <option value="{{account.id}}" *ngFor="let account of accounts">{{account.accountName}}
                             </option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Deal Owner</label>
-                        <select class="form-control topform" ngModel name="owner">
+                        <select class="form-control topform" [(ngModel)]="owner">
                             <option value="{{account.id}}" *ngFor="let account of users">{{account.fullName}}</option>
                         </select>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Contact Person</label>
-                        <select class="form-control topform" ngModel name="contact">
+                        <select class="form-control topform" [(ngModel)]="contact">
                             <option value="{{account.id}}" *ngFor="let account of contacts">{{account.firstName}}
                                 {{account.lastName}}</option>
                         </select>
@@ -524,17 +558,17 @@
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Deal Name</label>
-                        <input type="text" class="form-control botform" ngModel name="name">
+                        <input type="text" class="form-control botform" [(ngModel)]="name">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
-                        <ng-multiselect-dropdown [placeholder]="' '" [data]="dropdownList" name="products"
-                            [(ngModel)]="products" [settings]="dropdownSettings">
+                        <ng-multiselect-dropdown [placeholder]="' '" [data]="dropdownList" [(ngModel)]="products"
+                            [settings]="dropdownSettings">
                         </ng-multiselect-dropdown>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Stage</label>
-                        <select class="form-control botform" ngModel name="stage">
+                        <select class="form-control botform" [(ngModel)]="stage">
                             <option value="0">Negotiation</option>
                             <option value="1">Proposal</option>
                             <option value="2">Identification</option>
@@ -552,29 +586,33 @@
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
-                        <input type="text" class="form-control botform" ngModel name="estIncome">
+                        <input type="text" class="form-control botform" [(ngModel)]="estIncome">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>
-                        <input type="text" class="form-control botform" ngModel name="probability">
+                        <input type="text" class="form-control botform" [(ngModel)]="probability">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Deal Status</label>
-                        <select class="form-control botform" ngModel name="status">
+                        <select class="form-control botform" [(ngModel)]="status">
                             <option value="0">Active</option>
                             <option value="1">Inactive</option>
                         </select>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Estimated Close Date</label>
-                        <input type="date" class="form-control botform" ngModel name="closeDate">
+                        <input type="date" class="form-control botform" [(ngModel)]="closeDate">
+                    </div>
+                    <div class="col-lg-12 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Note</label>
+                        <input type="text" class="form-control botform" [(ngModel)]="note">
                     </div>
                     <div class="col-12 mt-3">
                         <p class="text-right ">
-                            <button class="btn btn-blue px-3" type="submit">Create</button>
+                            <button class="btn btn-blue px-3" (click)="createDeal()" data-dismiss="modal">Create</button>
                         </p>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -623,12 +661,13 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <p class="text-right fw-6 ff-s fs-13 fc-green"><span class="mr-2"><img
-                                    src="assets/images/save.svg" alt=""></span>Download sample file</p>
+                        <p class="text-right fw-6 ff-s fs-13 fc-green"><a class="fw-6 ff-s fs-13 fc-green"
+                                href="assets/images/Deal_Template.xlsx" download><span class="mr-2"><img
+                                        src="assets/images/save.svg" alt=""></span>Download sample file</a></p>
                     </div>
                     <div class="col-12 mt-5 pt-5">
                         <p class="text-right">
-                            <button class="btn btn-blue px-3">Import</button>
+                            <button class="btn btn-blue px-3" (click)="importDeals()" data-dismiss="modal">Import</button>
                         </p>
                     </div>
                 </div>
@@ -638,29 +677,56 @@
 
 </div>
 
-<div class="modal fade success-modal" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="row py-5">
-                <div class="col-lg-12 mb-4 ">
-                    <div class="d-flex align-items-center">
-                        <div class="pl-5">
-                            <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
-                            <p class="fc-black fs-16 ff-s fw-4">
-                                New deal has been added
-                            </p>
-                        </div>
-                        <div class="ml-auto">
-                            <img src="assets/images/success.svg" alt="">
-                        </div>
+
+<div class="success-div" *ngIf="nsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            New deal has been added
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="pl-5">
-                        <button class="btn btn-clear mr-3">Add New Deal</button> <button class="btn btn-blue">See All Deals</button>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-clear mr-3">Add New Deal</button> <button class="btn btn-blue"
+                        (click)="closenSuccess()">See All Deals</button>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="isuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            New Deals have been
+                            imported
+                        </p>
                     </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-blue"
+                        (click)="closeiSuccess()">See All Deals</button>
+
                 </div>
             </div>
         </div>

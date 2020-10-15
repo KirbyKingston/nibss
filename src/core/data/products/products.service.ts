@@ -63,9 +63,9 @@ export class ProductsService {
     var body = { product }
     return this.http.post(this.baseUrl + 'Products/ReactivateJunkedProducts', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
-  importProduct(option, doc) {
+  importProduct(doc) {
     const body = new FormData()
-    body.append("Option", option)
+    // body.append("Option", option)
     body.append("Document", doc)
    
     return this.http.post(this.baseUrl + 'Products/ImportProductsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })

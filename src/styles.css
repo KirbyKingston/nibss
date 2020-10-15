@@ -650,12 +650,15 @@ table.table.accounttab tbody tr td {
     height: 40px;
     padding: 0;
 }
-.input-group.leadform.big{
+
+.input-group.leadform.big {
     height: 50px;
 }
-.input-group.leadform.big input.form-control{
+
+.input-group.leadform.big input.form-control {
     height: 48px;
 }
+
 .input-group.leadform input.form-control {
     border: none;
     font-weight: 400;
@@ -664,10 +667,12 @@ table.table.accounttab tbody tr td {
     height: 38px;
     line-height: 20px;
 }
-.input-group.leadform.big select.form-control{
+
+.input-group.leadform.big select.form-control {
     height: 50px;
 
 }
+
 .input-group.leadform select.form-control {
     font-family: Palatino Linotype;
     font-style: normal;
@@ -737,6 +742,61 @@ textarea.form-control.detail-form {
     border: 1px dashed #00806F;
     box-sizing: border-box;
     padding: 20px;
+}
+
+.multiselect-dropdown .dropdown-btn .selected-item {
+    background: #E2E2E2 !important;
+    border-radius: 2px;
+    padding: 3px !important;
+    border: none !important;
+    font-family: Segoe UI !important;
+    font-size: 14px !important;
+    line-height: 19px !important;
+    color: #2B2C2D !important;
+}
+
+.multiselect-dropdown .dropdown-btn .selected-item a {
+    font-family: Segoe UI !important;
+    text-transform: capitalize !important;
+    font-size: 14px !important;
+    line-height: 19px !important;
+    color: #2B2C2D !important;
+}
+
+.multiselect-item-checkbox input[type=checkbox]:checked+div:before {
+    background: #2B2C2D !important;
+}
+
+.multiselect-item-checkbox input[type=checkbox]+div:before {
+    color: #2B2C2D !important;
+    border: 2px solid #2B2C2D !important;
+}
+
+.multiselect-item-checkbox input[type=checkbox]+div:before {
+    color: #2B2C2D !important;
+    border: 2px solid #2B2C2D !important;
+}
+.multiselect-dropdown .dropdown-btn{
+    border: 1px solid #C6C6C5 !important;
+    height: 40px !important;
+}
+.multiselect-dropdown .dropdown-btn .dropdown-up {
+    border: none !important;
+    height: 10px !important;
+    width: 10px !important;
+    /* background-repeat: no-repeat !important;
+    background-size: contain !important; */
+    content: url('assets/images/up.svg') !important;
+
+}
+
+.multiselect-dropdown .dropdown-btn .dropdown-down {
+    border: none !important;
+    height: 10px !important;
+    width: 10px !important;
+    /* background-repeat: no-repeat !important;
+    background-size: contain !important; */
+    content: url('assets/images/down.svg') !important;
 }
 
 /* buttons  */

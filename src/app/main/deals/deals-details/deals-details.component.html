@@ -9,9 +9,8 @@
                     <div>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a>Contacts</a></li>
-                                <li class="breadcrumb-item"><a>Adebayo Adeyemi</a></li>
-                                <li class="breadcrumb-item">Deals</li>
+                                <li class="breadcrumb-item"><a>Deals</a></li>
+                                <li class="breadcrumb-item"><a>{{dealDetails?.account.accountName}}</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -28,9 +27,9 @@
                                         <img src="assets/images/luba.svg" alt="">
                                     </div>
                                     <div>
-                                        <p class="mb-0 ff-p fs-18 text-white fw-6">UBA</p>
+                                        <p class="mb-0 ff-p fs-18 text-white fw-6">{{dealDetails?.account.accountName}}</p>
                                         <p class="fc-lightwhite fs-15 ff-s fw-6 m-0"><span class="mr-2"><img
-                                                    src="assets/images/loyalty.svg" alt=""></span>NGN1,200,000,000</p>
+                                                    src="assets/images/loyalty.svg" alt=""></span>NGN{{dealDetails?.dealValue}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -38,19 +37,19 @@
                                 <div class="d-flex row px-3 justify-content-between">
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Stage</p>
-                                        <p class="fs-15 text-white ff-s fw-6">Negotiation/Review</p>
+                                        <p class="fs-15 text-white ff-s fw-6">{{dealDetails?.stage}}</p>
                                     </div>
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Probability(%)</p>
-                                        <p class="fs-15 text-white ff-s fw-6">90</p>
+                                        <p class="fs-15 text-white ff-s fw-6">{{dealDetails?.probability}}</p>
                                     </div>
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Expected Income</p>
-                                        <p class="fs-15 text-white ff-s fw-6">NGN 27,000,000</p>
+                                        <p class="fs-15 text-white ff-s fw-6">NGN {{dealDetails?.estimatedRevenue}}</p>
                                     </div>
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Expected Closing Date</p>
-                                        <p class="fs-15 text-white ff-s fw-6">Aug 31, 2020</p>
+                                        <p class="fs-15 text-white ff-s fw-6">{{dealDetails?.expectedClosingDate}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -158,11 +157,11 @@
                             <div class="col-lg-6">
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Deal Owner</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    Adebayo Adeyemi
+                                   {{dealDetails?.ownerName}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Account Name</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    UBA
+                                    {{dealDetails?.account.accountName}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
                                 <div class="d-flex mb-4">
@@ -171,11 +170,11 @@
                                 </div>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Value (NGN)</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    130 Million
+                                    {{dealDetails?.dealValue}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Probability (%)</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    90
+                                    {{dealDetails?.probability}}
                                 </p>
                             </div>
                             <div class="col-lg-6">

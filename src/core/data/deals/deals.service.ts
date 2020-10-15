@@ -28,7 +28,7 @@ export class DealsService {
     return this.http.get(this.baseUrl + 'Deals/DeleteDeal/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  ConvertDealToJunk(deal) {
+  ConvertDealToJunk(deal) { 
     var body = { "deal": deal }
     return this.http.post(this.baseUrl + 'Deals/JunkDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
@@ -41,15 +41,15 @@ export class DealsService {
     var body = { "deal": deal }
     return this.http.post(this.baseUrl + 'Deals/ReactivateJunkedDeals', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
-  importDeal(option, doc) {
+  importDeal(doc) {
     const body = new FormData()
-    body.append("Option", option)
-    body.append("Document", doc)
+    // body.append("Option", option)
+    body.append("Document", doc) 
 
-    return this.http.post(this.baseUrl + 'Contacts/ImportAccountContactsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.post(this.baseUrl + 'Deals/ImportDealsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  createDeal(accId, accConId,dealName,dealVal,exClosingDate, estRev, ownerId,  phone, probabilty, stage, status, notes, prodId, docs, docTypes ){
+  createDeal(accId, accConId,dealName,dealVal,exClosingDate, estRev, ownerId, probabilty, stage, status, notes, prodId){
     const body = new FormData()
     body.append("AccountId", accId)
     body.append("AccountContactId", accConId)
@@ -58,14 +58,13 @@ export class DealsService {
     body.append("ExpectedClosingDate", exClosingDate)
     body.append("EstimatedRevenue", estRev)
     body.append("OwnerId", ownerId)
-    body.append("PhoneNumber", phone)
     body.append("Probability", probabilty)
     body.append("Stage", stage)
     body.append("Status", status)
-    body.append("Notes", notes)
+    body.append("notes[0].message", notes)
     body.append("ProductIds", prodId)
-    body.append("Documents", docs)
-    body.append("DocumentTypes", docTypes)
+    // body.append("Documents", docs)
+    // body.append("DocumentTypes", docTypes)
     return this.http.post(this.baseUrl + 'Deals/CreateDeal', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 

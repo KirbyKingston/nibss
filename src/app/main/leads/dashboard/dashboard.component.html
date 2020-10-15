@@ -205,7 +205,9 @@
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.contacts[0].firstName}} {{lead.contacts[0].lastName}}
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">
+                                                                {{lead.contacts[0].firstName}}
+                                                                {{lead.contacts[0].lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -214,7 +216,8 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}
+                                                    </p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         {{lead.contacts[0].email}}</p>
                                                 </td>
@@ -222,7 +225,8 @@
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
                                                         {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
-                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}} </p>
+                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}}
+                                                    </p>
                                                 </td>
                                                 <td>
                                                     <p *ngIf="lead.status == 'Hot'"
@@ -337,7 +341,9 @@
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.contacts[0].firstName}} {{lead.contacts[0].lastName}}
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">
+                                                                {{lead.contacts[0].firstName}}
+                                                                {{lead.contacts[0].lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -346,7 +352,8 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}
+                                                    </p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         {{lead.contacts[0].email}}</p>
                                                 </td>
@@ -354,7 +361,8 @@
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
                                                         {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
-                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}} </p>
+                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}}
+                                                    </p>
                                                 </td>
                                                 <td>
                                                     <p *ngIf="lead.status == 'Hot'"
@@ -469,7 +477,9 @@
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">{{lead.contacts[0].firstName}} {{lead.contacts[0].lastName}}
+                                                            <p class="mb-1 ff-s fs-15 fw-6 fc-black">
+                                                                {{lead.contacts[0].firstName}}
+                                                                {{lead.contacts[0].lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -478,7 +488,8 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}
+                                                    </p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         {{lead.contacts[0].email}}</p>
                                                 </td>
@@ -486,7 +497,8 @@
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
                                                         {{lead.dateCreated | date:'mediumDate'}}
                                                     </p>
-                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}} </p>
+                                                    <p class="ff-s fs-15 fw-6 fc-lightblack m-0"> {{lead.ownerName}}
+                                                    </p>
                                                 </td>
                                                 <td>
                                                     <p *ngIf="lead.status == 'Hot'"
@@ -547,12 +559,13 @@
                     <div class="top-prop p-2">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
-                                <div class="prop-initials" >
+                                <div class="prop-initials">
                                     {{theLead?.contacts[0].firstName.substring(0,1)}}
                                 </div>
                             </div>
                             <div>
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theLead?.contacts[0].firstName}} {{theLead?.contacts[0].lastName}}</p>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theLead?.contacts[0].firstName}}
+                                    {{theLead?.contacts[0].lastName}}</p>
                             </div>
                             <div>
                                 <a href="tel:{{theLead?.contacts[0].phoneNumber}}">
@@ -578,8 +591,10 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theLead?.contacts[0].phoneNumber"><a>{{theLead?.contacts[0].phoneNumber}}</a></p>
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theLead?.contacts[0].phoneNumber == null"><a>--</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theLead?.contacts[0].phoneNumber">
+                                <a>{{theLead?.contacts[0].phoneNumber}}</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theLead?.contacts[0].phoneNumber == null">
+                                <a>--</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
@@ -650,15 +665,19 @@
                     <div class="d-flex justify-content-end">
                         <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)">Convert to Deal</button>
                         <div class="dropdown">
-                            <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/images/more-green.svg" alt="">
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)">Junk Lead</a>
-                              <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="reactivateLead(theLead.id)">Reactivate Lead</a>
-                              <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="deleteLead(theLead.id)">Delete Lead</a>
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)">Junk
+                                    Lead</a>
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                    (click)="reactivateLead(theLead.id)">Reactivate Lead</a>
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                    (click)="deleteLead(theLead.id)">Delete Lead</a>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
                 <!-- properties -->
@@ -754,7 +773,7 @@
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
-                                        <select [(ngModel)]="stage"  class="form-control topform">
+                                        <select [(ngModel)]="stage" class="form-control topform">
                                             <option>Lead Stage</option>
                                             <option value="0">Open</option>
                                             <option value="1">Attempting Contact</option>
@@ -773,7 +792,8 @@
                                                     <option value="">+234</option>
                                                 </select>
                                             </div>
-                                            <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber" type="text" class="form-control">
+                                            <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber"
+                                                type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -950,8 +970,8 @@
                                     <div class="col-12 mt-5 pt-5">
                                         <div class="d-flex justify-content-between">
                                             <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
-                                            <div><button class="btn btn-green px-3"
-                                                    (click)="createLead()" data-dismiss="modal">Create</button></div>
+                                            <div><button class="btn btn-green px-3" (click)="createLead()"
+                                                    data-dismiss="modal">Create</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1005,8 +1025,9 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <p class="text-right fw-6 ff-s fs-13 fc-green"><a class="fw-6 ff-s fs-13 fc-green" href="assets/images/Lead_Template.xlsx" download><span class="mr-2"><img
-                            src="assets/images/save.svg" alt=""></span>Download sample file</a></p>
+                        <p class="text-right fw-6 ff-s fs-13 fc-green"><a class="fw-6 ff-s fs-13 fc-green"
+                                href="assets/images/Lead_Template.xlsx" download><span class="mr-2"><img
+                                        src="assets/images/save.svg" alt=""></span>Download sample file</a></p>
                     </div>
                     <!-- <div class="col-12">
                         <p class="m-o fs-14 ff-s fc-black">What do you want to do with the records in this file?</p>
@@ -1032,7 +1053,8 @@
                     </div>
                     <div class="col-12 mt-5 pt-5">
                         <p class="text-right">
-                            <button class="btn btn-blue px-3" (click)="importLeads()" data-dismiss="modal">Import</button>
+                            <button class="btn btn-blue px-3" (click)="importLeads()"
+                                data-dismiss="modal">Import</button>
                         </p>
                     </div>
                 </div>
@@ -1164,7 +1186,8 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-green mr-3" (click)="closenSuccess()" data-toggle="modal" data-target=".new-modal">Add New Lead</button> <button class="btn btn-blue"
+                    <button class="btn btn-green mr-3" (click)="closenSuccess()" data-toggle="modal"
+                        data-target=".new-modal">Add New Lead</button> <button class="btn btn-blue"
                         (click)="closenSuccess()">See All Leads</button>
 
                 </div>
@@ -1193,8 +1216,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-blue"
-                        (click)="closeiSuccess()">See All Leads</button>
+                    <button class="btn btn-blue" (click)="closeiSuccess()">See All Leads</button>
 
                 </div>
             </div>

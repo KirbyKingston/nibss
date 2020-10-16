@@ -134,11 +134,13 @@ export class LeadsService {
   }
 
   addProductToLead(leadId, productId) {
-    const body = new FormData()
-    body.append("leadId", leadId)
-    body.append("productIds", productId)
+    var body = {
+      "leadId": leadId,
+      "productIds": productId
+    }
     return this.http.post(this.baseUrl + 'Products/AddProductsToLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
+
 } 
 
 

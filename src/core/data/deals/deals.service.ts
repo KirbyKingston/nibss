@@ -66,12 +66,16 @@ export class DealsService {
     return this.http.post(this.baseUrl + 'Deals/CreateDeal', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  updateStage(accId, accConId, dealName, id, stage, status) {
+  updateStage(accId, accConId, dealName, dealValue, expCloseDate, estRev, id,probability, stage, status) {
     const body = new FormData()
     body.append("AccountId", accId)
     body.append("AccountContactId", accConId)
     body.append("DealName", dealName)
+    body.append("DealValue", dealValue)
+    body.append("ExpectedClosingDate", expCloseDate)
+    body.append("EstimatedRevenue", estRev)
     body.append("Id", id)
+    body.append("Probability", probability)
     body.append("Stage", stage)
     body.append("Status", status)
 

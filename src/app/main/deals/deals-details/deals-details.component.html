@@ -45,7 +45,7 @@
                                 <div class="d-flex row px-3 justify-content-between">
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Stage</p>
-                                        <select class="clearform" (change)="checkStage()"
+                                        <select class="clearform" (change)="updateStage()"
                                             [(ngModel)]="dealDetails.stage">
                                             <option class="fc-black" value="Negotiation">Negotiation</option>
                                             <option class="fc-black" value="Proposal">Proposal</option>
@@ -198,8 +198,9 @@
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
                                 <div class="d-flex mb-4">
                                     <div class="product mr-2" *ngFor="let product of dealDetails.products.slice(0,2)">
-                                        {{product?.productName}} <span *ngIf="deal?.products.length > 2">+
-                                            {{deal?.products.length - 2}}</span></div>
+                                        {{product?.productName}} </div>
+                                        <span *ngIf="deal?.products.length > 2">+
+                                            {{deal?.products.length - 2}}</span>
                                 </div>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Value (NGN)</p>
                                 <p class="fs-16 fc-black ff-s">
@@ -965,7 +966,7 @@
                     </div>
                     <div class="col-12 mt-3">
                         <p class="text-right ">
-                            <button class="btn btn-blue px-3" (click)="checkDeal()"
+                            <button class="btn btn-blue px-3" (click)="updateDeal()"
                                 data-dismiss="modal">Update</button>
                         </p>
                     </div>

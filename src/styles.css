@@ -166,7 +166,7 @@ a:hover {
     background: url('assets/images/leads.png');
     min-height: 200px;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 
 .emptystate {

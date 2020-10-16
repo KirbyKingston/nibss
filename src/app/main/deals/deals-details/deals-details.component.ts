@@ -115,15 +115,6 @@ export class DealsDetailsComponent implements OnInit {
     this.productService.getAllProducts().subscribe(
       res => {
         this.products = res['payload']
-        // let arrayUsers = res['payload'];
-        // let arr = [];
-        // arrayUsers.forEach(item => {
-        //   arr.push({
-        //     product: item.productName,
-        //     id: item.id
-        //   });
-        // });
-        // this.dropdownList = arr;
       }
     )
   }
@@ -168,78 +159,36 @@ export class DealsDetailsComponent implements OnInit {
       }
     )
   }
-
-  checkStage(){
-    if (this.dealDetails.stage == "Negotiation") {
-      this.dealStage = 0
-    } else if (this.dealDetails.stage == "Proposal") {
-      this.dealStage = 1
-    } else if (this.dealDetails.stage == "Identification") {
-      this.dealStage = 2
-    } else if (this.dealDetails.stage == "Value Proposition") {
-      this.dealStage = 3
-    } else if (this.dealDetails.stage == "Needs Analysis") {
-      this.dealStage = 4
-    } else if (this.dealDetails.stage == "Qualification") {
-      this.dealStage = 5
-    } else if (this.dealDetails.stage == "Won") {
-      this.dealStage = 6
-    } else if (this.dealDetails.stage == "Lost") {
-      this.dealStage = 7
-    } else if (this.dealDetails.stage == "Lost to Competition") {
-      this.dealStage = 8
-    } 
-
-    if (this.dealDetails.status == "Active") {
-      this.dealStatus = 0
-    } else if (this.dealDetails.status == "Inactive") {
-      this.dealStatus = 1
-    }
-
-    console.log(this.dealStage)
-
-    setTimeout(() => {
-      this.updateStage()
-    }, 1000)
-  }
-
-  checkDeal(){
-    if (this.dealDetails.stage == "Negotiation") {
-      this.dealStage = 0
-    } else if (this.dealDetails.stage == "Proposal") {
-      this.dealStage = 1
-    } else if (this.dealDetails.stage == "Identification") {
-      this.dealStage = 2
-    } else if (this.dealDetails.stage == "Value Proposition") {
-      this.dealStage = 3
-    } else if (this.dealDetails.stage == "Needs Analysis") {
-      this.dealStage = 4
-    } else if (this.dealDetails.stage == "Qualification") {
-      this.dealStage = 5
-    } else if (this.dealDetails.stage == "Won") {
-      this.dealStage = 6
-    } else if (this.dealDetails.stage == "Lost") {
-      this.dealStage = 7
-    } else if (this.dealDetails.stage == "Lost to Competition") {
-      this.dealStage = 8
-    } 
-
-    if (this.dealDetails.status == "Active") {
-      this.dealStatus = 0
-    } else if (this.dealDetails.status == "Inactive") {
-      this.dealStatus = 1
-    }
-
-    console.log(this.dealStage)
-
-    setTimeout(() => {
-      this.updateDeal()
-    }, 1000)
-  }
+  
 
   updateStage(){
+    if (this.dealDetails.stage == "Negotiation") {
+      this.dealStage = 0
+    } else if (this.dealDetails.stage == "Proposal") {
+      this.dealStage = 1
+    } else if (this.dealDetails.stage == "Identification") {
+      this.dealStage = 2
+    } else if (this.dealDetails.stage == "Value Proposition") {
+      this.dealStage = 3
+    } else if (this.dealDetails.stage == "Needs Analysis") {
+      this.dealStage = 4
+    } else if (this.dealDetails.stage == "Qualification") {
+      this.dealStage = 5
+    } else if (this.dealDetails.stage == "Won") {
+      this.dealStage = 6
+    } else if (this.dealDetails.stage == "Lost") {
+      this.dealStage = 7
+    } else if (this.dealDetails.stage == "Lost to Competition") {
+      this.dealStage = 8
+    } 
 
-    this.dealService.updateStage(this.dealDetails.account.id, this.dealDetails.account.contacts[0].id, this.dealDetails.dealName, this.dealDetails.id, this.dealStage, this.dealStatus).subscribe(
+    if (this.dealDetails.status == "Active") {
+      this.dealStatus = 0
+    } else if (this.dealDetails.status == "Inactive") {
+      this.dealStatus = 1
+    }
+
+    this.dealService.updateStage(this.dealDetails.account.id, this.dealDetails.account.contacts[0].id, this.dealDetails.dealName, this.dealDetails.dealValue, this.dealDetails.expectedClosingDate, this.dealDetails.estimatedRevenue, this.dealDetails.id, this.dealDetails.probability, this.dealStage, this.dealStatus).subscribe(
       res => {
         this.ssuccess = true;
         this.getDeal()
@@ -248,7 +197,31 @@ export class DealsDetailsComponent implements OnInit {
   }
 
   updateDeal(){
-    
+    if (this.dealDetails.stage == "Negotiation") {
+      this.dealStage = 0
+    } else if (this.dealDetails.stage == "Proposal") {
+      this.dealStage = 1
+    } else if (this.dealDetails.stage == "Identification") {
+      this.dealStage = 2
+    } else if (this.dealDetails.stage == "Value Proposition") {
+      this.dealStage = 3
+    } else if (this.dealDetails.stage == "Needs Analysis") {
+      this.dealStage = 4
+    } else if (this.dealDetails.stage == "Qualification") {
+      this.dealStage = 5
+    } else if (this.dealDetails.stage == "Won") {
+      this.dealStage = 6
+    } else if (this.dealDetails.stage == "Lost") {
+      this.dealStage = 7
+    } else if (this.dealDetails.stage == "Lost to Competition") {
+      this.dealStage = 8
+    } 
+
+    if (this.dealDetails.status == "Active") {
+      this.dealStatus = 0
+    } else if (this.dealDetails.status == "Inactive") {
+      this.dealStatus = 1
+    }
     this.dealService.updateDeal(this.dealDetails.account.id, this.dealDetails.account.contacts[0].id, this.dealDetails.dealName, this.dealDetails.dealValue, this.dealDetails.expectedClosingDate, this.dealDetails.estimatedRevenue, this.dealDetails.id, this.owner, this.dealDetails.probability, this.dealStage, this.dealStatus ).subscribe(
       res => {
         this.usuccess = true;

@@ -217,7 +217,8 @@
                                         <div class="littleorange"></div>
                                         <div class="py-4">
                                             <p class="text-center m-0">
-                                                <button class="btn btn-out-green">
+                                                <button class="btn btn-out-green" data-toggle="modal"
+                                                data-target=".email-modal">
                                                     <img src="assets/images/message-green.svg" class="mr-2" alt="">
                                                     Compose Mail
                                                 </button>
@@ -261,7 +262,7 @@
                                         </div>
                                     </div>
                                     <!-- messages -->
-                                </div>
+                                </div> 
                             </div>
                             <div class="tab-pane fade" id="activity" role="tabpanel">
                                 <div class="mails">
@@ -533,7 +534,7 @@
                             </svg>
                         </a>
                         
-                        <a class="nav-link" href="#" data-toggle="tab" href="#attachments" role="tab">
+                        <!-- <a class="nav-link" href="#" data-toggle="tab" href="#attachments" role="tab">
 
                             <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -614,10 +615,127 @@
                             </svg>
 
 
-                        </a>
+                        </a> -->
                     </nav>
                 </div>
                 <!-- sidetab -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg email-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Compose A Mail
+                                </p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                To
+                            </div>
+                            <input type="text" [(ngModel)]="to" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                CC
+                            </div>
+                            <input type="text" [(ngModel)]="cc" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                BCC
+                            </div>
+                            <input type="text" [(ngModel)]="bcc" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                Subject
+                            </div>
+                            <input type="text" [(ngModel)]="subject" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="bodymail">
+                            <div class="row no-gutters">
+                                <div class="col-lg-8 px-4 py-3">
+                                    <textarea cols="30" rows="10" [(ngModel)]="body"
+                                        class="form-control compose"></textarea>
+                                </div>
+                                <div class="col-lg-4 border-left px-2 py-3">
+                                    <p class="fs-15 fc-black ff-s fw-5">Attach Files</p>
+                                    <div class="uploadfile" (click)="fileInput.click()" appDragDrop
+                                        (onFileDropped)="uploadFile($event)">
+                                        <img src="assets/images/cloud_download_black.svg" alt="">
+                                        <p class="text-center fs-13 ff-s fw-4 mt-4">Drop files to attach or click</p>
+                                        <p class="py-5 text-center">
+                                            <button class="btn btn-blue px-3" (click)="fileInput.click()">Upload
+                                                Files</button>
+                                        </p>
+
+                                        <input hidden type="file" multiple #fileInput
+                                            (change)="uploadFile($event.target.files)">
+
+                                    </div>
+                                </div>
+                                <div class="col-12 bottom py-2 px-4">
+                                    <button class="btn btn-blue" (click)="sendMail()" data-dismiss="modal">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="success-div" *ngIf="esuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your email has been<br>
+                            sent
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-email.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closeeSuccess()">Done</button>
+                </div>
             </div>
         </div>
     </div>

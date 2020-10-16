@@ -34,3 +34,6 @@
 #content{
     margin-top: +110px;
 }
+.container{
+    min-width: 85vw;
+}

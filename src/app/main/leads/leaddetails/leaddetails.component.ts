@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery'
 import { AuthDataService } from 'src/core/data/authentication/auth-data.service';
 import { LeadsService } from 'src/core/data/leads/leads.service';
+import { ProductsService } from 'src/core/data/products/products.service';
 @Component({
   selector: 'app-leaddetails',
   templateUrl: './leaddetails.component.html',
@@ -31,11 +32,16 @@ export class LeaddetailsComponent implements OnInit {
   insType: any = '';
   leadStatus: any = '';
   leadStage: any = '';
-  constructor(private location: Location, private route: ActivatedRoute, private leadService: LeadsService, private authService: AuthDataService) { }
+  products: any;
+  comName:any = '';
+  theProduct: any = '';
+  addedPs: Array<{}> = [];
+  constructor(private location: Location, private route: ActivatedRoute, private leadService: LeadsService, private authService: AuthDataService, private productService:ProductsService) { }
   ngOnInit() {
     this.getId();
     this.getLead();
     this.getUsers();
+    this.getProducts();
 
     $('.showinfo').click(function () {
       $('#information').show(300);
@@ -47,6 +53,48 @@ export class LeaddetailsComponent implements OnInit {
       $('.showinfo').show(0);
       $('.hideinfo').hide(0);
     });
+
+    $('.showinfo').click(function () {
+      $('#information').show(300);
+      $('.showinfo').hide(0);
+      $('.hideinfo').show(0); 
+    });
+    $('.hideinfo').click(function () {
+      $('#information').hide(300);
+      $('.showinfo').show(0);
+      $('.hideinfo').hide(0);
+    });
+
+    
+    $("input.money").keyup(function(event) {
+      if (event.which >= 37 && event.which <= 40) {
+        event.preventDefault();
+      }
+      var $this = $(this);
+      var num = $this
+        .val()
+        .replace(/,/gi, "")
+        .split("")
+        .reverse()
+        .join("");
+
+      var num2 = RemoveRougeChar(
+        num
+          .replace(/(.{3})/g, "$1,")
+          .split("")
+          .reverse()
+          .join("")
+      );
+      $this.val(num2);
+    });
+
+    function RemoveRougeChar(convertString) {
+      if (convertString.substring(0, 1) == ",") {
+        return convertString.substring(1, convertString.length);
+      }
+      return convertString;
+    }
+
   }
 
   uploadFile(e: FileList) {
@@ -59,6 +107,13 @@ export class LeaddetailsComponent implements OnInit {
   }
   backClicked() {
     this.location.back();
+  }
+  getProducts() {
+    this.productService.getAllProducts().subscribe(
+      res => {
+        this.products = res['payload']
+      }
+    )
   }
 
   getId() {
@@ -127,6 +182,25 @@ export class LeaddetailsComponent implements OnInit {
       }
     )
   }
+  addProductTodeal(id){
+    this.theProduct = parseInt(this.theProduct)
+    this.addedPs.push(this.theProduct)
+    this.leadService.addProductToLead(id, this.addedPs).subscribe(
+      res => {
+        this.getLead()
+        this.theProduct = '';
+      }
+    )
+  }
+  addCompetition(id){
+    this.leadService.addCompetitor(id, this.comName).subscribe(
+      res => {
+        console.log(res)
+        this.comName = ""
+        this.getLead()
+      }
+    )
+  }
 
   updateStatus() {
     if (this.leadDetails.institutionType == "Others") {
@@ -189,6 +263,7 @@ export class LeaddetailsComponent implements OnInit {
     this.leadService.updateLead(this.leadDetails.companyName, this.disImage, this.leadDetails.estimatedTransactionValue, this.leadDetails.facebook, this.leadDetails.id, this.leadDetails.instagram, this.leadDetails.institutionType, this.leadDetails.ownerId, this.leadDetails.phoneNumber, this.leadDetails.source, this.leadDetails.stage, this.leadDetails.status, this.leadDetails.transactionVolume, this.leadDetails.twitter, this.leadDetails.website, this.leadDetails.yearEstablished).subscribe(
       res => {
         this.usuccess = true;
+        this.getLead()
       }
     )
   }

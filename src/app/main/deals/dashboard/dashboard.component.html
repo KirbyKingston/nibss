@@ -467,12 +467,13 @@
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
                                             </div>
                                             <div class="col-10 mb-1">
-                                                <div class="d-flex">
+                                                <div class="d-flex row px-3">
                                                     <div class="product mr-2" (click)="openProduct(product.id)"
                                                         *ngFor="let product of aDeal.products.slice(0,2)">
-                                                        {{product?.productName}} <span
+                                                        {{product?.productName}} </div>
+                                                        <div
                                                             *ngIf="aDeal?.products.length > 2">+
-                                                            {{aDeal?.products.length - 2}}</span></div>
+                                                            {{aDeal?.products.length - 2}}</div>
                                                 </div>
                                             </div>
                                         </div>

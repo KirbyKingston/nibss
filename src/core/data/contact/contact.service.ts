@@ -70,4 +70,16 @@ export class ContactService {
     body.append("DocumentTypes", docTypes)
     return this.http.put(this.baseUrl + 'Accounts​/UpdateAccount', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
+
+  sendEmail(bcc, message, cc, to, subject){
+    const body = new FormData()
+    body.append("Bcc", bcc)
+    body.append("Body", message)
+    body.append("Cc", cc)
+    body.append("RecipientEmail", to)
+    body.append("Subject", subject)
+    // body.append("Documents", instagram)
+    // body.append("DocumentTypes", instagram)
+    return this.http.post(this.baseUrl + 'Emails/SendEmail', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
 }

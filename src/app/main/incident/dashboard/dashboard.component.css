@@ -79,3 +79,14 @@
 
     background: #D18700;
 }
+
+.product {
+    background: #E2E2E2;
+    border-radius: 2px;
+    height: 23px;
+    padding: 2px 4px;
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 19px;
+    color: #0A1128;
+}

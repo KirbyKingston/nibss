@@ -78,4 +78,67 @@ export class LeadsService {
     body.append("ProductIds", products)
     return this.http.post(this.baseUrl + 'Leads/CreateLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
+
+  updateStatus(companyName, id, institutionType, stage, status) {
+    const body = new FormData()
+    body.append("CompanyName", companyName)
+    body.append("Id", id)
+    body.append("InstitutionType", institutionType)
+    body.append("Stage", stage)
+    body.append("Status", status)
+    return this.http.put(this.baseUrl + 'Leads/UpdateLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+  updateLead(companyName, image, estTransVal, facebook, id, instagram, institutionType, ownerId, oPhone, source, stage, status, transVol, twitter, website, yearsEstablished) {
+    const body = new FormData()
+    body.append("CompanyName", companyName)
+    body.append("DisplayImage", image)
+    body.append("EstimatedTransactionValue", estTransVal)
+    body.append("Facebook", facebook)
+    body.append("Id", id)
+    body.append("Instagram", instagram)
+    body.append("InstitutionType", institutionType)
+    body.append("OwnerId", ownerId)
+    body.append("PhoneNumber", oPhone)
+    body.append("Source", source)
+    body.append("Stage", stage)
+    body.append("Status", status)
+    body.append("TransactionVolume", transVol)
+    body.append("Twitter", twitter)
+    body.append("Website", website)
+    body.append("YearEstablished", yearsEstablished)
+    return this.http.put(this.baseUrl + 'Leads/UpdateLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  
+  addNote(id, message){
+    var body = {"message": message}
+    return this.http.post(this.baseUrl + 'Notes/AddNoteToLead/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  
+  }
+
+  sendEmail(bcc, message, cc, to, subject){
+    const body = new FormData()
+    body.append("Bcc", bcc)
+    body.append("Body", message)
+    body.append("Cc", cc)
+    body.append("RecipientEmail", to)
+    body.append("Subject", subject)
+    // body.append("Documents", instagram)
+    // body.append("DocumentTypes", instagram)
+    return this.http.post(this.baseUrl + 'Emails/SendEmail', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  addCompetitor(id, name) {
+    var body = { "name": name }
+    return this.http.post(this.baseUrl + 'Competitors/AddCompetitorToLead/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  addProductToLead(leadId, productId) {
+    const body = new FormData()
+    body.append("leadId", leadId)
+    body.append("productIds", productId)
+    return this.http.post(this.baseUrl + 'Products/AddProductsToLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
 } 
+
+

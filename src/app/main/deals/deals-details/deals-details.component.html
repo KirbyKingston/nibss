@@ -10,7 +10,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a>Deals</a></li>
-                                <li class="breadcrumb-item"><a>{{dealDetails?.account.accountName}}</a></li>
+                                <li class="breadcrumb-item"><a>{{dealDetails?.dealName}}</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -36,9 +36,8 @@
                                         <p class="mb-0 ff-p fs-18 text-white fw-6">{{dealDetails?.account.accountName}}
                                         </p>
                                         <p class="fc-lightwhite fs-15 ff-s fw-6 m-0"><span class="mr-2"><img
-                                                    src="assets/images/loyalty.svg"
-                                                    alt="">
-                                                </span>NGN{{dealDetails?.dealValue}}</p>
+                                                    src="assets/images/loyalty.svg" alt="">
+                                            </span>NGN{{dealDetails?.dealValue}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -46,12 +45,27 @@
                                 <div class="d-flex row px-3 justify-content-between">
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Stage</p>
-                                        <p class="fs-15 text-white ff-s fw-6">{{dealDetails?.stage}}</p>
+                                        <select class="clearform" (change)="checkStage()"
+                                            [(ngModel)]="dealDetails.stage">
+                                            <option class="fc-black" value="Negotiation">Negotiation</option>
+                                            <option class="fc-black" value="Proposal">Proposal</option>
+                                            <option class="fc-black" value="Identification">Identification</option>
+                                            <option class="fc-black" value="Value Proposition">Value Proposition</option>
+                                            <option class="fc-black" value="Needs Analysis">Needs Analysis</option>
+                                            <option class="fc-black" value="Qualification">Qualification</option>
+                                            <option class="fc-black" value="Won">Won</option>
+                                            <option class="fc-black" value="Lost">Lost</option>
+                                            <option class="fc-black" value="Lost to Competition">Lost to Competition
+                                            </option>
+                                        </select>
+                                        <!-- <p class="fs-15 text-white ff-s fw-6">{{dealDetails?.stage}}</p> -->
                                     </div>
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Probability(%)</p>
-                                        <p class="fs-15 text-white ff-s fw-6" *ngIf="dealDetails?.probability">{{dealDetails?.probability}}</p>
-                                        <p class="fs-15 text-white ff-s fw-6" *ngIf="dealDetails?.probability == null">-</p>
+                                        <p class="fs-15 text-white ff-s fw-6" *ngIf="dealDetails?.probability">
+                                            {{dealDetails?.probability}}</p>
+                                        <p class="fs-15 text-white ff-s fw-6" *ngIf="dealDetails?.probability == null">-
+                                        </p>
                                     </div>
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Expected Income</p>
@@ -59,7 +73,8 @@
                                     </div>
                                     <div>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Expected Closing Date</p>
-                                        <p class="fs-15 text-white ff-s fw-6">{{dealDetails?.expectedClosingDate}}</p>
+                                        <p class="fs-15 text-white ff-s fw-6">
+                                            {{dealDetails?.expectedClosingDate | date: 'mediumDate'}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -86,13 +101,13 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <div class="prop-initials">
-                                    {{dealDetails?.account.contacts[0].firstName.substring(0,1)}}
+                                    {{dealDetails?.accountContact.firstName.substring(0,1)}}
                                 </div>
                             </div>
-                            <div class="pt-2">
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{dealDetails?.account.contacts[0].firstName}}
-                                    {{dealDetails?.account.contacts[0].lastName}}</p>
-                                <p class="fs-12 ff-s fc-lightblack">{{dealDetails?.account.contacts[0].designation}}</p>
+                            <div class="">
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{dealDetails?.accountContact.firstName}}
+                                    {{dealDetails?.accountContact.lastName}}</p>
+                                <p class="fs-12 ff-s fc-lightblack">{{dealDetails?.accountContact.designation}}</p>
                             </div>
                             <div>
                                 <a>
@@ -161,7 +176,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a>
+                                        <a data-toggle="modal" data-target=".new-modal">
                                             <img src="assets/images/Edit.svg" alt="">
                                         </a>
                                     </div>
@@ -198,23 +213,24 @@
                             <div class="col-lg-6">
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Deal Name</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    UBA
+                                    {{dealDetails?.dealName}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Contact Person</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    Adebayo Adeyemi
+                                    {{dealDetails?.accountContact.firstName}}
+                                    {{dealDetails?.accountContact.lastName}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Stage </p>
                                 <p class="fs-16 fc-black ff-s">
-                                    Negotiation/Review
+                                    {{dealDetails?.stage}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Estimated Income (NGN) </p>
                                 <p class="fs-16 fc-black ff-s">
-                                    27 Million
+                                    {{dealDetails?.estimatedRevenue}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Estimated Close Date </p>
                                 <p class="fs-16 fc-black ff-s">
-                                    August 31st, 2020
+                                    {{dealDetails?.expectedClosingDate | date: 'mediumDate'}}
                                 </p>
 
                             </div>
@@ -359,83 +375,8 @@
                 <div class="col-10 pr-0">
                     <div class="py-3">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="mail" role="tabpanel">
-                                <div class="mail">
-                                    <div class="px-3">
-                                        <div class="d-flex mb-2">
-                                            <div>
-                                                <p class="m-0 fs-16 fc-green ff-p">Mail</p>
-                                            </div>
-                                        </div>
-                                        <div class="orangeline"></div>
-                                        <div class="littleorange"></div>
-                                        <div class="py-4">
-                                            <p class="text-center m-0">
-                                                <button class="btn btn-out-green">
-                                                    <img src="assets/images/message-green.svg" class="mr-2" alt="">
-                                                    Compose Mail
-                                                </button>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="px-3 mb-3">
-                                        <ul class="nav nav-tabs mail align-items-center" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active p-0 mr-5" data-toggle="tab" href="#sent"
-                                                    role="tab">Sent</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link p-0 " data-toggle="tab" href="#received" role="tab">
-                                                    Received
-                                                    <div class="badge badge-secondary fc-darkblue">1</div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="sent" role="tabpanel"
-                                            aria-labelledby="nav-home-tab">
-                                            <!-- messages -->
-                                            <div class="messages">
-                                                <div class="message p-3">
-                                                    <div class="d-flex">
-                                                        <div class="mr-2">
-                                                            <img src="assets/images/msg.svg" alt="">
-                                                        </div>
-                                                        <div>
-                                                            <p class="fs-13 fw-4 fc-lightblack">
-                                                                Try sending an outgoing email - click on the reply arrow
-                                                                and use an Email Template. <span
-                                                                    class="fw-7 fc-green"><a>Read More</a></span>
-                                                            </p>
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div>
-                                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun
-                                                                        Wey</p>
-                                                                </div>
-                                                                <div>
-                                                                    <a><img src="assets/images/reply.svg" alt=""></a>
-                                                                </div>
-                                                            </div>
-                                                            <p class="fc-lightblack ff-s fs-11 fw-3">
-                                                                <span class="mr-3"><i>27th Aug 2020</i></span>
-                                                                <span>
-                                                                    <i>12:30PM</i>
-                                                                </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- messages -->
-                                        </div>
-                                        <div class="tab-pane fade" id="received" role="tabpanel"
-                                            aria-labelledby="nav-profile-tab">...</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="activity" role="tabpanel">
+
+                            <div class="tab-pane fade " id="activity" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -468,7 +409,7 @@
                                                     <option value="">A</option>
                                                 </select>
                                             </div>
-                                            <div class="col-12 mb-3">
+                                            <!-- <div class="col-12 mb-3">
                                                 <label for="" class="fc-lightblack fs-15 ff-s">Key Highlights</label>
                                                 <textarea name="" id="" cols="6"
                                                     class="form-control detail-form"></textarea>
@@ -476,11 +417,51 @@
                                             <div class="col-lg-12 mb-3">
                                                 <label for="" class="fc-lightblack fs-15 ff-s">Action Points</label>
                                                 <input type="text" class="form-control detail-form">
-                                            </div>
+                                            </div> -->
                                             <div class="col-12 mt-2">
                                                 <p class="text-right">
                                                     <button class="btn btn-blue">Create</button>
                                                 </p>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="d-flex">
+                                                    <div class="mr-2">
+                                                        <img src="assets/images/activity.svg" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <p class="m-0 fs-16 fc-green fw-6">Activities</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12" *ngIf="dealDetails?.activities > 0">
+                                                <div class="message p-3"
+                                                    *ngFor="let activity of dealDetails?.activities">
+                                                    <p class="m-0 fs-12 fw-5 ff-s">{{activity?.subject}}</p>
+                                                    <p class="fs-13 fw-4 fc-lightblack">
+                                                        {{activity?.description}}. <span class="fw-7 fc-green"><a>Read
+                                                                More</a></span>
+                                                    </p>
+                                                    <div class="d-flex">
+
+                                                        <div class="ml-auto">
+
+                                                            <p class="fc-lightblack ff-s fs-11 fw-3">
+                                                                <span
+                                                                    class="mr-3"><i>{{activity?.date | date}}</i></span>
+                                                                <span>
+                                                                    <i>{{activity?.date | date:'shortTime'}}</i>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12" *ngIf="dealDetails?.activities == 0">
+                                                <div class="emptystate2">
+                                                    <p class="text-center fs-15 ff-s fc-black fw-4">
+                                                        There are no activities
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -503,35 +484,31 @@
                                             </div>
                                             <div class="col-12 mb-3">
                                                 <label for="" class="fc-lightblack fs-15 ff-s">Company Name</label>
-                                                <input type="text" class="form-control detail-form">
+                                                <input type="text" [(ngModel)]="comName" class="form-control detail-form">
                                             </div>
-                                            <div class="col-12 mb-3">
-                                                <label for="" class="fc-lightblack fs-15 ff-s">Competing
-                                                    Products</label>
-                                                <input type="text" class="form-control detail-form">
-                                            </div>
+                                            
 
 
                                             <div class="col-12 mt-2">
                                                 <p class="text-right">
-                                                    <button class="btn btn-blue">Add</button>
+                                                    <button class="btn btn-blue" (click)="addCompetition(dealDetails.id)">Add</button>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="message p-3">
-                                            <div class="d-flex">
+                                        <div class="message p-3" *ngFor="let competitor of dealDetails?.competitors">
+                                            <div class="d-flex align-items-center">
                                                 <div class="mr-2">
                                                     <img src="assets/images/company.svg" alt="">
                                                 </div>
                                                 <div>
-                                                    <p class="mb-1 fc-black fs-15 fw-6 ff-s">Company XYZ</p>
-                                                    <p class="fs-13 fw-4 fc-lightblack">XCash</p>
+                                                    <p class="mb-1 fc-black fs-15 fw-6 ff-s">{{competitor?.name}}</p>
+                                                    <!-- <p class="fs-13 fw-4 fc-lightblack">XCash</p>
                                                     <p class="fw-6 m-0 fc-black ff-s fs-13">by Temitope Ajala</p>
                                                     <p class="fc-lightblack ff-s fs-13 fw-3">
                                                         <i>a few seconds ago</i>
-                                                    </p>
+                                                    </p> -->
 
                                                 </div>
                                             </div>
@@ -539,7 +516,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade" id="product" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -554,30 +531,31 @@
                                                 <p class="m-0 fs-16 fw-6 ff-s">Add Product</p>
                                             </div>
                                             <div class="col-12 mb-3">
-                                                <label for="" class="fc-lightblack fs-15 ff-s">Enter Product
-                                                    Name</label>
-                                                <input type="text" class="form-control detail-form">
+                                                <label for="" class="fc-lightblack fs-15 ff-s">Select Product</label>
+                                                    <select class="form-control detail-form" [(ngModel)]="theProduct">
+                                                        <option *ngFor="let prod of products" value="{{prod.id}}">{{prod.productName}}</option>
+                                                    </select>
                                             </div>
 
 
                                             <div class="col-12 mt-2">
                                                 <p class="text-right">
-                                                    <button class="btn btn-blue">Add</button>
+                                                    <button class="btn btn-blue" (click)="addProductTodeal(dealDetails.id)">Add</button>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="message p-3">
+                                        <div class="message p-3" *ngFor="let prod of dealDetails?.products">
                                             <div class="d-flex">
                                                 <div class="mr-2">
                                                     <img src="assets/images/product.svg" alt="">
                                                 </div>
                                                 <div>
-                                                    <p class="mb-1 fc-black fs-15 fw-6 ff-s">NIP</p>
-                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">by Temitope Ajala</p>
+                                                    <p class="mb-1 fc-black fs-15 fw-6 ff-s">{{prod?.productName}}</p>
+                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">by {{prod?.managerName}}</p>
                                                     <p class="fc-lightblack ff-s fs-13 fw-3">
-                                                        <i>a few seconds ago</i>
+                                                        <i>{{prod?.dateCreated | date:'mediumDate'}}</i>
                                                     </p>
 
                                                 </div>
@@ -586,7 +564,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade" id="calendar" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -631,7 +609,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade" id="attachments" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -671,18 +649,17 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="message p-3">
+                                        <div class="message p-3" *ngFor="let doc of dealDetails?.documents">
                                             <div class="d-flex">
                                                 <div class="mr-2">
                                                     <img src="assets/images/filelog.svg" alt="">
                                                 </div>
                                                 <div>
-                                                    <p class="mb-1 fc-black fs-15 fw-6 ff-s">Document_ Sample.PDF <span
-                                                            class="float-right">2kb</span></p>
-                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">by Temitope Ajala</p>
-                                                    <p class="fc-lightblack ff-s fs-13 fw-3">
+                                                    <p class="mb-1 fc-black fs-15 fw-6 ff-s">{{doc?.document.name}}</p>
+                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">{{doc?.documentType}}</p>
+                                                    <!-- <p class="fc-lightblack ff-s fs-13 fw-3">
                                                         <i>a few seconds ago</i>
-                                                    </p>
+                                                    </p> -->
 
                                                 </div>
                                             </div>
@@ -690,7 +667,71 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+                            <div class="tab-pane fade show active" id="note" role="tabpanel">
+                                <div class="mail">
+                                    <div class="px-3">
+                                        <div class="d-flex mb-2">
+                                            <div>
+                                                <p class="m-0 fs-16 fc-green ff-p">Notes</p>
+                                            </div>
+                                        </div>
+                                        <div class="orangeline"></div>
+                                        <div class="littleorange"></div>
+                                        <div class="row pt-3">
+                                            <div class="col-12 mb-3">
+                                                <p class="m-0 fs-16 fw-6 ff-s">Create Note</p>
+                                            </div>
+                                            <div class="col-12 mb-3">
+
+                                                <textarea [(ngModel)]="noteMessage" cols="30" rows="10"
+                                                    class="form-control detail-form"></textarea>
+                                            </div>
+
+
+                                            <div class="col-12 mt-2">
+                                                <p class="text-right">
+                                                    <button class="btn btn-blue"
+                                                        (click)="createNote(dealDetails.id)">Create</button>
+                                                </p>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="m-0 fs-16 fc-green fw-6">Note Log</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="message p-3" *ngFor="let note of dealDetails?.notes">
+                                            <div class="d-flex">
+                                                <div class="mr-2">
+                                                    <img src="assets/images/msg.svg" alt="">
+                                                </div>
+                                                <div>
+                                                    <p class="fs-13 fw-4 fc-lightblack">
+                                                        {{note?.message}}.
+                                                         <!-- <span class="fw-7 fc-green"><a>Read
+                                                                More</a></span> -->
+                                                    </p>
+                                                    <!-- <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun
+                                                                Wey</p>
+                                                        </div>
+                                                        <div>
+                                                            <a><img src="assets/images/reply.svg" alt=""></a>
+                                                        </div>
+                                                    </div> -->
+                                                    <p class="fc-lightblack ff-s fs-11 fw-3">
+                                                        <span class="mr-3"><i>{{note?.creationTime | date}}</i></span>
+                                                        <span>
+                                                            <i>{{note?.creationTime | date:'shortTime'}}</i>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -699,14 +740,8 @@
                 <!-- sidetab -->
                 <div class="col-2 bg-white px-0 pt-5">
                     <nav class="nav icons-nav flex-column pt-5">
-                        <a class="nav-link active" data-toggle="tab" href="#mail" role="tab">
-                            <svg width="20" height="17" viewBox="0 0 20 17" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M20 2.55837C20 1.46064 19.1 0.5625 18 0.5625H2C0.9 0.5625 0 1.46064 0 2.55837V14.5336C0 15.6313 0.9 16.5294 2 16.5294H18C19.1 16.5294 20 15.6313 20 14.5336V2.55837ZM18 2.55837L10 7.53805L2 2.55837H18ZM10 9.5439L2 4.55423V14.5336H18V4.55423L10 9.5439Z" />
-                            </svg>
-                        </a>
-                        <a class="nav-link" data-toggle="tab" href="#" role="tab">
+
+                        <a class="nav-link active" data-toggle="tab" href="#note" role="tab">
                             <svg width="18" height="19" viewBox="0 0 18 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g id="notes 1" clip-path="url(#clip0)">
@@ -821,7 +856,7 @@
                                 </g>
                             </svg>
                         </a>
-                        <a class="nav-link" href="#" data-toggle="tab" href="#calendar" role="tab">
+                        <!-- <a class="nav-link" href="#" data-toggle="tab" href="#calendar" role="tab">
 
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -830,10 +865,241 @@
                             </svg>
 
 
-                        </a>
+                        </a> -->
                     </nav>
                 </div>
                 <!-- sidetab -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg new-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Edit Deal
+                                </p>
+                                <p class="fs-16 ff-s fc-lightblack">Edit Deal Information</p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <label class="fs-16 ff-p fc-black">Select Account</label>
+                        <select class="form-control topform" [(ngModel)]="account">
+                            <option value="{{account.id}}" *ngFor="let account of accounts">{{account.accountName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <label class="fs-16 ff-p fc-black">Deal Owner</label>
+                        <select class="form-control topform" [(ngModel)]="owner">
+                            <option value="{{account.id}}" *ngFor="let account of users">{{account.fullName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <label class="fs-16 ff-p fc-black">Contact Person</label>
+                        <select class="form-control topform" [(ngModel)]="contact">
+                            <option value="{{account.id}}" *ngFor="let account of contacts">{{account.firstName}}
+                                {{account.lastName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-12 mt-4 mb-3">
+                        <p class="fc-green ff-p fs-18 fw-6 m-0">
+                            Deal Information
+                        </p>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Name</label>
+                        <input type="text" class="form-control botform" [(ngModel)]="dealDetails.dealName">
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Stage</label>
+                        <select class="form-control botform" [(ngModel)]="dealDetails.stage">
+                            <option class="fc-black" value="Negotiation">Negotiation</option>
+                            <option class="fc-black" value="Proposal">Proposal</option>
+                            <option class="fc-black" value="Identification">Identification</option>
+                            <option class="fc-black" value="Value Proposition">Value Proposition</option>
+                            <option class="fc-black" value="Needs Analysis">Needs Analysis</option>
+                            <option class="fc-black" value="Qualification">Qualification</option>
+                            <option class="fc-black" value="Won">Won</option>
+                            <option class="fc-black" value="Lost">Lost</option>
+                            <option class="fc-black" value="Lost to Competition">Lost to Competition
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Value (NGN)</label>
+                        <input type="text" class="form-control botform money" [(ngModel)]="dealDetails.dealValue">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
+                        <input type="text" class="form-control botform money" [(ngModel)]="dealDetails.estimatedRevenue">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>
+                        <input type="text" class="form-control botform" [(ngModel)]="dealDetails.probability">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Deal Status</label>
+                        <select class="form-control botform" [(ngModel)]="dealDetails.status">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Estimated Close Date</label>
+                        <input type="date" class="form-control botform" [(ngModel)]="dealDetails.expectedClosingDate">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <p class="text-right ">
+                            <button class="btn btn-blue px-3" (click)="checkDeal()"
+                                data-dismiss="modal">Update</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="success-div" *ngIf="esuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your email has been<br>
+                            sent
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-email.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closeeSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="ssuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your deal stage has been updated successfully
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closesSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="usuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your deal has been updated successfully
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closeuSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="csuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your deal has been
+                            converted
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closecSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="success-div" *ngIf="jsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your deal has been
+                            Junked
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-junk.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closejSuccess()">Done</button>
+                </div>
             </div>
         </div>
     </div>

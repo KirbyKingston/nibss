@@ -28,7 +28,7 @@ export class DealsService {
     return this.http.delete(this.baseUrl + 'Deals/DeleteDeal/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  ConvertDealToJunk(deal) { 
+  ConvertDealToJunk(deal) {
     return this.http.post(this.baseUrl + 'Deals/JunkDeals', deal, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
@@ -42,12 +42,12 @@ export class DealsService {
   importDeal(doc) {
     const body = new FormData()
     // body.append("Option", option)
-    body.append("Document", doc) 
+    body.append("Document", doc)
 
     return this.http.post(this.baseUrl + 'Deals/ImportDealsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  createDeal(accId, accConId,dealName,dealVal,exClosingDate, estRev, ownerId, probabilty, stage, status, notes, prodId){
+  createDeal(accId, accConId, dealName, dealVal, exClosingDate, estRev, ownerId, probabilty, stage, status, notes, prodId) {
     const body = new FormData()
     body.append("AccountId", accId)
     body.append("AccountContactId", accConId)
@@ -66,26 +66,62 @@ export class DealsService {
     return this.http.post(this.baseUrl + 'Deals/CreateDeal', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  updateDeal(accName, image, estTransVal, facebook, id, instagram, institutionType, ownerId, phone, transVol, twitter, web, yearEs, addresses, cons, notes, docs, docTypes) {
+  updateStage(accId, accConId, dealName, id, stage, status) {
     const body = new FormData()
-    body.append("AccountName", accName)
-    body.append("DisplayImage", image)
-    body.append("EstimatedTransactionValue", estTransVal)
-    body.append("Facebook", facebook)
+    body.append("AccountId", accId)
+    body.append("AccountContactId", accConId)
+    body.append("DealName", dealName)
     body.append("Id", id)
-    body.append("Instagram", instagram)
-    body.append("InstitutionType", institutionType)
-    body.append("OwnerId", ownerId) 
-    body.append("PhoneNumber", phone)
-    body.append("TransactionVolume", transVol)
-    body.append("Twitter", twitter)
-    body.append("Website", web)
-    body.append("YearEstablished", yearEs)
-    body.append("Addresses", addresses)
-    body.append("Contacts", cons)
-    body.append("Notes", notes)
-    // body.append("Documents", docs)
-    // body.append("DocumentTypes", docTypes)
-    return this.http.put(this.baseUrl + 'Accounts​/UpdateAccount', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    body.append("Stage", stage)
+    body.append("Status", status)
+
+    return this.http.put(this.baseUrl + 'Deals/UpdateDeal', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+  updateDeal(accId, accConId, dealName, dealValue, expCloseDate, estRev, id, ownerId, probability, stage, status) {
+    const body = new FormData()
+    body.append("AccountId", accId)
+    body.append("AccountContactId", accConId)
+    body.append("DealName", dealName)
+    body.append("DealValue", dealValue)
+    body.append("ExpectedClosingDate", expCloseDate)
+    body.append("EstimatedRevenue", estRev)
+    body.append("Id", id)
+    body.append("OwnerId", ownerId)
+    body.append("Probability", probability)
+    body.append("Stage", stage)
+    body.append("Status", status)
+
+    return this.http.put(this.baseUrl + 'Deals/UpdateDeal', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  addNote(id, message) {
+    var body = { "message": message }
+    return this.http.post(this.baseUrl + 'Notes/AddNoteToDeal/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+
+  }
+
+  sendEmail(bcc, message, cc, to, subject) {
+    const body = new FormData()
+    body.append("Bcc", bcc)
+    body.append("Body", message)
+    body.append("Cc", cc)
+    body.append("RecipientEmail", to)
+    body.append("Subject", subject)
+    // body.append("Documents", instagram)
+    // body.append("DocumentTypes", instagram)
+    return this.http.post(this.baseUrl + 'Emails/SendEmail', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  addCompetitor(id, name) {
+    var body = { "name": name }
+    return this.http.post(this.baseUrl + 'Competitors/AddCompetitorToDeal/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+  addProductToDeal(dealId, productId) {
+    var body = {
+      "dealId": dealId,
+      "productIds": productId
+    }
+
+    return this.http.post(this.baseUrl + 'Products/AddProductsToDeal', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 }

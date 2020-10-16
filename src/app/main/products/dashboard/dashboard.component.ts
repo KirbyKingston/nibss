@@ -16,14 +16,17 @@ export class DashboardComponent implements OnInit {
   myProduct: any = [];
   junkProduct: any = [];
   theProduct: any;
-  cLeads: Array<{}> = [];
+  cProducts: Array<{}> = [];
   isSelected: boolean = false;
   users: any;
   productLogo: any;
   documents: any;
   files:any;
+  jsuccess: boolean = false;
   isuccess:boolean = false;
   nsuccess: boolean = false;
+  rsuccess: boolean = false;
+  dsuccess: boolean = false;
   constructor(private productService: ProductsService, private router: Router, private authService:AuthDataService, private notification: NotificationService) { }
 
   ngOnInit() {
@@ -153,11 +156,57 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  junkaProduct(id) {
+    this.cProducts = [];
+    this.cProducts.push(id)
+    this.productService.ConvertProductToJunk(this.cProducts).subscribe(
+      res => {
+        this.jsuccess = true;
+        this.getAllProducts()
+        this.getMyProduct()
+        this.getJunkProduct()
+      }
+    )
+  }
+  reactivateProduct(id) {
+    this.cProducts = [];
+    this.cProducts.push(id)
+    this.productService.reactivateProduct(this.cProducts).subscribe(
+      res => {
+        this.rsuccess = true;
+        this.getAllProducts()
+        this.getMyProduct()
+        this.getJunkProduct()
+      }
+    )
+  }
+  deleteProduct(id) {
+    this.productService.deleteProduct(id).subscribe(
+      res => {
+        this.dsuccess = true;
+        this.getAllProducts()
+        this.getMyProduct()
+        this.getJunkProduct()
+      }
+    )
+  }
+
+
+  closejSuccess() {
+    this.jsuccess = false
+  }
+
   closenSuccess() {
     this.nsuccess = false
   }
   closeiSuccess() {
     this.isuccess = false
+  }
+  closerSuccess() {
+    this.rsuccess = false
+  }
+  closedSuccess() {
+    this.dsuccess = false
   }
 
 }

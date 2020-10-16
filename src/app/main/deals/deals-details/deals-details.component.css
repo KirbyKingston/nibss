@@ -79,3 +79,16 @@
     background: #06AD68;
     border-radius: 5px;
 }
+
+select.clearform{
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Segoe UI;
+    color: #fff;
+}
+select.clearform:focus{
+    border: none;
+    box-shadow: none;
+}

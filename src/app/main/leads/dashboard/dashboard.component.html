@@ -725,7 +725,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="number mr-2">2</div>
                                         <div>
-                                            Instituion Profile
+                                            Institution Profile
                                         </div>
                                     </div>
                                 </a>
@@ -885,7 +885,7 @@
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Transaction Volume</label>
-                                        <input [(ngModel)]="transVol" type="text" class="form-control botform">
+                                        <input [(ngModel)]="transVol" data-type="number" type="text" class="form-control botform money">
 
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -902,8 +902,8 @@
                                                     <option value="">NGN</option>
                                                 </select>
                                             </div>
-                                            <input type="text" type="text" maxlength="10" minlength="10"
-                                                [(ngModel)]="EstTransVal" class="form-control">
+                                            <input type="text" type="text" data-type="number" maxlength="10" minlength="10"
+                                                [(ngModel)]="EstTransVal" class="form-control money">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mb-3">
@@ -984,7 +984,7 @@
         </div>
     </div>
 </div>
-
+ 
 
 <div class="modal fade bd-example-modal-lg import-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">

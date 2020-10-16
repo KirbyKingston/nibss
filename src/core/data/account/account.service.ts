@@ -29,14 +29,12 @@ export class AccountService {
   }
 
   ConvertAccToJunk(acc){
-    var body = {"acc": acc}
-    return this.http.post(this.baseUrl + 'Accounts/JunkAccounts', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.post(this.baseUrl + 'Accounts/JunkAccounts', acc, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
 
   reactivateAcc(acc){
-    var body = {"acc": acc}
-    return this.http.post(this.baseUrl + 'Accounts/ReactivateJunkedAccounts', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.post(this.baseUrl + 'Accounts/ReactivateJunkedAccounts', acc, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
   createAcc(accName, image,estTransVal,facebook,instagram, institutionType, ownerId,  phone, transVol, twitter, web, yearEs, addresses, cons, notes, docs, docTypes ){
     const body = new FormData()
@@ -81,5 +79,23 @@ export class AccountService {
     body.append("Documents", docs)
     body.append("DocumentTypes", docTypes)
     return this.http.put(this.baseUrl + 'Accounts​/UpdateAccount', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  addNote(id, message){
+    var body = {"message": message}
+    return this.http.post(this.baseUrl + 'Notes/AddNoteToAccount/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  
+  }
+
+  sendEmail(bcc, message, cc, to, subject){
+    const body = new FormData()
+    body.append("Bcc", bcc)
+    body.append("Body", message)
+    body.append("Cc", cc)
+    body.append("RecipientEmail", to)
+    body.append("Subject", subject)
+    // body.append("Documents", instagram)
+    // body.append("DocumentTypes", instagram)
+    return this.http.post(this.baseUrl + 'Emails/SendEmail', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 }

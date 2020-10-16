@@ -88,6 +88,35 @@ export class DashboardComponent implements OnInit {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
 
+    $("input.money").keyup(function(event) {
+      if (event.which >= 37 && event.which <= 40) {
+        event.preventDefault();
+      }
+      var $this = $(this);
+      var num = $this
+        .val()
+        .replace(/,/gi, "")
+        .split("")
+        .reverse()
+        .join("");
+
+      var num2 = RemoveRougeChar(
+        num
+          .replace(/(.{3})/g, "$1,")
+          .split("")
+          .reverse()
+          .join("")
+      );
+      $this.val(num2);
+    });
+
+    function RemoveRougeChar(convertString) {
+      if (convertString.substring(0, 1) == ",") {
+        return convertString.substring(1, convertString.length);
+      }
+      return convertString;
+    }
+
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -128,10 +157,8 @@ export class DashboardComponent implements OnInit {
     this.authService.getUsers().subscribe(
       res => {
         this.users = res['payload']
-        // console.log(res)
       },
       err => {
-        // console.log(err)
       }
     )
   }

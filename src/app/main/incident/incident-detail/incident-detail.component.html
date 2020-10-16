@@ -181,9 +181,9 @@
                                         <p class="fs-16 fc-black ff-s" *ngIf="incident?.caseOwnerName">{{incident?.caseOwnerName}}</p>
                                         <p class="fs-16 fc-black ff-s" *ngIf="incident?.caseOwnerName == null">null</p>
 
-                                        <p class="fs-14 fc-lightblack ff-s mb-1">Deal</p>
+                                        <p class="fs-14 fc-lightblack ff-s mb-1">Priority</p>
                                         <p class="fs-16 fc-black ff-s">
-                                           null
+                                           {{incident?.priority}}
                                         </p>
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Case Type</p>
                                         <p class="fs-16 fc-black ff-s">
@@ -618,14 +618,14 @@
                                             </div>
                                             <div class="col-12 mb-3">
 
-                                                <textarea name="" id="" cols="30" rows="10"
+                                                <textarea [(ngModel)]="noteMessage" cols="30" rows="10"
                                                     class="form-control detail-form"></textarea>
                                             </div>
 
 
                                             <div class="col-12 mt-2">
                                                 <p class="text-right">
-                                                    <button class="btn btn-blue">Create</button>
+                                                    <button class="btn btn-blue" (click)="createNote(incident.id)">Create</button>
                                                 </p>
                                             </div>
                                             <div class="col-12">

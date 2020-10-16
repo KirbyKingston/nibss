@@ -29,9 +29,8 @@ export class ProductsService {
     return this.http.get(this.baseUrl + 'Products/DeleteProduct/' + id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  ConvertProductToJunk(acc) {
-    var body = { "acc": acc }
-    return this.http.post(this.baseUrl + 'Products/JunkProducts', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  ConvertProductToJunk(product) {
+    return this.http.post(this.baseUrl + 'Products/JunkProducts', product, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
   addProductToDeal(dealId, productId) {
@@ -59,16 +58,21 @@ export class ProductsService {
     return this.http.post(this.baseUrl + 'Products/AddContactToAccount', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  reactivateProduct(product) { 
-    var body = { product }
-    return this.http.post(this.baseUrl + 'Products/ReactivateJunkedProducts', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  reactivateProduct(product) {
+    return this.http.post(this.baseUrl + 'Products/ReactivateJunkedProducts', product, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
+  
   importProduct(doc) {
     const body = new FormData()
     // body.append("Option", option)
     body.append("Document", doc)
-   
+
     return this.http.post(this.baseUrl + 'Products/ImportProductsFromExcelFile', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+
+  addCompetitor(id, name) {
+    var body = { "name": name }
+    return this.http.post(this.baseUrl + 'Competitors/AddCompetitorToProduct/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
   updateProduct(category, ddescription, fee, logo, id, name, duration, tag, tax, docType, docs) {
@@ -79,7 +83,7 @@ export class ProductsService {
     body.append("Logo", logo)
     body.append("ManagerId", id)
     body.append("Name", name)
-    body.append("OnboardingDuration", duration) 
+    body.append("OnboardingDuration", duration)
     body.append("Tag", tag)
     body.append("TaxRate", tax)
     body.append("DocumentTypes", docType)
@@ -92,15 +96,32 @@ export class ProductsService {
     const body = new FormData()
     body.append("Category", category)
     body.append("Description", description)
-    body.append("Fee", fee)  
+    body.append("Fee", fee)
     body.append("Logo", logo)
     body.append("ManagerId", id)
     body.append("Name", name)
-    body.append("OnboardingDuration", duration) 
+    body.append("OnboardingDuration", duration)
     body.append("Tag", tag)
     body.append("TaxRate", tax)
-    // body.append("DocumentTypes", docType)
+    // body.append("DocumentTypes", docType) 
     // body.append("Documents", docs)
     return this.http.post(this.baseUrl + 'Products/CreateProduct', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+  }
+  addNote(id, message) {
+    var body = { "message": message }
+    return this.http.post(this.baseUrl + 'Notes/AddNoteToProduct/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+
+  }
+
+  sendEmail(bcc, message, cc, to, subject) {
+    const body = new FormData()
+    body.append("Bcc", bcc)
+    body.append("Body", message)
+    body.append("Cc", cc)
+    body.append("RecipientEmail", to)
+    body.append("Subject", subject)
+    // body.append("Documents", instagram)
+    // body.append("DocumentTypes", instagram)
+    return this.http.post(this.baseUrl + 'Emails/SendEmail', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 }

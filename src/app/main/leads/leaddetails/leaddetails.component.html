@@ -58,9 +58,21 @@
                                         <div class="col-lg-7 offset-lg-5 mb-3">
                                             <div class="btngroup d-flex justify-content-center align-items-center">
                                                 <div class="mr-2">
-                                                    <a class="text-white fs-14 ff-s fw-4">
+                                                    <select class="form-control clearform" (change)="updateStatus()"
+                                                        [(ngModel)]="leadDetails.status">
+                                                        <option value="Cold" class="fc-black"><span><i
+                                                                    class="fas fa-circle fs-18 cold"></i></span> Cold
+                                                        </option>
+                                                        <option value="Warm" class="fc-black"><span><i
+                                                                    class="fas fa-circle fs-18 warm"></i></span> Warm
+                                                        </option>
+                                                        <option value="Hot" class="fc-black"><span><i
+                                                                    class="fas fa-circle fs-18 hot"></i></span> Hot
+                                                        </option>
+                                                    </select>
+                                                    <!-- <a class="text-white fs-14 ff-s fw-4">
                                                         <img src="assets/images/warm.svg" class="mr-1" alt=""> Warm
-                                                    </a>
+                                                    </a> -->
                                                 </div>
                                                 <div class="mr-2">
                                                     <a class="text-white fs-14 ff-s fw-4">
@@ -83,23 +95,28 @@
                                         <div class="col-lg-12">
                                             <div class="d-flex row">
                                                 <div class="mr-3">
-                                                    <div class="initials">{{leadDetails?.contacts[0].firstName.substring(0,1)}}
+                                                    <div class="initials">
+                                                        {{leadDetails?.contacts[0].firstName.substring(0,1)}}
                                                     </div>
                                                 </div>
                                                 <div class="mr-lg-5">
-                                                    <p class="fs-15 text-white ff-s fw-6 m-0">{{leadDetails?.contacts[0].firstName}}
+                                                    <p class="fs-15 text-white ff-s fw-6 m-0">
+                                                        {{leadDetails?.contacts[0].firstName}}
                                                         {{leadDetails?.contacts[0].lastName}}
                                                     </p>
                                                     <p class="fc-lightwhite fs-15 ff-s">{{leadDetails?.companyName}}</p>
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Position</p>
-                                                    <p class="fs-15 text-white ff-s fw-6 m-0">{{leadDetails?.contacts[0].designation}}</p>
+                                                    <p class="fs-15 text-white ff-s fw-6 m-0">
+                                                        {{leadDetails?.contacts[0].designation}}</p>
                                                 </div>
                                                 <div class="mr-3">
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Phone</p>
-                                                    <p class="fs-15 text-white ff-s fw-6">{{leadDetails?.contacts[0].phoneNumber}}
+                                                    <p class="fs-15 text-white ff-s fw-6">
+                                                        {{leadDetails?.contacts[0].phoneNumber}}
                                                     </p>
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Email</p>
-                                                    <p class="fs-15 text-white ff-s fw-6">{{leadDetails?.contacts[0].email}}
+                                                    <p class="fs-15 text-white ff-s fw-6">
+                                                        {{leadDetails?.contacts[0].email}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -132,9 +149,9 @@
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                <a>
+                                                                <!-- <a>
                                                                     <img src="assets/images/Edit.svg" alt="">
-                                                                </a>
+                                                                </a> -->
                                                             </div>
                                                         </div>
 
@@ -159,7 +176,7 @@
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
                                                         <p class="fs-16 fc-black ff-s">
                                                             {{leadDetails?.contacts[0].firstName}}
-                                                        {{leadDetails?.contacts[0].lastName}}
+                                                            {{leadDetails?.contacts[0].lastName}}
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
                                                         <p class="fs-16 fc-black ff-s">
@@ -183,7 +200,7 @@
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                <a>
+                                                                <a data-toggle="modal" data-target=".new-modal">
                                                                     <img src="assets/images/Edit.svg" alt="">
                                                                 </a>
                                                             </div>
@@ -231,17 +248,20 @@
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
                                                         <div class="d-flex">
                                                             <div class="mr-3">
-                                                                <a href="https://{{leadDetails?.twitter}}" target="_blank">
+                                                                <a href="https://{{leadDetails?.twitter}}"
+                                                                    target="_blank">
                                                                     <img src="assets/images/facebook.svg" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="mr-3">
-                                                                <a href="https://{{leadDetails?.twitter}}" target="_blank">
+                                                                <a href="https://{{leadDetails?.twitter}}"
+                                                                    target="_blank">
                                                                     <img src="assets/images/twitter.svg" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="mr-3">
-                                                                <a href="https://{{leadDetails?.instagram}}" target="_blank">
+                                                                <a href="https://{{leadDetails?.instagram}}"
+                                                                    target="_blank">
                                                                     <img src="assets/images/instagram.svg" alt="">
                                                                 </a>
                                                             </div>
@@ -357,7 +377,8 @@
                                         <div class="littleorange"></div>
                                         <div class="py-4">
                                             <p class="text-center m-0">
-                                                <button class="btn btn-out-green">
+                                                <button class="btn btn-out-green" data-toggle="modal"
+                                                    data-target=".email-modal">
                                                     <img src="assets/images/message-green.svg" class="mr-2" alt="">
                                                     Compose Mail
                                                 </button>
@@ -365,59 +386,49 @@
                                         </div>
                                     </div>
                                     <div class="px-3 mb-3">
-                                        <ul class="nav nav-tabs mail align-items-center" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active p-0 mr-5" data-toggle="tab" href="#sent"
-                                                    role="tab">Sent</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link p-0 " data-toggle="tab" href="#received" role="tab">
-                                                    Received
-                                                    <div class="badge badge-secondary fc-darkblue">1</div>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        <p class="fs-15 ff-s fc-black fw-16">Received <span
+                                                class="badge badge-secondary fc-darkblue">{{leadDetails?.emailMessages.length}}</span>
+                                        </p>
                                     </div>
-                                    <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="sent" role="tabpanel"
-                                            aria-labelledby="nav-home-tab">
-                                            <!-- messages -->
-                                            <div class="messages">
-                                                <div class="message p-3">
-                                                    <div class="d-flex">
-                                                        <div class="mr-2">
-                                                            <img src="assets/images/msg.svg" alt="">
+                                    <!-- messages -->
+                                    <div class="messages" *ngIf="leadDetails?.emailMessages.length > 0">
+                                        <div class="message p-3" *ngFor="let msg of leadDetails?.emailMessages">
+                                            <div class="d-flex">
+                                                <div class="mr-2">
+                                                    <img src="assets/images/msg.svg" alt="">
+                                                </div>
+                                                <div>
+                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">{{msg?.subject}}</p>
+                                                    <p class="fs-13 fw-4 fc-lightblack">
+                                                        {{msg?.body}}
+                                                        <!-- <span class="fw-7 fc-green"><a>Read More</a></span> -->
+                                                    </p>
+                                                    <!-- <div
+                                                        class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun
+                                                                Wey</p>
                                                         </div>
                                                         <div>
-                                                            <p class="fs-13 fw-4 fc-lightblack">
-                                                                Try sending an outgoing email - click on the reply arrow
-                                                                and use an Email Template. <span
-                                                                    class="fw-7 fc-green"><a>Read More</a></span>
-                                                            </p>
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <div>
-                                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun
-                                                                        Wey</p>
-                                                                </div>
-                                                                <div>
-                                                                    <a><img src="assets/images/reply.svg" alt=""></a>
-                                                                </div>
-                                                            </div>
-                                                            <p class="fc-lightblack ff-s fs-11 fw-3">
-                                                                <span class="mr-3"><i>27th Aug 2020</i></span>
-                                                                <span>
-                                                                    <i>12:30PM</i>
-                                                                </span>
-                                                            </p>
+                                                            <a><img src="assets/images/reply.svg" alt=""></a>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
+                                                    <p class="fc-lightblack ff-s fs-11 fw-3">
+                                                        <span
+                                                            class="mr-3"><i>{{msg?.dateCreated | date: 'medium'}}</i></span>
+                                                        <span>
+                                                            <i>{{msg?.dateCreated | date: 'shortTime'}}</i>
+                                                        </span>
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <!-- messages -->
                                         </div>
-                                        <div class="tab-pane fade" id="received" role="tabpanel"
-                                            aria-labelledby="nav-profile-tab">...</div>
+                                    </div>
+                                    <!-- messages -->
+                                    <div class="emptystate2" *ngIf="leadDetails?.emailMessages.length == 0">
+                                        <p class="text-center fs-15 ff-s fc-black fw-4">
+                                            You have not received any message
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -447,7 +458,7 @@
                                                 <label for="" class="fc-lightblack fs-15 ff-s">Time</label>
                                                 <input type="datetime" class="form-control detail-form">
                                             </div>
-                                            <div class="col-lg-6 mb-3">
+                                            <!-- <div class="col-lg-6 mb-3">
                                                 <label for="" class="fc-lightblack fs-15 ff-s">Venue</label>
                                                 <select name="" id="" class="form-control detail-form">
                                                     <option value="">A</option>
@@ -462,11 +473,44 @@
                                             <div class="col-lg-12 mb-3">
                                                 <label for="" class="fc-lightblack fs-15 ff-s">Action Points</label>
                                                 <input type="text" class="form-control detail-form">
-                                            </div>
+                                            </div> -->
                                             <div class="col-12 mt-2">
                                                 <p class="text-right">
                                                     <button class="btn btn-blue">Create</button>
                                                 </p>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="d-flex">
+                                                    <div class="mr-2">
+                                                        <img src="assets/images/activity.svg" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <p class="m-0 fs-16 fc-green fw-6">Activities</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="message p-3"
+                                                    *ngFor="let activity of leadDetails?.activities">
+                                                    <p class="m-0 fs-12 fw-5 ff-s">{{activity?.subject}}</p>
+                                                    <p class="fs-13 fw-4 fc-lightblack">
+                                                        {{activity?.description}}. <span class="fw-7 fc-green"><a>Read
+                                                                More</a></span>
+                                                    </p>
+                                                    <div class="d-flex">
+
+                                                        <div class="ml-auto">
+
+                                                            <p class="fc-lightblack ff-s fs-11 fw-3">
+                                                                <span
+                                                                    class="mr-3"><i>{{activity?.date | date}}</i></span>
+                                                                <span>
+                                                                    <i>{{activity?.date | date:'shortTime'}}</i>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -572,7 +616,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="calendar" role="tabpanel">
+                            <!-- <div class="tab-pane fade" id="calendar" role="tabpanel">
                                 <div class="mails">
                                     <div class="px-3">
                                         <div class="d-flex mb-2">
@@ -589,7 +633,6 @@
                                             <div class="col-12 mb-3">
                                                 <label for="" class="fc-lightblack fs-15 ff-s">Select a day to view
                                                     event</label>
-                                                <!-- <input type="text" class="form-control detail-form"> -->
                                             </div>
 
 
@@ -675,7 +718,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="tab-pane fade" id="note" role="tabpanel">
                                 <div class="mail">
                                     <div class="px-3">
@@ -692,18 +735,19 @@
                                             </div>
                                             <div class="col-12 mb-3">
 
-                                                <textarea name="" id="" cols="30" rows="10"
+                                                <textarea [(ngModel)]="noteMessage" cols="30" rows="10"
                                                     class="form-control detail-form"></textarea>
                                             </div>
 
 
                                             <div class="col-12 mt-2">
                                                 <p class="text-right">
-                                                    <button class="btn btn-blue">Create</button>
+                                                    <button class="btn btn-blue"
+                                                        (click)="createNote(leadDetails.id)">Create</button>
                                                 </p>
                                             </div>
                                             <div class="col-12">
-                                                <p class="m-0 fs-16 gc-green fw-6">Note Log</p>
+                                                <p class="m-0 fs-16 fc-green fw-6">Note Log</p>
                                             </div>
                                         </div>
                                     </div>
@@ -797,7 +841,7 @@
                                 </defs>
                             </svg>
                         </a>
-                        <a class="nav-link" href="#" data-toggle="tab" href="#attachments" role="tab">
+                        <!-- <a class="nav-link" href="#" data-toggle="tab" href="#attachments" role="tab">
 
                             <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -805,7 +849,7 @@
                                     d="M9.5 5.20939V16.6856C9.5 18.8911 7.71 20.6774 5.5 20.6774C3.29 20.6774 1.5 18.8911 1.5 16.6856V4.21146C1.5 2.83431 2.62 1.71663 4 1.71663C5.38 1.71663 6.5 2.83431 6.5 4.21146V14.6898C6.5 15.2386 6.05 15.6877 5.5 15.6877C4.95 15.6877 4.5 15.2386 4.5 14.6898V5.20939H3V14.6898C3 16.0669 4.12 17.1846 5.5 17.1846C6.88 17.1846 8 16.0669 8 14.6898V4.21146C8 2.00603 6.21 0.219727 4 0.219727C1.79 0.219727 0 2.00603 0 4.21146V16.6856C0 19.7193 2.46 22.1743 5.5 22.1743C8.54 22.1743 11 19.7193 11 16.6856V5.20939H9.5Z" />
                             </svg>
 
-                        </a>
+                        </a> -->
                         <a class="nav-link" href="#" data-toggle="tab" href="#activity" role="tab">
 
                             <svg width="25" height="23" viewBox="0 0 25 23" fill="none"
@@ -869,7 +913,7 @@
                                 </g>
                             </svg>
                         </a>
-                        <a class="nav-link" href="#" data-toggle="tab" href="#calendar" role="tab">
+                        <!-- <a class="nav-link" href="#" data-toggle="tab" href="#calendar" role="tab">
 
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -878,7 +922,7 @@
                             </svg>
 
 
-                        </a>
+                        </a> -->
                     </nav>
                 </div>
                 <!-- sidetab -->
@@ -888,8 +932,8 @@
 </div>
 
 
-<div class="modal fade bd-example-modal-lg convert-modal" tabindex="-1" role="dialog"
-    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg email-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body px-lg-5 px-3 py-4">
@@ -898,9 +942,8 @@
                         <div class="d-flex justify-content-between">
                             <div>
                                 <p class="fc-green ff-p fs-25 fw-6 m-0">
-                                    Convert Lead
+                                    Compose A Mail
                                 </p>
-                                <p class="fs-16 ff-s fc-lightblack">Input Deal Information</p>
                             </div>
                             <div>
                                 <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
@@ -910,47 +953,377 @@
                         <div class="deeporange"></div>
                     </div>
 
+                    <div class="col-12 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                To
+                            </div>
+                            <input type="text" [(ngModel)]="to" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                CC
+                            </div>
+                            <input type="text" [(ngModel)]="cc" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                BCC
+                            </div>
+                            <input type="text" [(ngModel)]="bcc" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                Subject
+                            </div>
+                            <input type="text" [(ngModel)]="subject" class="form-control">
+                        </div>
+                    </div>
 
-                    <div class="col-12 mt-4 mb-3">
-                        <p class="fc-green ff-p fs-18 fw-6 m-0">
-                            Deal Information
+                    <div class="col-12">
+                        <div class="bodymail">
+                            <div class="row no-gutters">
+                                <div class="col-lg-8 px-4 py-3">
+                                    <textarea cols="30" rows="10" [(ngModel)]="body"
+                                        class="form-control compose"></textarea>
+                                </div>
+                                <div class="col-lg-4 border-left px-2 py-3">
+                                    <p class="fs-15 fc-black ff-s fw-5">Attach Files</p>
+                                    <div class="uploadfile" (click)="fileInput.click()" appDragDrop
+                                        (onFileDropped)="uploadFile($event)">
+                                        <img src="assets/images/cloud_download_black.svg" alt="">
+                                        <p class="text-center fs-13 ff-s fw-4 mt-4">Drop files to attach or click</p>
+                                        <p class="py-5 text-center">
+                                            <button class="btn btn-blue px-3" (click)="fileInput.click()">Upload
+                                                Files</button>
+                                        </p>
+
+                                        <input hidden type="file" multiple #fileInput
+                                            (change)="uploadFile($event.target.files)">
+
+                                    </div>
+                                </div>
+                                <div class="col-12 bottom py-2 px-4">
+                                    <button class="btn btn-blue" (click)="sendMail()" data-dismiss="modal">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg new-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Edit Lead
+                                </p>
+                                <p class="fs-16 ff-s fc-lightblack">Edit Lead Information</p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <ul class="nav nav-tabs prod justify-content-between" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab">
+                                    <div class="d-flex align-items-center">
+                                        <div class="number mr-2">1</div>
+                                        <div>
+                                            Lead Info
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab">
+                                    <div class="d-flex align-items-center">
+                                        <div class="number mr-2">2</div>
+                                        <div>
+                                            Instituion Profile
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#social" role="tab">
+                                    <div class="d-flex align-items-center">
+                                        <div class="number mr-2">3</div>
+                                        <div>
+                                            Web & Social Media
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="fs-16 ff-p fc-black">Lead Owner</label>
+
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <select class="form-control topform" [(ngModel)]="leadDetails.ownerId">
+                                            <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <select class="form-control topform" [(ngModel)]="leadDetails.source">
+                                            <option value="">Lead Status</option>
+                                            <option value="0">Cold</option>
+                                            <option value="1">Warm</option>
+                                            <option value="2">Hot</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <select class="form-control topform" [(ngModel)]="leadDetails.source">
+                                            <option value="">Lead Source</option>
+                                            <option value="Campaign">Campaign</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6 mb-3">
+                                        <select [(ngModel)]="leadDetails.stage" class="form-control topform">
+                                            <option>Lead Stage</option>
+                                            <option value="0">Open</option>
+                                            <option value="1">Attempting Contact</option>
+                                            <option value="2">Converted</option>
+                                            <option value="3">Disqualified</option>
+                                            <option value="4">Not Engaged</option>
+                                            <option value="5">Converted with no Opportunity</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="input-group leadform big">
+                                            <div class="input-group-prepend">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">+234</option>
+                                                    <option value="">+234</option>
+                                                    <option value="">+234</option>
+                                                </select>
+                                            </div>
+                                            <input [(ngModel)]="leadDetails.phoneNumber" placeholder="Owner Phonenumber"
+                                                type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+
+                                    <!-- <div class="col-12 mb-3">
+                                        <p class="m-0 fc-red ff-s fs-13">**Calls can only be made from CRMHUB to
+                                            Microsoft Teams and Skype</p>
+                                    </div> -->
+                                    <div class="col-12 mt-3">
+                                        <p class="text-right ">
+                                            <button class="btn btn-green px-3 btnNext">Next</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="" class="fs-16 fc-black ff-p">Institution Name</label>
+
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" [(ngModel)]="leadDetails.companyName"
+                                            class="form-control botform">
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <select [(ngModel)]="leadDetails.institutionType" class="form-control botform">
+                                            <option>Institution Type</option>
+                                            <option value="2">Commercial Bank</option>
+                                            <option value="3">Merchant Bank</option>
+                                            <option value="1">Microfinance Bank</option>
+                                            <option value="4">Mortgage Bank</option>
+                                            <option value="5">Mobile Money Operator</option>
+                                            <option value="6">Finance House</option>
+                                            <option value="7">Stockbroker</option>
+                                            <option value="8">Payment Service Solution Provider</option>
+                                            <option value="9">Pension Fund Administrator</option>
+                                            <option value="10">Pension Fund Custodian</option>
+                                            <option value="11">Development Finance Institutions</option>
+                                            <option value="0">Others</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Transaction Volume</label>
+                                        <input [(ngModel)]="leadDetails.transactionVolume" type="text"
+                                            class="form-control botform">
+
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Year Established</label>
+                                        <input type="date" [(ngModel)]="leadDetails.yearEstablished"
+                                            class="form-control botform">
+                                    </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label for="" class="fs-16 fc-black ff-p">Est. Transaction Value</label>
+                                        <div class="input-group leadform">
+                                            <div class="input-group-prepend">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">NGN</option>
+                                                    <option value="">NGN</option>
+                                                    <option value="">NGN</option>
+                                                </select>
+                                            </div>
+                                            <input type="text" type="text" maxlength="10" minlength="10"
+                                                [(ngModel)]="leadDetails.estimatedTransactionValue"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-12 mt-5 pt-5">
+                                        <div class="d-flex justify-content-between">
+                                            <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
+                                            <div><button class="btn btn-green px-3 btnNext">Next</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="fs-16 ff-s fw-4 fc-black"><img src="assets/images/webd.svg"
+                                                alt=""> Website</label>
+                                        <input type="text" placeholder="paste url here"
+                                            [(ngModel)]="leadDetails.website" class="form-control botform">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="fs-16 ff-s fw-4 fc-black"><img
+                                                src="assets/images/facebook.svg" alt=""> Facebook</label>
+                                        <input type="text" placeholder="paste url here"
+                                            [(ngModel)]="leadDetails.facebook" class="form-control botform">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="fs-16 ff-s fw-4 fc-black"><img
+                                                src="assets/images/twitter.svg" alt=""> Twitter</label>
+                                        <input type="text" placeholder="paste url here"
+                                            [(ngModel)]="leadDetails.twitter" class="form-control botform">
+                                    </div>
+                                    <div class="col-12 mb-5">
+                                        <label for="" class="fs-16 ff-s fw-4 fc-black"><img
+                                                src="assets/images/instagram.svg" alt=""> Instagram</label>
+                                        <input type="text" placeholder="paste url here"
+                                            [(ngModel)]="leadDetails.instagram" class="form-control botform">
+                                    </div>
+
+                                    <div class="col-12 mt-5 pt-5">
+                                        <div class="d-flex justify-content-between">
+                                            <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
+                                            <div><button class="btn btn-green px-3" (click)="createLead()"
+                                                    data-dismiss="modal">Create</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="success-div" *ngIf="esuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your email has been<br>
+                            sent
                         </p>
                     </div>
-                    <div class="col-lg-6 mb-3">
-                        <label for="" class="fs-16 fc-black ff-p">Deal Name</label>
-                        <input type="text" class="form-control botform">
+                    <div class="ml-auto">
+                        <img src="assets/images/success-email.svg" alt="">
                     </div>
-                    <div class="col-lg-6 mb-3">
-                        <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
-                        <input type="text" class="form-control botform">
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label for="" class="fs-16 fc-black ff-p">Stage</label>
-                        <select class="form-control botform">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label for="" class="fs-16 fc-black ff-p">Deal Value (NGN)</label>
-                        <input type="text" class="form-control botform">
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
-                        <input type="text" class="form-control botform">
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>
-                        <input type="text" class="form-control botform">
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label for="" class="fs-16 fc-black ff-p">Estimated Close Date</label>
-                        <input type="date" class="form-control botform">
-                    </div>
-                    <div class="col-12 mt-3">
-                        <p class="text-right ">
-                            <button class="btn btn-blue px-3">Convert</button>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closeeSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="ssuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your lead status has been updated successfully
                         </p>
                     </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closesSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="usuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your lead has been updated successfully
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closeuSuccess()">Done</button>
                 </div>
             </div>
         </div>
@@ -1009,4 +1382,3 @@
         </div>
     </div>
 </div>
-

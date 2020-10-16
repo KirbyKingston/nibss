@@ -197,9 +197,10 @@
                                                     <div class="d-flex mb-4 pt-2">
                                                         <div class="product mr-2"
                                                             *ngFor="let product of deal.products.slice(0,2)">
-                                                            {{product?.productName}} <span
-                                                                *ngIf="deal?.products.length > 2">+
-                                                                {{deal?.products.length - 2}}</span></div>
+                                                            {{product?.productName}}</div>
+                                                            <span
+                                                            *ngIf="deal?.products.length > 2">+
+                                                            {{deal?.products.length - 2}}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -265,11 +266,16 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex mb-4 pt-2">
-                                                    <div class="product mr-2"
-                                                        *ngFor="let product of deal.products.slice(0,2)">
-                                                        {{product?.productName}} <span
-                                                            *ngIf="deal?.products.length > 2">+
-                                                            {{deal?.products.length - 2}}</span></div>
+                                                    <td>
+                                                        <div class="d-flex mb-4 pt-2">
+                                                            <div class="product mr-2"
+                                                                *ngFor="let product of deal.products.slice(0,2)">
+                                                                {{product?.productName}}</div>
+                                                                <span
+                                                                *ngIf="deal?.products.length > 2">+
+                                                                {{deal?.products.length - 2}}</span>
+                                                        </div>
+                                                    </td>
                                                 </div>
                                             </td>
                                             <td>
@@ -336,9 +342,10 @@
                                                     <div class="d-flex mb-4 pt-2">
                                                         <div class="product mr-2"
                                                             *ngFor="let product of deal.products.slice(0,2)">
-                                                            {{product?.productName}} <span
-                                                                *ngIf="deal?.products.length > 2">+
-                                                                {{deal?.products.length - 2}}</span></div>
+                                                            {{product?.productName}}</div>
+                                                            <span
+                                                            *ngIf="deal?.products.length > 2">+
+                                                            {{deal?.products.length - 2}}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -513,13 +520,13 @@
                                                     <div class="d-flex align-items-center justify-content-between p-2">
                                                         <div>
                                                             <div class="prop-initials">
-                                                                {{aDeal?.account.contacts[0].firstName.substring(0,1)}}
+                                                                {{aDeal?.accountContact.firstName.substring(0,1)}}
                                                             </div>
                                                         </div>
                                                         <div>
                                                             <p class="m-0 fs-15 ff-s fc-black fw-6">
-                                                                {{aDeal?.account.contacts[0].firstName}}
-                                                                {{aDeal?.account.contacts[0].lastName}} </p>
+                                                                {{aDeal?.accountContact.firstName}}
+                                                                {{aDeal?.accountContact.lastName}} </p>
                                                         </div>
                                                         <div>
                                                             <a>
@@ -645,11 +652,11 @@
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Deal Value (NGN)</label>
-                        <input type="text" class="form-control botform" ngModel name="dealValue">
+                        <input type="text" class="form-control botform money" [(ngModel)]="dealValue">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Estimated Income</label>
-                        <input type="text" class="form-control botform" [(ngModel)]="estIncome">
+                        <input type="text" class="form-control botform money" [(ngModel)]="estIncome">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="" class="fs-16 fc-black ff-p">Probability (%)</label>

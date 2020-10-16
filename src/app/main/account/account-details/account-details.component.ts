@@ -12,11 +12,19 @@ import { AccountService } from 'src/core/data/account/account.service';
 export class AccountDetailsComponent implements OnInit {
   id: any;
   accountDetails: any;
+  esuccess: boolean = false;
+  noteMessage: any = '';
+  files: any = '';
+  to: any = '';
+  cc: any = '';
+  bcc: any = '';
+  subject: any = '';
+  body: any = '';
   constructor(private route: ActivatedRoute, private location: Location, private accountService: AccountService) { }
 
   ngOnInit() {
     this.getId();
-    this.getLead();
+    this.getAccount();
     $('.showinfo').click(function () {
       $('#information').show(300);
       $('.showinfo').hide(0);
@@ -40,7 +48,7 @@ export class AccountDetailsComponent implements OnInit {
       }) 
   }
 
-  getLead() {
+  getAccount() {
     this.accountService.getAccById(this.id).subscribe(
       res => {
         console.log(res)
@@ -51,4 +59,35 @@ export class AccountDetailsComponent implements OnInit {
       }
     )
   }
+
+  createNote(id){
+    this.accountService.addNote(id, this.noteMessage).subscribe(
+      res => {
+        this.noteMessage = '';
+       this.getAccount()
+      }
+    )
+  }
+
+  uploadFile(e: FileList) {
+    this.files = e[0];
+    console.log(this.files)
+    const size = e[0].size
+    if (size >= 505000000) {
+      return false;
+    }
+  }
+  sendMail(){
+    this.accountService.sendEmail(this.bcc, this.body, this.cc, this.to, this.subject).subscribe(
+      res => {
+        this.esuccess = true;
+        this.getAccount();
+        this.bcc = this.body = this.cc = this.to = this.subject = '';
+      }
+    )
+  }
+  closeeSuccess() {
+    this.esuccess = false
+  }
+
 }

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as $ from 'jquery'
+import { NotificationService } from 'src/core/classes/notification/notification.service';
 import { AccountService } from 'src/core/data/account/account.service';
 import { AuthDataService } from 'src/core/data/authentication/auth-data.service';
 import { ContactService } from 'src/core/data/contact/contact.service';
-import { DealsService } from 'src/core/data/deals/deals.service';
 import { IncidentService } from 'src/core/data/incident/incident.service';
 import { ProductsService } from 'src/core/data/products/products.service';
 @Component({
@@ -16,14 +16,37 @@ import { ProductsService } from 'src/core/data/products/products.service';
 export class DashboardComponent implements OnInit {
 
   files: any;
+  selectedFiles: any;
   incidents: any;
   incident: any;
-  products:any;
-  users:any;
-  accounts:any;
-  contacts:any;
-  isSelected:boolean = false;
-  constructor(private router: Router, private incidentService: IncidentService, private dealService:DealsService, private contactService:ContactService, private accountService:AccountService, private productService:ProductsService, private authService:AuthDataService) { }
+  products: any;
+  users: any;
+  accounts: any;
+  contacts: any;
+  isSelected: boolean = false;
+  docTypes: Array<{}> = [];
+  selectedTypes: Array<{}> = [];
+  types: any = '';
+  account: any = '';
+  title: any = '';
+  caseType: any = '';
+  closed: any = '';
+  description: any = '';
+  owner: any = '';
+  priority: any = '';
+  name: any = '';
+  contact: any = '';
+  source: any = '';
+  status: any = '';
+  phase: any = '';
+  typeName: any = '';
+  documentTypes = [
+    { id: 0, document: "Others" },
+    { id: 1, document: "Brochure" },
+    { id: 2, document: "Picture" },
+    { id: 3, document: "Presentation Slides" }
+  ]
+  constructor(private router: Router, private incidentService: IncidentService, private notification: NotificationService, private contactService: ContactService, private accountService: AccountService, private productService: ProductsService, private authService: AuthDataService) { }
 
   ngOnInit() {
     this.getIncidents()
@@ -42,57 +65,68 @@ export class DashboardComponent implements OnInit {
 
   uploadFile(e: FileList) {
     this.files = e;
+    this.selectedFiles = this.files.FileList;
     console.log(this.files)
+    console.log(this.selectedFiles)
     const size = e[0].size
     if (size >= 505000000) {
-      // this.notification.publishMessages('Please upload limit is 5mb', 'warning', 0)
       return false;
     }
-    // this.bulkUpload();
   }
 
-  getProducts(){
+  select() {
+    this.types = parseInt(this.types)
+    this.docTypes.push(this.types)
+    console.log(this.docTypes)
+    this.documentTypes.forEach(element => {
+      if (element.id == this.types) {
+        this.typeName = element.document
+        this.selectedTypes.push(this.typeName)
+        console.log(this.selectedTypes)
+      }
+    })
+
+  }
+
+  
+  getProducts() {
     this.productService.getAllProducts().subscribe(
       res => {
         this.products = res['payload']
       },
       err => {
-        // console.log(err)
       }
     )
   }
-  getUsers(){
+  getUsers() {
     this.authService.getUsers().subscribe(
       res => {
         this.users = res['payload']
       },
       err => {
-        // console.log(err)
       }
     )
   }
-  getAccounts(){
+  getAccounts() {
     this.accountService.getAllAcc().subscribe(
       res => {
         this.accounts = res['payload']
       },
       err => {
-        // console.log(err)
       }
     )
   }
- 
-  getContacts(){
+
+  getContacts() {
     this.contactService.getAllContact().subscribe(
       res => {
         this.contacts = res['payload']
       },
       err => {
-        // console.log(err)
       }
     )
   }
-  
+
 
   getIncidents() {
     this.incidentService.getIncidents().subscribe(
@@ -117,18 +151,23 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  openIncident(id){
+  openIncident(id) {
     this.router.navigate(['/app/incidents/incident/' + id])
   }
 
-  createIncident(form: NgModel){
-    this.incidentService.createIncident(form.value.account, form.value.title, form.value.caseType, form.value.closed, form.value.description, form.value.owner, form.value.priority, form.value.name, form.value.contact, form.value.source, form.value.status, form.value.phase).subscribe(
+  createIncident() {
+    this.incidentService.createIncident(this.account, this.title, this.caseType, this.closed, this.description, this.owner, this.priority, this.name, this.contact, this.source, this.status, this.phase, this.docTypes, this.files).subscribe(
       res => {
-        console.log(res)
-        this.getIncidents()
+        if(res['hasErrors'] == false){
+          this.getIncidents()
+
+        }else{
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        }
+        // console.log(res)
       },
       err => {
-        console.log(err)
+        // console.log(err)
       }
     )
   }

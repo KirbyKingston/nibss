@@ -634,7 +634,22 @@
                     </div>
                     <div class="d-flex justify-content-center mt-4">
                         <button class="btn btn-green mr-3" (click)="openAccount(theAccount.id)">View Complete Info</button>
-                        <button class="btn btn-more"><img src="assets/images/more-green.svg" alt=""></button>
+                        <div class="dropdown">
+                            <button class="btn btn-more dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img src="assets/images/more-green.svg" alt="">
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                    (click)="junkAccount(theAccount.id)">Junk
+                                    Account</a>
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                    (click)="reactivateAccount(theAccount.id)">Reactivate Account</a>
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                    (click)="deleteAccount(theAccount.id)">Delete Account</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- properties -->
@@ -755,8 +770,84 @@
             <div class="col-lg-12">
                 <div class="pl-5">
                     <button class="btn btn-blue"
-                        (click)="closenSuccess()">See All Contacts</button>
+                        (click)="closenSuccess()">See All Accounts</button>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="success-div" *ngIf="rsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your account has been
+                            Reactivated
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closerSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-div" *ngIf="jsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your account has been
+                            Junked
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-junk.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closejSuccess()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="success-div" *ngIf="dsuccess">
+    <div class="whitediv">
+        <div class="row py-5">
+            <div class="col-lg-12 mb-4 ">
+                <div class="d-flex align-items-center">
+                    <div class="pl-5">
+                        <p class="fs-32 ff-s fc-lgreen fw-7">Success</p>
+                        <p class="fc-black fs-16 ff-s fw-4">
+                            Your account has been
+                            Deleted
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <img src="assets/images/success-junk.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="pl-5">
+                    <button class="btn btn-green mr-3" (click)="closedSuccess()">Done</button>
                 </div>
             </div>
         </div>

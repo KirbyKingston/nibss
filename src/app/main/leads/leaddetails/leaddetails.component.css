@@ -134,3 +134,62 @@
 }.add-btn:hover{
     color: #8F3700;
 }
+
+.warm{
+    color: #FFB329;
+}
+.hot{
+    color: #FF574D;
+}
+.cold{
+    color: #1A7AEB;
+}
+.form-control.clearform{
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Segoe UI;
+    color: #fff;
+}
+.form-control.clearform:focus{
+    border: none;
+    box-shadow: none;
+}
+
+.number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #C4C4C4;
+    height: 39px;
+    width: 39px;
+    font-family: Segoe UI;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 100%;
+}
+
+.nav-tabs.prod {
+    border: none;
+}
+
+.nav-tabs.prod a {
+    padding-left: 0;
+    border: none;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: rgba(16, 16, 16, 0.7);
+}
+
+.nav-tabs.prod a.active {
+    color: #000000;
+}
+
+.nav-tabs.prod a.active .number {
+    background: #D18700;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery'
+import { NotificationService } from 'src/core/classes/notification/notification.service';
 import { AccountService } from 'src/core/data/account/account.service';
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,13 @@ export class DashboardComponent implements OnInit {
   myAccounts: any = [];
   junkAccounts: any = [];
   theAccount: any;
+  cAccount: Array<{}> = [];
   isSelected:boolean = false;
-  constructor(private accountService:AccountService, private router:Router) { }
+  jsuccess: boolean = false;
+  nsuccess: boolean = false;
+  rsuccess: boolean = false;
+  dsuccess: boolean = false;
+  constructor(private accountService:AccountService, private router:Router, private notification:NotificationService) { }
 
   ngOnInit() {
     this.getAllAccs()
@@ -86,6 +92,62 @@ export class DashboardComponent implements OnInit {
 
   openAccount(id){
     this.router.navigate(['/app/accounts/account/' + id])
+  }
+
+  junkAccount(id) {
+    this.cAccount.push(id)
+    this.accountService.ConvertAccToJunk(this.cAccount).subscribe(
+      res => {
+        if(res['hasErrors'] == false){
+          this.jsuccess = true;
+          this.getAllAccs()
+          this.getMyAccs()
+          this.getJunkAccs()
+        }else{
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        }
+
+        
+      }
+    )
+  }
+  reactivateAccount(id) {
+    this.cAccount.push(id)
+    this.accountService.reactivateAcc(this.cAccount).subscribe(
+      res => {
+        this.rsuccess = true;
+        this.getAllAccs()
+        this.getMyAccs()
+        this.getJunkAccs()
+      }
+    )
+  }
+  deleteAccount(id) {
+    this.accountService.deleteAcc(id).subscribe(
+      res => {
+        this.dsuccess = true;
+        this.getAllAccs()
+        this.getMyAccs()
+        this.getJunkAccs()
+      }
+    )
+  }
+
+  createAccount(){
+
+  }
+  closejSuccess() {
+    this.jsuccess = false
+  }
+  closenSuccess() {
+    this.nsuccess = false
+  }
+
+  closerSuccess() {
+    this.rsuccess = false
+  }
+  closedSuccess() {
+    this.dsuccess = false
   }
 
 }

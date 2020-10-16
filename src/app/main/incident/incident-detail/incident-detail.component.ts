@@ -11,6 +11,8 @@ import * as $ from 'jquery'
 export class IncidentDetailComponent implements OnInit {
   id: any;
   incident: any;
+  noteMessage: any = '';
+  document: any;
   constructor(private incidentService: IncidentService, private location: Location, private route: ActivatedRoute) { }
   ngOnInit() {
     this.getId()
@@ -38,14 +40,30 @@ export class IncidentDetailComponent implements OnInit {
       })
   }
 
+  getDocument(id){
+    this.incidentService.getDocument(id).subscribe(
+      res => {
+        this.document = res['payload']
+      }
+    )
+  }
   getIncident() {
     this.incidentService.getIncidentById(this.id).subscribe(
       res => {
         console.log(res)
         this.incident = res['payload']
+        // this.getDocument()
       },
       err => {
         console.log(err)
+      }
+    )
+  }
+
+  createNote(id){
+    this.incidentService.addNote(id, this.noteMessage).subscribe(
+      res => {
+        console.log(res)
       }
     )
   }

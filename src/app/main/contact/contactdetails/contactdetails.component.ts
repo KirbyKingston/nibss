@@ -12,7 +12,13 @@ export class ContactdetailsComponent implements OnInit {
   id: any;
   contact: any;
   jsuccess: boolean = false;
+  esuccess: boolean = false;
   jContacts: Array<{}> = [];
+  to: any = '';
+  cc: any = '';
+  bcc: any = '';
+  subject: any = '';
+  body: any = '';
   constructor(private location: Location, private route: ActivatedRoute, private contactService: ContactService) { }
 
   ngOnInit() {
@@ -51,6 +57,14 @@ export class ContactdetailsComponent implements OnInit {
     )
   }
 
+  sendMail() {
+    this.contactService.sendEmail(this.bcc, this.body, this.cc, this.to, this.subject).subscribe(
+      res => {
+        this.esuccess = true;
+        this.bcc = this.body = this.cc = this.to = this.subject = '';
+      }
+    )
+  }
   junkContact() {
     this.id = parseInt(this.id)
     this.jContacts.push(this.id)
@@ -65,5 +79,9 @@ export class ContactdetailsComponent implements OnInit {
   closejSuccess() {
     this.jsuccess = false
     this.location.back();
+  }
+
+  closeeSuccess() {
+    this.esuccess = false
   }
 }

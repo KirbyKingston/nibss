@@ -34,14 +34,16 @@
                     <div class="inner p-4">
                         <div class="row">
                             <div class="col-lg-5 offset-lg-7 mb-3">
-                                <div class="btngroup d-flex justify-content-center align-items-center" *ngIf="accountDetails?.website">
+                                <div class="btngroup d-flex justify-content-center align-items-center"
+                                    *ngIf="accountDetails?.website">
 
                                     <div class="mr-2">
-                                        <a href="https://{{accountDetails?.website}}" target="_blank" class="text-white fs-14 ff-s fw-4">
+                                        <a href="https://{{accountDetails?.website}}" target="_blank"
+                                            class="text-white fs-14 ff-s fw-4">
                                             <img src="assets/images/web.svg" class="mr-1" alt=""> Visit Website
                                         </a>
                                     </div>
-                                    
+
 
                                 </div>
                             </div>
@@ -58,8 +60,11 @@
                                     </div>
                                     <div class="mr-lg-5">
                                         <p class="fs-15 text-white ff-s">{{accountDetails?.accountName}}</p>
-                                        <p class="fs-15 text-white ff-s fw-6 m-0">Adebayo Adeyemi O.</p>
-                                        <p class="fc-lightwhite fs-15 ff-s">Team Lead Software Integrations</p>
+                                        <p class="fs-15 text-white ff-s fw-6 m-0">
+                                            {{accountDetails?.contacts[0].firstName}}
+                                            {{accountDetails?.contacts[0].lastName}}</p>
+                                        <p class="fc-lightwhite fs-15 ff-s">{{accountDetails?.contacts[0].designation}}
+                                        </p>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Est. Transaction Value</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0"
                                             *ngIf="accountDetails?.estimatedTransactionValue">
@@ -114,7 +119,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a>
+                                <a href="mailto:{{contact?.email}}">
                                     <img src="assets/images/bmessage.svg" alt="">
                                 </a>
                             </div>
@@ -136,16 +141,16 @@
                             </div>
 
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex" *ngIf="accountDetails?.deals">
                             <div class="p-2">
                                 <div class="deal">
-                                    N
+                                    {{accountDetails?.deals[0].dealName.substring(0,1)}}
                                 </div>
                             </div>
                             <div class="p-2">
-                                <p class="m-0 ff-s fw-6 fs-14 fc-dblue">Negotiation/Review</p>
+                                <p class="m-0 ff-s fw-6 fs-14 fc-dblue">{{accountDetails?.deals[0].dealName}}</p>
                                 <p class="m-0 ff-s fs-12 fc-6blue w-100">
-                                    <span>NGN1,200,000,000</span>
+                                    <span>NGN{{accountDetails?.deals[0].dealValue}}</span>
                                 </p>
 
                             </div>
@@ -198,10 +203,14 @@
                                             {{accountDetails?.transactionVolume}}
                                         </p>
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
-                                        <div class="d-flex mb-4">
-                                            <div class="product mr-2">mCash</div>
-                                            <div class="product mr-2">NIP</div>
+                                        <div class="d-flex mb-4" *ngIf="accountDetails?.products">
+                                            <div class="product mr-2"
+                                                *ngFor="let product of accountDetails?.products.slice(0,2)">
+                                                {{product?.productName}} </div>
+                                            <span *ngIf="deal?.products.length > 2">+
+                                                {{deal?.products.length - 2}}</span>
                                         </div>
+                                        <p class="fs-16 fc-black ff-s" *ngIf="accountDetails?.products == null">NA</p>
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Est. Transaction Value</p>
                                         <p class="fs-16 fc-black ff-s">
                                             {{accountDetails?.transactionVolume}}
@@ -270,7 +279,7 @@
                                         <div class="py-4">
                                             <p class="text-center m-0">
                                                 <button class="btn btn-out-green" data-toggle="modal"
-                                                data-target=".email-modal">
+                                                    data-target=".email-modal">
                                                     <img src="assets/images/message-green.svg" class="mr-2" alt="">
                                                     Compose Mail
                                                 </button>
@@ -629,7 +638,8 @@
 
                                             <div class="col-12 mt-2">
                                                 <p class="text-right">
-                                                    <button class="btn btn-blue" (click)="createNote(accountDetails.id)">Create</button>
+                                                    <button class="btn btn-blue"
+                                                        (click)="createNote(accountDetails.id)">Create</button>
                                                 </p>
                                             </div>
                                             <div class="col-12">
@@ -645,7 +655,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="fs-13 fw-4 fc-lightblack">
-                                                        {{note?.message}}. 
+                                                        {{note?.message}}.
                                                         <!-- <span class="fw-7 fc-green">
                                                             <a>Read More</a>
                                                         </span> -->

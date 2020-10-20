@@ -30,7 +30,7 @@
                             aria-controls="contact" aria-selected="false">Junk Products</a>
                     </li>
 
-                    <li class="ml-auto">
+                    <!-- <li class="ml-auto">
                         <div class="dropdown">
                             <a class="filter text-right" id="filter">
                                 <img src="assets/images/date filter.svg" alt="">
@@ -109,7 +109,7 @@
 
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="col-12">
@@ -120,9 +120,9 @@
                                 <div class="table-responsive">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>NAME</th>
                                             <th>PRODUCT MANAGER</th>
                                             <th>CATEGORY</th>
@@ -200,9 +200,9 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let product of allProduct" (click)="getProduct(product.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -246,9 +246,9 @@
                                 <div class="table-responsive">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>NAME</th>
                                             <th>PRODUCT MANAGER</th>
                                             <th>CATEGORY</th>
@@ -326,9 +326,9 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let product of myProduct" (click)="getProduct(product.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -372,9 +372,9 @@
                                 <div class="table-responsive">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>NAME</th>
                                             <th>PRODUCT MANAGER</th>
                                             <th>CATEGORY</th>
@@ -452,9 +452,9 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let product of junkProduct" (click)="getProduct(product.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -654,7 +654,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                     aria-controls="profile" aria-selected="false">
                                     <div class="d-flex align-items-center">
@@ -664,7 +664,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
 
@@ -691,9 +691,9 @@
                                         <label for="" class="fs-16 fc-black ff-p">Product Name</label>
                                         <input type="text" class="form-control botform" ngModel name="name" required>
                                         <label
-                                            *ngIf="newProductFrorm.invalid && newProductFrorm.controls['name'] && newProductFrorm.controls['name'].invalid && newProductFrorm.controls['name'].touched"
-                                            > <small class="fc-red fs-12 ff-s"> Please enter name for your product.
-                                            </small></label>
+                                            *ngIf="newProductFrorm.invalid && newProductFrorm.controls['name'] && newProductFrorm.controls['name'].invalid && newProductFrorm.controls['name'].touched">
+                                        <small class="fc-red fs-12 ff-s"> Please enter name for your product.
+                                        </small></label>
 
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -702,7 +702,8 @@
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Onboarding duration (Days)</label>
-                                        <input type="text" class="form-control botform" maxlength="3" ngModel name="duration">
+                                        <input type="text" class="form-control botform" maxlength="3" ngModel
+                                            name="duration">
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
@@ -735,14 +736,15 @@
                                             ngModel name="description"></textarea>
                                     </div>
 
+
                                     <div class="col-12 mt-3">
                                         <p class="text-right ">
-                                            <a class="btn btn-blue px-3">Next</a>
+                                            <button class="btn btn-blue px-3" type="submit">Save</button>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <p class="m-0 fw-4 fs-15 ff-s">Upload your product documents</p>
@@ -774,7 +776,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
 

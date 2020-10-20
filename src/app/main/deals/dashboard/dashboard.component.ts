@@ -48,6 +48,7 @@ export class DashboardComponent implements OnInit {
   rsuccess: boolean = false;
   dsuccess: boolean = false;
   nfObject;
+  p: number = 1;
   constructor(private router: Router, private authService: AuthDataService, private dealService: DealsService, private productService: ProductsService, private accountService: AccountService) { }
 
   ngOnInit() {

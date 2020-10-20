@@ -21,7 +21,7 @@
                             aria-controls="home" aria-selected="true">All Incidents</a>
                     </li>
 
-                    <li class="ml-auto">
+                    <!-- <li class="ml-auto">
                         <div class="dropdown">
                             <a class="filter text-right" id="filter">
                                 <img src="assets/images/date filter.svg" alt="">
@@ -100,7 +100,7 @@
 
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="col-12">
@@ -109,9 +109,9 @@
                         <div class="table-responsive">
                             <table class="table dashboard">
                                 <thead>
-                                    <th>
+                                    <!-- <th>
                                         <input type="checkbox">
-                                    </th>
+                                    </th> -->
                                     <th>ACCOUNT</th>
                                     <th>PRODUCT</th>
                                     <th>TYPE/STATUS</th>
@@ -178,27 +178,22 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let thrincident of incidents" (click)="getIncident(thrincident.id)">
-                                        <td>
+                                        <!-- <td>
                                             <div class="pt-2"><input type="checkbox"></div>
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="mr-2">
-                                                    <div class="image" *ngIf="thrincident.imageString">
-                                                        <img [src]="'data:image/png;base64, ' + thrincident.imageString | trustedUrl" alt="">
-                                                    </div>
-                                                    <div class="image" *ngIf="thrincident.imageString == null">
-                                                        <img src="assets/images/companyalt.svg" alt="">
-                                                    </div>
+                                                    <div class="productname">{{thrincident.accountName.substring(0, 1)}}</div>
                                                 </div>
                                                 <div>
-                                                    <p class="m-0 ff-s fs-15 fw-6 fc-black">{{thrincident.accountName.substring(0, 10)}}</p>
+                                                    <p class="m-0 ff-s fs-15 fw-6 fc-black">{{thrincident.accountName}}</p>
 
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">{{thrincident.productName.substring(0, 10)}}</p>
+                                            <p class="ff-s fs-15 fw-6 fc-black m-0 pt-2">{{thrincident.productName}}</p>
                                         </td>
                                         <td>
                                             <p class="ff-s fs-15 fw-4 fw-6 fc-black m-0 mb-1">
@@ -364,7 +359,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                     aria-controls="profile" aria-selected="false">
                                     <div class="d-flex align-items-center">
@@ -374,7 +369,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
 
@@ -468,14 +463,14 @@
                                         <textarea name="" id="" cols="30" rows="10"
                                             class="form-control botform" [(ngModel)]="description"></textarea>
                                     </div>
-                                    <div class="col-12 mt-3">
-                                        <p class="text-right ">
-                                            <a class="btn btn-blue px-3">Next</a>
+                                    <div class="col-12 mt-5 pt-5">
+                                        <p class="text-right">
+                                            <button class="btn btn-blue px-3" (click)="createIncident()">Save</button>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <p class="m-0 fw-4 fs-15 ff-s">Upload your documents</p>
@@ -507,18 +502,14 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-8 mb-3">
-                                        <!-- <div class="d-flex row px-3">
-                                            <div class="product mr-2" *ngFor="let file of selectedFiles">{{file.file.name}}</div>
-                                        </div> -->
-                                    </div>
+                                    
                                     <div class="col-12 mt-5 pt-5">
                                         <p class="text-right">
                                             <button class="btn btn-blue px-3" (click)="createIncident()">Save</button>
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 

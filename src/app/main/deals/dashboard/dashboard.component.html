@@ -29,7 +29,7 @@
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#junk" role="tab"
                             aria-controls="contact" aria-selected="false">Junk Deals</a>
                     </li>
-                    <li class="ml-auto">
+                    <!-- <li class="ml-auto">
                         <div class="dropdown">
                             <a class="filter text-right" id="filter">
                                 <img src="assets/images/date filter.svg" alt="">
@@ -108,7 +108,7 @@
 
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="col-12">
@@ -119,9 +119,9 @@
                                 <div class="table-responsive" *ngIf="allDeals?.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>DEAL NAME</th>
                                             <th>PRODUCTS</th>
                                             <th>STAGE</th>
@@ -171,20 +171,16 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let deal of allDeals" (click)="getDealById(deal.id)">
-                                                <td>
+                                            <tr *ngFor="let deal of allDeals | paginate: { itemsPerPage: 5, currentPage: p }"
+                                                (click)="getDealById(deal.id)">
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="deal.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + deal.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="deal.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
-                                                            </div>
+                                                            <div class="productname">
+                                                                {{deal.dealName.substring(0,1)}}</div>
                                                         </div>
                                                         <div>
                                                             <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
@@ -196,7 +192,148 @@
                                                 <td>
                                                     <p class="m-0 ff-s fs-15 fw-6 fc-black pt-2"
                                                         *ngIf="deal.products.length == 0">NA</p>
-                                                    <div class="d-flex row mb-4 pt-2 px-3" *ngIf="deal.products">
+                                                    <div class="d-flex row pt-2 px-3" *ngIf="deal.products">
+                                                        <div class="product mr-2 mb-1"
+                                                            *ngFor="let product of deal.products.slice(0,2)">
+                                                            {{product?.productName}}</div>
+                                                        <span *ngIf="deal?.products.length > 2">+
+                                                            {{deal?.products.length - 2}}</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0"
+                                                        *ngIf="deal.lastActivityDate">
+                                                        {{deal.lastActivityDate | date: 'medium'}}
+                                                    </p>
+                                                    <p class="fs-15 fc-lightblack ff-s m-0">
+                                                        NA
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="d-flex justify-content-end" *ngIf="this.allDeals.length > 5">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
+                                </div>
+                                <div class="emptystate2" *ngIf="allDeals?.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no deals in this category
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="my" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive" *ngIf="myDeals?.length > 0">
+                                    <table class="table dashboard">
+                                        <thead>
+                                            <!-- <th>
+                                                <input type="checkbox">
+                                            </th> -->
+                                            <th>Deal name</th>
+                                            <th>PRODUCTs</th>
+                                            <th>STAGE</th>
+                                            <th>LAST ACTIVITY</th>
+                                        </thead>
+                                        <tr *ngFor="let deal of myDeals | paginate: { itemsPerPage: 5, currentPage: p }"
+                                            (click)="getDealById(deal.id)">
+                                            <!-- <td>
+                                                <div class="pt-2"><input type="checkbox"></div>
+                                            </td> -->
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="mr-2">
+                                                        <div class="productname">
+                                                            {{deal.dealName.substring(0,1)}}</div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="m-0 ff-s fs-15 fw-6 fc-black pt-2"
+                                                    *ngIf="deal.products.length == 0">NA</p>
+                                                <div class="d-flex row pt-2 px-3" *ngIf="deal.products">
+                                                    <div class="product mr-2 mb-1"
+                                                        *ngFor="let product of deal.products.slice(0,2)">
+                                                        {{product?.productName}}</div>
+                                                    <span *ngIf="deal?.products.length > 2">+
+                                                        {{deal?.products.length - 2}}</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="fs-15 fc-black fw-6 ff-s m-0" *ngIf="deal.lastActivityDate">
+                                                    {{deal.lastActivityDate | date: 'medium'}}
+                                                </p>
+                                                <p class="fs-15 fc-lightblack ff-s m-0">
+                                                    -
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="d-flex justify-content-end" *ngIf="this.myDeals.length > 5">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
+                                </div>
+                                <div class="emptystate2" *ngIf="myDeals?.length == 0">
+                                    <img src="assets/images/emptylead.svg" alt="">
+                                    <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                                        There no deals in this category
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="junk" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive" *ngIf="junkDeals?.length > 0">
+                                    <table class="table dashboard">
+                                        <thead>
+                                            <!-- <th>
+                                                <input type="checkbox">
+                                            </th> -->
+                                            <th>Deal name</th>
+                                            <th>PRODUCTs</th>
+                                            <th>STAGE</th>
+                                            <th>LAST ACTIVITY</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let deal of junkDeals | paginate: { itemsPerPage: 5, currentPage: p }"
+                                                (click)="getDealById(deal.id)">
+                                                <!-- <td>
+                                                    <div class="pt-2"><input type="checkbox"></div>
+                                                </td> -->
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="mr-2">
+                                                            <div class="productname">
+                                                                {{deal.dealName.substring(0,1)}}</div>
+                                                        </div>
+                                                        <div>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="m-0 ff-s fs-15 fw-6 fc-black pt-2"
+                                                        *ngIf="deal.products.length == 0">NA</p>
+                                                    <div class="d-flex row pt-2 px-3" *ngIf="deal.products">
                                                         <div class="product mr-2 mb-1"
                                                             *ngFor="let product of deal.products.slice(0,2)">
                                                             {{product?.productName}}</div>
@@ -219,8 +356,11 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="d-flex justify-content-end" *ngIf="this.myDeals.length > 5">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
                                 </div>
-                                <div class="emptystate2" *ngIf="allDeals?.length == 0">
+                                <div class="emptystate2" *ngIf="junkDeals?.length == 0">
                                     <img src="assets/images/emptylead.svg" alt="">
                                     <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
                                         There no deals in this category
@@ -229,357 +369,213 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="my" role="tabpanel">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="table-responsive" *ngIf="myDeals?.length > 0">
-                                    <table class="table dashboard">
-                                        <thead>
-                                            <th>
-                                                <input type="checkbox">
-                                            </th>
-                                            <th>Deal name</th>
-                                            <th>PRODUCTs</th>
-                                            <th>STAGE</th>
-                                            <th>LAST ACTIVITY</th>
-                                        </thead>
-                                        <tr *ngFor="let deal of myDeals" (click)="getDealById(deal.id)">
-                                            <td>
-                                                <div class="pt-2"><input type="checkbox"></div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mr-2">
-                                                        <div class="image" *ngIf="deal.imageString">
-                                                            <img [src]="'data:image/png;base64, ' + deal.imageString | trustedUrl"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="image" *ngIf="deal.imageString == null">
-                                                            <img src="assets/images/companyalt.svg" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
-                                                        </p>
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex mb-4 pt-2">
-                                            <td>
-                                                <p class="m-0 ff-s fs-15 fw-6 fc-black pt-2"
-                                                    *ngIf="deal.products.length == 0">NA</p>
-                                                <div class="d-flex row mb-4 pt-2 px-3" *ngIf="deal.products">
-                                                    <div class="product mr-2 mb-1"
-                                                        *ngFor="let product of deal.products.slice(0,2)">
-                                                        {{product?.productName}}</div>
-                                                    <span *ngIf="deal?.products.length > 2">+
-                                                        {{deal?.products.length - 2}}</span>
-                                                </div>
-                                            </td>
-                                </div>
-                                </td>
-                                <td>
-                                    <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
-                                </td>
-                                <td>
-                                    <p class="fs-15 fc-black fw-6 ff-s m-0" *ngIf="deal.lastActivityDate">
-                                        {{deal.lastActivityDate | date: 'medium'}}
-                                    </p>
-                                    <p class="fs-15 fc-lightblack ff-s m-0">
-                                        -
-                                    </p>
-                                </td>
-                                </tr>
-                                </table>
-                            </div>
-                            <div class="emptystate2" *ngIf="myDeals?.length == 0">
-                                <img src="assets/images/emptylead.svg" alt="">
-                                <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
-                                    There no deals in this category
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="junk" role="tabpanel">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="table-responsive" *ngIf="junkDeals?.length > 0">
-                                <table class="table dashboard">
-                                    <thead>
-                                        <th>
-                                            <input type="checkbox">
-                                        </th>
-                                        <th>Deal name</th>
-                                        <th>PRODUCTs</th>
-                                        <th>STAGE</th>
-                                        <th>LAST ACTIVITY</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let deal of junkDeals" (click)="getDealById(deal.id)">
-                                            <td>
-                                                <div class="pt-2"><input type="checkbox"></div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mr-2">
-                                                        <div class="image" *ngIf="deal.imageString">
-                                                            <img [src]="'data:image/png;base64, ' + deal.imageString | trustedUrl"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="image" *ngIf="deal.imageString == null">
-                                                            <img src="assets/images/companyalt.svg" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="m-0 ff-s fs-15 fw-6 fc-black">{{deal.dealName}}
-                                                        </p>
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="m-0 ff-s fs-15 fw-6 fc-black pt-2"
-                                                    *ngIf="deal.products.length == 0">NA</p>
-                                                <div class="d-flex row mb-4 pt-2 px-3" *ngIf="deal.products">
-                                                    <div class="product mr-2 mb-1"
-                                                        *ngFor="let product of deal.products.slice(0,2)">
-                                                        {{product?.productName}}</div>
-                                                    <span *ngIf="deal?.products.length > 2">+
-                                                        {{deal?.products.length - 2}}</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="ff-s fs-14 fw-6 fc-darkblue m-0 pt-2">{{deal.stage}}</p>
-                                            </td>
-                                            <td>
-                                                <p class="fs-15 fc-black fw-6 ff-s m-0" *ngIf="deal.lastActivityDate">
-                                                    {{deal.lastActivityDate | date: 'medium'}}
-                                                </p>
-                                                <p class="fs-15 fc-lightblack ff-s m-0">
-                                                    -
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="emptystate2" *ngIf="junkDeals?.length == 0">
-                                <img src="assets/images/emptylead.svg" alt="">
-                                <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
-                                    There no deals in this category
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="col-lg-4">
-    <div class="sidediv">
-        <div class="p-3">
-            <div class="d-flex mb-2">
-                <div class="mr-2">
-                    <img src="assets/images/info.svg" alt="">
+    <div class="col-lg-4">
+        <div class="sidediv">
+            <div class="p-3">
+                <div class="d-flex mb-2">
+                    <div class="mr-2">
+                        <img src="assets/images/info.svg" alt="">
+                    </div>
+                    <div>
+                        <p class="m-0 fs-16 fc-green ff-p">Info</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="m-0 fs-16 fc-green ff-p">Info</p>
-                </div>
+                <div class="orangeline"></div>
+                <div class="littleorange"></div>
+
             </div>
-            <div class="orangeline"></div>
-            <div class="littleorange"></div>
+            <div class="emptystate" *ngIf="!isSelected">
+                <img src="assets/images/emptylead.svg" alt="">
+                <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
+                    Select a deal to display deal
+                    information
+                </p>
+            </div>
 
-        </div>
-        <div class="emptystate" *ngIf="!isSelected">
-            <img src="assets/images/emptylead.svg" alt="">
-            <p class="text-center fw-6 ff-s fs-15 px-3 pt-4">
-                Select a deal to display deal
-                information
-            </p>
-        </div>
-
-        <!-- properties -->
-        <div class="px-3" *ngIf="isSelected">
-            <div class="row">
-                <div class="col-12">
-                    <ul class="nav nav-tabs deall align-items-center" id="myTab" role="tablist">
-                        <li class="nav-item w-50 text-center">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#deal" role="tab"
-                                aria-controls="home" aria-selected="true">Deal Info</a>
-                        </li>
-                        <li class="nav-item w-50 text-center">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#stage" role="tab"
-                                aria-controls="profile" aria-selected="false">Stage History</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 pt-3">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="deal" role="tabpanel">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="top-prop px-2 py-1">
-                                        <div class="d-flex align-items-center">
-                                            <div class="py-2">
-                                                <img src="assets/images/uba.svg" alt="">
-                                            </div>
-                                            <div class="p-2">
-                                                <p class="m-0 ff-s fw-6 fs-15 fc-black">{{aDeal?.dealName}}</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row py-2">
-                                        <div class="col-5 mb-1">
-                                            <p class="m-0 fc-lightblack fs-14 ff-s">Stage:</p>
-                                        </div>
-                                        <div class="col-7 mb-3">
-                                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.stage}}</p>
-                                        </div>
-                                        <div class="col-5 mb-3">
-                                            <p class="m-0 fc-lightblack fs-14 ff-s">Deal Value:</p>
-                                        </div>
-                                        <div class="col-7 mb-3">
-                                            <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.dealValue">
-                                                {{aDeal?.dealValue}}</p>
-                                            <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.dealValue == null">-
-                                            </p>
-                                        </div>
-                                        <div class="col-5 mb-3">
-                                            <p class="m-0 fc-lightblack fs-14 ff-s">Est Income:</p>
-                                        </div>
-                                        <div class="col-7 mb-3">
-                                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.estimatedRevenue}}</p>
-                                        </div>
-                                        <div class="col-5 mb-3">
-                                            <p class="m-0 fc-lightblack fs-14 ff-s">Probability (%):</p>
-                                        </div>
-                                        <div class="col-7 mb-3">
-                                            <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.probability">
-                                                {{aDeal?.probability}}%</p>
-                                            <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.probability == null">
-                                                NA</p>
-                                        </div>
-                                        <div class="col-2 mb-1">
-                                            <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
-                                        </div>
-                                        <div class="col-10 mb-1">
-                                            <div class="d-flex row px-3">
-                                                <div class="product mr-2" (click)="openProduct(product.id)"
-                                                    *ngFor="let product of aDeal?.products.slice(0,2)">
-                                                    {{product?.productName}} </div>
-                                                <div *ngIf="aDeal?.products.length > 2">+
-                                                    {{aDeal?.products.length - 2}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="info mb-1">
-                                        <div class="top-prop b-5 p-2">
-                                            <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
-                                                        src="assets/images/contactcoins.svg" alt=""></span>Account
-                                            </p>
-                                        </div>
-                                        <div class="row pl-2">
-                                            <div class="col-12 mb-1">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="py-2">
-                                                        <div class="image" *ngIf="aDeal?.imageString">
-                                                            <img [src]="'data:image/png;base64, ' + aDeal?.imageString | trustedUrl"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="image" *ngIf="aDeal?.imageString == null">
-                                                            <img src="assets/images/companyalt.svg" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="p-2">
-                                                        <p class="m-0 ff-s fw-6 fs-15 fc-black"
-                                                            (click)="openAccount(aDeal.account.id)">
-                                                            {{aDeal?.account.accountName}}</p>
-                                                    </div>
+            <!-- properties -->
+            <div class="px-3" *ngIf="isSelected">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs deall align-items-center" id="myTab" role="tablist">
+                            <li class="nav-item w-50 text-center">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#deal" role="tab"
+                                    aria-controls="home" aria-selected="true">Deal Info</a>
+                            </li>
+                            <li class="nav-item w-50 text-center">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#stage" role="tab"
+                                    aria-controls="profile" aria-selected="false">Stage History</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 pt-3">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="deal" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="top-prop px-2 py-1">
+                                            <div class="d-flex align-items-center">
+                                                <div class="py-2">
+                                                    <img src="assets/images/uba.svg" alt="">
+                                                </div>
+                                                <div class="p-2">
+                                                    <p class="m-0 ff-s fw-6 fs-15 fc-black">{{aDeal?.dealName}}</p>
                                                 </div>
                                             </div>
 
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-12" *ngIf="aDeal?.accountContact">
-                                    <div class="info mb-1">
-                                        <div class="top-prop b-5 p-2">
-                                            <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
-                                                        src="assets/images/accountcontact.svg" alt=""></span>Contact
-                                            </p>
-                                        </div>
-                                        <div class="row pl-2">
-                                            <div class="col-12 mb-3">
-                                                <div class="d-flex align-items-center justify-content-between p-2">
-                                                    <div (click)="openContact(aDeal.account.contacts[0].id)">
-                                                        <div class="prop-initials">
-                                                            {{aDeal?.accountContact.firstName.substring(0,1)}}
-                                                        </div>
-                                                    </div>
-                                                    <div (click)="openContact(aDeal.account.contacts[0].id)">
-                                                        <p class="m-0 fs-15 ff-s fc-black fw-6">
-                                                            {{aDeal?.accountContact.firstName}}
-                                                            {{aDeal?.accountContact.lastName}} </p>
-                                                    </div>
-                                                    <div>
-                                                        <a href="tel:{{aDeal?.accountContact.phoneNumber}}"
-                                                            *ngIf="aDeal?.accountContact.phoneNumber">
-                                                            <img src="assets/images/bcall.svg" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div>
-                                                        <a href="mailto:{{aDeal?.accountContact.email}}"
-                                                            *ngIf="aDeal?.accountContact.email">
-                                                            <img src="assets/images/bmessage.svg" alt="">
-                                                        </a>
-                                                    </div>
+
+                                        <div class="row py-2">
+                                            <div class="col-5 mb-1">
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Stage:</p>
+                                            </div>
+                                            <div class="col-7 mb-3">
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.stage}}</p>
+                                            </div>
+                                            <div class="col-5 mb-3">
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Deal Value:</p>
+                                            </div>
+                                            <div class="col-7 mb-3">
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.dealValue">
+                                                    {{aDeal?.dealValue}}</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s"
+                                                    *ngIf="aDeal?.dealValue == null">-
+                                                </p>
+                                            </div>
+                                            <div class="col-5 mb-3">
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Est Income:</p>
+                                            </div>
+                                            <div class="col-7 mb-3">
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s">{{aDeal?.estimatedRevenue}}</p>
+                                            </div>
+                                            <div class="col-5 mb-3">
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Probability (%):</p>
+                                            </div>
+                                            <div class="col-7 mb-3">
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.probability">
+                                                    {{aDeal?.probability}}%</p>
+                                                <p class="m-0 fc-black fw-6 fs-14 ff-s"
+                                                    *ngIf="aDeal?.probability == null">
+                                                    NA</p>
+                                            </div>
+                                            <div class="col-2 mb-1">
+                                                <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
+                                            </div>
+                                            <div class="col-10 mb-1">
+                                                <div class="d-flex row px-3">
+                                                    <div class="product mr-2" (click)="openProduct(product.id)"
+                                                        *ngFor="let product of aDeal?.products.slice(0,2)">
+                                                        {{product?.productName}} </div>
+                                                    <div *ngIf="aDeal?.products.length > 2">+
+                                                        {{aDeal?.products.length - 2}}</div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <button class="btn btn-green mr-3" (click)="openDeal(aDeal.id)">View
-                                            Complete Info</button>
-                                        <div class="dropdown">
-                                            <button class="btn btn-more dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <img src="assets/images/more-green.svg" alt="">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                                    (click)="junkDeal(aDeal.id)">Junk
-                                                    Deal</a>
-                                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                                    (click)="reactivateDeal(aDeal.id)">Reactivate Deal</a>
-                                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                                    (click)="deleteDeal(aDeal.id)">Delete Deal</a>
+                                    <div class="col-12">
+                                        <div class="info mb-1">
+                                            <div class="top-prop b-5 p-2">
+                                                <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
+                                                            src="assets/images/contactcoins.svg" alt=""></span>Account
+                                                </p>
+                                            </div>
+                                            <div class="row pl-2">
+                                                <div class="col-12 mb-1">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="py-2">
+                                                            <div class="image" *ngIf="aDeal?.imageString">
+                                                                <img [src]="'data:image/png;base64, ' + aDeal?.imageString | trustedUrl"
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="image" *ngIf="aDeal?.imageString == null">
+                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="p-2">
+                                                            <p class="m-0 ff-s fw-6 fs-15 fc-black"
+                                                                (click)="openAccount(aDeal.account.id)">
+                                                                {{aDeal?.account.accountName}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12" *ngIf="aDeal?.accountContact">
+                                        <div class="info mb-1">
+                                            <div class="top-prop b-5 p-2">
+                                                <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
+                                                            src="assets/images/accountcontact.svg" alt=""></span>Contact
+                                                </p>
+                                            </div>
+                                            <div class="row pl-2">
+                                                <div class="col-12 mb-3">
+                                                    <div class="d-flex align-items-center justify-content-between p-2">
+                                                        <div (click)="openContact(aDeal.account.contacts[0].id)">
+                                                            <div class="prop-initials">
+                                                                {{aDeal?.accountContact.firstName.substring(0,1)}}
+                                                            </div>
+                                                        </div>
+                                                        <div (click)="openContact(aDeal.account.contacts[0].id)">
+                                                            <p class="m-0 fs-15 ff-s fc-black fw-6">
+                                                                {{aDeal?.accountContact.firstName}}
+                                                                {{aDeal?.accountContact.lastName}} </p>
+                                                        </div>
+                                                        <div>
+                                                            <a href="tel:{{aDeal?.accountContact.phoneNumber}}"
+                                                                *ngIf="aDeal?.accountContact.phoneNumber">
+                                                                <img src="assets/images/bcall.svg" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="mailto:{{aDeal?.accountContact.email}}"
+                                                                *ngIf="aDeal?.accountContact.email">
+                                                                <img src="assets/images/bmessage.svg" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <button class="btn btn-green mr-3" (click)="openDeal(aDeal.id)">View
+                                                Complete Info</button>
+                                            <div class="dropdown">
+                                                <button class="btn btn-more dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <img src="assets/images/more-green.svg" alt="">
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                        (click)="junkDeal(aDeal.id)">Junk
+                                                        Deal</a>
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                        (click)="reactivateDeal(aDeal.id)">Reactivate Deal</a>
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                        (click)="deleteDeal(aDeal.id)">Delete Deal</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="stage" role="tabpanel"></div>
                         </div>
-                        <div class="tab-pane fade" id="stage" role="tabpanel"></div>
                     </div>
-                </div>
 
+                </div>
             </div>
+            <!-- properties -->
         </div>
-        <!-- properties -->
     </div>
-</div>
 </div>
 
 

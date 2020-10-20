@@ -156,7 +156,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createIncident() {
-    this.incidentService.createIncident(this.account, this.title, this.caseType, this.closed, this.description, this.owner, this.priority, this.name, this.contact, this.source, this.status, this.phase, this.docTypes, this.files).subscribe(
+    this.incidentService.createIncident(this.account, this.title, this.caseType, this.closed, this.description, this.owner, this.priority, this.name, this.contact, this.source, this.status, this.phase).subscribe(
       res => {
         if(res['hasErrors'] == false){
           this.getIncidents()

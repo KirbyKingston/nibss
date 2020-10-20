@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
   twitter: any = '';
   instagram: any = '';
   title: any = '';
-  address: any = '';
+  address: any = ''; 
   city: any = '';
   country: any = '';
   postalCode: any = '';

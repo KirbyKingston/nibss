@@ -79,13 +79,21 @@ export class LeadsService {
     return this.http.post(this.baseUrl + 'Leads/CreateLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  updateStatus(companyName, id, institutionType, stage, status) {
+  updateStatus(companyName, facebook, id, instagram, estTransVal, institutionType, oPhone, stage, status, transVol, twitter, website, yearsEstablished) {
     const body = new FormData()
     body.append("CompanyName", companyName)
+    body.append("Facebook", facebook)
     body.append("Id", id)
+    body.append("Instagram", instagram)
+    body.append("EstimatedTransactionValue", estTransVal)
     body.append("InstitutionType", institutionType)
+    body.append("PhoneNumber", oPhone)
     body.append("Stage", stage)
     body.append("Status", status)
+    body.append("TransactionVolume", transVol)
+    body.append("Twitter", twitter)
+    body.append("Website", website)
+    body.append("YearEstablished", yearsEstablished)
     return this.http.put(this.baseUrl + 'Leads/UpdateLead', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
   updateLead(companyName, image, estTransVal, facebook, id, instagram, institutionType, ownerId, oPhone, source, stage, status, transVol, twitter, website, yearsEstablished) {

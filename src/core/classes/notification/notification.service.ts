@@ -15,7 +15,7 @@ export class NotificationService {
       this.dismissMessage();
     }, 5000);
   }    
-
+ 
   dismissMessage(){
     this.alertStatus.next({content:'', style:'', type:0, show:false})
   }

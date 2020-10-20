@@ -82,12 +82,12 @@
                                                     </a>
                                                 </div>
                                                 <div class="mr-2">
-                                                    <a class="text-white fs-14 ff-s fw-4">
+                                                    <a href="mailto:{{leadDetails?.email}}" class="text-white fs-14 ff-s fw-4">
                                                         <img src="assets/images/email.svg" class="mr-1" alt=""> Email
                                                     </a>
                                                 </div>
                                                 <div class="mr-2">
-                                                    <a class="text-white fs-14 ff-s fw-4">
+                                                    <a href="tel:{{leadDetails?.email}}" class="text-white fs-14 ff-s fw-4">
                                                         <img src="assets/images/call.svg" class="mr-1" alt=""> Call
                                                     </a>
                                                 </div>
@@ -112,8 +112,11 @@
                                                 </div>
                                                 <div class="mr-3">
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Phone</p>
-                                                    <p class="fs-15 text-white ff-s fw-6">
+                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].phoneNumber">
                                                         {{leadDetails?.contacts[0].phoneNumber}}
+                                                    </p>
+                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].phoneNumber == null">
+                                                       NA
                                                     </p>
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Email</p>
                                                     <p class="fs-15 text-white ff-s fw-6">
@@ -180,9 +183,12 @@
                                                             {{leadDetails?.contacts[0].lastName}}
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
-                                                        <p class="fs-16 fc-black ff-s">
+                                                        <p class="fs-16 fc-black ff-s"  *ngIf="leadDetails?.contacts[0].phoneNumber">
                                                             {{leadDetails?.contacts[0].phoneNumber}} <span><img
                                                                     src="assets/images/skype.svg" alt=""></span>
+                                                        </p>
+                                                        <p class="fs-16 fc-black ff-s" *ngIf="leadDetails?.contacts[0].phoneNumber == null">
+                                                            NA
                                                         </p>
                                                     </div>
                                                 </div>
@@ -219,7 +225,9 @@
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products
                                                         </p>
-                                                        <div class="d-flex mb-4">
+                                                        <p class="fs-16 fc-black ff-s" *ngIf="leadDetails?.products.length == 0">NA</p>
+                                                        <div class="d-flex mb-2" *ngIf="leadDetails?.products">
+
                                                             <div class="product mr-2" *ngFor="let product of leadDetails?.products.slice(0,2)">
                                                                 {{product?.productName}} </div>
                                                                 <span *ngIf="deal?.products.length > 2">+
@@ -230,10 +238,10 @@
                                                         <p class="fs-16 fc-black ff-s">
                                                             {{leadDetails?.estimatedTransactionValue}}
                                                         </p>
-                                                        <p class="fs-14 fc-lightblack ff-s mb-1">Postal Code</p>
+                                                        <!-- <p class="fs-14 fc-lightblack ff-s mb-1">Postal Code</p>
                                                         <p class="fs-16 fc-black ff-s">
                                                             101223
-                                                        </p>
+                                                        </p> -->
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Institution Type</p>
@@ -248,21 +256,21 @@
                                                         <p class="fs-16 fc-black ff-s">
                                                             {{leadDetails?.addresses[0].street}}
                                                         </p>
-                                                        <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
+                                                        <p class="fs-14 fc-lightblack ff-s mb-1" *ngIf="leadDetails?.instagram || leadDetails?.facebook || leadDetails?.twitter">Social Media</p>
                                                         <div class="d-flex">
-                                                            <div class="mr-3">
-                                                                <a href="https://{{leadDetails?.twitter}}"
+                                                            <div class="mr-3" *ngIf="leadDetails?.facebook">
+                                                                <a href="https://{{leadDetails?.facebook}}"
                                                                     target="_blank">
                                                                     <img src="assets/images/facebook.svg" alt="">
                                                                 </a>
                                                             </div>
-                                                            <div class="mr-3">
+                                                            <div class="mr-3" *ngIf="leadDetails?.twitter">
                                                                 <a href="https://{{leadDetails?.twitter}}"
                                                                     target="_blank">
                                                                     <img src="assets/images/twitter.svg" alt="">
                                                                 </a>
                                                             </div>
-                                                            <div class="mr-3">
+                                                            <div class="mr-3" *ngIf="leadDetails?.instagram">
                                                                 <a href="https://{{leadDetails?.instagram}}"
                                                                     target="_blank">
                                                                     <img src="assets/images/instagram.svg" alt="">
@@ -1086,34 +1094,34 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <label class="fs-16 ff-p fc-black">Lead Owner</label>
-
-                                    </div>
+                                    
                                     <div class="col-lg-4 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Lead Owner</label>
                                         <select class="form-control topform" [(ngModel)]="leadDetails.ownerId">
                                             <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Lead Status</label>
                                         <select class="form-control topform" [(ngModel)]="leadDetails.source">
-                                            <option value="">Lead Status</option>
                                             <option value="0">Cold</option>
                                             <option value="1">Warm</option>
                                             <option value="2">Hot</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Lead Source</label>
                                         <select class="form-control topform" [(ngModel)]="leadDetails.source">
-                                            <option value="">Lead Source</option>
                                             <option value="Campaign">Campaign</option>
+                                            <option value="Cold Call">Cold Call</option>
                                         </select>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Lead Stage</label>
+
                                         <select [(ngModel)]="leadDetails.stage" class="form-control topform">
-                                            <option>Lead Stage</option>
                                             <option value="0">Open</option>
                                             <option value="1">Attempting Contact</option>
                                             <option value="2">Converted</option>
@@ -1123,13 +1131,11 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-6 mb-3">
+                                        <label class="fs-16 ff-p fc-black">Lead Phonenumber</label>
+
                                         <div class="input-group leadform big">
                                             <div class="input-group-prepend">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">+234</option>
-                                                    <option value="">+234</option>
-                                                    <option value="">+234</option>
-                                                </select>
+                                                <div class="i">+234</div>
                                             </div>
                                             <input [(ngModel)]="leadDetails.phoneNumber" placeholder="Owner Phonenumber"
                                                 type="text" class="form-control">

@@ -710,6 +710,17 @@ table.table.accounttab tbody tr td {
     height: 50px;
 
 }
+.input-group.leadform.big .i{
+    font-family: Palatino Linotype;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14.004px;
+    line-height: 19px;
+    color: #424242;
+    height: 50px;
+    background: #C4C4C4;
+    padding: 15px 20px;
+}
 .input-group.leadform .i{
     font-family: Palatino Linotype;
     font-style: normal;

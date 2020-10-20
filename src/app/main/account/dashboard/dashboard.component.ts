@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery'
 import { NotificationService } from 'src/core/classes/notification/notification.service';
 import { AccountService } from 'src/core/data/account/account.service';
+import { AuthDataService } from 'src/core/data/authentication/auth-data.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -20,12 +21,50 @@ export class DashboardComponent implements OnInit {
   rsuccess: boolean = false;
   dsuccess: boolean = false;
   nfObject;
-  constructor(private accountService: AccountService, private router: Router, private notification: NotificationService) { }
+  owner: any = '';
+  accountname: any = '';
+  insType: any = '';
+  transVol: any = '';
+  EstTransVal: any = '';
+  comType: any = '';
+  website: any = '';
+  facebook: any = '';
+  twitter: any = '';
+  instagram: any = '';
+  address: any = '';
+  city: any = '';
+  country: any = '';
+  postalCode: any = '';
+  ownerphoneNumber: any = '';
+  disImage: any;
+  yearEst: any = '';
+  message: any = '';
+  firstName: any = '';
+  conphoneNumber: any = '';
+  lastName: any = '';
+  designation: any = '';
+  title: any = '';
+  email: any = '';
+  types: any = '';
+  users: any;
+  files: any;
+  selectedFiles: any;
+  typeName: any = '';
+  documentTypes = [
+    { id: 0, document: "Others" },
+    { id: 1, document: "Brochure" },
+    { id: 2, document: "Picture" },
+    { id: 3, document: "Presentation Slides" }
+  ]
+  docTypes: Array<{}> = [];
+  selectedTypes: Array<{}> = [];
+  constructor(private accountService: AccountService, private router: Router, private notification: NotificationService, private authService:AuthDataService) { }
 
   ngOnInit() {
     this.getAllAccs()
     this.getMyAccs()
     this.getJunkAccs()
+    this.getUsers()
     $('#filter, #overlay').on('click', function () {
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
     })
@@ -35,6 +74,48 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  uploadFile(e: FileList) {
+    this.files = e;
+    this.selectedFiles = this.files.FileList;
+    console.log(this.files)
+    console.log(this.selectedFiles)
+    const size = e[0].size
+    if (size >= 505000000) {
+      return false;
+    }
+  }
+
+  handleUpload(e: FileList) {
+    this.disImage = e[0];
+    const size = e[0].size
+    if (size >= 505000000) {
+      this.notification.publishMessages('Please upload limit is 5mb', 'warning', 0)
+      return false;
+    }
+
+  }
+  select() {
+    this.types = parseInt(this.types)
+    this.docTypes.push(this.types)
+    console.log(this.docTypes)
+    this.documentTypes.forEach(element => {
+      if (element.id == this.types) {
+        this.typeName = element.document
+        this.selectedTypes.push(this.typeName)
+        console.log(this.selectedTypes)
+      }
+    })
+
+  }
+
+  
+  getUsers(){
+    this.authService.getUsers().subscribe(
+      res => {
+        this.users = res['payload']
+      }
+    )
+  }
   getAllAccs() {
     this.accountService.getAllAcc().subscribe(
       res => {
@@ -139,7 +220,13 @@ export class DashboardComponent implements OnInit {
   }
 
   createAccount() {
-
+    this.accountService.createAcc(this.accountname, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.ownerphoneNumber, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.conphoneNumber, this.message, this.files, this.docTypes).subscribe(
+      res => {
+        console.log(res)
+        this.getAllAccs()
+        this.getMyAccs()
+      }
+    )
   }
   closejSuccess() {
     this.jsuccess = false

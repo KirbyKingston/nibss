@@ -129,11 +129,9 @@ export class LeaddetailsComponent implements OnInit {
     this.leadService.getLeadById(this.id).subscribe(
       res => {
         this.leadDetails = res['payload']
-        this.nfObject = new Intl.NumberFormat("en-US");
-        // console.log(this.leadDetails.transactionVolume)
-        // console.log(this.leadDetails.estimatedTransactionValue)
-        this.leadDetails.transactionVolume = this.leadDetails.format(this.leadDetails.transactionVolume);
-        this.leadDetails.estimatedTransactionValue = this.leadDetails.format(this.leadDetails.estimatedTransactionValue);
+        let nfObject = new Intl.NumberFormat("en-US");
+        this.leadDetails.transactionVolume = nfObject.format(this.leadDetails.transactionVolume);
+        this.leadDetails.estimatedTransactionValue = nfObject.format(this.leadDetails.estimatedTransactionValue);
 
       },
       err => {
@@ -271,10 +269,16 @@ export class LeaddetailsComponent implements OnInit {
     }
 
 
-    this.leadService.updateStatus(this.leadDetails.companyName, this.leadDetails.id, this.insType, this.leadStage, this.leadStatus).subscribe(
+    if(this.leadDetails.yearEstablished == null){
+      this.leadDetails.yearEstablished = ''
+    }else{
+      this.leadDetails.yearEstablished = this.leadDetails.yearEstablished
+    }
+    this.leadDetails.transactionVolume = parseInt(this.leadDetails.transactionVolume)
+    this.leadService.updateStatus(this.leadDetails.companyName, this.leadDetails.facebook, this.leadDetails.id, this.leadDetails.instagram, this.leadDetails.estimatedTransactionValue, this.insType, this.leadDetails.phoneNumber, this.leadStage, this.leadStatus, this.leadDetails.transactionVolume, this.leadDetails.twitter, this.leadDetails.website, this.leadDetails.yearEstablished).subscribe(
       res => {
         this.ssuccess = true;
-      }
+      } 
     )
   }
   updateLead() {

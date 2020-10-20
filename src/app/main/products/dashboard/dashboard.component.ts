@@ -21,13 +21,13 @@ export class DashboardComponent implements OnInit {
   users: any;
   productLogo: any;
   documents: any;
-  files:any;
+  files: any;
   jsuccess: boolean = false;
-  isuccess:boolean = false;
+  isuccess: boolean = false;
   nsuccess: boolean = false;
   rsuccess: boolean = false;
   dsuccess: boolean = false;
-  constructor(private productService: ProductsService, private router: Router, private authService:AuthDataService, private notification: NotificationService) { }
+  constructor(private productService: ProductsService, private router: Router, private authService: AuthDataService, private notification: NotificationService) { }
 
   ngOnInit() {
     this.getAllProducts()
@@ -41,6 +41,36 @@ export class DashboardComponent implements OnInit {
     $('#more, #overlay').on('click', function () {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
+
+    $("input.money").keyup(function (event) {
+      if (event.which >= 37 && event.which <= 40) {
+        event.preventDefault();
+      }
+      var $this = $(this);
+      var num = $this
+        .val()
+        .replace(/,/gi, "")
+        .split("")
+        .reverse()
+        .join("");
+
+      var num2 = RemoveRougeChar(
+        num
+          .replace(/(.{3})/g, "$1,")
+          .split("")
+          .reverse()
+          .join("")
+      );
+      $this.val(num2);
+    });
+
+    function RemoveRougeChar(convertString) {
+      if (convertString.substring(0, 1) == ",") {
+        return convertString.substring(1, convertString.length);
+      }
+      return convertString;
+    }
+
   }
 
   getUsers() {
@@ -79,7 +109,7 @@ export class DashboardComponent implements OnInit {
       return false;
     }
   }
-  importProducts(){
+  importProducts() {
     this.productService.importProduct(this.files).subscribe(
       res => {
         this.isuccess = true;
@@ -150,6 +180,7 @@ export class DashboardComponent implements OnInit {
         this.notification.publishMessages('You have successfully created a new product', 'info', 0)
         this.nsuccess = true;
         this.getAllProducts();
+        this.getMyProduct();
       },
       err => {
       }
@@ -162,6 +193,7 @@ export class DashboardComponent implements OnInit {
     this.productService.ConvertProductToJunk(this.cProducts).subscribe(
       res => {
         this.jsuccess = true;
+        this.getProduct(id);
         this.getAllProducts()
         this.getMyProduct()
         this.getJunkProduct()
@@ -174,6 +206,7 @@ export class DashboardComponent implements OnInit {
     this.productService.reactivateProduct(this.cProducts).subscribe(
       res => {
         this.rsuccess = true;
+        this.getProduct(id);
         this.getAllProducts()
         this.getMyProduct()
         this.getJunkProduct()

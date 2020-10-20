@@ -216,8 +216,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}
-                                                    </p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black"
+                                                        *ngIf="lead.contacts[0].phoneNumber">
+                                                        {{lead.contacts[0].phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black"
+                                                        *ngIf="lead.contacts[0].phoneNumber == null">NA</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         {{lead.contacts[0].email}}</p>
                                                 </td>
@@ -352,8 +355,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}
-                                                    </p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black"
+                                                        *ngIf="lead.contacts[0].phoneNumber">
+                                                        {{lead.contacts[0].phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black"
+                                                        *ngIf="lead.contacts[0].phoneNumber == null">NA</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         {{lead.contacts[0].email}}</p>
                                                 </td>
@@ -488,8 +494,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{lead.contacts[0].phoneNumber}}
-                                                    </p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black"
+                                                        *ngIf="lead.contacts[0].phoneNumber">
+                                                        {{lead.contacts[0].phoneNumber}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black"
+                                                        *ngIf="lead.contacts[0].phoneNumber == null">NA</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
                                                         {{lead.contacts[0].email}}</p>
                                                 </td>
@@ -573,7 +582,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a>
+                                <a href="mailto:{{theLead?.contacts[0].email}}">
                                     <img src="assets/images/bmessage.svg" alt="">
                                 </a>
                             </div>
@@ -663,19 +672,19 @@
                     <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a (click)="openLead(theLead.id)">View
                             Complete Infomation</a></p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)">Convert to Deal</button>
+                        <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)" *ngIf="theLead.isJunked == false ? true : false">Convert to Deal</button>
                         <div class="dropdown">
                             <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/images/more-green.svg" alt="">
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)">Junk
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)" *ngIf="theLead.isJunked == false">Junk
                                     Lead</a>
                                 <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                    (click)="reactivateLead(theLead.id)">Reactivate Lead</a>
+                                    (click)="reactivateLead(theLead.id)" *ngIf="theLead.isJunked == true">Reactivate Lead</a>
                                 <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                    (click)="deleteLead(theLead.id)">Delete Lead</a>
+                                    (click)="deleteLead(theLead.id)" *ngIf="theLead.isJunked == true">Delete Lead</a>
                             </div>
                         </div>
                     </div>
@@ -709,6 +718,38 @@
                         <div class="deeporange"></div>
                     </div>
                     <div class="col-12 mb-3">
+                        <!-- <div class="d-flex prod justify-content-between">
+                            <div class="">
+                                <a class=" active">
+                                    <div class="d-flex align-items-center">
+                                        <div class="number mr-2">1</div>
+                                        <div>
+                                            Lead Info
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="">
+                                <a class="" >
+                                    <div class="d-flex align-items-center">
+                                        <div class="number mr-2">2</div>
+                                        <div>
+                                            Institution Profile
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="">
+                                <a class="">
+                                    <div class="d-flex align-items-center">
+                                        <div class="number mr-2">3</div>
+                                        <div>
+                                            Web & Social Media
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div> -->
                         <ul class="nav nav-tabs prod justify-content-between" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab">
@@ -758,23 +799,29 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
-                                        <select class="form-control topform" [(ngModel)]="status">
+                                        <select class="form-control topform" required #stat="ngModel" [(ngModel)]="status">
                                             <option value="">Lead Status</option>
                                             <option value="0">Cold</option>
                                             <option value="1">Warm</option>
                                             <option value="2">Hot</option>
                                         </select>
+                                        <div *ngIf="stat.invalid && (stat.dirty || stat.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="stat.errors.required">
+                                                Lead status is required.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <select class="form-control topform" [(ngModel)]="source">
                                             <option value="">Lead Source</option>
                                             <option value="Campaign">Campaign</option>
+                                            <option value="Cold Call">Cold Call</option>
                                         </select>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
-                                        <select [(ngModel)]="stage" class="form-control topform">
-                                            <option>Lead Stage</option>
+                                        <select [(ngModel)]="stage" class="form-control topform" required #stag="ngModel">
+                                            <option value="">Lead Stage</option>
                                             <option value="0">Open</option>
                                             <option value="1">Attempting Contact</option>
                                             <option value="2">Converted</option>
@@ -782,6 +829,11 @@
                                             <option value="4">Not Engaged</option>
                                             <option value="5">Converted with no Opportunity</option>
                                         </select>
+                                        <div *ngIf="stag.invalid && (stag.dirty || stag.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="stag.errors.required">
+                                                Lead stage is required.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <div class="input-group leadform big">
@@ -793,28 +845,56 @@
                                                 </select>
                                             </div>
                                             <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber"
-                                                type="text" class="form-control">
+                                                type="text" minlength="11" maxlength="12" class="form-control" #ophon="ngModel">
                                         </div>
+                                        <div *ngIf="ophon.invalid && (ophon.dirty || ophon.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="ophon.errors.minlength">
+                                                Phonenumber must be at least 11 characters long.
+                                            </small>
+                                            
+                                        </div>
+                                       
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Name</label>
                                         <div class="input-group leadform">
                                             <div class="input-group-prepend">
-                                                <select [(ngModel)]="title" class="form-control">
-                                                    <option value="Miss">Miss</option>
-                                                    <option value="Mrs">Mrs</option>
-                                                    <option value="Mr">Mr</option>
+                                                <select [(ngModel)]="title" #tit="ngModel" class="form-control" required>
+                                                    <option value="Miss.">Miss</option>
+                                                    <option value="Mrs.">Mrs</option>
+                                                    <option value="Mr.">Mr</option>
+                                                    <option value="Dr.">Dr</option>
                                                 </select>
                                             </div>
-                                            <input type="text" placeholder="First Name" class="form-control"
+                                            <input type="text" placeholder="First Name" required #first="ngModel" class="form-control"
                                                 [(ngModel)]="firstName">
-                                            <input type="text" placeholder="Last Name" class="form-control"
+                                            <input type="text" placeholder="Last Name" required #last="ngModel" class="form-control"
                                                 [(ngModel)]="lastName">
+                                        </div>
+                                        <div *ngIf="tit.invalid && (tit.dirty || tit.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="tit.errors.required">
+                                                Title is required.
+                                            </small>
+                                        </div>
+                                        <div *ngIf="first.invalid && (first.dirty || first.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="first.errors.required">
+                                                First name is required.
+                                            </small>
+                                        </div>
+                                        <div *ngIf="last.invalid && (last.dirty || last.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="last.errors.required">
+                                                Last name is required.
+                                            </small>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Designation</label>
-                                        <input type="text" class="form-control botform" [(ngModel)]="designation">
+                                        <input type="text" class="form-control botform" required #desig="ngModel" [(ngModel)]="designation">
+                                        <div *ngIf="desig.invalid && (desig.dirty || desig.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="desig.errors.required">
+                                                Contact designation is required.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Display Image</label>
@@ -824,7 +904,12 @@
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Email Address</label>
-                                        <input type="text" class="form-control botform" [(ngModel)]="email">
+                                        <input type="text" class="form-control botform" [(ngModel)]="email" required #mail="ngModel">
+                                        <div *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="mail.errors.required">
+                                                Contact email is required.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Phone Number</label>
@@ -836,7 +921,15 @@
                                                     <option value="">+234</option>
                                                 </select>
                                             </div>
-                                            <input [(ngModel)]="phoneNumber" type="text" class="form-control">
+                                            <input [(ngModel)]="phoneNumber" type="text" class="form-control" minlength="11" maxlength="12" required #phone="ngModel">
+                                            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                                                <small class="fc-red fs-12 ff-s" *ngIf="phone.errors.required">
+                                                    Contact phone number is required.
+                                                </small>
+                                                <small class="fc-red fs-12 ff-s" *ngIf="phone.errors.minlength">
+                                                    Phonenumber must be at least 11 characters long.
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -858,10 +951,16 @@
 
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <input type="text" [(ngModel)]="company" class="form-control botform">
+                                        <input type="text" [(ngModel)]="company" class="form-control botform" required
+                                            #insName="ngModel">
+                                        <div *ngIf="insName.invalid && (insName.dirty || insName.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="insName.errors.required">
+                                                Institution name is required.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <select [(ngModel)]="insType" class="form-control botform">
+                                        <select [(ngModel)]="insType" class="form-control botform" required #institute="ngModel">
                                             <option>Institution Type</option>
                                             <option value="2">Commercial Bank</option>
                                             <option value="3">Merchant Bank</option>
@@ -876,16 +975,27 @@
                                             <option value="11">Development Finance Institutions</option>
                                             <option value="0">Others</option>
                                         </select>
+                                        <div *ngIf="institute.invalid && (institute.dirty || institute.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="institute.errors.required">
+                                                Institution type is required.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
                                         <ng-multiselect-dropdown [placeholder]="' '" [data]="dropdownList"
-                                            [(ngModel)]="products" [settings]="dropdownSettings">
+                                            [(ngModel)]="products" [settings]="dropdownSettings" required #prod="ngModel">
                                         </ng-multiselect-dropdown>
+                                        <div *ngIf="prod.invalid && (prod.dirty || prod.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="prod.errors.required">
+                                                Please select at least one product.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Transaction Volume</label>
-                                        <input [(ngModel)]="transVol" data-type="number" type="text" class="form-control botform money">
+                                        <input [(ngModel)]="transVol" data-type="number" type="text"
+                                            class="form-control botform money">
 
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -902,13 +1012,19 @@
                                                     <option value="">NGN</option>
                                                 </select>
                                             </div>
-                                            <input type="text" type="text" data-type="number" maxlength="10" minlength="10"
-                                                [(ngModel)]="EstTransVal" class="form-control money">
+                                            <input type="text" type="text" data-type="number" maxlength="10"
+                                                minlength="10" [(ngModel)]="EstTransVal" class="form-control money">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Note</label>
-                                        <input type="text" [(ngModel)]="message" class="form-control botform">
+                                        <input type="text" [(ngModel)]="message" class="form-control botform" required
+                                            #notemessage="ngModel">
+                                        <div *ngIf="notemessage.invalid && (notemessage.dirty || notemessage.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="notemessage.errors.required">
+                                                Note is required.
+                                            </small>
+                                        </div>
                                     </div>
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Branch Address</label>
@@ -932,7 +1048,7 @@
                                     </div>
 
 
-                                    <div class="col-12 mt-5 pt-5">
+                                    <div class="col-12 mt-5">
                                         <div class="d-flex justify-content-between">
                                             <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
                                             <div><button class="btn btn-green px-3 btnNext">Next</button></div>
@@ -984,7 +1100,7 @@
         </div>
     </div>
 </div>
- 
+
 
 <div class="modal fade bd-example-modal-lg import-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
@@ -1186,7 +1302,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-green mr-3" (click)="closenSuccess()" data-toggle="modal"
+                    <button class="btn btn-clear mr-3" (click)="closenSuccess()" data-toggle="modal"
                         data-target=".new-modal">Add New Lead</button> <button class="btn btn-blue"
                         (click)="closenSuccess()">See All Leads</button>
 

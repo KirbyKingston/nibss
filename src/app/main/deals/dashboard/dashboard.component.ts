@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery'
 import { AccountService } from 'src/core/data/account/account.service';
 import { AuthDataService } from 'src/core/data/authentication/auth-data.service';
-import { ContactService } from 'src/core/data/contact/contact.service';
 import { DealsService } from 'src/core/data/deals/deals.service';
 import { ProductsService } from 'src/core/data/products/products.service';
 @Component({
@@ -48,7 +47,7 @@ export class DashboardComponent implements OnInit {
   nsuccess: boolean = false;
   rsuccess: boolean = false;
   dsuccess: boolean = false;
-  constructor(private router: Router, private authService: AuthDataService, private dealService: DealsService, private productService: ProductsService, private accountService: AccountService, private contactService: ContactService) { }
+  constructor(private router: Router, private authService: AuthDataService, private dealService: DealsService, private productService: ProductsService, private accountService: AccountService) { }
 
   ngOnInit() {
     this.getAllDeals()
@@ -56,7 +55,7 @@ export class DashboardComponent implements OnInit {
     this.getMyDeals()
     this.getProducts()
     this.getAccounts()
-    this.getContacts()
+    // this.getContacts()
     this.getUsers()
     $('#filter, #overlay').on('click', function () {
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
@@ -67,38 +66,38 @@ export class DashboardComponent implements OnInit {
     })
 
 
-    // $("input.money").keyup(function(event) {
-    //   if (event.which >= 37 && event.which <= 40) {
-    //     event.preventDefault();
-    //   }
-    //   var $this = $(this);
-    //   var num = $this
-    //     .val()
-    //     .replace(/,/gi, "")
-    //     .split("")
-    //     .reverse()
-    //     .join("");
+    $("input.money").keyup(function(event) {
+      if (event.which >= 37 && event.which <= 40) {
+        event.preventDefault();
+      }
+      var $this = $(this);
+      var num = $this
+        .val()
+        .replace(/,/gi, "")
+        .split("")
+        .reverse()
+        .join("");
 
-    //   var num2 = RemoveRougeChar(
-    //     num
-    //       .replace(/(.{3})/g, "$1,")
-    //       .split("")
-    //       .reverse()
-    //       .join("")
-    //   );
-    //   $this.val(num2);
-    // });
+      var num2 = RemoveRougeChar(
+        num
+          .replace(/(.{3})/g, "$1,")
+          .split("")
+          .reverse()
+          .join("")
+      );
+      $this.val(num2);
+    });
 
-    // function RemoveRougeChar(convertString) {
-    //   if (convertString.substring(0, 1) == ",") {
-    //     return convertString.substring(1, convertString.length);
-    //   }
-    //   return convertString;
-    // }
+    function RemoveRougeChar(convertString) {
+      if (convertString.substring(0, 1) == ",") {
+        return convertString.substring(1, convertString.length);
+      }
+      return convertString;
+    }
 
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'id',
+      idField: 'id', 
       textField: 'product',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
@@ -185,13 +184,14 @@ export class DashboardComponent implements OnInit {
       }
     )
   }
-  getContacts() {
-    this.contactService.getAllContact().subscribe(
+  getAccountById(){
+    this.accountService.getAccById(this.account).subscribe(
       res => {
-        this.contacts = res['payload']
+        this.contacts = res['payload']['contacts']
       }
     )
   }
+  
 
   getUsers() {
     this.authService.getUsers().subscribe(

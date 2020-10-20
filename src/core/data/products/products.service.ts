@@ -75,20 +75,19 @@ export class ProductsService {
     return this.http.post(this.baseUrl + 'Competitors/AddCompetitorToProduct/' + id, body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
-  updateProduct(category, ddescription, fee, logo, id, name, duration, tag, tax, docType, docs) {
+  updateProduct(category, ddescription, fee, id, name, duration, tag, tax) {
     const body = new FormData()
     body.append("Category", category)
     body.append("Description", ddescription)
     body.append("Fee", fee)
-    body.append("Logo", logo)
+    body.append("Id", id)
+    // body.append("Logo", logo)
     body.append("ManagerId", id)
     body.append("Name", name)
     body.append("OnboardingDuration", duration)
     body.append("Tag", tag)
     body.append("TaxRate", tax)
-    body.append("DocumentTypes", docType)
-    body.append("Documents", docs)
-    return this.http.put(this.baseUrl + 'Products/CreateProduct', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.put(this.baseUrl + 'Products/UpdateProduct', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 
 

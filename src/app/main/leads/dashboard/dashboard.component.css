@@ -97,7 +97,7 @@ input.form-control.upload-file:focus {
     border: none;
 }
 
-.nav-tabs.prod a {
+.prod a {
     padding-left: 0;
     border: none;
     font-family: Segoe UI;
@@ -108,11 +108,11 @@ input.form-control.upload-file:focus {
     color: rgba(16, 16, 16, 0.7);
 }
 
-.nav-tabs.prod a.active {
+.prod a.active {
     color: #000000;
 }
 
-.nav-tabs.prod a.active .number {
+.prod a.active .number {
 
     background: #D18700;
 }

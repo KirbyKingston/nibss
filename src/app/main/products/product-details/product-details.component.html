@@ -31,13 +31,14 @@
                                     </div>
                                     <div class="mr-lg-5">
                                         <p class="fs-15 text-white ff-s fw-6 m-0">{{productDetail?.productName}}</p>
-                                        <p class="fc-lightwhite fs-15 ff-s">NIP</p>
+                                        <p class="fc-lightwhite fs-15 ff-s" *ngIf="productDetail?.tag">{{productDetail?.tag}}</p>
+                                        <p class="fc-lightwhite fs-15 ff-s" *ngIf="productDetail?.tag == null">NA</p>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Est. Annual Revenue</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0"
                                             *ngIf="productDetail?.estimatedTransactionValue">
                                             {{productDetail?.estimatedTransactionValue}}</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0"
-                                            *ngIf="productDetail?.estimatedTransactionValue == null">null</p>
+                                            *ngIf="productDetail?.estimatedTransactionValue == null">NA</p>
                                     </div>
                                     <div class="mr-3">
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Category</p>
@@ -75,7 +76,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <a>
+                                                <a data-toggle="modal" data-target=".new-modal">
                                                     <img src="assets/images/Edit.svg" alt="">
                                                 </a>
                                             </div>
@@ -92,13 +93,13 @@
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Product Tag</p>
                                         <p class="fs-16 fc-black ff-s" *ngIf="productDetail?.tag">
                                             {{productDetail?.tag}}</p>
-                                        <p class="fs-16 fc-black ff-s" *ngIf="productDetail?.tag == null">null</p>
+                                        <p class="fs-16 fc-black ff-s" *ngIf="productDetail?.tag == null">NA</p>
 
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Onboarding Duration (Days)</p>
                                         <p class="fs-16 fc-black ff-s" *ngIf="productDetail?.onboardingDuration">
                                             {{productDetail?.onboardingDuration}}</p>
                                         <p class="fs-16 fc-black ff-s"
-                                            *ngIf="productDetail?.onboardingDuration == null">null</p>
+                                            *ngIf="productDetail?.onboardingDuration == null">NA</p>
 
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Fee (NGN)</p>
                                         <p class="fs-16 fc-black ff-s">
@@ -117,7 +118,7 @@
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Tax Rate (%)</p>
                                         <p class="fs-16 fc-black ff-s" *ngIf="productDetail?.taxRate">
                                             {{productDetail?.taxRate}}</p>
-                                        <p class="fs-16 fc-black ff-s" *ngIf="productDetail?.taxRate == null">null</p>
+                                        <p class="fs-16 fc-black ff-s" *ngIf="productDetail?.taxRate == null">NA</p>
 
                                     </div>
                                     <div class="col-12">
@@ -605,6 +606,97 @@
                     </nav>
                 </div>
                 <!-- sidetab -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg new-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Edit Product
+                                </p>
+                                <p class="fs-16 ff-s fc-lightblack">Edit Product Information</p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+                    
+                    <div class="col-lg-5 mb-3">
+                        <label class="fs-16 ff-p fc-black">Product Manager</label>
+                        <select class="form-control topform" [(ngModel)]="productDetail.managerName">
+                            <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- <div class="col-lg-6 mb-3 offset-1">
+                        <label class="fs-16 ff-p fc-black">Product Logo</label>
+                        <input type="file" class="form-control topform"
+                            (change)="handleUpload($event.target.files)" >
+                    </div> -->
+
+                    <div class="col-lg-6 offset-lg-1 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Product Name</label>
+                        <input type="text" class="form-control botform" [(ngModel)]="productDetail.productName">
+                        
+
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Product Tag</label>
+                        <input type="text" class="form-control botform" [(ngModel)]="productDetail.tag">
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Onboarding duration (Days)</label>
+                        <input type="text" class="form-control botform" maxlength="3" [(ngModel)]="productDetail.onboardingDuration">
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Category</label>
+                        <select class="form-control botform" [(ngModel)]="productDetail.category">
+                            <option value="Others">Others</option>
+                            <option value="Payment">Payment</option>
+                            <option value="Collections">Collections</option>
+                            <option value="Data and Portal">Data and Portal</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Fee</label>
+                        <div class="input-group leadform">
+                            <div class="input-group-prepend">
+                                <div class="i">NGN</div>
+                            </div>
+                            <input type="text" maxlength="12" [(ngModel)]="productDetail.fee"
+                                class="form-control money">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="" class="fs-16 fc-black ff-p">Tax Rate</label>
+                        <input type="text" class="form-control botform" maxlength="2" [(ngModel)]="productDetail.taxRate">
+                    </div>
+                     
+
+                    <div class="col-12 mt-5 pt-5">
+                        <p class="text-right">
+                            <button class="btn btn-blue px-3" (click)="editProduct()"
+                                >Update</button>
+                        </p>
+                    </div>
+                    
+
+                </div>
             </div>
         </div>
     </div>

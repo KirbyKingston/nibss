@@ -127,7 +127,7 @@ export class LeaddetailsComponent implements OnInit {
     this.leadService.getLeadById(this.id).subscribe(
       res => {
         this.leadDetails = res['payload']
-        console.log(this.leadDetails.institutionType)
+        // console.log(this.leadDetails.institutionType)
 
       },
       err => {
@@ -167,7 +167,7 @@ export class LeaddetailsComponent implements OnInit {
   createNote(id) {
     this.leadService.addNote(id, this.noteMessage).subscribe(
       res => {
-        console.log(res)
+        // console.log(res)
         this.noteMessage = ''
         this.getLead()
       }

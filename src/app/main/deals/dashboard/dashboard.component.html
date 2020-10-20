@@ -477,7 +477,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-12">
                                         <div class="info mb-1">
                                             <div class="top-prop b-5 p-2">
@@ -604,7 +604,7 @@
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Select Account</label>
-                        <select class="form-control topform" [(ngModel)]="account">
+                        <select class="form-control topform" [(ngModel)]="account" (change)="getAccountById()">
                             <option value="{{account.id}}" *ngFor="let account of accounts">{{account.accountName}}
                             </option>
                         </select>

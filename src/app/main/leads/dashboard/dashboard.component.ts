@@ -56,11 +56,14 @@ export class DashboardComponent implements OnInit {
   message: any = '';
   csuccess: boolean = false;
   jsuccess: boolean = false;
-  isuccess:boolean = false;
+  isuccess: boolean = false;
   nsuccess: boolean = false;
   rsuccess: boolean = false;
   dsuccess: boolean = false;
-  files:any;
+  info: boolean = true;
+  profile: boolean = false;
+  social: boolean = false;
+  files: any;
   constructor(private leadService: LeadsService, private router: Router, private notification: NotificationService, private authService: AuthDataService, private productService: ProductsService) { }
 
   ngOnInit() {
@@ -88,34 +91,34 @@ export class DashboardComponent implements OnInit {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
 
-    // $("input.money").keyup(function(event) {
-    //   if (event.which >= 37 && event.which <= 40) {
-    //     event.preventDefault();
-    //   }
-    //   var $this = $(this);
-    //   var num = $this
-    //     .val()
-    //     .replace(/,/gi, "")
-    //     .split("")
-    //     .reverse()
-    //     .join("");
+    $("input.money").keyup(function (event) {
+      if (event.which >= 37 && event.which <= 40) {
+        event.preventDefault();
+      }
+      var $this = $(this);
+      var num = $this
+        .val()
+        .replace(/,/gi, "")
+        .split("")
+        .reverse()
+        .join("");
 
-    //   var num2 = RemoveRougeChar(
-    //     num
-    //       .replace(/(.{3})/g, "$1,")
-    //       .split("")
-    //       .reverse()
-    //       .join("")
-    //   );
-    //   $this.val(num2);
-    // });
+      var num2 = RemoveRougeChar(
+        num
+          .replace(/(.{3})/g, "$1,")
+          .split("")
+          .reverse()
+          .join("")
+      );
+      $this.val(num2);
+    });
 
-    // function RemoveRougeChar(convertString) {
-    //   if (convertString.substring(0, 1) == ",") {
-    //     return convertString.substring(1, convertString.length);
-    //   }
-    //   return convertString;
-    // }
+    function RemoveRougeChar(convertString) {
+      if (convertString.substring(0, 1) == ",") {
+        return convertString.substring(1, convertString.length);
+      }
+      return convertString;
+    }
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -141,10 +144,10 @@ export class DashboardComponent implements OnInit {
     console.log(this.files)
     const size = e[0].size
     if (size >= 505000000) {
-      return false; 
+      return false;
     }
   }
-  importLeads(){
+  importLeads() {
     this.leadService.importLeads(this.files).subscribe(
       res => {
         this.isuccess = true;
@@ -237,6 +240,7 @@ export class DashboardComponent implements OnInit {
   }
 
   convertToDeal(id) {
+    this.cLeads = []
     this.cLeads.push(id)
     this.leadService.ConvertLeadToDeal(this.cLeads).subscribe(
       res => {
@@ -248,6 +252,7 @@ export class DashboardComponent implements OnInit {
     )
   }
   junkLead(id) {
+    this.cLeads = []
     this.cLeads.push(id)
     this.leadService.junkLead(this.cLeads).subscribe(
       res => {
@@ -259,6 +264,7 @@ export class DashboardComponent implements OnInit {
     )
   }
   reactivateLead(id) {
+    this.cLeads = []
     this.cLeads.push(id)
     this.leadService.reactivateJunkedLead(this.cLeads).subscribe(
       res => {
@@ -282,6 +288,10 @@ export class DashboardComponent implements OnInit {
 
   openLead(id) {
     this.router.navigate(['/app/leads/lead/' + id])
+  }
+
+  openContact(id) {
+    this.router.navigate(['/app/contacts/contact/' + id])
   }
 
 
@@ -308,7 +318,11 @@ export class DashboardComponent implements OnInit {
 
   createLead() {
     let arr = []
-    arr = this.products.map(element => element.id)
+    if (this.products) {
+      arr = this.products.map(element => element.id)
+    } else {
+      arr = []
+    }
     this.selectedProducts.push(arr)
     this.leadService.createLead(this.company, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.ownerphoneNumber, this.source, this.stage, this.status, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.phoneNumber, this.message, this.selectedProducts).subscribe(
       res => {

@@ -374,7 +374,7 @@
                                             <div>
                                                 <p class="m-0 fs-16 fc-green ff-p">Mail</p>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <div class="orangeline"></div>
                                         <div class="littleorange"></div>
                                         <div class="py-4">
@@ -389,11 +389,11 @@
                                     </div>
                                     <div class="px-3 mb-3">
                                         <p class="fs-15 ff-s fc-black fw-16">Received <span
-                                                class="badge badge-secondary fc-darkblue">{{leadDetails?.emailMessages.length}}</span>
+                                                class="badge badge-secondary fc-darkblue">{{leadDetails?.emailMessages?.length}}</span>
                                         </p>
                                     </div>
                                     <!-- messages -->
-                                    <div class="messages" *ngIf="leadDetails?.emailMessages.length > 0">
+                                    <div class="messages" *ngIf="leadDetails?.emailMessages?.length > 0">
                                         <div class="message p-3" *ngFor="let msg of leadDetails?.emailMessages">
                                             <div class="d-flex">
                                                 <div class="mr-2">
@@ -427,7 +427,7 @@
                                         </div>
                                     </div>
                                     <!-- messages -->
-                                    <div class="emptystate2" *ngIf="leadDetails?.emailMessages.length == 0">
+                                    <div class="emptystate2" *ngIf="leadDetails?.emailMessages?.length == 0">
                                         <p class="text-center fs-15 ff-s fc-black fw-4">
                                             You have not received any message
                                         </p>

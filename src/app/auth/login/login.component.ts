@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(form.value.username, form.value.password).subscribe(
       res => { 
 
-        console.log('asdfss', res);
         localStorage.setItem('access_token', res['access_token'])
 
         this.router.navigate(['/app/leads'])

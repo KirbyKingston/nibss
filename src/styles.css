@@ -877,6 +877,33 @@ textarea.form-control.detail-form {
 .dropdown-toggle::after {
     display: none !important;
 }
+.ngx-pagination .disabled {
+    color: rgba(50, 55, 59, 0.5) !important;
+    font-size: 14px;
+    font-family: Palatino Linotype;
+    text-transform: uppercase;
+}
+
+.ngx-pagination a,
+.ngx-pagination button {
+    color: rgba(50, 55, 59, 1) !important;
+    font-size: 14px;
+    font-family: Palatino Linotype;
+    text-transform: uppercase;
+}
+
+.ngx-pagination .current {
+    font-size: 14px;
+    font-family: Palatino Linotype;
+    background: #009FB7 !important;
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before,
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+    display: none !important;
+}
 
 /* buttons  */
 html,

@@ -36,7 +36,7 @@ export class AccountService {
   reactivateAcc(acc){
     return this.http.post(this.baseUrl + 'Accounts/ReactivateJunkedAccounts', acc, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
-  createAcc(accName, image,estTransVal,facebook,instagram, institutionType, ownerId,  ophone, transVol, twitter, web, yearEs, city, country, street, postalCode, email, firstName, lastName, designation, title, phone,  message, docs, docTypes ){
+  createAcc(accName, image,estTransVal,facebook,instagram, institutionType, ownerId,  ophone, transVol, twitter, web, yearEs, city, country, street, postalCode, email, firstName, lastName, designation, title, phone,  message ){
     const body = new FormData()
     body.append("AccountName", accName)
     body.append("DisplayImage", image)
@@ -61,8 +61,8 @@ export class AccountService {
     body.append("contacts[0].title", title)
     body.append("contacts[0].phoneNumber", phone)
     body.append("notes[0].message", message)
-    body.append("Documents", docs)
-    body.append("DocumentTypes", docTypes)
+    // body.append("Documents", docs)
+    // body.append("DocumentTypes", docTypes)
     return this.http.post(this.baseUrl + 'Accounts/CreateAccount', body, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
 

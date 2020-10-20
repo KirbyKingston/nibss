@@ -29,7 +29,7 @@
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#junk" role="tab"
                             aria-controls="contact" aria-selected="false">Junk Accounts</a>
                     </li>
-                    <li class="ml-auto">
+                    <!-- <li class="ml-auto">
                         <div class="dropdown">
                             <a class="filter text-right" id="filter">
                                 <img src="assets/images/date filter.svg" alt="">
@@ -94,7 +94,7 @@
 
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="col-12">
@@ -105,9 +105,9 @@
                                 <div class="table-responsive" *ngIf="allAccounts.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>ACCOUNT NAME</th>
                                             <th>WEBSITE</th>
                                             <th>INSTITUTION TYPE</th>
@@ -181,11 +181,11 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let account of allAccounts; let i = index"
+                                            <tr *ngFor="let account of allAccounts | paginate: { itemsPerPage: 5, currentPage: p }"
                                                 (click)="getAcc(account.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -201,9 +201,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 tx-u pt-2">
-                                                        <a *ngIf="account.website">{{account.website}}</a>
-                                                        <a *ngIf="account.website == null">--</a>
+                                                    <p *ngIf="account.website" class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 tx-u pt-2">
+                                                        <a >{{account.website}}</a>
+                                                    </p>
+                                                    <p *ngIf="account.website == null" class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 pt-2">
+                                                        <a >NA</a>
                                                     </p>
                                                 </td>
                                                 <td>
@@ -219,6 +221,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="d-flex justify-content-end" *ngIf="this.allAccounts.length > 5">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
                                 </div>
                                 <div class="emptystate2" *ngIf="allAccounts.length == 0">
                                     <img src="assets/images/emptylead.svg" alt="">
@@ -235,9 +240,9 @@
                                 <div class="table-responsive">
                                     <table class="table dashboard" *ngIf="myAccounts.length > 0">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>ACCOUNT NAME</th>
                                             <th>WEBSITE</th>
                                             <th>INSTITUTION TYPE</th>
@@ -311,11 +316,11 @@
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let account of myAccounts; let i = index"
+                                            <tr *ngFor="let account of myAccounts | paginate: { itemsPerPage: 5, currentPage: p }"
                                                 (click)="getAcc(account.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -331,9 +336,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 tx-u pt-2">
-                                                        <a *ngIf="account.website">{{account.website}}</a>
-                                                        <a *ngIf="account.website == null">--</a>
+                                                    <p *ngIf="account.website" class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 tx-u pt-2">
+                                                        <a >{{account.website}}</a>
+                                                    </p>
+                                                    <p *ngIf="account.website == null" class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 pt-2">
+                                                        <a >NA</a>
                                                     </p>
                                                 </td>
                                                 <td>
@@ -349,6 +356,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="d-flex justify-content-end" *ngIf="this.myAccounts.length > 5">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
                                 </div>
                                 <div class="emptystate2" *ngIf="myAccounts.length == 0">
                                     <img src="assets/images/emptylead.svg" alt="">
@@ -365,9 +375,9 @@
                                 <div class="table-responsive" *ngIf="junkAccounts.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>ACCOUNT NAME</th>
                                             <th>WEBSITE</th>
                                             <th>INSTITUTION TYPE</th>
@@ -443,9 +453,9 @@
                                         <tbody>
                                             <tr *ngFor="let account of junkAccounts; let i = index"
                                                 (click)="getAcc(account.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -461,9 +471,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 tx-u pt-2">
-                                                        <a *ngIf="account.website">{{account.website}}</a>
-                                                        <a *ngIf="account.website == null">--</a>
+                                                    <p *ngIf="account.website" class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 tx-u pt-2">
+                                                        <a >{{account.website}}</a>
+                                                    </p>
+                                                    <p *ngIf="account.website == null" class="ff-s fs-14 fw-4 fw-6 fc-darkblue m-0 pt-2">
+                                                        <a >NA</a>
                                                     </p>
                                                 </td>
                                                 <td>
@@ -479,6 +491,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="d-flex justify-content-end" *ngIf="this.junkAccounts.length > 5">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
                                 </div>
                                 <div class="emptystate2" *ngIf="junkAccounts.length == 0">
                                     <img src="assets/images/emptylead.svg" alt="">
@@ -607,17 +622,16 @@
                             </div>
 
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex" >
                             <div class="p-2">
                                 <div class="deal">
-                                    N
+                                    {{theAccount?.deals[0].stage.substring(0,1)}}
                                 </div>
                             </div>
                             <div class="p-2">
-                                <p class="mb-2 ff-s fw-6 fs-14 fc-dblue">Negotiation/Review</p>
+                                <p class="mb-2 ff-s fw-6 fs-14 fc-dblue">{{theAccount?.deals[0].stage}}</p>
                                 <div class="d-flex mb-4">
-                                    <div class="product mr-2">mCash</div>
-                                    <div class="product mr-2">NIP</div>
+                                    <div class="product mr-2" *ngFor="let product of theAccount?.deals[0].products">{{product?.productName}}</div>
                                 </div>
 
                             </div>
@@ -740,7 +754,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#social" role="tab">
                                     <div class="d-flex align-items-center">
                                         <div class="number mr-2">4</div>
@@ -749,7 +763,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
 
@@ -999,10 +1013,17 @@
                                     </div>
 
 
-                                    <div class="col-12 mt-5">
+                                    <!-- <div class="col-12 mt-5">
                                         <div class="d-flex justify-content-between">
                                             <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
                                             <div><button class="btn btn-green px-3 btnNext">Next</button></div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-12 mt-5 pt-5">
+                                        <div class="d-flex justify-content-between">
+                                            <div><button class="btn btn-lightgreen px-3 btnPrevious">Back</button></div>
+                                            <div><button class="btn btn-green px-3" (click)="createAccount()"
+                                                    data-dismiss="modal">Create</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1072,7 +1093,7 @@
                             New Account has been
                             added
                         </p>
-                         
+
                     </div>
                     <div class="ml-auto">
                         <img src="assets/images/success.svg" alt="">

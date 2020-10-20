@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
   ]
   docTypes: Array<{}> = [];
   selectedTypes: Array<{}> = [];
+  p: number = 1;
   constructor(private accountService: AccountService, private router: Router, private notification: NotificationService, private authService:AuthDataService) { }
 
   ngOnInit() {
@@ -139,6 +140,7 @@ export class DashboardComponent implements OnInit {
       res => {
         // console.log(res)
         this.allAccounts = res['payload']
+        this.allAccounts = this.allAccounts.reverse()
         this.allAccounts.forEach(element => {
           element['checked'] = false;
         });
@@ -154,6 +156,7 @@ export class DashboardComponent implements OnInit {
     this.accountService.getMyAcc().subscribe(
       res => {
         this.myAccounts = res['payload']
+        this.myAccounts = this.myAccounts.reverse()
 
         // console.log(res)
       },
@@ -167,6 +170,8 @@ export class DashboardComponent implements OnInit {
     this.accountService.getJunkedAcc().subscribe(
       res => {
         this.junkAccounts = res['payload']
+        this.junkAccounts = this.junkAccounts.reverse()
+
         // console.log(res)
       },
       err => {
@@ -238,7 +243,9 @@ export class DashboardComponent implements OnInit {
   }
 
   createAccount() {
-    this.accountService.createAcc(this.accountname, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.ownerphoneNumber, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.conphoneNumber, this.message, this.files, this.docTypes).subscribe(
+    this.transVol = this.transVol.replace(/,/g, '')
+    this.EstTransVal = this.EstTransVal.replace(/,/g, '')
+    this.accountService.createAcc(this.accountname, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.ownerphoneNumber, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.conphoneNumber, this.message).subscribe(
       res => {
         console.log(res)
         this.getAllAccs()

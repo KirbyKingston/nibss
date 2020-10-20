@@ -15,6 +15,7 @@ export class LeaddetailsComponent implements OnInit {
   leadDetails: any;
   cLeads: Array<{}> = [];
   jLeads: Array<{}> = [];
+  rLeads: Array<{}> = [];
   csuccess: boolean = false;
   jsuccess: boolean = false;
   esuccess: boolean = false;
@@ -33,10 +34,11 @@ export class LeaddetailsComponent implements OnInit {
   leadStatus: any = '';
   leadStage: any = '';
   products: any;
-  comName:any = '';
+  comName: any = '';
   theProduct: any = '';
   addedPs: Array<{}> = [];
-  constructor(private location: Location, private route: ActivatedRoute, private leadService: LeadsService, private authService: AuthDataService, private productService:ProductsService) { }
+  nfObject;
+  constructor(private location: Location, private route: ActivatedRoute, private leadService: LeadsService, private authService: AuthDataService, private productService: ProductsService) { }
   ngOnInit() {
     this.getId();
     this.getLead();
@@ -57,7 +59,7 @@ export class LeaddetailsComponent implements OnInit {
     $('.showinfo').click(function () {
       $('#information').show(300);
       $('.showinfo').hide(0);
-      $('.hideinfo').show(0); 
+      $('.hideinfo').show(0);
     });
     $('.hideinfo').click(function () {
       $('#information').hide(300);
@@ -65,7 +67,7 @@ export class LeaddetailsComponent implements OnInit {
       $('.hideinfo').hide(0);
     });
 
-    
+
     // $("input.money").keyup(function(event) {
     //   if (event.which >= 37 && event.which <= 40) {
     //     event.preventDefault();
@@ -127,7 +129,11 @@ export class LeaddetailsComponent implements OnInit {
     this.leadService.getLeadById(this.id).subscribe(
       res => {
         this.leadDetails = res['payload']
-        // console.log(this.leadDetails.institutionType)
+        this.nfObject = new Intl.NumberFormat("en-US");
+        // console.log(this.leadDetails.transactionVolume)
+        // console.log(this.leadDetails.estimatedTransactionValue)
+        this.leadDetails.transactionVolume = this.leadDetails.format(this.leadDetails.transactionVolume);
+        this.leadDetails.estimatedTransactionValue = this.leadDetails.format(this.leadDetails.estimatedTransactionValue);
 
       },
       err => {
@@ -150,6 +156,7 @@ export class LeaddetailsComponent implements OnInit {
     this.leadService.ConvertLeadToDeal(this.cLeads).subscribe(
       res => {
         this.csuccess = true;
+        this.location.back();
       }
     )
   }
@@ -160,6 +167,17 @@ export class LeaddetailsComponent implements OnInit {
     this.leadService.junkLead(this.jLeads).subscribe(
       res => {
         this.jsuccess = true;
+        this.getLead()
+      }
+    )
+  }
+  reactivateLead() {
+    this.id = parseInt(this.id);
+    this.rLeads.push(this.id)
+    this.leadService.reactivateJunkedLead(this.rLeads).subscribe(
+      res => {
+        this.jsuccess = true;
+        this.getLead()
       }
     )
   }
@@ -182,7 +200,7 @@ export class LeaddetailsComponent implements OnInit {
       }
     )
   }
-  addProductTodeal(id){
+  addProductTodeal(id) {
     this.theProduct = parseInt(this.theProduct)
     this.addedPs.push(this.theProduct)
     this.leadService.addProductToLead(id, this.addedPs).subscribe(
@@ -192,7 +210,7 @@ export class LeaddetailsComponent implements OnInit {
       }
     )
   }
-  addCompetition(id){
+  addCompetition(id) {
     this.leadService.addCompetitor(id, this.comName).subscribe(
       res => {
         console.log(res)
@@ -251,7 +269,7 @@ export class LeaddetailsComponent implements OnInit {
     } else if (this.leadDetails.stage == "Converted with no Opportunity") {
       this.leadStage = 5
     }
-  
+
 
     this.leadService.updateStatus(this.leadDetails.companyName, this.leadDetails.id, this.insType, this.leadStage, this.leadStatus).subscribe(
       res => {

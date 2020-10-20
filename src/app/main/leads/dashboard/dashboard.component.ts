@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit {
   profile: boolean = false;
   social: boolean = false;
   files: any;
+  nfObject;
   constructor(private leadService: LeadsService, private router: Router, private notification: NotificationService, private authService: AuthDataService, private productService: ProductsService) { }
 
   ngOnInit() {
@@ -231,10 +232,12 @@ export class DashboardComponent implements OnInit {
     this.leadService.getLeadById(id).subscribe(
       res => {
         this.theLead = res['payload']
-        // console.log(res)
+
+        this.nfObject = new Intl.NumberFormat("en-US");
+        this.theLead.transactionVolume = this.nfObject.format(this.theLead.transactionVolume);
+        this.theLead.estimatedTransactionValue = this.nfObject.format(this.theLead.estimatedTransactionValue);
       },
       err => {
-        // console.log(err)
       }
     )
   }
@@ -248,6 +251,7 @@ export class DashboardComponent implements OnInit {
         this.getAllLeads()
         this.getMyLeads()
         this.getJunkLeads()
+
       }
     )
   }
@@ -260,6 +264,7 @@ export class DashboardComponent implements OnInit {
         this.getAllLeads()
         this.getMyLeads()
         this.getJunkLeads()
+        this.getLead(id)
       }
     )
   }
@@ -272,6 +277,7 @@ export class DashboardComponent implements OnInit {
         this.getAllLeads()
         this.getMyLeads()
         this.getJunkLeads()
+        this.getLead(id)
       }
     )
   }
@@ -339,6 +345,7 @@ export class DashboardComponent implements OnInit {
 
   closecSuccess() {
     this.csuccess = false
+    this.router.navigate(['/app/deals'])
   }
 
   closejSuccess() {

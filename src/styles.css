@@ -2,7 +2,10 @@
     src: url('assets/fonts/Segoe-UI-Font/SEGOEUI.TTF');
     font-family: Segoe UI;
 }
-
+@font-face{
+    src: url('assets/fonts/palatino-linotype/Palatino Linotype.ttf');
+    font-family: Palatino Linotype;
+}
 /* fonts */
 .fs-36 {
     font-size: 36px;
@@ -118,7 +121,7 @@
 
 .ff-m {
     font-family: Montserrat;
-}
+} 
 
 .tx-u {
     text-decoration: underline;
@@ -153,7 +156,22 @@ a:hover {
 }
 
 /* end of fonts */
-
+.productname {
+    background: #DEE9F2;
+    border-radius: 20px;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    text-transform: uppercase;
+    line-height: 31px;
+    color: #00529B;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .green-nav {
     background: #165A3E;
 }

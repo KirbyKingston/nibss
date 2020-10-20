@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit {
   nsuccess: boolean = false;
   rsuccess: boolean = false;
   dsuccess: boolean = false;
+  nfObject;
   constructor(private router: Router, private authService: AuthDataService, private dealService: DealsService, private productService: ProductsService, private accountService: AccountService) { }
 
   ngOnInit() {
@@ -159,6 +160,9 @@ export class DashboardComponent implements OnInit {
     this.dealService.getDealById(id).subscribe(
       res => {
         this.aDeal = res['payload']
+        this.nfObject = new Intl.NumberFormat("en-US");
+        this.aDeal.estimatedRevenue = this.nfObject.format(this.aDeal.estimatedRevenue);
+        this.aDeal.dealValue = this.nfObject.format(this.aDeal.dealValue);
       }
     )
   }

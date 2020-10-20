@@ -7,7 +7,7 @@
                         <p class="fs-32 text-white ff-p">Accounts</p>
                         <p class="fs-16 text-white ff-p mb-4">Manage your Accounts easily</p>
                         <div class="d-flex">
-                            
+
                             <button class="btn btn-out-white" data-toggle="modal" data-target=".new-modal"><img
                                     src="assets/images/add.svg" alt="" class="mr-2">Add New
                                 Account</button>
@@ -189,13 +189,9 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="account.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + account.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="account.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
-                                                            </div>
+                                                            <div class="productname">
+                                                                {{account.accountName.substring(0,1)}}</div>
+
                                                         </div>
                                                         <div>
                                                             <p class="m-0 ff-s fs-15 fw-6 fc-black">
@@ -323,13 +319,9 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="account.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + account.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="account.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
-                                                            </div>
+                                                            <div class="productname">
+                                                                {{account.accountName.substring(0,1)}}</div>
+
                                                         </div>
                                                         <div>
                                                             <p class="m-0 ff-s fs-15 fw-6 fc-black">
@@ -457,13 +449,9 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="account.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + account.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="account.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
-                                                            </div>
+                                                            <div class="productname">
+                                                                {{account.accountName.substring(0,1)}}</div>
+
                                                         </div>
                                                         <div>
                                                             <p class="m-0 ff-s fs-15 fw-6 fc-black">
@@ -560,19 +548,19 @@
                             <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theAccount?.transactionVolume}}</p>
                         </div>
                         <div class="col-5 mb-3">
-                            <p class="m-0 fc-lightblack fs-14 ff-s">Est. Transaction Valu:</p>
+                            <p class="m-0 fc-lightblack fs-14 ff-s">Est. Transaction Value:</p>
                         </div>
                         <div class="col-7 mb-3">
                             <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="theAccount?.estimatedTransactionValue">
                                 {{theAccount?.estimatedTransactionValue}}</p>
                             <p class="m-0 fc-black fw-6 fs-14 ff-s"
-                                *ngIf="theAccount?.estimatedTransactionValue == null">null</p>
+                                *ngIf="theAccount?.estimatedTransactionValue == null">NA</p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Address:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">57 Marina, Lagos Island, Lagos, Nigeria</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theAccount?.addresses[0].floor}} {{theAccount?.addresses[0].street}}, {{theAccount?.addresses[0].city}}, {{theAccount?.addresses[0].country}}</p>
                         </div>
                     </div>
                     <div class="info mb-3">
@@ -583,12 +571,12 @@
                         <div class="row pl-2">
                             <div class="col-12 mb-3" *ngFor="let contact of theAccount?.contacts">
                                 <div class="d-flex align-items-center justify-content-between p-2">
-                                    <div>
+                                    <div (click)="openContact(contact.id)">
                                         <div class="prop-initials">
                                             {{contact?.firstName.substring(0,1)}}
                                         </div>
                                     </div>
-                                    <div>
+                                    <div (click)="openContact(contact.id)">
                                         <p class="m-0 fs-15 ff-s fc-black fw-6">{{contact?.firstName}}
                                             {{contact?.lastName}}</p>
                                     </div>
@@ -598,7 +586,7 @@
                                         </a>
                                     </div>
                                     <div>
-                                        <a>
+                                        <a href="mailto:{{contact?.email}}"> 
                                             <img src="assets/images/bmessage.svg" alt="">
                                         </a>
                                     </div>

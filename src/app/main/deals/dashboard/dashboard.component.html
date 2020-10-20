@@ -459,9 +459,9 @@
                                             </div>
                                             <div class="col-7 mb-3">
                                                 <p class="m-0 fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.probability">
-                                                    {{aDeal?.probability}}</p>
+                                                    {{aDeal?.probability}}%</p>
                                                 <p class="m-0 fc-black fw-6 fs-14 ff-s"
-                                                    *ngIf="aDeal?.probability == null">-</p>
+                                                    *ngIf="aDeal?.probability == null">NA</p>
                                             </div>
                                             <div class="col-2 mb-1">
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
@@ -517,25 +517,25 @@
                                             </div>
                                             <div class="row pl-2">
                                                 <div class="col-12 mb-3"
-                                                    (click)="openContact(aDeal.account.contacts[0].id)">
+                                                    >
                                                     <div class="d-flex align-items-center justify-content-between p-2">
-                                                        <div>
+                                                        <div (click)="openContact(aDeal.account.contacts[0].id)">
                                                             <div class="prop-initials">
                                                                 {{aDeal?.accountContact.firstName.substring(0,1)}}
                                                             </div>
                                                         </div>
-                                                        <div>
+                                                        <div (click)="openContact(aDeal.account.contacts[0].id)">
                                                             <p class="m-0 fs-15 ff-s fc-black fw-6">
                                                                 {{aDeal?.accountContact.firstName}}
                                                                 {{aDeal?.accountContact.lastName}} </p>
                                                         </div>
                                                         <div>
-                                                            <a>
+                                                            <a href="tel:{{aDeal?.accountContact.phoneNumber}}" *ngIf="aDeal?.accountContact.phoneNumber">
                                                                 <img src="assets/images/bcall.svg" alt="">
                                                             </a>
                                                         </div>
                                                         <div>
-                                                            <a>
+                                                            <a href="mailto:{{aDeal?.accountContact.email}}" *ngIf="aDeal?.accountContact.email">
                                                                 <img src="assets/images/bmessage.svg" alt="">
                                                             </a>
                                                         </div>
@@ -609,7 +609,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-lg-4 mb-3">
+                    <div class="col-lg-4 mb-3"> 
                         <label class="fs-16 ff-p fc-black">Deal Owner</label>
                         <select class="form-control topform" [(ngModel)]="owner">
                             <option value="{{account.id}}" *ngFor="let account of users">{{account.fullName}}</option>

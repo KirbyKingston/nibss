@@ -51,11 +51,14 @@ export class AccountDetailsComponent implements OnInit {
   getAccount() {
     this.accountService.getAccById(this.id).subscribe(
       res => {
-        console.log(res)
+        // console.log(res)
         this.accountDetails = res['payload']
+        let nfObject = new Intl.NumberFormat("en-US");
+        this.accountDetails.estimatedTransactionValue = nfObject.format(this.accountDetails.estimatedTransactionValue);
+        this.accountDetails.transactionVolume = nfObject.format(this.accountDetails.transactionVolume);
       },
       err => {
-        console.log(err)
+        // console.log(err)
       }
     )
   }

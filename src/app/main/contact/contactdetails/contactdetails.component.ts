@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery'
+import { NotificationService } from 'src/core/classes/notification/notification.service';
 import { ContactService } from 'src/core/data/contact/contact.service';
 @Component({
   selector: 'app-contactdetails',
@@ -19,7 +20,7 @@ export class ContactdetailsComponent implements OnInit {
   bcc: any = '';
   subject: any = '';
   body: any = '';
-  constructor(private location: Location, private route: ActivatedRoute, private contactService: ContactService) { }
+  constructor(private location: Location, private route: ActivatedRoute, private contactService: ContactService, private notification:NotificationService) { }
 
   ngOnInit() {
     this.getId()
@@ -66,11 +67,33 @@ export class ContactdetailsComponent implements OnInit {
     )
   }
   junkContact() {
+    this.jContacts = []
     this.id = parseInt(this.id)
     this.jContacts.push(this.id)
     this.contactService.ConvertContactToJunk(this.jContacts).subscribe(
       res => {
-        this.jsuccess = true
+        if(res['hasErrors'] == true){
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        }else{
+          this.jsuccess = true
+        }
+        
+
+      }
+    )
+  }
+  reactivateContact() {
+    this.jContacts = []
+    this.id = parseInt(this.id)
+    this.jContacts.push(this.id)
+    this.contactService.reactivateContact(this.jContacts).subscribe(
+      res => {
+        if(res['hasErrors'] == true){
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        }else{
+          this.jsuccess = true
+        }
+        
 
       }
     )
@@ -78,7 +101,7 @@ export class ContactdetailsComponent implements OnInit {
 
   closejSuccess() {
     this.jsuccess = false
-    this.location.back();
+    // this.location.back();
   }
 
   closeeSuccess() {

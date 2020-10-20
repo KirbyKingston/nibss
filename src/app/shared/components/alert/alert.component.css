@@ -1,6 +1,33 @@
-.notification{
-    position: fixed; 
-    left: 40vw;
+.notification {
+    position: fixed;
+    left: 37vw;
+    margin: 0 auto;
     /* top: 12vh;  */
     z-index: 4444;
+}
+
+.alert-info {
+    background: #DDF8E9;
+    border: 2px solid #A9EDC8;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    color: #1C9D52;
+}
+
+.alert-warning {
+    background: #FFE5E5;
+    border: 2px solid #FEC5C5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    color: #CE4346;
 }

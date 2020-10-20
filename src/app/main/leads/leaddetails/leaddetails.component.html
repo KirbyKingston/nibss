@@ -40,10 +40,11 @@
 
                     </div>
                     <div>
-                        <button class="btn btn-blue mr-2" (click)="convertToDeal()">
+                        <button class="btn btn-blue mr-2" (click)="convertToDeal()" *ngIf="leadDetails?.isJunked == false ? true : false">
                             Convert to Deal
                         </button>
-                        <button class="btn btn-out-blue tx-u" (click)="junkLead()">Junk Lead</button>
+                        <button class="btn btn-out-blue tx-u" (click)="junkLead()" *ngIf="leadDetails?.isJunked == false ? true : false">Junk Lead</button>
+                        <button class="btn btn-out-blue tx-u" (click)="reactivateLead()" *ngIf="leadDetails?.isJunked == false ? false : true">Reactivate Lead</button>
                     </div>
                 </div>
             </div>

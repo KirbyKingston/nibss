@@ -396,7 +396,8 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"><a>{{theCons?.phoneNumber}}</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theCons?.phoneNumber"><a>{{theCons?.phoneNumber}}</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theCons?.phoneNumber == null"><a>NA</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
@@ -418,19 +419,21 @@
                         </div>
                         <div class="row pl-2">
                             <div class="col-12 mb-3">
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center" *ngIf="theCons?.accountName">
                                     <div class="py-2">
-                                        <div class="image" *ngIf="theCons?.imageString"> 
-                                            <img [src]="'data:image/png;base64, ' + theCons?.imageString | trustedUrl" alt="">
+                                        <div class="image" *ngIf="theCons?.accountImageString"> 
+                                            <img [src]="'data:image/png;base64, ' + theCons?.accountImageString | trustedUrl" alt="">
                                         </div>
-                                        <div class="image" *ngIf="theCons?.imageString == null">
+                                        <div class="image" *ngIf="theCons?.accountImageString == null">
                                             <img src="assets/images/contact-avatar.png" alt="">
                                         </div>
                                     </div>
                                     <div class="p-2">
-                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
+                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">{{theCons?.accountName}}</p>
                                     </div>
                                 </div>
+                                <p class="m-0 ff-s fw-6 fs-15 fc-black" *ngIf="theCons?.accountName == null">NA</p>
+
                             </div>
 
                         </div>
@@ -463,7 +466,30 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2 mt-4"><a (click)="openContact(theCons.id)">View Complete Infomation</a></p>
+
+                    <div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button class="btn btn-green mr-3" (click)="openContact(theCons.id)">View
+                                Complete Info</button>
+                            <div class="dropdown">
+                                <button class="btn btn-more dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <img src="assets/images/more-green.svg" alt="">
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                        (click)="junkaContact(theCons.id)" *ngIf="theCons?.isJunked == false">Junk
+                                        Contact</a>
+                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                        (click)="reactivateContact(theCons.id)" *ngIf="theCons?.isJunked == true">Reactivate Contact</a>
+                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                        (click)="deleteContact(theCons.id)" *ngIf="theCons?.isJunked == true">Delete Contact</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2 mt-4"><a (click)="openContact(theCons.id)">View Complete Infomation</a></p> -->
 
                 </div>
                 <!-- properties -->

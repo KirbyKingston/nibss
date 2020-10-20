@@ -44,7 +44,7 @@ export class DealsDetailsComponent implements OnInit {
     this.getId()
     this.getDeal()
     this.getAccounts()
-    this.getContacts()
+    // this.getContacts()
     this.getProducts()
     this.getUsers()
     $('.showinfo').click(function () {
@@ -105,6 +105,9 @@ export class DealsDetailsComponent implements OnInit {
     this.dealService.getDealById(this.id).subscribe(
       res => {
         this.dealDetails = res['payload']
+        let nfObject = new Intl.NumberFormat("en-US");
+        this.dealDetails.estimatedRevenue = nfObject.format(this.dealDetails.estimatedRevenue);
+        this.dealDetails.dealValue = nfObject.format(this.dealDetails.dealValue);
       },
       err => {
       }
@@ -126,13 +129,21 @@ export class DealsDetailsComponent implements OnInit {
       }
     )
   }
-  getContacts() {
-    this.contactService.getAllContact().subscribe(
+  getAccountById(){
+    this.accountService.getAccById(this.dealDetails.account.id).subscribe(
       res => {
-        this.contacts = res['payload']
+        this.contacts = res['payload']['contacts']
       }
     )
   }
+  
+  // getContacts() {
+  //   this.contactService.getAllContact().subscribe(
+  //     res => {
+  //       this.contacts = res['payload']
+  //     }
+  //   )
+  // }
 
   getUsers() {
     this.authService.getUsers().subscribe(

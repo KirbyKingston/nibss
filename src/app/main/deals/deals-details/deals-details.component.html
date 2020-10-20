@@ -256,112 +256,27 @@
                                     <th>Probability(%)</th>
                                     <th>Expected Revenue</th>
                                     <th>Closing Date</th>
-                                    <th>Duration (Days)</th>
+                                    <!-- <th>Duration (Days)</th> -->
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let stage of dealDetails?.stageHistory">
                                         <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-black">Negotiation/review</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-black">{{stage?.stage}}</p>
                                         </td>
                                         <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">90</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">{{stage?.probability}}%</p>
                                         </td>
                                         <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">27,000,000</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">{{stage?.estimatedRevenue}}</p>
                                         </td>
                                         <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">Aug 31,2020 12:30PM</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">{{stage?.expectedClosingDate | date: "mediumDate"}}</p>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">9 (running)</p>
-                                        </td>
+                                        </td> -->
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-black">Proposal/Quote</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">90</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">27,000,000</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">Aug 31,2020 12:30PM</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">9 (running)</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-black">Identification Decision
-                                                Makers</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">90</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">27,000,000</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">Aug 31,2020 12:30PM</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">9 (running)</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-black">Value Proposition</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">90</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">27,000,000</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">Aug 31,2020 12:30PM</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">9 (running)</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-black">Need Analysis</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">90</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">27,000,000</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">Aug 31,2020 12:30PM</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">9 (running)</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-black">Qualification</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">90</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">27,000,000</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">Aug 31,2020 12:30PM</p>
-                                        </td>
-                                        <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">9 (running)</p>
-                                        </td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -898,7 +813,7 @@
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label class="fs-16 ff-p fc-black">Select Account</label>
-                        <select class="form-control topform" [(ngModel)]="account">
+                        <select class="form-control topform" [(ngModel)]="account" (change)="getAccountById()">
                             <option value="{{account.id}}" *ngFor="let account of accounts">{{account.accountName}}
                             </option>
                         </select>

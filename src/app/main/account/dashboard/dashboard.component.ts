@@ -14,27 +14,28 @@ export class DashboardComponent implements OnInit {
   junkAccounts: any = [];
   theAccount: any;
   cAccount: Array<{}> = [];
-  isSelected:boolean = false;
+  isSelected: boolean = false;
   jsuccess: boolean = false;
   nsuccess: boolean = false;
   rsuccess: boolean = false;
   dsuccess: boolean = false;
-  constructor(private accountService:AccountService, private router:Router, private notification:NotificationService) { }
+  nfObject;
+  constructor(private accountService: AccountService, private router: Router, private notification: NotificationService) { }
 
   ngOnInit() {
     this.getAllAccs()
     this.getMyAccs()
     this.getJunkAccs()
-    $('#filter, #overlay').on('click', function(){
+    $('#filter, #overlay').on('click', function () {
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')
     })
 
-    $('#more, #overlay').on('click', function(){
+    $('#more, #overlay').on('click', function () {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
   }
 
-  getAllAccs(){
+  getAllAccs() {
     this.accountService.getAllAcc().subscribe(
       res => {
         // console.log(res)
@@ -50,11 +51,11 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getMyAccs(){
+  getMyAccs() {
     this.accountService.getMyAcc().subscribe(
-      res => { 
+      res => {
         this.myAccounts = res['payload']
-      
+
         // console.log(res)
       },
       err => {
@@ -63,7 +64,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getJunkAccs(){
+  getJunkAccs() {
     this.accountService.getJunkedAcc().subscribe(
       res => {
         this.junkAccounts = res['payload']
@@ -76,11 +77,13 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  getAcc(id){
+  getAcc(id) {
     this.isSelected = true;
     this.accountService.getAccById(id).subscribe(
       res => {
         this.theAccount = res['payload']
+        this.nfObject = new Intl.NumberFormat("en-US");
+        this.theAccount.transactionVolume = this.nfObject.format(this.theAccount.transactionVolume);
         // console.log(res)
       },
       err => {
@@ -90,24 +93,26 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  openAccount(id){
+  openAccount(id) {
     this.router.navigate(['/app/accounts/account/' + id])
   }
-
+  openContact(id) {
+    this.router.navigate(['/app/contacts/contact/' + id])
+  }
   junkAccount(id) {
     this.cAccount.push(id)
     this.accountService.ConvertAccToJunk(this.cAccount).subscribe(
       res => {
-        if(res['hasErrors'] == false){
+        if (res['hasErrors'] == false) {
           this.jsuccess = true;
           this.getAllAccs()
           this.getMyAccs()
           this.getJunkAccs()
-        }else{
+        } else {
           this.notification.publishMessages(res['description'], 'warning', 0)
         }
 
-        
+
       }
     )
   }
@@ -133,7 +138,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  createAccount(){
+  createAccount() {
 
   }
   closejSuccess() {

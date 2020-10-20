@@ -33,19 +33,15 @@
                 <div class="topcontact">
                     <div class="inner p-4">
                         <div class="row">
-                            <div class="col-lg-6 offset-lg-6 mb-3">
-                                <div class="btngroup d-flex justify-content-center align-items-center">
+                            <div class="col-lg-5 offset-lg-7 mb-3">
+                                <div class="btngroup d-flex justify-content-center align-items-center" *ngIf="accountDetails?.website">
 
                                     <div class="mr-2">
-                                        <a class="text-white fs-14 ff-s fw-4">
+                                        <a href="https://{{accountDetails?.website}}" target="_blank" class="text-white fs-14 ff-s fw-4">
                                             <img src="assets/images/web.svg" class="mr-1" alt=""> Visit Website
                                         </a>
                                     </div>
-                                    <div class="mr-2">
-                                        <a class="text-white fs-14 ff-s fw-4">
-                                            <img src="assets/images/email.svg" class="mr-1" alt=""> Email
-                                        </a>
-                                    </div>
+                                    
 
                                 </div>
                             </div>
@@ -69,14 +65,14 @@
                                             *ngIf="accountDetails?.estimatedTransactionValue">
                                             {{accountDetails?.estimatedTransactionValue}}</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0"
-                                            *ngIf="accountDetails?.estimatedTransactionValue == null">null</p>
+                                            *ngIf="accountDetails?.estimatedTransactionValue == null">NA</p>
                                     </div>
                                     <div class="mr-3">
                                         <br>
-                                        <p class="m-0 ff-s fs-12 fc-lightwhite">Website</p>
+                                        <p class="m-0 ff-s fs-12 fc-lightwhite pt-3">Website</p>
                                         <p class="fs-15 text-white ff-s fw-6">
                                             <a *ngIf="accountDetails?.website">{{accountDetails?.website}}</a>
-                                            <a *ngIf="accountDetails?.website == null">--</a>
+                                            <a *ngIf="accountDetails?.website == null">NA</a>
                                         </p>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Transaction Volume</p>
                                         <p class="fs-15 text-white ff-s fw-6">{{accountDetails?.transactionVolume}}</p>
@@ -193,6 +189,7 @@
                                         </div>
 
                                         <div class="orangeline"></div>
+                                        <div class="deeporange"></div>
 
                                     </div>
                                     <div class="col-lg-6">

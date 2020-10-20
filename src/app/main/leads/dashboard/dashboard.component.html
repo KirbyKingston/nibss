@@ -27,7 +27,7 @@
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#junk" role="tab"
                             aria-controls="contact" aria-selected="false">Junk Leads</a>
                     </li>
-                    <li class="ml-auto">
+                    <!-- <li class="ml-auto">
                         <div class="dropdown">
                             <a class="filter text-right" id="filter">
                                 <img src="assets/images/date filter.svg" alt="">
@@ -107,7 +107,8 @@
                             </div>
                         </div>
 
-                    </li>
+                    </li> -->
+                
                 </ul>
             </div>
             <div class="col-12">
@@ -672,19 +673,19 @@
                     <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a (click)="openLead(theLead.id)">View
                             Complete Infomation</a></p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)" *ngIf="theLead.isJunked == false ? true : false">Convert to Deal</button>
+                        <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)" *ngIf="theLead?.isJunked == false">Convert to Deal</button>
                         <div class="dropdown">
                             <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/images/more-green.svg" alt="">
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)" *ngIf="theLead.isJunked == false">Junk
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)" *ngIf="theLead?.isJunked == false">Junk
                                     Lead</a>
                                 <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                    (click)="reactivateLead(theLead.id)" *ngIf="theLead.isJunked == true">Reactivate Lead</a>
+                                    (click)="reactivateLead(theLead.id)" *ngIf="theLead?.isJunked == true">Reactivate Lead</a>
                                 <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                    (click)="deleteLead(theLead.id)" *ngIf="theLead.isJunked == true">Delete Lead</a>
+                                    (click)="deleteLead(theLead.id)" *ngIf="theLead?.isJunked == true">Delete Lead</a>
                             </div>
                         </div>
                     </div>

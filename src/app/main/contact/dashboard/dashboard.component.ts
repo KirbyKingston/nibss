@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { ContactService } from 'src/core/data/contact/contact.service';
 import { AccountService } from 'src/core/data/account/account.service';
+import { NotificationService } from 'src/core/classes/notification/notification.service';
 
 export interface PeriodicElement {
   Amount: string;
@@ -43,8 +44,9 @@ export class DashboardComponent implements OnInit {
   jsuccess: boolean = false;
   isuccess: boolean = false;
   jContacts: Array<{}> = [];
-  files:any;
-  constructor(private router: Router, private contactService: ContactService, private accountService: AccountService) { }
+  files: any;
+  cContacts: Array<{}> = [];
+  constructor(private router: Router, private contactService: ContactService, private accountService: AccountService, private notification: NotificationService) { }
 
   ngOnInit() {
     this.getAllContacts()
@@ -68,7 +70,7 @@ export class DashboardComponent implements OnInit {
       return false;
     }
   }
-  importContacts(){
+  importContacts() {
     this.contactService.importContact(this.files).subscribe(
       res => {
         this.isuccess = true;
@@ -136,6 +138,48 @@ export class DashboardComponent implements OnInit {
       }
     )
   }
+
+  junkaContact(id) {
+    this.cContacts = []
+    this.cContacts.push(id)
+    this.contactService.ConvertContactToJunk(this.cContacts).subscribe(
+      res => {
+        if (res['hasErrors'] == true) {
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        } else{
+          this.jsuccess = true;
+          this.getAllContacts()
+          this.getMyContacts()
+          this.getJunkContacts()
+        }
+
+      }
+    )
+  }
+  reactivateContact(id) {
+    this.cContacts = []
+    this.cContacts.push(id)
+    this.contactService.reactivateContact(this.cContacts).subscribe(
+      res => {
+        // this.rsuccess = true;
+        this.getAllContacts()
+        this.getMyContacts()
+        this.getJunkContacts()
+      }
+    )
+  }
+  deleteContact(id) {
+    this.contactService.deleteContact(id).subscribe(
+      res => {
+        // this.dsuccess = true;
+        this.getAllContacts()
+        this.getMyContacts()
+        this.getJunkContacts()
+      }
+    )
+  }
+
+
 
   openContact(id) {
     this.router.navigate(['/app/contacts/contact/' + id])

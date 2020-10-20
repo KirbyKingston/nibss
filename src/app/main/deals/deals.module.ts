@@ -7,6 +7,7 @@ import { DealsDetailsComponent } from './deals-details/deals-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     DealsRoutingModule,
     SharedModule,
     FormsModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    NgxPaginationModule
   ]
 })
 export class DealsModule { }

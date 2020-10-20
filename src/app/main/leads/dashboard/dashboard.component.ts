@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
   twitter: any = '';
   instagram: any = '';
   title: any = '';
-  address: any = ''; 
+  address: any = '';
   city: any = '';
   country: any = '';
   postalCode: any = '';
@@ -92,34 +92,23 @@ export class DashboardComponent implements OnInit {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
 
-    $("input.money").keyup(function (event) {
-      if (event.which >= 37 && event.which <= 40) {
-        event.preventDefault();
-      }
-      var $this = $(this);
-      var num = $this
-        .val()
-        .replace(/,/gi, "")
-        .split("")
-        .reverse()
-        .join("");
+    $(".money").keyup(function (event) {
 
-      var num2 = RemoveRougeChar(
-        num
-          .replace(/(.{3})/g, "$1,")
-          .split("")
-          .reverse()
-          .join("")
-      );
-      $this.val(num2);
+      // skip for arrow keys
+      if (event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function (index, value) {
+        return value
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          ;
+      });
+
+      var firstValue = Number($('.money').val().replace(/,/g, ''));
+      console.log(firstValue);
     });
 
-    function RemoveRougeChar(convertString) {
-      if (convertString.substring(0, 1) == ",") {
-        return convertString.substring(1, convertString.length);
-      }
-      return convertString;
-    }
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -329,6 +318,7 @@ export class DashboardComponent implements OnInit {
     } else {
       arr = []
     }
+    this.transVol = this.transVol.replace(/,/g, '')
     this.selectedProducts.push(arr)
     this.leadService.createLead(this.company, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.ownerphoneNumber, this.source, this.stage, this.status, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.phoneNumber, this.message, this.selectedProducts).subscribe(
       res => {

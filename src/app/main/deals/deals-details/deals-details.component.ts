@@ -58,35 +58,23 @@ export class DealsDetailsComponent implements OnInit {
       $('.hideinfo').hide(0);
     });
 
+    $(".money").keyup(function (event) {
+
+      // skip for arrow keys
+      if (event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function (index, value) {
+        return value
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          ;
+      });
+
+      var firstValue = Number($('.money').val().replace(/,/g, ''));
+      console.log(firstValue);
+    });
     
-    // $("input.money").keyup(function(event) {
-    //   if (event.which >= 37 && event.which <= 40) {
-    //     event.preventDefault();
-    //   }
-    //   var $this = $(this);
-    //   var num = $this
-    //     .val()
-    //     .replace(/,/gi, "")
-    //     .split("")
-    //     .reverse()
-    //     .join("");
-
-    //   var num2 = RemoveRougeChar(
-    //     num
-    //       .replace(/(.{3})/g, "$1,")
-    //       .split("")
-    //       .reverse()
-    //       .join("")
-    //   );
-    //   $this.val(num2);
-    // });
-
-    // function RemoveRougeChar(convertString) {
-    //   if (convertString.substring(0, 1) == ",") {
-    //     return convertString.substring(1, convertString.length);
-    //   }
-    //   return convertString;
-    // }
 
   }
 
@@ -137,13 +125,6 @@ export class DealsDetailsComponent implements OnInit {
     )
   }
   
-  // getContacts() {
-  //   this.contactService.getAllContact().subscribe(
-  //     res => {
-  //       this.contacts = res['payload']
-  //     }
-  //   )
-  // }
 
   getUsers() {
     this.authService.getUsers().subscribe(
@@ -233,7 +214,10 @@ export class DealsDetailsComponent implements OnInit {
     } else if (this.dealDetails.status == "Inactive") {
       this.dealStatus = 1
     }
-    this.dealService.updateDeal(this.dealDetails.account.id, this.dealDetails.account.contacts[0].id, this.dealDetails.dealName, this.dealDetails.dealValue, this.dealDetails.expectedClosingDate, this.dealDetails.estimatedRevenue, this.dealDetails.id, this.owner, this.dealDetails.probability, this.dealStage, this.dealStatus ).subscribe(
+
+    this.dealDetails.dealValue = this.dealDetails.dealValue.replace(/,/g, '')
+    this.dealDetails.estimatedRevenue = this.dealDetails.estimatedRevenue.replace(/,/g, '')
+    this.dealService.updateDeal(this.dealDetails.account.id, this.contact, this.dealDetails.dealName, this.dealDetails.dealValue, this.dealDetails.expectedClosingDate, this.dealDetails.estimatedRevenue, this.dealDetails.id, this.owner, this.dealDetails.probability, this.dealStage, this.dealStatus ).subscribe(
       res => {
         this.usuccess = true;
         this.getDeal()

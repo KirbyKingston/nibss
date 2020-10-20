@@ -24,11 +24,11 @@
                             <div class="col-12 mb-4">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <div class="mr-2">
-                                        <div class="image" *ngIf="dealDetails?.imageString">
-                                            <img [src]="'data:image/png;base64, ' + dealDetails?.imageString | trustedUrl"
+                                        <div class="image" *ngIf="dealDetails?.account.imageString">
+                                            <img [src]="'data:image/png;base64, ' + dealDetails?.account.imageString | trustedUrl"
                                                 alt="">
                                         </div>
-                                        <div class="image" *ngIf="dealDetails?.imageString == null">
+                                        <div class="image" *ngIf="dealDetails?.account.imageString == null">
                                             <img src="assets/images/companyalt.svg" alt="">
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-3" *ngIf="dealDetails?.accountContact">
                 <div class="details">
                     <div class="py-3 px-lg-3 px-3">
                         <div class="deals pb-1 mb-3">
@@ -101,21 +101,21 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <div class="prop-initials">
-                                    {{dealDetails?.accountContact.firstName.substring(0,1)}}
+                                    {{dealDetails?.accountContact?.firstName.substring(0,1)}}
                                 </div>
                             </div>
                             <div class="">
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{dealDetails?.accountContact.firstName}}
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{dealDetails?.accountContact?.firstName}}
                                     {{dealDetails?.accountContact.lastName}}</p>
                                 <p class="fs-12 ff-s fc-lightblack">{{dealDetails?.accountContact.designation}}</p>
                             </div>
-                            <div>
-                                <a>
+                            <div *ngIf="dealDetails?.accountContact.phoneNumber">
+                                <a href="tel:{{dealDetails?.accountContact.phoneNumber}}">
                                     <img src="assets/images/bcall.svg" alt="">
                                 </a>
                             </div>
-                            <div>
-                                <a>
+                            <div *ngIf="dealDetails?.accountContact.email">
+                                <a href="mailto:{{dealDetails?.accountContact.email}}">
                                     <img src="assets/images/bmessage.svg" alt="">
                                 </a>
                             </div>
@@ -139,11 +139,11 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <div class="p-2">
-                                <div class="image" *ngIf="dealDetails?.imageString">
-                                    <img [src]="'data:image/png;base64, ' + dealDetails?.imageString | trustedUrl"
+                                <div class="image" *ngIf="dealDetails?.account.imageString">
+                                    <img [src]="'data:image/png;base64, ' + dealDetails?.account.imageString | trustedUrl"
                                         alt="">
                                 </div>
-                                <div class="image" *ngIf="dealDetails?.imageString == null">
+                                <div class="image" *ngIf="dealDetails?.account.imageString == null">
                                     <img src="assets/images/companyalt.svg" alt="">
                                 </div>
                             </div>
@@ -188,27 +188,35 @@
                             </div>
                             <div class="col-lg-6">
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Deal Owner</p>
-                                <p class="fs-16 fc-black ff-s">
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.ownerName">
                                     {{dealDetails?.ownerName}}
+                                </p>
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.ownerName == null">
+                                    NA
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Account Name</p>
                                 <p class="fs-16 fc-black ff-s">
                                     {{dealDetails?.account.accountName}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products</p>
-                                <div class="d-flex mb-4">
+                                <div class="d-flex mb-4" *ngIf="dealDetails.products">
                                     <div class="product mr-2" *ngFor="let product of dealDetails.products.slice(0,2)">
                                         {{product?.productName}} </div>
                                         <span *ngIf="deal?.products.length > 2">+
                                             {{deal?.products.length - 2}}</span>
                                 </div>
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails.products == null">NA</p>
+
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Value (NGN)</p>
                                 <p class="fs-16 fc-black ff-s">
                                     {{dealDetails?.dealValue}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Probability (%)</p>
-                                <p class="fs-16 fc-black ff-s">
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.probability">
                                     {{dealDetails?.probability}}
+                                </p>
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.probability == null">
+                                    NA
                                 </p>
                             </div>
                             <div class="col-lg-6">
@@ -217,21 +225,32 @@
                                     {{dealDetails?.dealName}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Contact Person</p>
-                                <p class="fs-16 fc-black ff-s">
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.accountContact">
                                     {{dealDetails?.accountContact.firstName}}
                                     {{dealDetails?.accountContact.lastName}}
                                 </p>
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.accountContact == null">NA</p>
+
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Stage </p>
-                                <p class="fs-16 fc-black ff-s">
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.stage">
                                     {{dealDetails?.stage}}
                                 </p>
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.stage == null">
+                                    NA
+                                </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Estimated Income (NGN) </p>
-                                <p class="fs-16 fc-black ff-s">
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.estimatedRevenue">
                                     {{dealDetails?.estimatedRevenue}}
                                 </p>
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.estimatedRevenue == null">
+                                    NA
+                                </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Estimated Close Date </p>
-                                <p class="fs-16 fc-black ff-s">
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.expectedClosingDate">
                                     {{dealDetails?.expectedClosingDate | date: 'mediumDate'}}
+                                </p>
+                                <p class="fs-16 fc-black ff-s" *ngIf="dealDetails?.expectedClosingDate == null">
+NA
                                 </p>
 
                             </div>
@@ -264,13 +283,16 @@
                                             <p class="m-0 fw-4 ff-s fs-15 fc-black">{{stage?.stage}}</p>
                                         </td>
                                         <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">{{stage?.probability}}%</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey" *ngIf="stage?.probability">{{stage?.probability}}%</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey" *ngIf="stage?.probability == null">NA</p>
                                         </td>
                                         <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">{{stage?.estimatedRevenue}}</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey" *ngIf="stage?.estimatedRevenue">{{stage?.estimatedRevenue}}</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey" *ngIf="stage?.estimatedRevenue == null">NA</p>
                                         </td>
                                         <td>
-                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">{{stage?.expectedClosingDate | date: "mediumDate"}}</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey" *ngIf="stage?.expectedClosingDate">{{stage?.expectedClosingDate | date: 'mediumDate'}}</p>
+                                            <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey" *ngIf="stage?.expectedClosingDate == null">NA</p>
                                         </td>
                                         <!-- <td>
                                             <p class="m-0 fw-4 ff-s fs-15 fc-lightgrey">9 (running)</p>

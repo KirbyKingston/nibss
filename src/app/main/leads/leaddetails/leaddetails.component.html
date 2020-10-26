@@ -10,8 +10,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a>Leads</a></li>
-                                <li class="breadcrumb-item">{{leadDetails?.contacts[0].firstName}}
-                                    {{leadDetails?.contacts[0].lastName}}</li>
+                                <li class="breadcrumb-item">{{leadDetails?.contacts[0].contactDetails.firstName}}
+                                    {{leadDetails?.contacts[0].contactDetails.lastName}}</li>
                             </ol>
                         </nav>
                     </div>
@@ -64,7 +64,7 @@
                                         <div class="col-lg-7 offset-lg-5 mb-3">
                                             <div class="btngroup d-flex justify-content-center align-items-center">
                                                 <div class="mr-2">
-                                                    <select class="form-control clearform" (change)="updateStatus()"
+                                                    <select class="form-control clearform" (change)="updateStatus()" [disabled]="leadDetails?.isJunked == true"
                                                         [(ngModel)]="leadDetails.status">
                                                         <option value="Cold" class="fc-black"><span><i
                                                                     class="fas fa-circle fs-18 cold"></i></span> Cold
@@ -408,8 +408,8 @@
                                         </p>
                                     </div>
                                     <!-- messages -->
-                                    <div class="messages" *ngIf="leadDetails?.emailMessages?.length > 0">
-                                        <div class="message p-3" *ngFor="let msg of leadDetails?.emailMessages">
+                                    <div class="messages" *ngIf="leadDetails?.receivedMails?.length > 0">
+                                        <div class="message p-3" *ngFor="let msg of leadDetails?.receivedMails">
                                             <div class="d-flex">
                                                 <div class="mr-2">
                                                     <img src="assets/images/msg.svg" alt="">
@@ -442,7 +442,7 @@
                                         </div>
                                     </div>
                                     <!-- messages -->
-                                    <div class="emptystate2" *ngIf="leadDetails?.emailMessages?.length == 0">
+                                    <div class="emptystate2" *ngIf="leadDetails?.receivedMails?.length == 0">
                                         <p class="text-center fs-15 ff-s fc-black fw-4">
                                             You have not received any message
                                         </p>

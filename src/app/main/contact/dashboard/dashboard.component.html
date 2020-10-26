@@ -13,7 +13,7 @@
                                 src="assets/images/add.svg" alt="" class="mr-2">Add New
                             Contact</button> -->
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="col-12 mb-3">
                 <ul class="nav nav-tabs leads align-items-center" id="myTab" role="tablist">
@@ -29,7 +29,7 @@
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#junk" role="tab"
                             aria-controls="contact" aria-selected="false">Junk Contacts</a>
                     </li>
-                    <li class="ml-auto">
+                    <!-- <li class="ml-auto">
                         <div class="dropdown">
                             <a class="filter text-right" id="filter">
                                 <img src="assets/images/date filter.svg" alt="">
@@ -104,7 +104,7 @@
 
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="col-12">
@@ -114,7 +114,7 @@
                     <div class="tab-pane fade show active" id="all" role="tabpanel">
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive"  *ngIf="allCons?.length > 0">
+                                <div class="table-responsive" *ngIf="allCons?.length > 0">
                                     <table class="table dashboard">
                                         <thead>
                                             <!-- <th>
@@ -163,7 +163,7 @@
                                                             <label class="form-check-label ff-s fs-14"
                                                                 for="exampleCheck9">Date Created/Owner</label>
                                                         </div>
-                                                        
+
                                                     </div>
 
                                                 </div>
@@ -177,29 +177,31 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="contact.imageString"> 
-                                                                <img [src]="'data:image/png;base64, ' + contact.imageString | trustedUrl" alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="contact.imageString == null">
-                                                                <img src="assets/images/contact-avatar.png" alt="">
+                                                            <div class="productname">
+                                                                {{contact.contactDetails.firstName.substring(0,1)}}
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{contact.firstName}} {{contact.lastName}}</p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">
+                                                                {{contact.contactDetails.firstName}}
+                                                                {{contact.contactDetails.lastName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{contact.phoneNumber}}</p>
-                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">{{contact.email}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">
+                                                        {{contact.contactDetails.phoneNumber}}</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
+                                                        {{contact.contactDetails.email}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
+                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">
+                                                        {{contact.accountName}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        {{contact.designation}}
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0 pt-2">
+                                                        {{contact.contactDetails.designation}}
                                                     </p>
                                                 </td>
                                             </tr>
@@ -237,29 +239,31 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="contact.imageString"> 
-                                                                <img [src]="'data:image/png;base64, ' + contact.imageString | trustedUrl" alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="contact.imageString == null">
-                                                                <img src="assets/images/contact-avatar.png" alt="">
+                                                            <div class="productname">
+                                                                {{contact.contactDetails.firstName.substring(0,1)}}
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{contact.firstName}} {{contact.lastName}}</p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">
+                                                                {{contact.contactDetails.firstName}}
+                                                                {{contact.contactDetails.lastName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{contact.phoneNumber}}</p>
-                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">{{contact.email}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">
+                                                        {{contact.contactDetails.phoneNumber}}</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
+                                                        {{contact.contactDetails.email}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
+                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">
+                                                        {{contact.accountName}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        {{contact.designation}}
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0 pt-2">
+                                                        {{contact.contactDetails.designation}}
                                                     </p>
                                                 </td>
                                             </tr>
@@ -297,29 +301,31 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="contact.imageString"> 
-                                                                <img [src]="'data:image/png;base64, ' + contact.imageString | trustedUrl" alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="contact.imageString == null">
-                                                                <img src="assets/images/contact-avatar.png" alt="">
+                                                            <div class="productname">
+                                                                {{contact.contactDetails.firstName.substring(0,1)}}
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">{{contact.firstName}} {{contact.lastName}}</p>
+                                                            <p class="m-0 ff-s fs-15 fw-6 fc-black">
+                                                                {{contact.contactDetails.firstName}}
+                                                                {{contact.contactDetails.lastName}}</p>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 ff-s fs-15 fc-black">{{contact.phoneNumber}}</p>
-                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">{{contact.email}}</p>
+                                                    <p class="mb-2 ff-s fs-15 fc-black">
+                                                        {{contact.contactDetails.phoneNumber}}</p>
+                                                    <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
+                                                        {{contact.contactDetails.email}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">UBA</p>
+                                                    <p class="ff-s fs-14 fw-6 fc-lightblack m-0 pt-2">
+                                                        {{contact.accountName}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="fs-15 fc-black fw-6 ff-s m-0">
-                                                        {{contact.designation}}
+                                                    <p class="fs-15 fc-black fw-6 ff-s m-0 pt-2">
+                                                        {{contact.contactDetails.designation}}
                                                     </p>
                                                 </td>
                                             </tr>
@@ -366,14 +372,14 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <div class="prop-initials">
-                                    {{theCons?.firstName.substring(0,1)}}
+                                    {{theCons?.contactDetails.firstName.substring(0,1)}}
                                 </div>
                             </div>
                             <div>
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theCons?.firstName}} {{theCons?.lastName}}</p>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theCons?.contactDetails.firstName}} {{theCons?.contactDetails.lastName}}</p>
                             </div>
                             <div>
-                                <a href="tel:{{theCons?.phoneNumber}}">
+                                <a href="tel:{{theCons?.contactDetails.phoneNumber}}">
                                     <img src="assets/images/bcall.svg" alt="">
                                 </a>
                             </div>
@@ -390,26 +396,28 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Designation:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theCons?.designation}}</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theCons?.contactDetails.designation}}</p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theCons?.phoneNumber"><a>{{theCons?.phoneNumber}}</a></p>
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theCons?.phoneNumber == null"><a>NA</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theCons?.contactDetails.phoneNumber">
+                                <a>{{theCons?.contactDetails.phoneNumber}}</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theCons?.contactDetails.phoneNumber == null"><a>NA</a>
+                            </p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>{{theCons?.email}}</a></p>
+                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>{{theCons?.contactDetails.email}}</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theCons?.dateCreated | date:'medium'}}</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theCons?.contactDetails.dateCreated | date:'medium'}}</p>
                         </div>
                     </div>
                     <div class="info mb-3">
@@ -419,26 +427,27 @@
                         </div>
                         <div class="row pl-2">
                             <div class="col-12 mb-3">
-                                <div class="d-flex align-items-center" *ngIf="theCons?.accountName">
+                                <div class="d-flex align-items-center" *ngIf="theCons?.account.accountName">
                                     <div class="py-2">
-                                        <div class="image" *ngIf="theCons?.accountImageString"> 
-                                            <img [src]="'data:image/png;base64, ' + theCons?.accountImageString | trustedUrl" alt="">
+                                        <div class="image" *ngIf="theCons?.account.imageString">
+                                            <img [src]="'data:image/png;base64, ' + theCons?.account.imageString | trustedUrl"
+                                                alt="">
                                         </div>
-                                        <div class="image" *ngIf="theCons?.accountImageString == null">
+                                        <div class="image" *ngIf="theCons?.account.imageString == null">
                                             <img src="assets/images/contact-avatar.png" alt="">
                                         </div>
                                     </div>
                                     <div class="p-2">
-                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">{{theCons?.accountName}}</p>
+                                        <p class="m-0 ff-s fw-6 fs-15 fc-black">{{theCons?.account.accountName}}</p>
                                     </div>
                                 </div>
-                                <p class="m-0 ff-s fw-6 fs-15 fc-black" *ngIf="theCons?.accountName == null">NA</p>
+                                <p class="m-0 ff-s fw-6 fs-15 fc-black" *ngIf="theCons?.account == null">NA</p>
 
                             </div>
 
                         </div>
                     </div>
-                    <div class="info">
+                    <!-- <div class="info">
                         <div class="top-prop b-5 p-2">
                             <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
                                         src="assets/images/contactdeals.svg" alt=""></span>Deals</p>
@@ -465,29 +474,30 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div>
                         <div class="d-flex justify-content-center mt-4">
                             <button class="btn btn-green mr-3" (click)="openContact(theCons.id)">View
                                 Complete Info</button>
                             <div class="dropdown">
-                                <button class="btn btn-more dropdown-toggle" type="button"
-                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
+                                <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="assets/images/more-green.svg" alt="">
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                        (click)="junkaContact(theCons.id)" *ngIf="theCons?.isJunked == false">Junk
+                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkaContact(theCons.id)"
+                                        *ngIf="theCons?.isJunked == false">Junk
                                         Contact</a>
                                     <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                        (click)="reactivateContact(theCons.id)" *ngIf="theCons?.isJunked == true">Reactivate Contact</a>
+                                        (click)="reactivateContact(theCons.contactDetails.id)"
+                                        *ngIf="theCons?.isJunked == true">Reactivate Contact</a>
                                     <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                        (click)="deleteContact(theCons.id)" *ngIf="theCons?.isJunked == true">Delete Contact</a>
+                                        (click)="deleteContact(theCons.contactDetails.id)" *ngIf="theCons?.isJunked == true">Delete
+                                        Contact</a>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                     <!-- <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2 mt-4"><a (click)="openContact(theCons.id)">View Complete Infomation</a></p> -->
 
@@ -629,8 +639,9 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <p class="text-right fw-6 ff-s fs-13 fc-green"><a class="fw-6 ff-s fs-13 fc-green" href="assets/images/Contact_Template.xlsx" download><span class="mr-2"><img
-                            src="assets/images/save.svg" alt=""></span>Download sample file</a></p>
+                        <p class="text-right fw-6 ff-s fs-13 fc-green"><a class="fw-6 ff-s fs-13 fc-green"
+                                href="assets/images/Contact_Template.xlsx" download><span class="mr-2"><img
+                                        src="assets/images/save.svg" alt=""></span>Download sample file</a></p>
                     </div>
                     <!-- <div class="col-12">
                         <p class="m-o fs-14 ff-s fc-black">What do you want to do with the records in this file?</p>
@@ -656,7 +667,8 @@
                     </div>
                     <div class="col-12 mt-5 pt-5">
                         <p class="text-right">
-                            <button class="btn btn-blue px-3" (click)="importContacts()" data-dismiss="modal">Import</button>
+                            <button class="btn btn-blue px-3" (click)="importContacts()"
+                                data-dismiss="modal">Import</button>
                         </p>
                     </div>
                 </div>
@@ -713,8 +725,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="pl-5">
-                    <button class="btn btn-blue"
-                        (click)="closeiSuccess()">See All Contacts</button>
+                    <button class="btn btn-blue" (click)="closeiSuccess()">See All Contacts</button>
 
                 </div>
             </div>

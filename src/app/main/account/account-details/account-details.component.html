@@ -61,9 +61,9 @@
                                     <div class="mr-lg-5">
                                         <p class="fs-15 text-white ff-s">{{accountDetails?.accountName}}</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0">
-                                            {{accountDetails?.contacts[0].firstName}}
-                                            {{accountDetails?.contacts[0].lastName}}</p>
-                                        <p class="fc-lightwhite fs-15 ff-s">{{accountDetails?.contacts[0].designation}}
+                                            {{accountDetails?.contacts[0].contactDetails.firstName}}
+                                            {{accountDetails?.contacts[0].contactDetails.lastName}}</p>
+                                        <p class="fc-lightwhite fs-15 ff-s">{{accountDetails?.contacts[0].contactDetails.designation}}
                                         </p>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Est. Transaction Value</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0"
@@ -107,19 +107,19 @@
                             *ngFor="let contact of accountDetails?.contacts">
                             <div>
                                 <div class="prop-initials">
-                                    {{contact?.firstName.substring(0,1)}}
+                                    {{contact?.contactDetails?.firstName.substring(0,1)}}
                                 </div>
                             </div>
                             <div>
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{contact?.firstName}} {{contact?.lastName}}</p>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{contact?.contactDetails?.firstName}} {{contact?.contactDetails?.lastName}}</p>
                             </div>
                             <div>
-                                <a href="tel:{{contact?.phoneNumber}}">
+                                <a href="tel:{{contact?.contactDetails?.phoneNumber}}">
                                     <img src="assets/images/bcall.svg" alt="">
                                 </a>
                             </div>
                             <div>
-                                <a href="mailto:{{contact?.email}}">
+                                <a href="mailto:{{contact?.contactDetails?.email}}">
                                     <img src="assets/images/bmessage.svg" alt="">
                                 </a>
                             </div>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-3" *ngIf="accountDetails?.deals.length > 0">
                 <div class="details">
                     <div class="pt-3 px-lg-3 px-3">
                         <div class="deals pb-1 mb-3">
@@ -141,7 +141,7 @@
                             </div>
 
                         </div>
-                        <div class="d-flex" *ngIf="accountDetails?.deals">
+                        <div class="d-flex" >
                             <div class="p-2">
                                 <div class="deal">
                                     {{accountDetails?.deals[0].dealName.substring(0,1)}}
@@ -231,7 +231,7 @@
                                         </p>
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Address </p>
                                         <p class="fs-16 fc-black ff-s">
-                                            {{accountDetails?.contacts[0].street}}
+                                            {{accountDetails?.contacts[0].contactDetails.street}}
                                         </p>
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
                                         <div class="d-flex">

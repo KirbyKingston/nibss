@@ -11,7 +11,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a>Contacts</a></li>
-                                <li class="breadcrumb-item">{{contact?.firstName}} {{contact?.lastName}}</li>
+                                <li class="breadcrumb-item">{{contact?.contactDetails.firstName}} {{contact?.contactDetails.lastName}}</li>
                             </ol>
                         </nav>
                     </div>
@@ -43,12 +43,12 @@
                                         </a>
                                     </div>
                                     <div class="mr-2">
-                                        <a href="mailto:{{contact?.email}}" class="text-white fs-14 ff-s fw-4">
+                                        <a href="mailto:{{contact?.contactDetails.email}}" class="text-white fs-14 ff-s fw-4">
                                             <img src="assets/images/email.svg" class="mr-1" alt=""> Email
                                         </a>
                                     </div>
                                     <div class="mr-2">
-                                        <a href="tel:{{contact?.phoneNumber}}" class="text-white fs-14 ff-s fw-4">
+                                        <a href="tel:{{contact?.contactDetails.phoneNumber}}" class="text-white fs-14 ff-s fw-4">
                                             <img src="assets/images/call.svg" class="mr-1" alt=""> Call
                                         </a>
                                     </div>
@@ -57,19 +57,19 @@
                             <div class="col-lg-12">
                                 <div class="d-flex row">
                                     <div class="mr-3">
-                                        <div class="initials">{{contact?.firstName.substring(0,1)}}</div>
+                                        <div class="initials">{{contact?.contactDetails.firstName.substring(0,1)}}</div>
                                     </div>
                                     <div class="mr-lg-5">
-                                        <p class="fs-15 text-white ff-s fw-6 m-0">{{contact?.firstName}} {{contact?.lastName}}</p>
-                                        <p class="fc-lightwhite fs-15 ff-s">UBA</p>
+                                        <p class="fs-15 text-white ff-s fw-6 m-0">{{contact?.contactDetails.firstName}} {{contact?.contactDetails.lastName}}</p>
+                                        <p class="fc-lightwhite fs-15 ff-s">{{contact?.account.accountName}}</p>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Position</p>
-                                        <p class="fs-15 text-white ff-s fw-6 m-0">{{contact?.designation}}</p>
+                                        <p class="fs-15 text-white ff-s fw-6 m-0">{{contact?.contactDetails.designation}}</p>
                                     </div>
                                     <div class="mr-3">
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Phone</p>
-                                        <p class="fs-15 text-white ff-s fw-6">{{contact?.phoneNumber}}</p>
+                                        <p class="fs-15 text-white ff-s fw-6">{{contact?.contactDetails.phoneNumber}}</p>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Email</p>
-                                        <p class="fs-15 text-white ff-s fw-6">{{contact?.email}}</p>
+                                        <p class="fs-15 text-white ff-s fw-6">{{contact?.contactDetails.email}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-3" *ngIf="contact?.account">
                 <div class="details">
                     <div class="py-3 px-lg-3 px-3">
                         <div class="account pb-1 mb-3">
@@ -94,16 +94,22 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <div class="p-2">
-                                <img src="assets/images/uba.svg" alt="">
+                                <div class="image" *ngIf="contact?.account.imageString">
+                                    <img [src]="'data:image/png;base64, ' + contact?.account.imageString | trustedUrl"
+                                        alt="">
+                                </div>
+                                <div class="image" *ngIf="contact?.account.imageString == null">
+                                    <img src="assets/images/contact-avatar.png" alt="">
+                                </div>
                             </div>
                             <div class="p-2">
-                                <p class="m-0 ff-s fw-6 fs-15 fc-black">UBA</p>
+                                <p class="m-0 ff-s fw-6 fs-15 fc-black">{{contact?.account.accountName}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mb-3">
+            <!-- <div class="col-lg-6 mb-3">
                 <div class="details">
                     <div class="py-3 px-lg-3 px-3">
                         <div class="deals pb-1 mb-3">
@@ -139,7 +145,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-12 mb-3">
                 <a class="hideinfo fc-black px-0">
                     Hide Information <span class="ml-2"><img src="assets/images/arrow-up.svg" alt=""></span>
@@ -172,25 +178,26 @@
                             <div class="col-lg-6">
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Title</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    {{contact?.title}}
+                                    {{contact?.contactDetails.title}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Position</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    {{contact?.designation}}
+                                    {{contact?.contactDetails.designation}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Email Address</p>
                                 <p class="fs-16 fc-blue ff-s tx-u">
-                                    {{contact?.email}}
+                                    {{contact?.contactDetails.email}}
                                 </p>
                             </div>
                             <div class="col-lg-6">
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    {{contact?.firstName}} {{contact?.lastName}}
+                                    {{contact?.contactDetails.firstName}} {{contact?.contactDetails.lastName}}
                                 </p>
                                 <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
                                 <p class="fs-16 fc-black ff-s">
-                                    {{contact?.phoneNumber}}<span><img src="assets/images/skype.svg" alt=""></span>
+                                    {{contact?.contactDetails.phoneNumber}}
+                                    <!-- <span><img src="assets/images/skype.svg" alt=""></span> -->
                                 </p>
                             </div>
                         </div>
@@ -226,11 +233,11 @@
                                         </div>
                                     </div>
                                     <div class="px-3 mb-3">
-                                        <p class="fs-15 ff-s fc-black fw-16">Received <span class="badge badge-secondary fc-darkblue">{{contact?.emailMessages?.length}}</span></p>
+                                        <p class="fs-15 ff-s fc-black fw-16">Received <span class="badge badge-secondary fc-darkblue">{{contact?.receivedMails?.length}}</span></p>
                                     </div>
                                     <!-- messages -->
                                     <div class="messages">
-                                        <div class="message p-3" *ngFor="let msg of contact?.emailMessages">
+                                        <div class="message p-3" *ngFor="let msg of contact?.receivedMails">
                                             <div class="d-flex">
                                                 <div class="mr-2">
                                                     <img src="assets/images/msg.svg" alt="">

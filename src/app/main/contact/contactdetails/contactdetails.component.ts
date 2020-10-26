@@ -63,6 +63,7 @@ export class ContactdetailsComponent implements OnInit {
       res => {
         this.esuccess = true;
         this.bcc = this.body = this.cc = this.to = this.subject = '';
+        this.getContact()
       }
     )
   }
@@ -76,6 +77,7 @@ export class ContactdetailsComponent implements OnInit {
           this.notification.publishMessages(res['description'], 'warning', 0)
         }else{
           this.jsuccess = true
+          this.getContact()
         }
         
 
@@ -92,6 +94,7 @@ export class ContactdetailsComponent implements OnInit {
           this.notification.publishMessages(res['description'], 'warning', 0)
         }else{
           this.jsuccess = true
+          this.getContact()
         }
         
 

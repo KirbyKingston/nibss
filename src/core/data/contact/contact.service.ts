@@ -76,7 +76,7 @@ export class ContactService {
     body.append("Bcc", bcc)
     body.append("Body", message)
     body.append("Cc", cc)
-    body.append("RecipientEmail", to)
+    body.append("Recipients", to)
     body.append("Subject", subject)
     // body.append("Documents", instagram)
     // body.append("DocumentTypes", instagram)

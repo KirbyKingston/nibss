@@ -195,6 +195,7 @@ export class LeaddetailsComponent implements OnInit {
       res => {
         this.esuccess = true;
         this.bcc = this.body = this.cc = this.to = this.subject = '';
+        this.getLead()
       }
     )
   }

@@ -37,7 +37,7 @@ export class LoaderInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         this.loaderService.hide();
         if (error.status === 401) {
-          this.notification.publishMessages('Your Token has expired. Please Login', 'danger', 1)
+          this.notification.publishMessages('Your session has expired. Please Login', 'danger', 1)
           this.router.navigateByUrl("/");
           localStorage.clear();
 

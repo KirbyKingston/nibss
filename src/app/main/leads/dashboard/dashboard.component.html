@@ -833,19 +833,15 @@
                                     <div class="col-lg-6 mb-3">
                                         <div class="input-group leadform big">
                                             <div class="input-group-prepend">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">+234</option>
-                                                    <option value="">+234</option>
-                                                    <option value="">+234</option>
-                                                </select>
+                                               <div class="i">+234</div>
                                             </div>
                                             <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber"
-                                                type="text" minlength="11" maxlength="12" class="form-control"
+                                                type="text" minlength="10" maxlength="12" class="form-control"
                                                 #ophon="ngModel">
                                         </div>
                                         <div *ngIf="ophon.invalid && (ophon.dirty || ophon.touched)">
                                             <small class="fc-red fs-12 ff-s" *ngIf="ophon.errors.minlength">
-                                                Phonenumber must be at least 11 characters long.
+                                                Phonenumber must be at least 10 characters long.
                                             </small>
 
                                         </div>
@@ -914,20 +910,16 @@
                                         <label for="" class="fs-16 fc-black ff-p">Phone Number</label>
                                         <div class="input-group leadform">
                                             <div class="input-group-prepend">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">+234</option>
-                                                    <option value="">+234</option>
-                                                    <option value="">+234</option>
-                                                </select>
+                                                <div class="i">+234</div>
                                             </div>
                                             <input [(ngModel)]="phoneNumber" type="text" class="form-control"
-                                                minlength="11" maxlength="12" required #phone="ngModel">
+                                                minlength="10" maxlength="12" required #phone="ngModel">
                                             <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
                                                 <small class="fc-red fs-12 ff-s" *ngIf="phone.errors.required">
                                                     Contact phone number is required.
                                                 </small>
                                                 <small class="fc-red fs-12 ff-s" *ngIf="phone.errors.minlength">
-                                                    Phonenumber must be at least 11 characters long.
+                                                    Phonenumber must be at least 10 characters long.
                                                 </small>
                                             </div>
                                         </div>
@@ -1008,11 +1000,7 @@
                                         <label for="" class="fs-16 fc-black ff-p">Est. Transaction Value</label>
                                         <div class="input-group leadform">
                                             <div class="input-group-prepend">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">NGN</option>
-                                                    <option value="">NGN</option>
-                                                    <option value="">NGN</option>
-                                                </select>
+                                                <div class="i">NGN</div>
                                             </div>
                                             <input type="text" type="text" data-type="number" maxlength="10"
                                                 minlength="10" [(ngModel)]="EstTransVal" class="form-control money">

@@ -117,9 +117,9 @@
                                 <div class="table-responsive"  *ngIf="allCons?.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>CONTACT PERSON</th>
                                             <th>EMAIL/PHONE</th>
                                             <th>INSTITUTION</th>
@@ -171,9 +171,9 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let contact of allCons" (click)="getContactById(contact.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -221,9 +221,9 @@
                                 <div class="table-responsive" *ngIf="myCons?.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>CONTACT PERSON</th>
                                             <th>EMAIL/PHONE</th>
                                             <th>INSTITUTION</th>
@@ -231,9 +231,9 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let contact of myCons" (click)="getContactById(contact.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -281,9 +281,9 @@
                                 <div class="table-responsive" *ngIf="junkCons?.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>CONTACT PERSON</th>
                                             <th>EMAIL/PHONE</th>
                                             <th>INSTITUTION</th>
@@ -291,9 +291,9 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let contact of junkCons" (click)="getContactById(contact.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-2">
@@ -487,7 +487,7 @@
                                         (click)="deleteContact(theCons.id)" *ngIf="theCons?.isJunked == true">Delete Contact</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                     <!-- <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2 mt-4"><a (click)="openContact(theCons.id)">View Complete Infomation</a></p> -->
 

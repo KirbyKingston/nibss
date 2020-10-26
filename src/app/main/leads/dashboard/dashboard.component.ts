@@ -76,13 +76,24 @@ export class DashboardComponent implements OnInit {
     this.fetchSelectedItems()
     this.fetchCheckedIDs()
 
-    $('.btnNext').click(function () {
-      $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    $(document).ready(function () {
+      $('.btnNext').click(function () {
+        $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+      });
+
+      $('.btnPrevious').click(function () {
+        $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+      });
     });
 
-    $('.btnPrevious').click(function () {
-      $('.nav-tabs > .active').prev('li').find('a').trigger('click');
-    });
+    // $('.btnNext').click(function () {
+    //   $('.nav-tabs.prod > li.nav-item > a.nav-link.active').parent().next('li').find('a.nav-link').trigger('click');
+    // });
+
+    // $('.btnPrevious').click(function () {
+    //   $('.nav-tabs.prod > li.nav-item > a.nav-link.active').parent().prev('li').find('a.nav-link').trigger('click');
+    // });
+
 
     $('#filter, #overlay').on('click', function () {
       $('.dropdown-menu.filter-drop, #overlay').toggleClass('show')

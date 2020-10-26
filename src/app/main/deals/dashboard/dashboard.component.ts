@@ -214,6 +214,7 @@ export class DashboardComponent implements OnInit {
         this.getAllDeals()
         this.getMyDeals()
         this.getJunkedDeals()
+        this.getDealById(id)
       }
     )
   }
@@ -225,6 +226,7 @@ export class DashboardComponent implements OnInit {
         this.getAllDeals()
         this.getMyDeals()
         this.getJunkedDeals()
+        this.getDealById(id)
       }
     )
   }

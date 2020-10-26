@@ -188,6 +188,7 @@ export class DashboardComponent implements OnInit {
         this.theAccount = res['payload']
         this.nfObject = new Intl.NumberFormat("en-US");
         this.theAccount.transactionVolume = this.nfObject.format(this.theAccount.transactionVolume);
+        this.theAccount.estimatedTransactionValue = this.nfObject.format(this.theAccount.estimatedTransactionValue);
         // console.log(res)
       },
       err => {
@@ -212,6 +213,7 @@ export class DashboardComponent implements OnInit {
           this.getAllAccs()
           this.getMyAccs()
           this.getJunkAccs()
+          this.getAcc(id)
         } else {
           this.notification.publishMessages(res['description'], 'warning', 0)
         }
@@ -228,6 +230,7 @@ export class DashboardComponent implements OnInit {
         this.getAllAccs()
         this.getMyAccs()
         this.getJunkAccs()
+        this.getAcc(id)
       }
     )
   }

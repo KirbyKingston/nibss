@@ -27,6 +27,11 @@
             <div class="col-12 mb-3">
                 <div class="d-flex justify-content-between">
                     <div>
+                        <div class="overviewtop">
+                            OVERVIEW
+                        </div>
+                    </div>
+                    <!-- <div>
                         <ul class="nav nav-tabs deets align-items-center" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#review" role="tab"
@@ -38,7 +43,7 @@
                             </li>
                         </ul>
 
-                    </div>
+                    </div> -->
                     <div>
                         <button class="btn btn-blue mr-2" (click)="convertToDeal()" *ngIf="leadDetails?.isJunked == false ? true : false">
                             Convert to Deal
@@ -97,30 +102,30 @@
                                             <div class="d-flex row">
                                                 <div class="mr-3">
                                                     <div class="initials">
-                                                        {{leadDetails?.contacts[0].firstName.substring(0,1)}}
+                                                        {{leadDetails?.contacts[0].contactDetails.firstName.substring(0,1)}}
                                                     </div>
                                                 </div>
                                                 <div class="mr-lg-5">
                                                     <p class="fs-15 text-white ff-s fw-6 m-0">
-                                                        {{leadDetails?.contacts[0].firstName}}
-                                                        {{leadDetails?.contacts[0].lastName}}
+                                                        {{leadDetails?.contacts[0].contactDetails.firstName}}
+                                                        {{leadDetails?.contacts[0].contactDetails.lastName}}
                                                     </p>
                                                     <p class="fc-lightwhite fs-15 ff-s">{{leadDetails?.companyName}}</p>
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Position</p>
                                                     <p class="fs-15 text-white ff-s fw-6 m-0">
-                                                        {{leadDetails?.contacts[0].designation}}</p>
+                                                        {{leadDetails?.contacts[0].contactDetails.designation}}</p>
                                                 </div>
                                                 <div class="mr-3">
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Phone</p>
-                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].phoneNumber">
-                                                        {{leadDetails?.contacts[0].phoneNumber}}
+                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber">
+                                                        {{leadDetails?.contacts[0].contactDetails.phoneNumber}}
                                                     </p>
-                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].phoneNumber == null">
+                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber == null">
                                                        NA
                                                     </p>
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Email</p>
                                                     <p class="fs-15 text-white ff-s fw-6">
-                                                        {{leadDetails?.contacts[0].email}}
+                                                        {{leadDetails?.contacts[0].contactDetails.email}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -165,29 +170,30 @@
                                                     <div class="col-lg-6">
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Title</p>
                                                         <p class="fs-16 fc-black ff-s">
-                                                            {{leadDetails?.contacts[0].title}}
+                                                            {{leadDetails?.contacts[0].contactDetails.title}}
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Position</p>
                                                         <p class="fs-16 fc-black ff-s">
-                                                            {{leadDetails?.contacts[0].designation}}
+                                                            {{leadDetails?.contacts[0].contactDetails.designation}}
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Email Address</p>
                                                         <p class="fs-16 fc-blue ff-s tx-u">
-                                                            {{leadDetails?.contacts[0].email}}
+                                                            {{leadDetails?.contacts[0].contactDetails.email}}
                                                         </p>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Name</p>
                                                         <p class="fs-16 fc-black ff-s">
-                                                            {{leadDetails?.contacts[0].firstName}}
-                                                            {{leadDetails?.contacts[0].lastName}}
+                                                            {{leadDetails?.contacts[0].contactDetails.firstName}}
+                                                            {{leadDetails?.contacts[0].contactDetails.lastName}}
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
-                                                        <p class="fs-16 fc-black ff-s"  *ngIf="leadDetails?.contacts[0].phoneNumber">
-                                                            {{leadDetails?.contacts[0].phoneNumber}} <span><img
-                                                                    src="assets/images/skype.svg" alt=""></span>
+                                                        <p class="fs-16 fc-black ff-s"  *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber">
+                                                            {{leadDetails?.contacts[0].contactDetails.phoneNumber}} 
+                                                            <!-- <span><img
+                                                                    src="assets/images/skype.svg" alt=""></span> -->
                                                         </p>
-                                                        <p class="fs-16 fc-black ff-s" *ngIf="leadDetails?.contacts[0].phoneNumber == null">
+                                                        <p class="fs-16 fc-black ff-s" *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber == null">
                                                             NA
                                                         </p>
                                                     </div>
@@ -226,7 +232,7 @@
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products
                                                         </p>
                                                         <p class="fs-16 fc-black ff-s" *ngIf="leadDetails?.products.length == 0">NA</p>
-                                                        <div class="d-flex mb-2" *ngIf="leadDetails?.products">
+                                                        <div class="d-flex mb-3" *ngIf="leadDetails?.products">
 
                                                             <div class="product mr-2" *ngFor="let product of leadDetails?.products.slice(0,2)">
                                                                 {{product?.productName}} </div>

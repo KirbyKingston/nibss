@@ -108,7 +108,7 @@
                         </div>
 
                     </li> -->
-                
+
                 </ul>
             </div>
             <div class="col-12">
@@ -125,15 +125,15 @@
                                 <div class="table-responsive" *ngIf="allLeads.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>NAME</th>
                                             <th>CONTACT</th>
                                             <th>DATE CREATED</th>
                                             <th>
                                                 LEAD STATUS
-                                                <a class="more float-right" id="more">
+                                                <!-- <a class="more float-right" id="more">
                                                     <img src="assets/images/more-table.svg" alt="">
                                                 </a>
 
@@ -184,31 +184,26 @@
                                                         </div>
                                                     </div>
 
-                                                </div>
+                                                </div> -->
 
                                             </th>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let lead of allLeads; let i = index" (click)="getLead(lead.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox" [(ngModel)]="lead.checked"
                                                             (change)="changeSelection()"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="lead.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="lead.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
-                                                            </div>
+                                                            <div class="productname">
+                                                                {{lead.companyName.substring(0,1)}}</div>
                                                         </div>
                                                         <div>
                                                             <p class="mb-1 ff-s fs-15 fw-6 fc-black">
-                                                                {{lead.contacts[0].firstName}}
-                                                                {{lead.contacts[0].lastName}}
+                                                                {{lead.contacts[0].contactDetails.firstName}}
+                                                                {{lead.contacts[0].contactDetails.lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -219,11 +214,11 @@
                                                 <td>
                                                     <p class="mb-2 ff-s fs-15 fc-black"
                                                         *ngIf="lead.contacts[0].phoneNumber">
-                                                        {{lead.contacts[0].phoneNumber}}</p>
+                                                        {{lead.contacts[0].contactDetails.phoneNumber}}</p>
                                                     <p class="mb-2 ff-s fs-15 fc-black"
                                                         *ngIf="lead.contacts[0].phoneNumber == null">NA</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        {{lead.contacts[0].email}}</p>
+                                                        {{lead.contacts[0].contactDetails.email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
@@ -265,9 +260,9 @@
                                 <div class="table-responsive" *ngIf="myLeads.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>NAME</th>
                                             <th>CONTACT</th>
                                             <th>DATE CREATED</th>
@@ -330,24 +325,19 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let lead of myLeads" (click)="getLead(lead.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="lead.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="lead.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
-                                                            </div>
+                                                            <div class="productname">
+                                                                {{lead.companyName.substring(0,1)}}</div>
                                                         </div>
                                                         <div>
                                                             <p class="mb-1 ff-s fs-15 fw-6 fc-black">
-                                                                {{lead.contacts[0].firstName}}
-                                                                {{lead.contacts[0].lastName}}
+                                                                {{lead.contacts[0].contactDetails.firstName}}
+                                                                {{lead.contacts[0].contactDetails.lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -358,11 +348,11 @@
                                                 <td>
                                                     <p class="mb-2 ff-s fs-15 fc-black"
                                                         *ngIf="lead.contacts[0].phoneNumber">
-                                                        {{lead.contacts[0].phoneNumber}}</p>
+                                                        {{lead.contacts[0].contactDetails.phoneNumber}}</p>
                                                     <p class="mb-2 ff-s fs-15 fc-black"
                                                         *ngIf="lead.contacts[0].phoneNumber == null">NA</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        {{lead.contacts[0].email}}</p>
+                                                        {{lead.contacts[0].contactDetails.email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
@@ -404,9 +394,9 @@
                                 <div class="table-responsive" *ngIf="junkLeads.length > 0">
                                     <table class="table dashboard">
                                         <thead>
-                                            <th>
+                                            <!-- <th>
                                                 <input type="checkbox">
-                                            </th>
+                                            </th> -->
                                             <th>NAME</th>
                                             <th>CONTACT</th>
                                             <th>DATE CREATED</th>
@@ -469,24 +459,19 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let lead of junkLeads" (click)="getLead(lead.id)">
-                                                <td>
+                                                <!-- <td>
                                                     <div class="pt-2"><input type="checkbox"></div>
-                                                </td>
+                                                </td> -->
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
                                                         <div class="mr-2">
-                                                            <div class="image" *ngIf="lead.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + lead.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="lead.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
-                                                            </div>
+                                                            <div class="productname">
+                                                                {{lead.companyName.substring(0,1)}}</div>
                                                         </div>
                                                         <div>
                                                             <p class="mb-1 ff-s fs-15 fw-6 fc-black">
-                                                                {{lead.contacts[0].firstName}}
-                                                                {{lead.contacts[0].lastName}}
+                                                                {{lead.contacts[0].contactDetails.firstName}}
+                                                                {{lead.contacts[0].contactDetails.lastName}}
                                                             </p>
                                                             <p class="ff-s fs-15 fw-6 fc-lightblack m-0">
                                                                 {{lead.companyName}}</p>
@@ -497,11 +482,11 @@
                                                 <td>
                                                     <p class="mb-2 ff-s fs-15 fc-black"
                                                         *ngIf="lead.contacts[0].phoneNumber">
-                                                        {{lead.contacts[0].phoneNumber}}</p>
+                                                        {{lead.contacts[0].contactDetails.phoneNumber}}</p>
                                                     <p class="mb-2 ff-s fs-15 fc-black"
                                                         *ngIf="lead.contacts[0].phoneNumber == null">NA</p>
                                                     <p class="ff-s fs-12 fw-4 fw-6 fc-darkblue m-0">
-                                                        {{lead.contacts[0].email}}</p>
+                                                        {{lead.contacts[0].contactDetails.email}}</p>
                                                 </td>
                                                 <td>
                                                     <p class="mb-1 ff-s fs-15 fw-6 fc-black">
@@ -570,12 +555,13 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <div class="prop-initials">
-                                    {{theLead?.contacts[0].firstName.substring(0,1)}}
+                                    {{theLead?.contacts[0].contactDetails.firstName.substring(0,1)}}
                                 </div>
                             </div>
                             <div>
-                                <p class="m-0 fs-15 ff-s fc-black fw-6">{{theLead?.contacts[0].firstName}}
-                                    {{theLead?.contacts[0].lastName}}</p>
+                                <p class="m-0 fs-15 ff-s fc-black fw-6">
+                                    {{theLead?.contacts[0].contactDetails.firstName}}
+                                    {{theLead?.contacts[0].contactDetails.lastName}}</p>
                             </div>
                             <div>
                                 <a href="tel:{{theLead?.contacts[0].phoneNumber}}">
@@ -595,22 +581,26 @@
                             <p class="m-0 fc-lightblack fs-14 ff-s">Position:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.contacts[0].designation}}</p>
+                            <p class="m-0 fc-black fw-6 fs-14 ff-s">{{theLead?.contacts[0].contactDetails.designation}}
+                            </p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Phone Number:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theLead?.contacts[0].phoneNumber">
-                                <a>{{theLead?.contacts[0].phoneNumber}}</a></p>
-                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s" *ngIf="theLead?.contacts[0].phoneNumber == null">
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"
+                                *ngIf="theLead?.contacts[0].contactDetails.phoneNumber">
+                                <a>{{theLead?.contacts[0].contactDetails.phoneNumber}}</a></p>
+                            <p class="m-0 fc-darkblue fw-6 fs-14 ff-s"
+                                *ngIf="theLead?.contacts[0].contactDetails.phoneNumber == null">
                                 <a>--</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Email:</p>
                         </div>
                         <div class="col-7 mb-3">
-                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s"><a>{{theLead?.contacts[0].email}}</a></p>
+                            <p class="m-0 fc-darkblue tx-u fw-6 fs-14 ff-s">
+                                <a>{{theLead?.contacts[0].contactDetails.email}}</a></p>
                         </div>
                         <div class="col-5 mb-3">
                             <p class="m-0 fc-lightblack fs-14 ff-s">Date Created:</p>
@@ -673,19 +663,21 @@
                     <p class="text-center fs-15 fc-green ff-s tx-u fw-6 py-2"><a (click)="openLead(theLead.id)">View
                             Complete Infomation</a></p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)" *ngIf="theLead?.isJunked == false">Convert to Deal</button>
+                        <button class="btn btn-green mr-3" (click)="convertToDeal(theLead.id)"
+                            *ngIf="theLead?.isJunked == false">Convert to Deal</button>
                         <div class="dropdown">
                             <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/images/more-green.svg" alt="">
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)" *ngIf="theLead?.isJunked == false">Junk
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="junkLead(theLead.id)"
+                                    *ngIf="theLead?.isJunked == false">Junk
                                     Lead</a>
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                    (click)="reactivateLead(theLead.id)" *ngIf="theLead?.isJunked == true">Reactivate Lead</a>
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
-                                    (click)="deleteLead(theLead.id)" *ngIf="theLead?.isJunked == true">Delete Lead</a>
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="reactivateLead(theLead.id)"
+                                    *ngIf="theLead?.isJunked == true">Reactivate Lead</a>
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" (click)="deleteLead(theLead.id)"
+                                    *ngIf="theLead?.isJunked == true">Delete Lead</a>
                             </div>
                         </div>
                     </div>
@@ -800,7 +792,8 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
-                                        <select class="form-control topform" required #stat="ngModel" [(ngModel)]="status">
+                                        <select class="form-control topform" required #stat="ngModel"
+                                            [(ngModel)]="status">
                                             <option value="">Lead Status</option>
                                             <option value="0">Cold</option>
                                             <option value="1">Warm</option>
@@ -821,7 +814,8 @@
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
-                                        <select [(ngModel)]="stage" class="form-control topform" required #stag="ngModel">
+                                        <select [(ngModel)]="stage" class="form-control topform" required
+                                            #stag="ngModel">
                                             <option value="">Lead Stage</option>
                                             <option value="0">Open</option>
                                             <option value="1">Attempting Contact</option>
@@ -846,31 +840,33 @@
                                                 </select>
                                             </div>
                                             <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber"
-                                                type="text" minlength="11" maxlength="12" class="form-control" #ophon="ngModel">
+                                                type="text" minlength="11" maxlength="12" class="form-control"
+                                                #ophon="ngModel">
                                         </div>
                                         <div *ngIf="ophon.invalid && (ophon.dirty || ophon.touched)">
                                             <small class="fc-red fs-12 ff-s" *ngIf="ophon.errors.minlength">
                                                 Phonenumber must be at least 11 characters long.
                                             </small>
-                                            
+
                                         </div>
-                                       
+
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Name</label>
                                         <div class="input-group leadform">
                                             <div class="input-group-prepend">
-                                                <select [(ngModel)]="title" #tit="ngModel" class="form-control" required>
+                                                <select [(ngModel)]="title" #tit="ngModel" class="form-control"
+                                                    required>
                                                     <option value="Miss.">Miss</option>
                                                     <option value="Mrs.">Mrs</option>
                                                     <option value="Mr.">Mr</option>
                                                     <option value="Dr.">Dr</option>
                                                 </select>
                                             </div>
-                                            <input type="text" placeholder="First Name" required #first="ngModel" class="form-control"
-                                                [(ngModel)]="firstName">
-                                            <input type="text" placeholder="Last Name" required #last="ngModel" class="form-control"
-                                                [(ngModel)]="lastName">
+                                            <input type="text" placeholder="First Name" required #first="ngModel"
+                                                class="form-control" [(ngModel)]="firstName">
+                                            <input type="text" placeholder="Last Name" required #last="ngModel"
+                                                class="form-control" [(ngModel)]="lastName">
                                         </div>
                                         <div *ngIf="tit.invalid && (tit.dirty || tit.touched)">
                                             <small class="fc-red fs-12 ff-s" *ngIf="tit.errors.required">
@@ -890,7 +886,8 @@
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Designation</label>
-                                        <input type="text" class="form-control botform" required #desig="ngModel" [(ngModel)]="designation">
+                                        <input type="text" class="form-control botform" required #desig="ngModel"
+                                            [(ngModel)]="designation">
                                         <div *ngIf="desig.invalid && (desig.dirty || desig.touched)">
                                             <small class="fc-red fs-12 ff-s" *ngIf="desig.errors.required">
                                                 Contact designation is required.
@@ -905,7 +902,8 @@
                                     </div>
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Email Address</label>
-                                        <input type="text" class="form-control botform" [(ngModel)]="email" required #mail="ngModel">
+                                        <input type="text" class="form-control botform" [(ngModel)]="email" required
+                                            #mail="ngModel">
                                         <div *ngIf="mail.invalid && (mail.dirty || mail.touched)">
                                             <small class="fc-red fs-12 ff-s" *ngIf="mail.errors.required">
                                                 Contact email is required.
@@ -922,7 +920,8 @@
                                                     <option value="">+234</option>
                                                 </select>
                                             </div>
-                                            <input [(ngModel)]="phoneNumber" type="text" class="form-control" minlength="11" maxlength="12" required #phone="ngModel">
+                                            <input [(ngModel)]="phoneNumber" type="text" class="form-control"
+                                                minlength="11" maxlength="12" required #phone="ngModel">
                                             <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
                                                 <small class="fc-red fs-12 ff-s" *ngIf="phone.errors.required">
                                                     Contact phone number is required.
@@ -961,7 +960,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <select [(ngModel)]="insType" class="form-control botform" required #institute="ngModel">
+                                        <select [(ngModel)]="insType" class="form-control botform" required
+                                            #institute="ngModel">
                                             <option>Institution Type</option>
                                             <option value="2">Commercial Bank</option>
                                             <option value="3">Merchant Bank</option>
@@ -985,7 +985,8 @@
                                     <div class="col-lg-6 mb-3">
                                         <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
                                         <ng-multiselect-dropdown [placeholder]="' '" [data]="dropdownList"
-                                            [(ngModel)]="products" [settings]="dropdownSettings" required #prod="ngModel">
+                                            [(ngModel)]="products" [settings]="dropdownSettings" required
+                                            #prod="ngModel">
                                         </ng-multiselect-dropdown>
                                         <div *ngIf="prod.invalid && (prod.dirty || prod.touched)">
                                             <small class="fc-red fs-12 ff-s" *ngIf="prod.errors.required">
@@ -1131,7 +1132,7 @@
                             <img src="assets/images/cloud_download_black.svg" alt="">
                             <p class="text-center fs-13 ff-s fw-4 mt-4">Drop files to upload or click</p>
                             <p class="py-5 text-center">
-                                <button class="btn btn-blue px-3" (click)="fileInput.click()">Upload Files</button>
+                                <button class="btn btn-blue px-3">Upload Files</button>
                             </p>
                             <p class="text-center fs-14 ff-s fc-lightblack">
                                 You can import up to 5000 records through an

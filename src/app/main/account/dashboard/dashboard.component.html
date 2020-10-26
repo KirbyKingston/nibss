@@ -580,7 +580,7 @@
                                 {{theAccount?.addresses[0].country}}</p>
                         </div>
                     </div>
-                    <div class="info mb-3">
+                    <div class="info mb-3" *ngIf="theAccount?.contacts.length > 0">
                         <div class="top-prop b-5 p-2">
                             <p class="m-0 fw-4 ff-s fc-black fs-15"><span class="mr-2"><img
                                         src="assets/images/accountcontact.svg" alt=""></span>Contact</p>
@@ -590,20 +590,20 @@
                                 <div class="d-flex align-items-center justify-content-between p-2">
                                     <div (click)="openContact(contact.id)">
                                         <div class="prop-initials">
-                                            {{contact?.firstName.substring(0,1)}}
+                                            {{contact?.contactDetails.firstName.substring(0,1)}}
                                         </div>
                                     </div>
                                     <div (click)="openContact(contact.id)">
-                                        <p class="m-0 fs-15 ff-s fc-black fw-6">{{contact?.firstName}}
-                                            {{contact?.lastName}}</p>
+                                        <p class="m-0 fs-15 ff-s fc-black fw-6">{{contact?.contactDetails.firstName}}
+                                            {{contact?.contactDetails.lastName}}</p>
                                     </div>
                                     <div>
-                                        <a href="tel:{{contact?.phoneNumber}}">
+                                        <a href="tel:{{contact?.contactDetails.phoneNumber}}">
                                             <img src="assets/images/bcall.svg" alt="">
                                         </a>
                                     </div>
                                     <div>
-                                        <a href="mailto:{{contact?.email}}">
+                                        <a href="mailto:{{contact?.contactDetails.email}}">
                                             <img src="assets/images/bmessage.svg" alt="">
                                         </a>
                                     </div>
@@ -612,7 +612,7 @@
 
                         </div>
                     </div>
-                    <div class="info" *ngIf="theAccount?.deals">
+                    <div class="info" *ngIf="theAccount?.deals.length > 0">
                         <div class="top-prop b-5 p-2">
                             <div class="d-flex align-items-center">
                                 <div class="mr-2"><img src="assets/images/contactdeals.svg" alt=""></div>
@@ -625,13 +625,13 @@
                         <div class="d-flex" >
                             <div class="p-2">
                                 <div class="deal">
-                                    {{theAccount?.deals[0].stage.substring(0,1)}}
+                                    {{theAccount?.deals[0]?.stage.substring(0,1)}}
                                 </div>
                             </div>
-                            <div class="p-2">
-                                <p class="mb-2 ff-s fw-6 fs-14 fc-dblue">{{theAccount?.deals[0].stage}}</p>
-                                <div class="d-flex row px-3 mb-4">
-                                    <div class="product mr-2 mb-1" *ngFor="let product of theAccount?.deals[0].products">{{product?.productName}}</div>
+                            <div class="p-2" >
+                                <p class="mb-2 ff-s fw-6 fs-14 fc-dblue">{{theAccount?.deals[0]?.stage}}</p>
+                                <div class="d-flex row px-3 mb-4" *ngIf="theAccount?.deals[0]?.products" >
+                                    <div class="product mr-2 mb-1" *ngFor="let product of theAccount?.deals[0]?.products">{{product?.productName}}</div>
                                 </div>
 
                             </div>
@@ -652,12 +652,12 @@
                                 <img src="assets/images/more-green.svg" alt="">
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" *ngIf="theAccount?.isJunked == false"
                                     (click)="junkAccount(theAccount.id)">Junk
                                     Account</a>
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" *ngIf="theAccount?.isJunked == true"
                                     (click)="reactivateAccount(theAccount.id)">Reactivate Account</a>
-                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                <a class="dropdown-item fc-black fw-6 fs-14 ff-s" *ngIf="theAccount?.isJunked == true"
                                     (click)="deleteAccount(theAccount.id)">Delete Account</a>
                             </div>
                         </div>

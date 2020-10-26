@@ -237,8 +237,8 @@
                                             <!-- <th>
                                                 <input type="checkbox">
                                             </th> -->
-                                            <th>Deal name</th>
-                                            <th>PRODUCTs</th>
+                                            <th>DEAL NAME</th>
+                                            <th>PRODUCTS</th>
                                             <th>STAGE</th>
                                             <th>LAST ACTIVITY</th>
                                         </thead>
@@ -306,8 +306,8 @@
                                             <!-- <th>
                                                 <input type="checkbox">
                                             </th> -->
-                                            <th>Deal name</th>
-                                            <th>PRODUCTs</th>
+                                            <th>DEAL NAME</th>
+                                            <th>PRODUCTS</th>
                                             <th>STAGE</th>
                                             <th>LAST ACTIVITY</th>
                                         </thead>
@@ -399,7 +399,7 @@
             <!-- properties -->
             <div class="px-3" *ngIf="isSelected">
                 <div class="row">
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <ul class="nav nav-tabs deall align-items-center" id="myTab" role="tablist">
                             <li class="nav-item w-50 text-center">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#deal" role="tab"
@@ -410,7 +410,7 @@
                                     aria-controls="profile" aria-selected="false">Stage History</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                     <div class="col-12 pt-3">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="deal" role="tabpanel">
@@ -465,7 +465,8 @@
                                                 <p class="m-0 fc-lightblack fs-14 ff-s">Products:</p>
                                             </div>
                                             <div class="col-10 mb-1">
-                                                <div class="d-flex row px-3">
+                                                <p class="fs-16 fc-black ff-s" *ngIf="aDeal?.products.length == 0">NA</p>
+                                                <div class="d-flex row px-3" *ngIf="aDeal?.products.length > 0">
                                                     <div class="product mr-2" (click)="openProduct(product.id)"
                                                         *ngFor="let product of aDeal?.products.slice(0,2)">
                                                         {{product?.productName}} </div>
@@ -486,12 +487,8 @@
                                                 <div class="col-12 mb-1">
                                                     <div class="d-flex align-items-center">
                                                         <div class="py-2">
-                                                            <div class="image" *ngIf="aDeal?.imageString">
-                                                                <img [src]="'data:image/png;base64, ' + aDeal?.imageString | trustedUrl"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="image" *ngIf="aDeal?.imageString == null">
-                                                                <img src="assets/images/companyalt.svg" alt="">
+                                                            <div class="productname">
+                                                                {{aDeal?.account.accountName.substring(0,1)}}
                                                             </div>
                                                         </div>
                                                         <div class="p-2">
@@ -554,12 +551,12 @@
                                                     <img src="assets/images/more-green.svg" alt="">
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.isJunked == false"
                                                         (click)="junkDeal(aDeal.id)">Junk
                                                         Deal</a>
-                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.isJunked == true"
                                                         (click)="reactivateDeal(aDeal.id)">Reactivate Deal</a>
-                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s"
+                                                    <a class="dropdown-item fc-black fw-6 fs-14 ff-s" *ngIf="aDeal?.isJunked == true"
                                                         (click)="deleteDeal(aDeal.id)">Delete Deal</a>
                                                 </div>
                                             </div>
@@ -567,7 +564,73 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="stage" role="tabpanel"></div>
+                            <div class="tab-pane fade" id="stage" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- completed -->
+                                        <div class="step completed">
+                                            <div class="v-stepper">
+                                                <div class="circle"></div>
+                                                <div class="line"></div>
+                                            </div>
+
+                                            <div class="content">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                            </div>
+                                        </div>
+
+                                        <!-- active -->
+                                        <div class="step active">
+                                            <div class="v-stepper">
+                                                <div class="circle"></div>
+                                                <div class="line"></div>
+                                            </div>
+
+                                            <div class="content">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                            </div>
+                                        </div>
+
+                                        <!-- empty -->
+                                        <div class="step empty">
+                                            <div class="v-stepper">
+                                                <div class="circle"></div>
+                                                <div class="line"></div>
+                                            </div>
+
+                                            <div class="content">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                            </div>
+                                        </div>
+
+                                        <!-- regular -->
+                                        <div class="step">
+                                            <div class="v-stepper">
+                                                <div class="circle"></div>
+                                                <div class="line"></div>
+                                            </div>
+
+                                            <div class="content">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry.
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

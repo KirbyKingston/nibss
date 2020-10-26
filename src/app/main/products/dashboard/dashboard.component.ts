@@ -42,34 +42,23 @@ export class DashboardComponent implements OnInit {
       $('.dropdown-menu.more-drop, #overlay').toggleClass('show')
     })
 
-    $("input.money").keyup(function (event) {
-      if (event.which >= 37 && event.which <= 40) {
-        event.preventDefault();
-      }
-      var $this = $(this);
-      var num = $this
-        .val()
-        .replace(/,/gi, "")
-        .split("")
-        .reverse()
-        .join("");
+    $(".money").keyup(function (event) {
 
-      var num2 = RemoveRougeChar(
-        num
-          .replace(/(.{3})/g, "$1,")
-          .split("")
-          .reverse()
-          .join("")
-      );
-      $this.val(num2);
+      // skip for arrow keys
+      if (event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function (index, value) {
+        return value
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          ;
+      });
+
+      var firstValue = Number($('.money').val().replace(/,/g, ''));
+      console.log(firstValue);
     });
 
-    function RemoveRougeChar(convertString) {
-      if (convertString.substring(0, 1) == ",") {
-        return convertString.substring(1, convertString.length);
-      }
-      return convertString;
-    }
 
   }
 
@@ -175,12 +164,15 @@ export class DashboardComponent implements OnInit {
   }
 
   createProduct(form: NgForm) {
+    form.value.fee = form.value.fee.replace(/,/g, '')
+
     this.productService.createProduct(form.value.category, form.value.description, form.value.fee, this.productLogo, form.value.manager, form.value.name, form.value.duration, form.value.tag, form.value.tax).subscribe(
       res => {
         this.notification.publishMessages('You have successfully created a new product', 'info', 0)
         this.nsuccess = true;
         this.getAllProducts();
         this.getMyProduct();
+        $(".new-modal").modal('hide');
       },
       err => {
       }

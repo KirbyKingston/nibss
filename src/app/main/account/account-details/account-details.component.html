@@ -61,9 +61,9 @@
                                     <div class="mr-lg-5">
                                         <p class="fs-15 text-white ff-s">{{accountDetails?.accountName}}</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0">
-                                            {{accountDetails?.contacts[0].contactDetails.firstName}}
-                                            {{accountDetails?.contacts[0].contactDetails.lastName}}</p>
-                                        <p class="fc-lightwhite fs-15 ff-s">{{accountDetails?.contacts[0].contactDetails.designation}}
+                                            {{accountDetails?.contacts[0]?.contactDetails?.firstName}}
+                                            {{accountDetails?.contacts[0]?.contactDetails?.lastName}}</p>
+                                        <p class="fc-lightwhite fs-15 ff-s">{{accountDetails?.contacts[0]?.contactDetails?.designation}}
                                         </p>
                                         <p class="m-0 ff-s fs-12 fc-lightwhite">Est. Transaction Value</p>
                                         <p class="fs-15 text-white ff-s fw-6 m-0"
@@ -89,7 +89,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-3" *ngIf="accountDetails?.contacts.length > 0">
                 <div class="details">
                     <div class="py-3 px-lg-3 px-3">
                         <div class="account pb-1 mb-3">
@@ -150,14 +150,15 @@
                             <div class="p-2">
                                 <p class="m-0 ff-s fw-6 fs-14 fc-dblue">{{accountDetails?.deals[0].dealName}}</p>
                                 <p class="m-0 ff-s fs-12 fc-6blue w-100">
-                                    <span>NGN{{accountDetails?.deals[0].dealValue}}</span>
+                                    <span *ngIf="accountDetails?.deals[0].dealValue">NGN{{accountDetails?.deals[0].dealValue}}</span>
+                                    <span *ngIf="accountDetails?.deals[0].dealValue == null">NA</span>
                                 </p>
 
                             </div>
                             <div class="p-2 ml-auto">
                                 <p></p>
                                 <p class="m-0 ff-s fs-12 fc-6blue">
-                                    25-May-20
+                                    <!-- 25-May-20 -->
                                 </p>
                             </div>
                         </div>
@@ -231,7 +232,7 @@
                                         </p>
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Address </p>
                                         <p class="fs-16 fc-black ff-s">
-                                            {{accountDetails?.contacts[0].contactDetails.street}}
+                                            {{accountDetails?.contacts[0]?.contactDetails?.street}}
                                         </p>
                                         <p class="fs-14 fc-lightblack ff-s mb-1">Social Media</p>
                                         <div class="d-flex">

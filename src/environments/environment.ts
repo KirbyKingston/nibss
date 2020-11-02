@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  baseApi: "https://nibbscrm.azurewebsites.net/api/v1/"
+  baseApi: "https://nibbscrm.azurewebsites.net/api/v1/",
+  clientId: '6ef517c5-ec73-454a-ac8a-dfca04230d92',
+  authority: 'https://login.microsoftonline.com/b393417d-28bb-4622-ad5e-e5d44974ff79/oauth2/v2.0/authorize',
+  redirectUrl: 'http://localhost:4200'
 };
 
 /*

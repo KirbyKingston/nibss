@@ -26,6 +26,6 @@ export class AuthDataService {
   
 
   getAuth(){
-    return this.http.get('https://login.microsoftonline.com/b393417d-28bb-4622-ad5e-e5d44974ff79/oauth2/v2.0/authorize?response_type=code&state=12345&client_id=6ef517c5-ec73-454a-ac8a-dfca04230d92&scope=api://db41c711-526e-4e73-bd71-e23b0dd3fb0e/access_crm_as_user&redirect_uri=https://nibsscrm.herokuapp.com')
+    return this.http.get('https://login.microsoftonline.com/b393417d-28bb-4622-ad5e-e5d44974ff79/oauth2/v2.0/authorize?response_type=code&state=12345&client_id=6ef517c5-ec73-454a-ac8a-dfca04230d92&scope=api://db41c711-526e-4e73-bd71-e23b0dd3fb0e/access_crm_as_user&redirect_uri=http://nibsscrm.herokuapp.com')
   }
 }

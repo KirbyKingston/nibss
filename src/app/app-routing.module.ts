@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MsalGuard } from '@azure/msal-angular';
 import { AuthGuard } from 'src/core/guards/authguard/auth.guard';
 
 

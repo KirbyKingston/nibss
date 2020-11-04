@@ -13,10 +13,11 @@ import {
   MatPaginatorModule,
   MatOptionModule
 } from '@angular/material';
+import { EmailComponent } from './components/email/email.component';
 
 
 @NgModule({
-  declarations: [AlertComponent, TableComponent, LoaderComponent, TrustedUrlPipe, HumanizePipe],
+  declarations: [AlertComponent, TableComponent, LoaderComponent, TrustedUrlPipe, HumanizePipe, EmailComponent],
   imports: [
     CommonModule,
     MatFormFieldModule, 
@@ -27,7 +28,7 @@ import {
     MatCheckboxModule
   ],
   exports: [
-    TableComponent, HumanizePipe, TrustedUrlPipe, AlertComponent, LoaderComponent
+    TableComponent, HumanizePipe, TrustedUrlPipe, AlertComponent, LoaderComponent, EmailComponent
   ]
 })
 export class SharedModule { }

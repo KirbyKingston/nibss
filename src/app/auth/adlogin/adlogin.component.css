@@ -1,0 +1,66 @@
+#login {
+    height: 100vh;
+    background: url('../../../assets/images/login-back.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.log {
+    padding-top: 2vh;
+    height: 100vh;
+    background: url('../../../assets/images/login-right.svg');
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+.inner {
+    background: url('../../../assets/images/loginbox1.svg'), url('../../../assets/images/loginbox2.svg');
+    background-position: top left, bottom right;
+    background-repeat: no-repeat;
+}
+
+.white-back {
+    min-height: 70vh;
+    background: #fff;
+    width: 65vw;
+    margin: 0 auto;
+}
+
+.login-form {
+    border: 1px solid #C4D0D3;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 46px;
+    transition: .3s ease-in-out;
+}
+
+.form-control.login-form:focus {
+    border: none;
+    box-shadow: none;
+    border: 1px solid #00B19A;
+}
+
+.login-btn {
+    background: #00B19A;
+    height: 48px;
+    font-family: Segoe UI;
+    border-radius: 0;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #fff;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+}
+
+.login-btn .yellow {
+    height: 48px;
+    width: 48px;
+    background: #E5C61B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

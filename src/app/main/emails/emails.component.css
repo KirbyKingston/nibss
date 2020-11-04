@@ -1,0 +1,26 @@
+.email-header {
+    background: #215063;
+    border-radius: 9px;
+}
+
+.btn-group {
+    background: none;
+    border-radius: 5px;
+}
+
+.initials {
+    width: 52px;
+    height: 52px;
+    border-radius: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    color: #D18700;
+}

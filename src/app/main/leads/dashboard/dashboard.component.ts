@@ -160,7 +160,7 @@ export class DashboardComponent implements OnInit {
   getUsers() {
     this.authService.getUsers().subscribe(
       res => {
-        this.users = res['payload']
+        this.users = res['payload']['users']
       },
       err => {
       }
@@ -333,9 +333,15 @@ export class DashboardComponent implements OnInit {
     this.selectedProducts.push(arr)
     this.leadService.createLead(this.company, this.disImage, this.EstTransVal, this.facebook, this.instagram, this.insType, this.owner, this.ownerphoneNumber, this.source, this.stage, this.status, this.transVol, this.twitter, this.website, this.yearEst, this.city, this.country, this.address, this.postalCode, this.email, this.firstName, this.lastName, this.designation, this.title, this.phoneNumber, this.message, this.selectedProducts).subscribe(
       res => {
-        this.notification.publishMessages('You have successfully created a new lead', 'info', 0)
-        this.nsuccess = true;
-        this.getAllLeads();
+        if (res['hasErrors'] == true) {
+          this.notification.publishMessages(res['description'], 'warning', 0)
+
+        } else {
+          this.notification.publishMessages('You have successfully created a new lead', 'info', 0)
+          this.nsuccess = true;
+          this.getAllLeads();
+        }
+
       },
       err => {
         // console.log(err)

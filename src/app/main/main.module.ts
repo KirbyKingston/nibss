@@ -6,10 +6,11 @@ import { MainComponent } from './main.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { EmailsComponent } from './emails/emails.component';
 
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [MainComponent, EmailsComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

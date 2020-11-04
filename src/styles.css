@@ -1,11 +1,13 @@
-@font-face{
+@font-face {
     src: url('assets/fonts/Segoe-UI-Font/SEGOEUI.TTF');
     font-family: Segoe UI;
 }
-@font-face{
+
+@font-face {
     src: url('assets/fonts/palatino-linotype/Palatino Linotype.ttf');
     font-family: Palatino Linotype;
 }
+
 /* fonts */
 .fs-36 {
     font-size: 36px;
@@ -121,7 +123,7 @@
 
 .ff-m {
     font-family: Montserrat;
-} 
+}
 
 .tx-u {
     text-decoration: underline;
@@ -172,6 +174,7 @@ a:hover {
     align-items: center;
     justify-content: center;
 }
+
 .green-nav {
     background: #165A3E;
 }
@@ -528,6 +531,18 @@ table.table.accounttab tbody tr td {
 
 
 /* end of buttons  */
+.btn-grey {
+    background: #DADADA;
+    border-radius: 5px;
+    height: 40px;
+    min-width: 52px;
+}
+
+.btn-group-grey {
+    background: #DADADA;
+    height: 40px;
+}
+
 .btn-clear {
     border: none;
     height: 36px;
@@ -666,20 +681,25 @@ table.table.accounttab tbody tr td {
     border: 1px solid #00B19A;
     box-shadow: none;
 }
-.form-control.compose{
+
+.form-control.compose {
     border: none;
 }
-.bodymail{
+
+.bodymail {
     border-radius: 4px;
     border: 1px solid #c6c6c5;
 }
-.bodymail .bottom{
+
+.bodymail .bottom {
     background-color: rgba(196, 196, 196, 0.5);
 }
+
 .form-control.compose:focus {
     border: none;
     box-shadow: none;
 }
+
 .input-group.leadform,
 .input-group.compose {
     border: 1px solid #c6c6c5;
@@ -710,7 +730,8 @@ table.table.accounttab tbody tr td {
     height: 50px;
 
 }
-.input-group.leadform.big .i{
+
+.input-group.leadform.big .i {
     font-family: Palatino Linotype;
     font-style: normal;
     font-weight: normal;
@@ -721,7 +742,8 @@ table.table.accounttab tbody tr td {
     background: #C4C4C4;
     padding: 15px 20px;
 }
-.input-group.leadform .i{
+
+.input-group.leadform .i {
     font-family: Palatino Linotype;
     font-style: normal;
     font-weight: normal;
@@ -877,6 +899,7 @@ textarea.form-control.detail-form {
 .dropdown-toggle::after {
     display: none !important;
 }
+
 .ngx-pagination .disabled {
     color: rgba(50, 55, 59, 0.5) !important;
     font-size: 14px;

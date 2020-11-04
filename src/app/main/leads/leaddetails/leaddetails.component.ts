@@ -2,7 +2,9 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery'
+import { NotificationService } from 'src/core/classes/notification/notification.service';
 import { AuthDataService } from 'src/core/data/authentication/auth-data.service';
+import { EmailDataService } from 'src/core/data/emails/email-data.service';
 import { LeadsService } from 'src/core/data/leads/leads.service';
 import { ProductsService } from 'src/core/data/products/products.service';
 @Component({
@@ -38,12 +40,18 @@ export class LeaddetailsComponent implements OnInit {
   theProduct: any = '';
   addedPs: Array<{}> = [];
   nfObject;
-  constructor(private location: Location, private route: ActivatedRoute, private leadService: LeadsService, private authService: AuthDataService, private productService: ProductsService) { }
+  contactId: any;
+  receivedEmails: any;
+  sentEmails: any;
+  mailCount: any;
+  theEmail: any;
+  constructor(private location: Location, private route: ActivatedRoute, private notification: NotificationService, private leadService: LeadsService, private authService: AuthDataService, private productService: ProductsService, private emailService: EmailDataService) { }
   ngOnInit() {
     this.getId();
     this.getLead();
     this.getUsers();
     this.getProducts();
+    // this.getEmailsFromContact(this.leadDetails.contacts[0].id);
 
     $('.showinfo').click(function () {
       $('#information').show(300);
@@ -67,35 +75,6 @@ export class LeaddetailsComponent implements OnInit {
       $('.hideinfo').hide(0);
     });
 
-
-    // $("input.money").keyup(function(event) {
-    //   if (event.which >= 37 && event.which <= 40) {
-    //     event.preventDefault();
-    //   }
-    //   var $this = $(this);
-    //   var num = $this
-    //     .val()
-    //     .replace(/,/gi, "")
-    //     .split("")
-    //     .reverse()
-    //     .join("");
-
-    //   var num2 = RemoveRougeChar(
-    //     num
-    //       .replace(/(.{3})/g, "$1,")
-    //       .split("")
-    //       .reverse()
-    //       .join("")
-    //   );
-    //   $this.val(num2);
-    // });
-
-    // function RemoveRougeChar(convertString) {
-    //   if (convertString.substring(0, 1) == ",") {
-    //     return convertString.substring(1, convertString.length);
-    //   }
-    //   return convertString;
-    // }
 
   }
 
@@ -129,6 +108,9 @@ export class LeaddetailsComponent implements OnInit {
     this.leadService.getLeadById(this.id).subscribe(
       res => {
         this.leadDetails = res['payload']
+        this.getEmailsReceived(res['payload']['id'])
+        this.getEmailsSent(res['payload']['id'])
+        this.getUnreadEmailCount(res['payload']['id'])
         let nfObject = new Intl.NumberFormat("en-US");
         this.leadDetails.transactionVolume = nfObject.format(this.leadDetails.transactionVolume);
         this.leadDetails.estimatedTransactionValue = nfObject.format(this.leadDetails.estimatedTransactionValue);
@@ -142,7 +124,7 @@ export class LeaddetailsComponent implements OnInit {
   getUsers() {
     this.authService.getUsers().subscribe(
       res => {
-        this.users = res['payload']
+        this.users = res['payload']['users']
       },
       err => {
       }
@@ -190,12 +172,62 @@ export class LeaddetailsComponent implements OnInit {
     )
   }
 
-  sendMail() {
-    this.leadService.sendEmail(this.bcc, this.body, this.cc, this.to, this.subject).subscribe(
+  getEmailsReceived(id) {
+    this.emailService.getReceivedLeadMail(id).subscribe(
       res => {
-        this.esuccess = true;
-        this.bcc = this.body = this.cc = this.to = this.subject = '';
-        this.getLead()
+        this.receivedEmails = res['payload']['messages']
+      }
+    )
+  }
+
+  getEmailsSent(id) {
+    this.emailService.getSentLeadMail(id).subscribe(
+      res => {
+        this.sentEmails = res['payload']['messages']
+      }
+    )
+  }
+
+  sendMail() {
+    this.emailService.sendEmail(this.body, this.to, this.subject, this.files, this.cc, this.bcc).subscribe(
+      res => {
+        if (res['hasErrors'] == true) {
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        } else {
+          this.esuccess = true;
+          this.bcc = this.body = this.cc = this.to = this.subject = '';
+          this.getLead()
+        }
+
+      }
+    )
+  }
+  replyEmail() {
+    this.emailService.replyEmail(this.body, this.theEmail.senderEmail, this.subject, this.files, this.theEmail.id, this.cc, this.bcc).subscribe(
+      res => {
+        if (res['code'] == -1) {
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        } else {
+          this.esuccess = true;
+          this.bcc = this.body = this.cc = this.to = this.subject = '';
+          this.getLead();
+
+        }
+
+      }
+    )
+  }
+  getEmail(id) {
+    this.emailService.getEmail(id).subscribe(
+      res => {
+        this.theEmail = res['payload']
+      }
+    )
+  }
+  getUnreadEmailCount(id) {
+    this.emailService.getAccountMailCount(id).subscribe(
+      res => {
+        this.mailCount = res['payload']
       }
     )
   }
@@ -270,16 +302,16 @@ export class LeaddetailsComponent implements OnInit {
     }
 
 
-    if(this.leadDetails.yearEstablished == null){
+    if (this.leadDetails.yearEstablished == null) {
       this.leadDetails.yearEstablished = ''
-    }else{
+    } else {
       this.leadDetails.yearEstablished = this.leadDetails.yearEstablished
     }
     this.leadDetails.transactionVolume = parseInt(this.leadDetails.transactionVolume)
     this.leadService.updateStatus(this.leadDetails.companyName, this.leadDetails.facebook, this.leadDetails.id, this.leadDetails.instagram, this.leadDetails.estimatedTransactionValue, this.insType, this.leadDetails.phoneNumber, this.leadStage, this.leadStatus, this.leadDetails.transactionVolume, this.leadDetails.twitter, this.leadDetails.website, this.leadDetails.yearEstablished).subscribe(
       res => {
         this.ssuccess = true;
-      } 
+      }
     )
   }
   updateLead() {

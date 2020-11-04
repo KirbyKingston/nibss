@@ -17,29 +17,16 @@
                                         class="fw-7 fc-lgreen">increase productivity.</span>
                                 </p>
                             </div>
-                            <div class="col-lg-6 px-lg-5">
-                                <form #loginForm="ngForm" (submit)="log(loginForm)" ngNativeValidate class="row">
-                                    <div class="col-12">
+                            <div class="col-lg-6 px-lg-5 pt-5">
+                                <div class="row pt-5">
+                                    <div class="col-12 pt-5">
                                         <p class="fs-16 ff-s mb-5">
                                             Welcome back,<br>
                                             <span class="fw-7">Please login to your account</span>
                                         </p>
                                     </div>
-
                                     <div class="col-12">
-                                        <label for="" class="fc-lightgrey fs-15 ff-s">Email Address</label>
-                                        <input type="text" name="username" ngModel class="form-control login-form mb-4"
-                                            required>
-
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="" class="fc-lightgrey fs-15 ff-s">Password</label>
-                                        <input type="password" name="password" ngModel
-                                            class="form-control login-form mb-4" required>
-
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn login-btn px-0 w-100 py-0" type="submit">
+                                        <button class="btn login-btn px-0 w-100 py-0" (click)="login()">
                                             <div class="d-flex">
                                                 <div class="pt-1 m-auto">
                                                     <p class="text-center m-0 pl-lg-5">Sign In to Your Account</p>
@@ -50,12 +37,11 @@
                                             </div>
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                             <div class="col-12 mt-5">
                                 <p class="text-center fs-15 fc-lightgrey fw-6 ff-s">© 2020 All rights Reserved.
                                     nibss-plc.com.ng | Privacy and Terms.</p>
-                                <button class="btn btn-login" (click)="login()">log</button>
                             </div>
                         </div>
                     </div>

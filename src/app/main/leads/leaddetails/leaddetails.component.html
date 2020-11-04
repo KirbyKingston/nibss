@@ -45,11 +45,14 @@
 
                     </div> -->
                     <div>
-                        <button class="btn btn-blue mr-2" (click)="convertToDeal()" *ngIf="leadDetails?.isJunked == false ? true : false">
+                        <button class="btn btn-blue mr-2" (click)="convertToDeal()"
+                            *ngIf="leadDetails?.isJunked == false ? true : false">
                             Convert to Deal
                         </button>
-                        <button class="btn btn-out-blue tx-u" (click)="junkLead()" *ngIf="leadDetails?.isJunked == false ? true : false">Junk Lead</button>
-                        <button class="btn btn-out-blue tx-u" (click)="reactivateLead()" *ngIf="leadDetails?.isJunked == false ? false : true">Reactivate Lead</button>
+                        <button class="btn btn-out-blue tx-u" (click)="junkLead()"
+                            *ngIf="leadDetails?.isJunked == false ? true : false">Junk Lead</button>
+                        <button class="btn btn-out-blue tx-u" (click)="reactivateLead()"
+                            *ngIf="leadDetails?.isJunked == false ? false : true">Reactivate Lead</button>
                     </div>
                 </div>
             </div>
@@ -64,7 +67,8 @@
                                         <div class="col-lg-7 offset-lg-5 mb-3">
                                             <div class="btngroup d-flex justify-content-center align-items-center">
                                                 <div class="mr-2">
-                                                    <select class="form-control clearform" (change)="updateStatus()" [disabled]="leadDetails?.isJunked == true"
+                                                    <select class="form-control clearform" (change)="updateStatus()"
+                                                        [disabled]="leadDetails?.isJunked == true"
                                                         [(ngModel)]="leadDetails.status">
                                                         <option value="Cold" class="fc-black"><span><i
                                                                     class="fas fa-circle fs-18 cold"></i></span> Cold
@@ -87,12 +91,14 @@
                                                     </a>
                                                 </div>
                                                 <div class="mr-2">
-                                                    <a href="mailto:{{leadDetails?.email}}" class="text-white fs-14 ff-s fw-4">
+                                                    <a href="mailto:{{leadDetails?.email}}"
+                                                        class="text-white fs-14 ff-s fw-4">
                                                         <img src="assets/images/email.svg" class="mr-1" alt=""> Email
                                                     </a>
                                                 </div>
                                                 <div class="mr-2">
-                                                    <a href="tel:{{leadDetails?.email}}" class="text-white fs-14 ff-s fw-4">
+                                                    <a href="tel:{{leadDetails?.email}}"
+                                                        class="text-white fs-14 ff-s fw-4">
                                                         <img src="assets/images/call.svg" class="mr-1" alt=""> Call
                                                     </a>
                                                 </div>
@@ -117,11 +123,13 @@
                                                 </div>
                                                 <div class="mr-3">
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Phone</p>
-                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber">
+                                                    <p class="fs-15 text-white ff-s fw-6"
+                                                        *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber">
                                                         {{leadDetails?.contacts[0].contactDetails.phoneNumber}}
                                                     </p>
-                                                    <p class="fs-15 text-white ff-s fw-6" *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber == null">
-                                                       NA
+                                                    <p class="fs-15 text-white ff-s fw-6"
+                                                        *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber == null">
+                                                        NA
                                                     </p>
                                                     <p class="m-0 ff-s fs-12 fc-lightwhite">Email</p>
                                                     <p class="fs-15 text-white ff-s fw-6">
@@ -188,12 +196,14 @@
                                                             {{leadDetails?.contacts[0].contactDetails.lastName}}
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Phone Number</p>
-                                                        <p class="fs-16 fc-black ff-s"  *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber">
-                                                            {{leadDetails?.contacts[0].contactDetails.phoneNumber}} 
+                                                        <p class="fs-16 fc-black ff-s"
+                                                            *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber">
+                                                            {{leadDetails?.contacts[0].contactDetails.phoneNumber}}
                                                             <!-- <span><img
                                                                     src="assets/images/skype.svg" alt=""></span> -->
                                                         </p>
-                                                        <p class="fs-16 fc-black ff-s" *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber == null">
+                                                        <p class="fs-16 fc-black ff-s"
+                                                            *ngIf="leadDetails?.contacts[0].contactDetails.phoneNumber == null">
                                                             NA
                                                         </p>
                                                     </div>
@@ -231,13 +241,15 @@
                                                         </p>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Prospective Products
                                                         </p>
-                                                        <p class="fs-16 fc-black ff-s" *ngIf="leadDetails?.products.length == 0">NA</p>
+                                                        <p class="fs-16 fc-black ff-s"
+                                                            *ngIf="leadDetails?.products.length == 0">NA</p>
                                                         <div class="d-flex mb-3" *ngIf="leadDetails?.products">
 
-                                                            <div class="product mr-2" *ngFor="let product of leadDetails?.products.slice(0,2)">
+                                                            <div class="product mr-2"
+                                                                *ngFor="let product of leadDetails?.products.slice(0,2)">
                                                                 {{product?.productName}} </div>
-                                                                <span *ngIf="deal?.products.length > 2">+
-                                                                    {{deal?.products.length - 2}}</span>
+                                                            <span *ngIf="deal?.products.length > 2">+
+                                                                {{deal?.products.length - 2}}</span>
                                                         </div>
                                                         <p class="fs-14 fc-lightblack ff-s mb-1">Est. Transaction Value
                                                         </p>
@@ -262,7 +274,9 @@
                                                         <p class="fs-16 fc-black ff-s">
                                                             {{leadDetails?.addresses[0].street}}
                                                         </p>
-                                                        <p class="fs-14 fc-lightblack ff-s mb-1" *ngIf="leadDetails?.instagram || leadDetails?.facebook || leadDetails?.twitter">Social Media</p>
+                                                        <p class="fs-14 fc-lightblack ff-s mb-1"
+                                                            *ngIf="leadDetails?.instagram || leadDetails?.facebook || leadDetails?.twitter">
+                                                            Social Media</p>
                                                         <div class="d-flex">
                                                             <div class="mr-3" *ngIf="leadDetails?.facebook">
                                                                 <a href="https://{{leadDetails?.facebook}}"
@@ -389,7 +403,7 @@
                                             <div>
                                                 <p class="m-0 fs-16 fc-green ff-p">Mail</p>
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="orangeline"></div>
                                         <div class="littleorange"></div>
                                         <div class="py-4">
@@ -403,49 +417,122 @@
                                         </div>
                                     </div>
                                     <div class="px-3 mb-3">
-                                        <p class="fs-15 ff-s fc-black fw-16">Received <span
-                                                class="badge badge-secondary fc-darkblue">{{leadDetails?.receivedMails?.length}}</span>
-                                        </p>
+                                        <ul class="nav nav-tabs mail align-items-center" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active p-0 mr-5" data-toggle="tab" href="#sent"
+                                                    role="tab">Sent</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link p-0 " data-toggle="tab" href="#received" role="tab">
+                                                    Received
+                                                    <div class="badge badge-secondary fc-darkblue">{{mailCount}}</div>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <!-- messages -->
-                                    <div class="messages" *ngIf="leadDetails?.receivedMails?.length > 0">
-                                        <div class="message p-3" *ngFor="let msg of leadDetails?.receivedMails">
-                                            <div class="d-flex">
-                                                <div class="mr-2">
-                                                    <img src="assets/images/msg.svg" alt="">
-                                                </div>
-                                                <div>
-                                                    <p class="fw-6 m-0 fc-black ff-s fs-13">{{msg?.subject}}</p>
-                                                    <p class="fs-13 fw-4 fc-lightblack">
-                                                        {{msg?.body}}
-                                                        <!-- <span class="fw-7 fc-green"><a>Read More</a></span> -->
-                                                    </p>
-                                                    <!-- <div
-                                                        class="d-flex justify-content-between align-items-center">
-                                                        <div>
-                                                            <p class="fw-6 m-0 fc-black ff-s fs-13">Oluwaseun
-                                                                Wey</p>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="sent" role="tabpanel"
+                                            aria-labelledby="nav-home-tab">
+                                            <!-- messages -->
+                                            <div class="messages" *ngIf="sentEmails.length > 0">
+                                                <div class="message p-3" *ngFor="let message of sentEmails">
+                                                    <div class="d-flex">
+                                                        <div class="mr-2">
+                                                            <img src="assets/images/msg.svg" alt="">
                                                         </div>
                                                         <div>
-                                                            <a><img src="assets/images/reply.svg" alt=""></a>
+                                                            <p class="fs-13 fw-4 mb-1 fc-lightblack text-capitalize">
+                                                                {{message.subject}}
+                                                            </p>
+                                                            <p class="fs-13 fw-4">
+                                                                <span class="fw-7 fc-green"
+                                                                    (click)="openEmail(message.id)"><a>Read
+                                                                        More</a></span>
+                                                            </p>
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <p class="fw-6 m-0 fc-black ff-s fs-13"><span
+                                                                            class="mr-2"
+                                                                            *ngFor="let recipient of message.recipients.slice(0,1)">{{recipient.name}}</span>
+                                                                        <span class="mr-2"
+                                                                            *ngIf="message.recipients.length > 1">
+                                                                            + {{message.recipients.length - 1}}
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+
+                                                            </div>
+                                                            <p class="fc-lightblack ff-s fs-11 fw-3">
+                                                                <span
+                                                                    class="mr-3"><i>{{message.sentDateTime | date: 'mediumDate'}}</i></span>
+                                                                <span>
+                                                                    <i>{{message.sentDateTime | date: 'shortTime'}}</i>
+                                                                </span>
+                                                            </p>
                                                         </div>
-                                                    </div> -->
-                                                    <p class="fc-lightblack ff-s fs-11 fw-3">
-                                                        <span
-                                                            class="mr-3"><i>{{msg?.dateCreated | date: 'medium'}}</i></span>
-                                                        <span>
-                                                            <i>{{msg?.dateCreated | date: 'shortTime'}}</i>
-                                                        </span>
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <!-- messages -->
+                                            <div class="emptystate2" *ngIf="sentEmails.length == 0">
+                                                <p class="text-center fs-18 fc-black ff-s">You currently have no emails.
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- messages -->
-                                    <div class="emptystate2" *ngIf="leadDetails?.receivedMails?.length == 0">
-                                        <p class="text-center fs-15 ff-s fc-black fw-4">
-                                            You have not received any message
-                                        </p>
+                                        <div class="tab-pane fade" id="received" role="tabpanel"
+                                            aria-labelledby="nav-profile-tab">
+                                            <!-- messages -->
+                                            <div class="messages" *ngIf="receivedEmails.length > 0">
+                                                <div class="message p-3" *ngFor="let message of receivedEmails">
+                                                    <div class="d-flex">
+                                                        <div class="mr-2">
+                                                            <img src="assets/images/msg.svg" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <p class="fs-13 fw-4 mb-1 fc-lightblack text-capitalize">
+                                                                {{message.subject}}
+                                                            </p>
+                                                            <p class="fs-13 fw-4">
+                                                                <span class="fw-7 fc-green"
+                                                                    (click)="openEmail(message.id)"><a>Read
+                                                                        More</a></span>
+                                                            </p>
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <p class="fw-6 m-0 fc-black ff-s fs-13"><span
+                                                                            class="mr-2">{{message.senderName}}</span>
+
+                                                                    </p>
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <a data-toggle="modal"
+                                                                            data-target=".reply-email-modal"
+                                                                            (click)="getEmail(message.id)"><img
+                                                                                src="assets/images/reply.svg"
+                                                                                alt=""></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <p class="fc-lightblack ff-s fs-11 fw-3">
+                                                                <span
+                                                                    class="mr-3"><i>{{message.sentDateTime | date: 'mediumDate'}}</i></span>
+                                                                <span>
+                                                                    <i>{{message.sentDateTime | date: 'shortTime'}}</i>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- messages -->
+                                            <div class="emptystate2" *ngIf="receivedEmails.length == 0">
+                                                <p class="text-center fs-18 fc-black ff-s">You currently have no emails.
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -776,7 +863,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="fs-13 fw-4 fc-lightblack">
-                                                        {{note?.message}}. 
+                                                        {{note?.message}}.
                                                         <!-- <span class="fw-7 fc-green"><a>Read
                                                                 More</a></span> -->
                                                     </p>
@@ -1040,6 +1127,100 @@
     </div>
 </div>
 
+
+<div class="modal fade bd-example-modal-lg reply-email-modal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" *ngIf="theEmail">
+            <div class="modal-body px-lg-5 px-3 py-4">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="fc-green ff-p fs-25 fw-6 m-0">
+                                    Reply Mail
+                                </p>
+                            </div>
+                            <div>
+                                <a data-dismiss="modal"><img src="assets/images/close.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="orangeline"></div>
+                        <div class="deeporange"></div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                To
+                            </div>
+                            <input type="text" [(ngModel)]="theEmail.senderEmail" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                CC
+                            </div>
+                            <input type="text" [(ngModel)]="cc" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                BCC
+                            </div>
+                            <input type="text" [(ngModel)]="bcc" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="input-group compose">
+                            <div class="input-group-prepend">
+                                Subject
+                            </div>
+                            <input type="text" [(ngModel)]="theEmail.subject" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="bodymail">
+                            <div class="row no-gutters">
+                                <div class="col-lg-8 px-2 py-3">
+                                    <textarea cols="30" rows="10" [(ngModel)]="body"
+                                        class="form-control compose"></textarea>
+                                </div>
+                                <div class="col-lg-4 border-left px-2 py-3">
+                                    <p class="fs-15 fc-black ff-s fw-5">Attach Files</p>
+                                    <div class="uploadfile" (click)="fileInput.click()" appDragDrop
+                                        (onFileDropped)="uploadFile($event)">
+                                        <img src="assets/images/cloud_download_black.svg" alt="">
+                                        <p class="text-center fs-13 ff-s fw-4 mt-4">Drop files to attach or click</p>
+                                        <p class="py-5 text-center">
+                                            <button class="btn btn-blue px-3" (click)="fileInput.click()">Upload
+                                                Files</button>
+                                        </p>
+
+                                        <input hidden type="file" multiple #fileInput
+                                            (change)="uploadFile($event.target.files)">
+
+                                    </div>
+                                </div>
+                                <div class="col-12 bottom py-2 px-4">
+                                    <button class="btn btn-blue" (click)="replyEmail()"
+                                        data-dismiss="modal">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="modal fade bd-example-modal-lg new-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -1100,7 +1281,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
-                                    
+
                                     <div class="col-lg-4 mb-3">
                                         <label class="fs-16 ff-p fc-black">Lead Owner</label>
                                         <select class="form-control topform" [(ngModel)]="leadDetails.ownerId">

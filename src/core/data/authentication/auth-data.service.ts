@@ -21,7 +21,7 @@ export class AuthDataService {
   }
 
   getUsers(){
-    return this.http.get(this.baseUrl + 'Users/SearchUsers?pageIndex=1&pageSize=30&filters[0].FilterColumn=AccountName&filters[0].Keyword=user&filters[0].Operation=1', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
+    return this.http.get(this.baseUrl + 'Users/SearchUsers?pageSize=5&searchString=a&skipToken=', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") } })
   }
   
 

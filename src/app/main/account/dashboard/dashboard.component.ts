@@ -131,7 +131,7 @@ export class DashboardComponent implements OnInit {
   getUsers(){
     this.authService.getUsers().subscribe(
       res => {
-        this.users = res['payload']
+        this.users = res['payload']['users']
       }
     )
   }
@@ -144,7 +144,7 @@ export class DashboardComponent implements OnInit {
         this.allAccounts.forEach(element => {
           element['checked'] = false;
         });
-        console.log(this.allAccounts)
+        // console.log(this.allAccounts)
       },
       err => {
         console.log(err)

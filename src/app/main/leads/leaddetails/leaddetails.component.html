@@ -434,7 +434,7 @@
                                         <div class="tab-pane fade show active" id="sent" role="tabpanel"
                                             aria-labelledby="nav-home-tab">
                                             <!-- messages -->
-                                            <div class="messages" *ngIf="sentEmails.length > 0">
+                                            <div class="messages" *ngIf="sentEmails?.length > 0">
                                                 <div class="message p-3" *ngFor="let message of sentEmails">
                                                     <div class="d-flex">
                                                         <div class="mr-2">
@@ -462,6 +462,13 @@
                                                                     </p>
                                                                 </div>
 
+                                                                <div>
+                                                                    <div class="deletebutton">
+                                                                        <a (click)="deleteEmail(message.id)"><img
+                                                                                src="assets/images/delete.svg"
+                                                                                alt=""></a>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <p class="fc-lightblack ff-s fs-11 fw-3">
                                                                 <span
@@ -475,7 +482,7 @@
                                                 </div>
                                             </div>
                                             <!-- messages -->
-                                            <div class="emptystate2" *ngIf="sentEmails.length == 0">
+                                            <div class="emptystate2" *ngIf="sentEmails?.length == 0">
                                                 <p class="text-center fs-18 fc-black ff-s">You currently have no emails.
                                                 </p>
                                             </div>
@@ -483,7 +490,7 @@
                                         <div class="tab-pane fade" id="received" role="tabpanel"
                                             aria-labelledby="nav-profile-tab">
                                             <!-- messages -->
-                                            <div class="messages" *ngIf="receivedEmails.length > 0">
+                                            <div class="messages" *ngIf="receivedEmails?.length > 0">
                                                 <div class="message p-3" *ngFor="let message of receivedEmails">
                                                     <div class="d-flex">
                                                         <div class="mr-2">
@@ -507,12 +514,21 @@
                                                                     </p>
                                                                 </div>
                                                                 <div>
-                                                                    <div>
-                                                                        <a data-toggle="modal"
-                                                                            data-target=".reply-email-modal"
-                                                                            (click)="getEmail(message.id)"><img
-                                                                                src="assets/images/reply.svg"
-                                                                                alt=""></a>
+                                                                    <div class="d-flex">
+                                                                        <div>
+                                                                            <a data-toggle="modal"
+                                                                                data-target=".reply-email-modal"
+                                                                                (click)="getEmail(message.id)"><img
+                                                                                    src="assets/images/reply.svg"
+                                                                                    alt=""></a>
+                                                                        </div>
+                                                                        <div class="">
+                                                                            <div class="ml-2 deletebutton">
+                                                                                <a (click)="deleteEmail(message.id)"><img
+                                                                                        src="assets/images/delete.svg"
+                                                                                        alt=""></a>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -528,7 +544,7 @@
                                                 </div>
                                             </div>
                                             <!-- messages -->
-                                            <div class="emptystate2" *ngIf="receivedEmails.length == 0">
+                                            <div class="emptystate2" *ngIf="receivedEmails?.length == 0">
                                                 <p class="text-center fs-18 fc-black ff-s">You currently have no emails.
                                                 </p>
                                             </div>

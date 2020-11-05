@@ -133,6 +133,14 @@ export class ContactdetailsComponent implements OnInit {
       }
     )
   }
+  deleteEmail(id){
+    this.emailService.deleteEmail(id).subscribe(
+      res => {
+        this.notification.publishMessages('Email deleted successfully', 'info', 0)
+        this.getContact()
+      }
+    )
+  }
   openEmail(id){
     this.router.navigate(['/app/email/' + id])
   }

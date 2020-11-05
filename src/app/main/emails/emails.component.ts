@@ -70,6 +70,20 @@ export class EmailsComponent implements OnInit {
     )
   }
 
+  forwardEmail(){
+    this.emailService.forwardEmail(this.body, this.email.id, this.to).subscribe(
+      res => {
+        if (res['code'] == -1) {
+          this.notification.publishMessages(res['description'], 'warning', 0)
+        } else {
+          this.esuccess = true;
+          this.body = this.to = '';
+
+        }
+
+      }
+    )
+  }
   deleteEmail(){
     this.emailService.deleteEmail(this.id).subscribe(
       res => {

@@ -231,6 +231,14 @@ export class LeaddetailsComponent implements OnInit {
       }
     )
   }
+  deleteEmail(id){
+    this.emailService.deleteEmail(id).subscribe(
+      res => {
+        this.notification.publishMessages('Email deleted successfully', 'info', 0)
+        this.getLead()
+      }
+    )
+  }
   addProductTodeal(id) {
     this.theProduct = parseInt(this.theProduct)
     this.addedPs.push(this.theProduct)

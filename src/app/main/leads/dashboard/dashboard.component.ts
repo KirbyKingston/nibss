@@ -65,6 +65,7 @@ export class DashboardComponent implements OnInit {
   social: boolean = false;
   files: any;
   nfObject;
+  
   constructor(private leadService: LeadsService, private router: Router, private notification: NotificationService, private authService: AuthDataService, private productService: ProductsService) { }
 
   ngOnInit() {

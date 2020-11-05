@@ -327,7 +327,23 @@ a:hover {
 }
 
 .message:hover {
+    transition: .5s ease-in-out;
     background: #EFFBF7;
+}
+.message:hover .deletebutton{
+    display: block;
+}
+.messages::-webkit-scrollbar{
+    width: 1px;
+    background: rgba(0, 177, 154, 0.3);
+}
+.messages::-webkit-scrollbar-thumb{
+    width: 1px;
+    background: rgba(0, 177, 154, 0.8);
+}
+.deletebutton{
+    display: none;
+    transition: .5s ease-in-out;
 }
 
 .nav-tabs.mail {
@@ -531,6 +547,7 @@ table.table.accounttab tbody tr td {
 
 
 /* end of buttons  */
+
 .btn-grey {
     background: #DADADA;
     border-radius: 5px;

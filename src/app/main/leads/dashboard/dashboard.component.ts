@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
   social: boolean = false;
   files: any;
   nfObject;
-  
   constructor(private leadService: LeadsService, private router: Router, private notification: NotificationService, private authService: AuthDataService, private productService: ProductsService) { }
 
   ngOnInit() {
@@ -170,7 +169,6 @@ export class DashboardComponent implements OnInit {
   getProducts() {
     this.productService.getAllProducts().subscribe(
       res => {
-        // console.log(res)
         let arrayUsers = res['payload'];
         let arr = [];
         arrayUsers.forEach(item => {
@@ -182,22 +180,18 @@ export class DashboardComponent implements OnInit {
         this.dropdownList = arr;
       },
       err => {
-        // console.log(err)
       }
     )
   }
   getAllLeads() {
     this.leadService.getAllLeads().subscribe(
       res => {
-        // console.log(res)
         this.allLeads = res['payload']
         this.allLeads.forEach(element => {
           element['checked'] = false;
         });
-        // console.log(this.allLeads)
       },
       err => {
-        // console.log(err)
       }
     )
   }
@@ -206,11 +200,8 @@ export class DashboardComponent implements OnInit {
     this.leadService.getMyLeads().subscribe(
       res => {
         this.myLeads = res['payload']
-
-        // console.log(res)
       },
       err => {
-        // console.log(err)
       }
     )
   }
@@ -219,10 +210,8 @@ export class DashboardComponent implements OnInit {
     this.leadService.getJunkedLeads().subscribe(
       res => {
         this.junkLeads = res['payload']
-        // console.log(res)
       },
       err => {
-        // console.log(err)
       }
     )
   }
@@ -351,6 +340,21 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  gotoProfile(){
+    this.info = false;
+    this.profile = true;
+    this.social = false;
+  }
+  gotoInfo(){
+    this.info = true;
+    this.profile = false;
+    this.social = false;
+  }
+  gotoSocial(){
+    this.info = false;
+    this.profile = false;
+    this.social = true;
+  }
   closecSuccess() {
     this.csuccess = false
     this.router.navigate(['/app/deals'])

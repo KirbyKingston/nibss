@@ -723,7 +723,7 @@
                                 </a>
                             </div>
                             <div class="">
-                                <a class="" >
+                                <a class="">
                                     <div class="d-flex align-items-center">
                                         <div class="number mr-2">2</div>
                                         <div>
@@ -778,7 +778,301 @@
                     </div>
 
                     <div class="col-12">
-                        <div class="tab-content" id="myTabContent">
+                        <div class="" *ngIf="info">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="fs-16 ff-p fc-black">Lead Owner</label>
+
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <select class="form-control topform" [(ngModel)]="owner">
+                                        <option value="{{user.id}}" *ngFor="let user of users">{{user.fullName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <select class="form-control topform" required #stat="ngModel" [(ngModel)]="status">
+                                        <option value="">Lead Status</option>
+                                        <option value="0">Cold</option>
+                                        <option value="1">Warm</option>
+                                        <option value="2">Hot</option>
+                                    </select>
+                                    <div *ngIf="stat.invalid && (stat.dirty || stat.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="stat.errors.required">
+                                            Lead status is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <select class="form-control topform" [(ngModel)]="source">
+                                        <option value="">Lead Source</option>
+                                        <option value="Campaign">Campaign</option>
+                                        <option value="Cold Call">Cold Call</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <select [(ngModel)]="stage" class="form-control topform" required #stag="ngModel">
+                                        <option value="">Lead Stage</option>
+                                        <option value="0">Open</option>
+                                        <option value="1">Attempting Contact</option>
+                                        <option value="2">Converted</option>
+                                        <option value="3">Disqualified</option>
+                                        <option value="4">Not Engaged</option>
+                                        <option value="5">Converted with no Opportunity</option>
+                                    </select>
+                                    <div *ngIf="stag.invalid && (stag.dirty || stag.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="stag.errors.required">
+                                            Lead stage is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <div class="input-group leadform big">
+                                        <div class="input-group-prepend">
+                                            <div class="i">+234</div>
+                                        </div>
+                                        <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber"
+                                            type="text" minlength="10" maxlength="12" class="form-control"
+                                            #ophon="ngModel">
+                                    </div>
+                                    <div *ngIf="ophon.invalid && (ophon.dirty || ophon.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="ophon.errors.minlength">
+                                            Phonenumber must be at least 10 characters long.
+                                        </small>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Name</label>
+                                    <div class="input-group leadform">
+                                        <div class="input-group-prepend">
+                                            <select [(ngModel)]="title" #tit="ngModel" class="form-control" required>
+                                                <option value="Miss.">Miss</option>
+                                                <option value="Mrs.">Mrs</option>
+                                                <option value="Mr.">Mr</option>
+                                                <option value="Dr.">Dr</option>
+                                            </select>
+                                        </div>
+                                        <input type="text" placeholder="First Name" required #first="ngModel"
+                                            class="form-control" [(ngModel)]="firstName">
+                                        <input type="text" placeholder="Last Name" required #last="ngModel"
+                                            class="form-control" [(ngModel)]="lastName">
+                                    </div>
+                                    <div *ngIf="tit.invalid && (tit.dirty || tit.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="tit.errors.required">
+                                            Title is required.
+                                        </small>
+                                    </div>
+                                    <div *ngIf="first.invalid && (first.dirty || first.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="first.errors.required">
+                                            First name is required.
+                                        </small>
+                                    </div>
+                                    <div *ngIf="last.invalid && (last.dirty || last.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="last.errors.required">
+                                            Last name is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Designation</label>
+                                    <input type="text" class="form-control botform" required #desig="ngModel"
+                                        [(ngModel)]="designation">
+                                    <div *ngIf="desig.invalid && (desig.dirty || desig.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="desig.errors.required">
+                                            Contact designation is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Display Image</label>
+                                    <input type="file" class="form-control botform"
+                                        (change)="handleUpload($event.target.files)" required [(ngModel)]="disImage">
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Email Address</label>
+                                    <input type="text" class="form-control botform" [(ngModel)]="email" required
+                                        #mail="ngModel">
+                                    <div *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="mail.errors.required">
+                                            Contact email is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Phone Number</label>
+                                    <div class="input-group leadform">
+                                        <div class="input-group-prepend">
+                                            <div class="i">+234</div>
+                                        </div>
+                                        <input [(ngModel)]="phoneNumber" type="text" class="form-control" minlength="10"
+                                            maxlength="12" required #phone="ngModel">
+                                        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                                            <small class="fc-red fs-12 ff-s" *ngIf="phone.errors.required">
+                                                Contact phone number is required.
+                                            </small>
+                                            <small class="fc-red fs-12 ff-s" *ngIf="phone.errors.minlength">
+                                                Phonenumber must be at least 10 characters long.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <p class="text-right ">
+                                        <button class="btn btn-green px-3" (click)="gotoProfile()">Next</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" *ngIf="profile">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="" class="fs-16 fc-black ff-p">Institution Name</label>
+
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <input type="text" [(ngModel)]="company" class="form-control botform" required
+                                        #insName="ngModel">
+                                    <div *ngIf="insName.invalid && (insName.dirty || insName.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="insName.errors.required">
+                                            Institution name is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <select [(ngModel)]="insType" class="form-control botform" required
+                                        #institute="ngModel">
+                                        <option value="">Institution Type</option>
+                                        <option value="2">Commercial Bank</option>
+                                        <option value="3">Merchant Bank</option>
+                                        <option value="1">Microfinance Bank</option>
+                                        <option value="4">Mortgage Bank</option>
+                                        <option value="5">Mobile Money Operator</option>
+                                        <option value="6">Finance House</option>
+                                        <option value="7">Stockbroker</option>
+                                        <option value="8">Payment Service Solution Provider</option>
+                                        <option value="9">Pension Fund Administrator</option>
+                                        <option value="10">Pension Fund Custodian</option>
+                                        <option value="11">Development Finance Institutions</option>
+                                        <option value="0">Others</option>
+                                    </select>
+                                    <div *ngIf="institute.invalid && (institute.dirty || institute.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="institute.errors.required">
+                                            Institution type is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Prospective Products</label>
+                                    <ng-multiselect-dropdown [placeholder]="' '" [data]="dropdownList"
+                                        [(ngModel)]="products" [settings]="dropdownSettings" required
+                                        #prod="ngModel">
+                                    </ng-multiselect-dropdown>
+                                    <div *ngIf="prod.invalid && (prod.dirty || prod.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="prod.errors.required">
+                                            Please select at least one product.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Transaction Volume</label>
+                                    <input [(ngModel)]="transVol" data-type="number" type="text"
+                                        class="form-control botform money">
+
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Year Established</label>
+                                    <input type="date" [(ngModel)]="yearEst" class="form-control botform">
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Est. Transaction Value</label>
+                                    <div class="input-group leadform">
+                                        <div class="input-group-prepend">
+                                            <div class="i">NGN</div>
+                                        </div>
+                                        <input type="text" type="text" data-type="number" maxlength="10"
+                                            minlength="10" [(ngModel)]="EstTransVal" class="form-control money">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-3">
+                                    <label for="" class="fs-16 fc-black ff-p">Note</label>
+                                    <input type="text" [(ngModel)]="message" class="form-control botform" required
+                                        #notemessage="ngModel">
+                                    <div *ngIf="notemessage.invalid && (notemessage.dirty || notemessage.touched)">
+                                        <small class="fc-red fs-12 ff-s" *ngIf="notemessage.errors.required">
+                                            Note is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <label class="fs-16 ff-p fc-black">Branch Address</label>
+                                    <input type="text" class="form-control botform" [(ngModel)]="address">
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <label class="fs-16 ff-p fc-black">City</label>
+                                    <input type="text" class="form-control botform" [(ngModel)]="city">
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <label class="fs-16 ff-p fc-black">Country</label>
+                                    <select class="form-control botform" [(ngModel)]="country">
+                                        <option value="Nigeria">Nigeria</option>
+                                        <option value="Ghana">Ghana</option>
+                                        <option value="Niger">Niger</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <label class="fs-16 ff-p fc-black">Zip / Postal Code (Optional)</label>
+                                    <input type="text" class="form-control botform" [(ngModel)]="postalCode">
+                                </div>
+
+
+                                <div class="col-12 mt-5">
+                                    <div class="d-flex justify-content-between">
+                                        <div><button class="btn btn-lightgreen px-3" (click)="gotoInfo()">Back</button></div>
+                                        <div><button class="btn btn-green px-3" (click)="gotoSocial()">Next</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" *ngIf="social">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label for="" class="fs-16 ff-s fw-4 fc-black"><img src="assets/images/webd.svg"
+                                            alt=""> Website</label>
+                                    <input type="text" placeholder="paste url here" [(ngModel)]="website"
+                                        class="form-control botform">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="" class="fs-16 ff-s fw-4 fc-black"><img
+                                            src="assets/images/facebook.svg" alt=""> Facebook</label>
+                                    <input type="text" placeholder="paste url here" [(ngModel)]="facebook"
+                                        class="form-control botform">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="" class="fs-16 ff-s fw-4 fc-black"><img
+                                            src="assets/images/twitter.svg" alt=""> Twitter</label>
+                                    <input type="text" placeholder="paste url here" [(ngModel)]="twitter"
+                                        class="form-control botform">
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <label for="" class="fs-16 ff-s fw-4 fc-black"><img
+                                            src="assets/images/instagram.svg" alt=""> Instagram</label>
+                                    <input type="text" placeholder="paste url here" [(ngModel)]="instagram"
+                                        class="form-control botform">
+                                </div>
+
+                                <div class="col-12 mt-5 pt-5">
+                                    <div class="d-flex justify-content-between">
+                                        <div><button class="btn btn-lightgreen px-3" (click)="gotoProfile()">Back</button></div>
+                                        <div><button class="btn btn-green px-3" (click)="createLead()"
+                                                data-dismiss="modal">Create</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="row">
                                     <div class="col-12">
@@ -833,7 +1127,7 @@
                                     <div class="col-lg-6 mb-3">
                                         <div class="input-group leadform big">
                                             <div class="input-group-prepend">
-                                               <div class="i">+234</div>
+                                                <div class="i">+234</div>
                                             </div>
                                             <input [(ngModel)]="ownerphoneNumber" placeholder="Owner Phonenumber"
                                                 type="text" minlength="10" maxlength="12" class="form-control"
@@ -925,10 +1219,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="col-12 mb-3">
-                                        <p class="m-0 fc-red ff-s fs-13">**Calls can only be made from CRMHUB to
-                                            Microsoft Teams and Skype</p>
-                                    </div> -->
                                     <div class="col-12 mt-3">
                                         <p class="text-right ">
                                             <button class="btn btn-green px-3 btnNext">Next</button>
@@ -1082,7 +1372,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>

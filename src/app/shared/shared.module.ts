@@ -14,10 +14,11 @@ import {
   MatOptionModule
 } from '@angular/material';
 import { EmailComponent } from './components/email/email.component';
+import { PopoutNotificationComponent } from './components/popout-notification/popout-notification.component';
 
 
 @NgModule({
-  declarations: [AlertComponent, TableComponent, LoaderComponent, TrustedUrlPipe, HumanizePipe, EmailComponent],
+  declarations: [AlertComponent, TableComponent, LoaderComponent, TrustedUrlPipe, HumanizePipe, EmailComponent, PopoutNotificationComponent],
   imports: [
     CommonModule,
     MatFormFieldModule, 
@@ -28,7 +29,7 @@ import { EmailComponent } from './components/email/email.component';
     MatCheckboxModule
   ],
   exports: [
-    TableComponent, HumanizePipe, TrustedUrlPipe, AlertComponent, LoaderComponent, EmailComponent
+    TableComponent, HumanizePipe, TrustedUrlPipe, AlertComponent, LoaderComponent, EmailComponent, PopoutNotificationComponent
   ]
 })
 export class SharedModule { }

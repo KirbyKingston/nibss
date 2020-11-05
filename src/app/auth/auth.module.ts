@@ -21,7 +21,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
       auth: {
         clientId: '6ef517c5-ec73-454a-ac8a-dfca04230d92',
         authority: 'https://login.microsoftonline.com/b393417d-28bb-4622-ad5e-e5d44974ff79',
-        redirectUri: 'http://localhost:4200/',
+        redirectUri: 'http://nibsscrm.herokuapp.com/',
       },
       cache: {
         cacheLocation: 'localStorage',

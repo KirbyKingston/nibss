@@ -131,7 +131,7 @@ export class DashboardComponent implements OnInit {
   getUsers(){
     this.authService.getUsers().subscribe(
       res => {
-        this.users = res['payload']['users']
+        this.users = res['payload']
       }
     )
   }

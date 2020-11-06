@@ -53,13 +53,9 @@ export class AdloginComponent implements OnInit {
     const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
     if (isIE) {
-      this.authService.loginRedirect({
-        extraScopesToConsent: ["api://db41c711-526e-4e73-bd71-e23b0dd3fb0e/access_crm_as_user", "openid", "profile"]
-      });
+      this.authService.loginRedirect();
     } else {
-      this.authService.loginPopup({
-        extraScopesToConsent: ["api://db41c711-526e-4e73-bd71-e23b0dd3fb0e/access_crm_as_user", "openid", "profile"]
-      });
+      this.authService.loginPopup();
     }
   }
 
@@ -68,10 +64,12 @@ export class AdloginComponent implements OnInit {
     this.authService.acquireTokenSilent(requestObj).then(tokenResponse => {
       window.localStorage.clear();
 
+      console.log(tokenResponse.accessToken)
       localStorage.setItem('access_token', tokenResponse.accessToken)
       this.router.navigate(['/app/leads'])
 
     }).catch(function (error) {
+      console.log(error)
     });
 
   }

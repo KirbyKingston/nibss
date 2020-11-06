@@ -723,7 +723,7 @@
                                 </a>
                             </div>
                             <div class="">
-                                <a class="">
+                                <a class="" [ngClass]="{'active': this.profile == true}">
                                     <div class="d-flex align-items-center">
                                         <div class="number mr-2">2</div>
                                         <div>
@@ -921,7 +921,7 @@
                                 </div>
                                 <div class="col-12 mt-3">
                                     <p class="text-right ">
-                                        <button class="btn btn-green px-3" (click)="gotoProfile()">Next</button>
+                                        <button class="btn btn-green px-3" [disabled]="stat.invalid || stag.invalid || phone.invalid || mail.invalid || desig.invalid || tit.invalid || first.invalid || last.invalid" (click)="gotoProfile()">Next</button>
                                     </p>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@ import { CryptoUtils, Logger } from 'msal';
 import { Subscription } from 'rxjs';
 import { AuthDataService } from 'src/core/data/authentication/auth-data.service';
 const requestObj = {
-  scopes: ["api://db41c711-526e-4e73-bd71-e23b0dd3fb0e/access_crm_as_user"]
+  scopes: ["api://db41c711-526e-4e73-bd71-e23b0dd3fb0e/access_crm_as_user openid offline_access"]
 };
 @Component({
   selector: 'app-adlogin',
@@ -61,14 +61,14 @@ export class AdloginComponent implements OnInit {
 
 
   goIntoApp() {
-    this.authService.acquireTokenSilent(requestObj).then(tokenResponse => {
+    this.authService.acquireTokenSilent(requestObj).then((tokenResponse) => {
       window.localStorage.clear();
 
       console.log(tokenResponse.accessToken)
       localStorage.setItem('access_token', tokenResponse.accessToken)
       this.router.navigate(['/app/leads'])
 
-    }).catch(function (error) {
+    }).catch((error) => {
       console.log(error)
     });
 
